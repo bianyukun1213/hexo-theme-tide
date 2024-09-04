@@ -12,10 +12,10 @@
 <body>
 
     <div id="tide-root" un-absolute un-top="0" un-bottom="0" un-left="0" un-right="0" un-bg="purple">
-        <!-- 如果是主页，中屏后自动展开 -->
+        <!-- 如果是主页，大屏后自动展开 -->
         <% if(is_home()) { %>
             <div id="tide-left-bar" un-bg="blue" un-fixed un-ltr="-left-72" un-rtl="-right-72" un-w="72" un-h="full"
-                un-md="ltr:left-0 rtl:right-0">
+                un-lg="ltr:translate-x-72 rtl:-translate-x-72" un-transition un-ease-in-out un-duration="300">
                 <% } else { %>
                     <div id="tide-left-bar" un-bg="blue" un-fixed un-left="-72" un-w="72" un-h="full">
                         <% } %>
@@ -74,12 +74,12 @@
                                 Powered by Hexo
                             </footer>
                     </div>
-                    <!-- 如果是主页，中屏后自动向右移动 -->
+                    <!-- 如果是主页，大屏后自动向右移动 -->
                     <% if(is_home()) { %>
                         <div id="tide-content"
                             style="background-image: url('https://bucket.hollisdevhub.com/blog/posts/6a6f8902/imgs/Photo_2023-09-13-212201.webp');"
                             un-fixed un-flex="~ col" un-ltr="left-0" un-rtl="right-0" un-w="full" un-h="full"
-                            un-md="ltr:left-72 rtl:right-72 w-[calc(100%-18rem)]">
+                            un-lg="ltr:left-72 rtl:right-72 w-[calc(100%-18rem)]">
                             <% } else { %>
                                 <div id="tide-content"
                                     style="background-image: url('https://bucket.hollisdevhub.com/blog/posts/6a6f8902/imgs/Photo_2023-09-13-212201.webp');"
@@ -89,8 +89,16 @@
                                         <header id="tide-top-bar" un-bg="green" un-flex un-justify="stretch"
                                             un-items="center" un-h="16">
                                             <div un-w="full" un-h="4/5">
-                                                <button id="tide-btn-nav" un-ltr="float-left ml-4"
-                                                    un-rtl="float-right mr-4" un-h="full" un-aspect="square">三</button>
+                                                <!-- 如果是主页，大屏后自动隐藏 -->
+                                                <% if(is_home()) {%>
+                                                    <button id="tide-btn-nav" un-ltr="float-left ml-4"
+                                                        un-rtl="float-right mr-4" un-h="full" un-aspect="square"
+                                                        un-lg="hidden">三</button>
+                                                    <% }else{ %>
+                                                        <button id="tide-btn-nav" un-ltr="float-left ml-4"
+                                                            un-rtl="float-right mr-4" un-h="full"
+                                                            un-aspect="square">三</button>
+                                                        <% } %>
                                             </div>
                                             <div un-w="full" un-h="4/5">
                                                 <button id="tide-btn-settings" un-ltr="float-right mr-4"
