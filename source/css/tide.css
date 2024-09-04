@@ -109,8 +109,8 @@
 .tab{-moz-tab-size:4;-o-tab-size:4;tab-size:4;}
 [un-transition-transform=""]{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms;}
 [un-ease-in-out=""]{transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);}
-@media (min-width: 1024px){
-[dir="ltr"] [un-lg~="ltr\:-left-96"]{left:-24rem;}
-[dir="rtl"] [un-lg~="rtl\:-right-96"]{right:-24rem;}
-[un-lg~="w-96"]{width:24rem;}
+@media (min-width: 768px){
+[dir="ltr"] [un-md~="ltr\:-left-96"]{left:-24rem;}
+[dir="rtl"] [un-md~="rtl\:-right-96"]{right:-24rem;}
+[un-md~="w-96"]{width:24rem;}
 }
