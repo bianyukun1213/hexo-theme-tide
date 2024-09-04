@@ -58,8 +58,11 @@
 .invisible{visibility:hidden;}
 .absolute,
 [un-absolute=""]{position:absolute;}
-[un-bottom~="\30 "]{bottom:0;}
+[un-fixed=""]{position:fixed;}
+.left-0,
 [un-left~="\30 "]{left:0;}
+[un-bottom~="\30 "]{bottom:0;}
+[un-left~="-\37 2"]{left:-18rem;}
 [un-right~="\30 "]{right:0;}
 [un-top~="\30 "]{top:0;}
 .float-right{float:right;}
@@ -72,12 +75,12 @@
 [un-h~="\34 \/5"]{height:80%;}
 .h-full,
 [un-h~="full"]{height:100%;}
+.w-\[calc\(100\%-18rem\)\]{width:calc(100% - 18rem);}
 .w-full,
 [un-w~="full"]{width:100%;}
 [un-h~="\31 6"]{height:4rem;}
 [un-w~="\37 2"]{width:18rem;}
 .flex,
-[un-flex=""],
 [un-flex~="\~"]{display:flex;}
 .flex-1,
 [un-flex~="\31 "]{flex:1 1 0%;}
@@ -87,6 +90,8 @@
 [un-flex~="none"]{flex:none;}
 .flex-row-reverse{flex-direction:row-reverse;}
 [un-flex~="col"]{flex-direction:column;}
+.translate-x-72,
+[un-translate-x="\37 2"]{--un-translate-x:18rem;transform:translateX(var(--un-translate-x)) translateY(var(--un-translate-y)) translateZ(var(--un-translate-z)) rotate(var(--un-rotate)) rotateX(var(--un-rotate-x)) rotateY(var(--un-rotate-y)) rotateZ(var(--un-rotate-z)) skewX(var(--un-skew-x)) skewY(var(--un-skew-y)) scaleX(var(--un-scale-x)) scaleY(var(--un-scale-y)) scaleZ(var(--un-scale-z));}
 [un-items~="center"]{align-items:center;}
 [un-justify~="between"]{justify-content:space-between;}
 [un-justify-self~="start"]{justify-self:start;}
@@ -101,15 +106,17 @@
 [un-bg~="yellow"]{--un-bg-opacity:1;background-color:rgb(250 204 21 / var(--un-bg-opacity));}
 .text-t-prim{color:var(--tide-color-text-primary);}
 @media (min-width: 768px){
+[un-md~="left-0"]{left:0;}
 [un-md~="block"]{display:block;}
+[un-md~="w-\[calc\(100\%-18rem\)\]"]{width:calc(100% - 18rem);}
 [un-md~="w-full"]{width:100%;}
 [un-md~="flex-1"]{flex:1 1 0%;}
 [un-md~="flex-none"]{flex:none;}
+[un-md~="translate-x-72"]{--un-translate-x:18rem;transform:translateX(var(--un-translate-x)) translateY(var(--un-translate-y)) translateZ(var(--un-translate-z)) rotate(var(--un-rotate)) rotateX(var(--un-rotate-x)) rotateY(var(--un-rotate-y)) rotateZ(var(--un-rotate-z)) skewX(var(--un-skew-x)) skewY(var(--un-skew-y)) scaleX(var(--un-scale-x)) scaleY(var(--un-scale-y)) scaleZ(var(--un-scale-z));}
 }
 @media (min-width: 1024px){
 .lg\:visible{visibility:visible;}
 .lg\:relative{position:relative;}
-[un-lg~="block"]{display:block;}
 .lg\:w-1\/4{width:25%;}
 [un-lg~="w-full"]{width:100%;}
 [un-lg~="flex-none"]{flex:none;}

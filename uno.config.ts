@@ -79,5 +79,6 @@ export default defineConfig({
             'tbBgHd': 'var(--tide-color-table-border-head)',
             'tbBgEvn': 'var(--tide-color-table-border-even)',
         }
-    }
+    },
+    safelist: ['[un-translate-x="72"]']
 });

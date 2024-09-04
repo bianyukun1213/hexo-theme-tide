@@ -11,7 +11,7 @@
 
 <body>
 
-    <div id="tide-root" un-absolute un-top="0" un-bottom="0" un-left="0" un-right="0" un-flex un-bg="purple">
+    <div id="tide-root" un-absolute un-top="0" un-bottom="0" un-left="0" un-right="0" un-bg="purple">
         <!-- 左侧导航栏 -->
         <!-- transformer-variant-group broken in 0.62 -->
         <!-- https://github.com/unocss/unocss/issues/4088 -->
@@ -24,11 +24,13 @@
         <!-- ejs 始终输出 un-hidden，给首页再输出 un-md="block" -->
         <!-- js 添加或去除 hidden -->
 
+        <!-- js 设置 un-left="0" -->
+
         <% if(is_home()) { %>
             <!-- <div id="tide-left-bar" un-bg="blue" un-hidden un-flex="initial" un-w="72" un-h="full" un-md="block"> -->
-            <div id="tide-left-bar" un-bg="blue" un-hidden un-flex="initial" un-w="72" un-h="full" un-lg="block">
+            <div id="tide-left-bar" un-bg="blue" un-fixed un-left="-72" un-w="72" un-h="full" un-md="left-0">
                 <% } else { %>
-                    <div id="tide-left-bar" un-bg="blue" un-hidden un-flex="initial" un-w="72" un-h="full">
+                    <div id="tide-left-bar" un-bg="blue" un-fixed un-left="-72" un-w="72" un-h="full">
                         <% } %>
                             <header>
                                 <h1>hexo-theme-tide</h1>
@@ -55,11 +57,12 @@
                     <% if(is_home()) { %>
                         <div id="tide-content"
                             style="background-image: url('https://bucket.hollisdevhub.com/blog/posts/6a6f8902/imgs/Photo_2023-09-13-212201.webp');"
-                            un-flex="none col" un-w="full" un-h="full" un-md="flex-1">
+                            un-w="full" un-h="full" un-md="translate-x-72 w-[calc(100%-18rem)]">
                             <% } else { %>
+                                <!-- js 单纯设置 uno-translate-x="72" -->
                                 <div id="tide-content"
                                     style="background-image: url('https://bucket.hollisdevhub.com/blog/posts/6a6f8902/imgs/Photo_2023-09-13-212201.webp');"
-                                    un-flex="none col" un-w="full" un-h="full">
+                                    un-w="full" un-h="full">
                                     <% } %>
                                         <!-- 顶部工具栏 -->
                                         <header id="tide-top-bar" un-bg="green" un-flex="~ none" un-justify="between"
@@ -107,11 +110,15 @@
                             //         leftBar.setAttribute('un-hidden', '');
                             // });
                             $('#tide-btn-nav').click(() => {
-                                alert('1121');
-                                if ($('#tide-left-bar').attr('un-hidden'))
-                                    $('#tide-left-bar').removeAttr('un-hidden');
-                                else
-                                    $('#tide-left-bar').attr('un-hidden', '');
+                                // alert($('#tide-left-bar').attr('un-left'));
+                                if ($('#tide-left-bar').attr('un-left') !== '0') {
+                                    $('#tide-left-bar').attr('un-left', '0');
+                                    $('#tide-content').attr('un-translate-x', '72');
+                                }
+                                else {
+                                    $('#tide-left-bar').attr('un-left', '-72');
+                                    $('#tide-content').attr('un-translate-x', '0');
+                                }
                             });
                         </script>
 </body>
