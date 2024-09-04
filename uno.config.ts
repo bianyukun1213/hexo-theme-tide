@@ -80,5 +80,5 @@ export default defineConfig({
             'tbBgEvn': 'var(--tide-color-table-border-even)',
         }
     },
-    safelist: ['[un-ltr="left-72"]', '[un-rtl="right-72"]']
+    safelist: []
 });
