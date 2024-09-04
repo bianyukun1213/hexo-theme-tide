@@ -11,8 +11,8 @@ menu:
 
 # stylesheets loaded in the <head>
 stylesheets:
-- /css/hexo-theme-tide.css
+# - /css/hexo-theme-tide.css
 
 # scripts loaded in the end of the body
 scripts:
-- /js/hexo-theme-tide.js
+# - /js/hexo-theme-tide.js
