@@ -12,28 +12,19 @@
 <body>
 
     <div id="tide-root" un-absolute un-top="0" un-bottom="0" un-left="0" un-right="0" un-bg="purple">
-        <!-- 左侧导航栏 -->
-        <!-- transformer-variant-group broken in 0.62 -->
-        <!-- https://github.com/unocss/unocss/issues/4088 -->
-        <!-- <nav id="tide-navigation" class="bg-blue invisible absolute w-full h-full lg:visible lg:portrait:invisible lg:relative lg:portrait:absolute lg:w-1/4 lg:portrait:w-full"> -->
-
-        <!-- 普通页面不收起，文章页收起，参考 https://louisbarranqueiro.github.io/hexo-theme-tranquilpeak/ -->
-
-        <!-- 非首页布局默认有 class="hidden" -->
-        <!-- js 切换 display:none 和 display:block，即 class 中 hidden 和 block -->
-        <!-- ejs 始终输出 un-hidden，给首页再输出 un-md="block" -->
-        <!-- js 添加或去除 hidden -->
-
-        <!-- js 设置 un-left="0" -->
-
+        <!-- 如果是主页，中屏后自动展开 -->
         <% if(is_home()) { %>
-            <!-- <div id="tide-left-bar" un-bg="blue" un-hidden un-flex="initial" un-w="72" un-h="full" un-md="block"> -->
-            <div id="tide-left-bar" un-bg="blue" un-fixed un-left="-72" un-w="72" un-h="full" un-md="left-0">
+            <div id="tide-left-bar" un-bg="blue" un-fixed un-ltr="-left-72" un-rtl="-right-72" un-w="72" un-h="full"
+                un-md="ltr:left-0 rtl:right-0">
                 <% } else { %>
                     <div id="tide-left-bar" un-bg="blue" un-fixed un-left="-72" un-w="72" un-h="full">
                         <% } %>
                             <header>
-                                <h1>hexo-theme-tide</h1>
+                                <% if(is_home()) { %>
+                                    <h1>hexo-theme-tide</h1>
+                                    <% } else { %>
+                                        <span>hexo-theme-tide</span>
+                                        <% } %>
                             </header>
                             <nav id="tide-navigation">
                                 <ul>
@@ -41,57 +32,171 @@
                                     <li><a href="#">2</a></li>
                                     <li><a href="#">3</a></li>
                                     <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">4</a></li>
                                 </ul>
                             </nav>
                             <footer>
                                 Powered by Hexo
                             </footer>
                     </div>
-
-                    <!-- <div id="tide-content" un-bg="red" un-flex="1 col" un-h="full" un-lg="flex-none w-full"> -->
-                    <!-- <div id="tide-content" style="background-image: url('');" un-flex="1 col" un-h="full" un-md="flex-none w-full"> -->
-
-                    <!-- 小屏幕和非首页 flex-none，大屏幕首页 flex-1 -->
-                    <!-- ejs 始终输出 un-flex="none col"，给首页再输出 un-md="flex-1" -->
-
+                    <!-- 如果是主页，中屏后自动向右移动 -->
                     <% if(is_home()) { %>
                         <div id="tide-content"
                             style="background-image: url('https://bucket.hollisdevhub.com/blog/posts/6a6f8902/imgs/Photo_2023-09-13-212201.webp');"
-                            un-w="full" un-h="full" un-md="translate-x-72 w-[calc(100%-18rem)]">
+                            un-fixed un-flex="~ col" un-ltr="left-0" un-rtl="right-0" un-w="full" un-h="full"
+                            un-md="ltr:left-72 rtl:right-72 w-[calc(100%-18rem)]">
                             <% } else { %>
-                                <!-- js 单纯设置 uno-translate-x="72" -->
                                 <div id="tide-content"
                                     style="background-image: url('https://bucket.hollisdevhub.com/blog/posts/6a6f8902/imgs/Photo_2023-09-13-212201.webp');"
-                                    un-w="full" un-h="full">
+                                    un-fixed un-flex="~ col" un-ltr="left-0" un-rtl="right-0" un-w="full" un-h="full">
                                     <% } %>
                                         <!-- 顶部工具栏 -->
-                                        <header id="tide-top-bar" un-bg="green" un-flex="~ none" un-justify="between"
+                                        <header id="tide-top-bar" un-bg="green" un-flex un-justify="stretch"
                                             un-items="center" un-h="16">
-                                            <!-- <div class="bg-white flex-none h-4/5 aspect-square"> -->
-
-                                            <div un-h="4/5" un-justify-self="start">
-                                                <button id="tide-btn-nav" un-h="full" un-aspect="square">三</button>
+                                            <div un-w="full" un-h="4/5">
+                                                <button id="tide-btn-nav" un-ltr="float-left ml-4"
+                                                    un-rtl="float-right mr-4" un-h="full" un-aspect="square">三</button>
                                             </div>
-                                            <div un-h="4/5" un-justify-self="end">
-                                                <button id="tide-btn-search" un-h="full" un-aspect="square">🔍</button>
-                                                <button id="tide-btn-settings" un-h="full"
-                                                    un-aspect="square">⚙️</button>
+                                            <div un-w="full" un-h="4/5">
+                                                <button id="tide-btn-settings" un-ltr="float-right mr-4"
+                                                    un-rtl="float-left ml-4" un-h="full" un-aspect="square">⚙️</button>
+                                                <button id="tide-btn-search" un-ltr="float-right mr-4"
+                                                    un-rtl="float-left ml-4" un-h="full" un-aspect="square">🔍</button>
                                             </div>
-
-
-
-                                            <!-- </div> -->
-                                            <!-- <div class="bg-white flex-auto h-4/5 aspect-square flex flex-row-reverse"> -->
-                                            <!-- <div class="bg-white flex-auto h-4/5 aspect-square flex flex-row-reverse">
-                    <button class="aspect-square h-full float-right">1</button>
-                    <button class="w-full h-full float-right">1</button>
-                    <button class="w-full h-full float-right">3</button>
-
-                </div> -->
                                         </header>
-
-
-                                        <main id="tide-main-content" un-bg="yellow" un-flex="1">
+                                        <main id="tide-main-content" un-bg="yellow" un-flex="1" un-overflow="auto">
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                                            </p>
+                                            <p>bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb</p>
                                             <!-- 页面 -->
                                             <article></article>
                                             <!-- 评论 -->
@@ -102,22 +207,30 @@
                                 </div>
                         </div>
                         <script>
-                            // let leftBar = document.querySelector('#tide-left-bar');
-                            // document.querySelector('#tide-btn-nav').addEventListener('click', function () {
-                            //     if (leftBar.hasAttribute('un-hidden'))
-                            //         leftBar.removeAttribute('un-hidden');
-                            //     else
-                            //         leftBar.setAttribute('un-hidden', '');
-                            // });
+                            $('#tide-btn-settings').click(() => {
+                                if ($('html').attr('dir') === 'ltr')
+                                    $('html').attr('dir', 'rtl');
+                                else
+                                    $('html').attr('dir', 'ltr');
+                            });
                             $('#tide-btn-nav').click(() => {
-                                // alert($('#tide-left-bar').attr('un-left'));
-                                if ($('#tide-left-bar').attr('un-left') !== '0') {
-                                    $('#tide-left-bar').attr('un-left', '0');
-                                    $('#tide-content').attr('un-translate-x', '72');
+                                // 左栏折叠状态：
+                                if ($('#tide-left-bar').attr('un-ltr') !== 'left-0') {
+                                    $('#tide-left-bar').attr('un-ltr', 'left-0'); // 展开左栏。
+                                    $('#tide-content').attr('un-ltr', 'left-72'); // 向右移动内容，需要配置 safelist。
+                                }
+                                // 左栏展开状态：
+                                else {
+                                    $('#tide-left-bar').attr('un-ltr', '-left-72'); // 收起左栏。
+                                    $('#tide-content').attr('un-ltr', 'left-0'); // 向左移动内容。
+                                }
+                                if ($('#tide-left-bar').attr('un-rtl') !== 'right-0') {
+                                    $('#tide-left-bar').attr('un-rtl', 'right-0');
+                                    $('#tide-content').attr('un-rtl', 'right-72');
                                 }
                                 else {
-                                    $('#tide-left-bar').attr('un-left', '-72');
-                                    $('#tide-content').attr('un-translate-x', '0');
+                                    $('#tide-left-bar').attr('un-rtl', '-right-72');
+                                    $('#tide-content').attr('un-rtl', 'right-0');
                                 }
                             });
                         </script>
