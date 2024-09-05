@@ -15,7 +15,7 @@
         <% } %>
             un-bg="b-scnd" un-absolute un-top="0" un-bottom="0" un-left="0" un-right="0">
             <div id="tide-left-bar" un-sc-trans-default un-bg="prim" un-fixed un-ltr="-left-75vw" un-rtl="-right-75vw"
-                un-flex="~ col" un-justify="between" un-text="center t-lb" un-w="75vw" un-h="full">
+                un-flex="~ col" un-justify="between" un-z="30" un-text="center t-lb" un-w="75vw" un-h="full">
                 <header un-flex="none" un-py="8">
                     <% if(is_home()) { %>
                         <h1 id="tide-site-name" un-text="4xl" un-font="bold">hexo-theme-tide</h1>
@@ -41,6 +41,7 @@
                             href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a></p> -->
                 </footer>
             </div>
+            <!-- <div id="tide-deco"><img src="./img/tide-deco.svg" alt=""></div> -->
             <div id="tide-content" un-sc-trans-default un-fixed un-flex="~ col" un-w="full" un-h="full">
                 <!-- 顶部工具栏 -->
                 <header id="tide-top-bar" un-bg="b-prim" un-flex un-justify="stretch" un-items="center" un-h="16">
@@ -170,12 +171,12 @@
             </div>
     </div>
     <script>
-        // $('#tide-btn-search').click(() => {
-        //     if ($('html').hasClass('debug-large-font-size'))
-        //         $('html').removeClass('debug-large-font-size');
-        //     else
-        //         $('html').addClass('debug-large-font-size');
-        // });
+        $('#tide-btn-search').click(() => {
+            if ($('html').hasClass('debug-large-font-size'))
+                $('html').removeClass('debug-large-font-size');
+            else
+                $('html').addClass('debug-large-font-size');
+        });
         $('#tide-btn-settings').click(() => {
             if ($('html').attr('dir') === 'ltr')
                 $('html').attr('dir', 'rtl');

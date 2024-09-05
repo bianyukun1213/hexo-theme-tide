@@ -80,6 +80,7 @@
 [dir="rtl"] [un-rtl~="left-16"]{left:4rem;}
 .right-16,
 [dir="ltr"] [un-ltr~="right-16"]{right:4rem;}
+[un-z~="\33 0"]{z-index:30;}
 .float-left,
 [dir="ltr"] [un-ltr~="float-left"],
 [dir="rtl"] [un-rtl~="float-left"]{float:left;}
@@ -165,11 +166,38 @@ html.debug-large-font-size {
 }
 
 /* 侧边栏 */
+/* #tide-deco {
+    position: fixed;
+    left: 24rem;
+    height: 100%;
+    width: 12.5%;
+    z-index: 30;
+    pointer-events: none;
+}
+
+#tide-deco img {
+    width: 100%;
+    height: 100%;
+} */
+
+#tide-left-bar {
+    /* box-sizing: content-box;
+    border-image-source: url('../img/tide-deco.svg'); */
+}
+
+[dir="ltr"] [tide-left-bar-expanded="true"] #tide-left-bar {
+    box-shadow: 1rem 0 20px 0 rgba(0, 0, 0, 0.25);
+}
+
+[dir="rtl"] [tide-left-bar-expanded="true"] #tide-left-bar {
+    box-shadow: -1rem 0 20px 0 rgba(0, 0, 0, 0.25);
+}
 
 /* 默认小屏幕 */
 /* 使用 [dir="ltr"] 而非 @apply ltr:…… ，因为后者在转换后会有空的样式，显示警告 */
 [dir="ltr"] [tide-left-bar-expanded="true"] #tide-left-bar,
-[dir="ltr"] [tide-left-bar-expanded="true"] #tide-content {--un-translate-x:75vw;transform:translateX(var(--un-translate-x)) translateY(var(--un-translate-y)) translateZ(var(--un-translate-z)) rotate(var(--un-rotate)) rotateX(var(--un-rotate-x)) rotateY(var(--un-rotate-y)) rotateZ(var(--un-rotate-z)) skewX(var(--un-skew-x)) skewY(var(--un-skew-y)) scaleX(var(--un-scale-x)) scaleY(var(--un-scale-y)) scaleZ(var(--un-scale-z));
+[dir="ltr"] [tide-left-bar-expanded="true"] #tide-content {
+    /* @apply shadow-[-30px_0_30px_30px_rgba(0, 0, 0, 0.3)]; */--un-translate-x:75vw;transform:translateX(var(--un-translate-x)) translateY(var(--un-translate-y)) translateZ(var(--un-translate-z)) rotate(var(--un-rotate)) rotateX(var(--un-rotate-x)) rotateY(var(--un-rotate-y)) rotateZ(var(--un-rotate-z)) skewX(var(--un-skew-x)) skewY(var(--un-skew-y)) scaleX(var(--un-scale-x)) scaleY(var(--un-scale-y)) scaleZ(var(--un-scale-z));
 }
 
 [dir="rtl"] [tide-left-bar-expanded="true"] #tide-left-bar,
