@@ -4,25 +4,30 @@
 /* 自定义样式 */
 
 html {
-    --tide-color-primary: black;
-    --tide-color-secondary: black;
-    --tide-color-background-primary: black;
-    --tide-color-background-secondary: black;
-    --tide-color-text-primary: black;
-    --tide-color-text-secondary: black;
-    --tide-color-text-diminished: black;
-    --tide-color-focused-border: black;
-    --tide-color-link: black;
-    --tide-color-link-hover: black;
-    --tide-color-link-visited: black;
-    --tide-color-code: black;
-    --tide-color-table-border: black;
-    --tide-color-table-border-head: black;
-    --tide-color-table-border-even: black;
+    --tide-color-primary: #3F72AF;
+    --tide-color-secondary: #00ADB5;
+    --tide-color-background-primary: #FFFFFF;
+    --tide-color-background-secondary: #F7F7F7;
+    --tide-color-text-primary: #323739;
+    --tide-color-text-secondary: #5c6669;
+    --tide-color-text-diminished: #EAECED;
+    --tide-color-text-left-bar: #FFFFFF;
+    --tide-color-focused-outline: #E36209;
+    --tide-color-link: #3F72AF;
+    --tide-color-link-hover: #3F72AF;
+    --tide-color-link-visited: #00ADB5;
+    --tide-color-code: #3F72AF;
+    --tide-color-table-border: #E5E7EB;
+    --tide-color-table-border-head: #F7F7F7;
+    --tide-color-table-border-even: #F7F7F7;
 }
 
 html *:focus-visible {
-    @apply border-4 border-blue;
+    @apply outline-4 outline-fcs-ol;
+}
+
+html.debug-large-font-size {
+    font-size: 32px;
 }
 
 /* 侧边栏 */
@@ -66,25 +71,25 @@ html *:focus-visible {
     }
 }
 
-/* xl 往后横向首页不再允许折叠 */
+/* xl 往后横向非文章页不再允许折叠 */
 @media (min-width: 1280px) {
     @media (orientation: landscape) {
 
-        [dir="ltr"] [tide-is-home="true"] #tide-left-bar,
-        [dir="ltr"] [tide-is-home="true"] #tide-content {
+        [dir="ltr"] :not([tide-is-post]) #tide-left-bar,
+        [dir="ltr"] :not([tide-is-post]) #tide-content {
             @apply translate-x-96;
         }
 
-        [dir="rtl"] [tide-is-home="true"] #tide-left-bar,
-        [dir="rtl"] [tide-is-home="true"] #tide-content {
+        [dir="rtl"] :not([tide-is-post]) #tide-left-bar,
+        [dir="rtl"] :not([tide-is-post]) #tide-content {
             @apply -translate-x-96;
         }
 
-        [tide-is-home="true"] #tide-content {
+        :not([tide-is-post]) #tide-content {
             @apply w-[calc(100%-24rem)];
         }
 
-        [tide-is-home="true"] #tide-btn-nav {
+        :not([tide-is-post]) #tide-btn-nav {
             @apply hidden;
         }
     }

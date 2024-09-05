@@ -13,13 +13,18 @@ export default defineConfig({
         }),
         presetTypography({
             cssExtend: {
+                a: {
+                    transition: 'transform ease-in-out 0.2s',
+                    'text-decoration': 'underline'
+                },
                 'a:link': {
                     color: 'var(--tide-color-link)'
-                    // '@apply': 'text-lk' 用不了 transformerDirectives。
+                    // 用不了 transformerDirectives，如 '@apply': 'text-lk'。
                 },
                 'a:hover': {
                     display: 'inline-block',
-                    transform: 'translateY(-2px)'
+                    transform: 'translateY(-2px)',
+                    color: 'var(--tide-color-link-hover)'
                 },
                 'a:visited': {
                     color: 'var(--tide-color-link-visited)'
@@ -28,7 +33,7 @@ export default defineConfig({
                     color: 'var(--tide-color-code)'
                 },
                 hr: {
-                    border: '1px var(--tide-color-text-diminished) solid'
+                    border: '2px var(--tide-color-text-diminished) solid'
                 },
                 table: {
                     'table-layout': 'auto',
@@ -37,7 +42,7 @@ export default defineConfig({
                     border: '2px var(--tide-color-table-border) solid'
                 },
                 'td, th': {
-                    'border-left': '1px var(--tide-color-table-border) solid'
+                    'border-left': '2px var(--tide-color-table-border) solid'
                 },
                 'td:first-child, th:first-child': {
                     'border-left': 'none'
@@ -47,7 +52,7 @@ export default defineConfig({
                 },
                 th: {
                     background: 'var(--tide-color-table-background-head)',
-                    'border-bottom': '1px var(--tide-color-table-border) solid'
+                    'border-bottom': '2px var(--tide-color-table-border) solid'
                 },
                 'tr:nth-child(2n)': {
                     background: 'var(--tide-color-table-background-even)'
@@ -61,7 +66,8 @@ export default defineConfig({
             collections: {
                 ms: () => import('@iconify-json/material-symbols').then((i) => i.icons as any),
                 bxl: () => import('@iconify-json/bxl').then((i) => i.icons as any),
-                spinners: () => import('@iconify-json/svg-spinners').then((i) => i.icons as any)
+                spinners: () => import('@iconify-json/svg-spinners').then((i) => i.icons as any),
+                logos: () => import('@iconify-json/logos').then((i) => i.icons as any)
             },
             extraProperties: {
                 display: 'inline-block',
@@ -69,6 +75,13 @@ export default defineConfig({
             }
         })
     ],
+    shortcuts: {
+        // 与上方 prose 部分对应。
+        'sc-trans-default': 'transition-all ease-in-out duration-200',
+        'sc-link-default': 'sc-trans-default underline link:text-lk hover:(inline-block -translate-y-2px) text-lk-hvr visited:text-lk-vst',
+        'sc-link-plain': 'no-underline hover:underline text-t-prim',
+        'sc-btn-default': 'sc-trans-default bg-transparent border-(2 prim solid) hover:scale-105 active:scale-95 cursor-pointer'
+    },
     transformers: [
         transformerDirectives(),
         transformerVariantGroup()
@@ -82,7 +95,8 @@ export default defineConfig({
             'tPrim': 'var(--tide-color-text-primary)',
             'tScnd': 'var(--tide-color-text-secondary)',
             'tDmsh': 'var(--tide-color-text-diminished)',
-            'fcsBd': 'var(--tide-color-focused-border)',
+            'tLb': 'var(--tide-color-text-left-bar)',
+            'fcsOl': 'var(--tide-color-focused-outline)',
             'lk': 'var(--tide-color-link)',
             'lkHvr': 'var(--tide-color-link-hover)',
             'lkVst': 'var(--tide-color-link-visited)',
@@ -92,5 +106,5 @@ export default defineConfig({
             'tbBgEvn': 'var(--tide-color-table-border-even)',
         }
     },
-    safelist: []
+    safelist: ['[un-i="ms-close"]']
 });

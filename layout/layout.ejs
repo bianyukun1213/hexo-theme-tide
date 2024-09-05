@@ -10,87 +10,59 @@
 </head>
 
 <body>
-
-    <div id="tide-root" <% if(is_home()) { %>
-        tide-is-home="true"
+    <div id="tide-root" <% if(is_post()) { %>
+        tide-is-post="true"
         <% } %>
-            un-absolute un-top="0" un-bottom="0" un-left="0" un-right="0" un-bg="purple">
-            <!-- 如果是主页，大屏后自动展开 -->
-
-            <div id="tide-left-bar" un-bg="blue" un-fixed un-ltr="-left-75vw" un-rtl="-right-75vw" un-flex="~ col"
-                un-justify="between" un-text="center" un-w="75vw" un-h="full" un-transition-transform un-ease-in-out
-                un-druation-300>
-
-                <header un-flex="none" un-py="8" un-bg="green">
+            un-bg="b-scnd" un-absolute un-top="0" un-bottom="0" un-left="0" un-right="0">
+            <div id="tide-left-bar" un-sc-trans-default un-bg="prim" un-fixed un-ltr="-left-75vw" un-rtl="-right-75vw"
+                un-flex="~ col" un-justify="between" un-text="center t-lb" un-w="75vw" un-h="full">
+                <header un-flex="none" un-py="8">
                     <% if(is_home()) { %>
-                        <h1 id="tide-site-name">hexo-theme-tide</h1>
+                        <h1 id="tide-site-name" un-text="4xl" un-font="bold">hexo-theme-tide</h1>
                         <% } else { %>
-                            <span id="tide-site-name">hexo-theme-tide</span>
+                            <span id="tide-site-name" un-text="4xl" un-font="bold">hexo-theme-tide</span>
                             <% } %>
                 </header>
-                <nav id="tide-navigation" un-flex="initial" un-overflow="auto" un-bg="yellow">
-                    <ul un-list="none" un-p="0">
-                        <li><span un-i="ms-home-rounded"></span><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">4</a></li>
+                <nav id="tide-navigation" un-flex="initial" un-self="center" un-max-w="full" un-overflow="auto">
+                    <ul un-flex="~ col" un-items="start" un-p="0" un-list="none" un-text="2xl">
+                        <li un-mb="8"><span un-i="ms-home-rounded" un-ltr="mr-2" un-rtl="ml-2"></span><a
+                                un-sc-link-plain un-text="t-lb" href="#">首页</a>
+                        </li>
                     </ul>
                 </nav>
-                <footer un-flex="none" un-py="8" un-bg="red">
-                    Powered by Hexo
+                <footer un-flex="none" un-py="8">
+                    <!-- 留一个隐藏的 div，方便用户通过修改注入 -->
+                    <div class="tide-footer-injection-point" un-hidden></div>
+                    <p><a un-sc-link-plain un-text="t-lb" href="https://hexo.io/" target="_blank"
+                            rel="noopener">萌ICP备20230041号</a></p>
+                    <p>由<span un-i="logos-hexo" un-mx="1"></span><a un-sc-link-plain un-text="t-lb"
+                            href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 强力驱动</p>
+                    <!-- <p>Powered by<span un-i="logos-hexo" un-mx="1"></span><a un-sc-link-plain un-text="t-lb"
+                            href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a></p> -->
                 </footer>
             </div>
-            <!-- 如果是主页，大屏后自动向右移动 -->
-
-            <div id="tide-content"
-                style="background-image: url('https://bucket.hollisdevhub.com/blog/posts/6a6f8902/imgs/Photo_2023-09-13-212201.webp');"
-                un-fixed un-flex="~ col" un-w="full" un-h="full" un-transition-transform un-ease-in-out un-druation-300>
-
+            <div id="tide-content" un-sc-trans-default un-fixed un-flex="~ col" un-w="full" un-h="full">
                 <!-- 顶部工具栏 -->
-                <header id="tide-top-bar" un-bg="green" un-flex un-justify="stretch" un-items="center" un-h="16">
+                <header id="tide-top-bar" un-bg="b-prim" un-flex un-justify="stretch" un-items="center" un-h="16">
                     <div un-w="full" un-h="12">
-                        <!-- 如果是主页，大屏后自动隐藏 -->
-
-                        <button id="tide-btn-nav" un-relative un-ltr="float-left ml-4" un-rtl="float-right mr-4"
-                            un-w="12" un-h="12">三</button>
-
+                        <button id="tide-btn-nav" aria-label="打开导航菜单" un-sc-btn-default un-relative
+                            un-ltr="float-left ml-4" un-rtl="float-right mr-4" un-w="12" un-h="12"><span
+                                id="tide-btn-nav-icon" un-i="ms-menu" un-block un-w="full" un-h="full"
+                                un-text-prim></span></button>
                     </div>
                     <div un-w="full" un-h="12">
                         <!-- 开启 relative，使用 right 让元素具有符合直觉的 tab index -->
-                        <button id="tide-btn-search" un-relative un-ltr="float-right right-16 mr-4"
-                            un-rtl="float-left left-16 ml-4" un-w="12" un-h="12">🔍</button>
-                        <button id="tide-btn-settings" un-relative un-ltr="float-right -right-16 mr-4"
-                            un-rtl="float-left -left-16 ml-4" un-w="12" un-h="12">⚙️</button>
+                        <button id="tide-btn-search" aria-label="打开搜索页面" un-sc-btn-default un-relative
+                            un-ltr="float-right right-16 mr-4" un-rtl="float-left left-16 ml-4" un-w="12"
+                            un-h="12"><span un-i="ms-search" un-block un-w="full" un-h="full"
+                                un-text-prim></span></button>
+                        <button id="tide-btn-settings" aria-label="打开设置页面" un-sc-btn-default un-relative
+                            un-ltr="float-right -right-16 mr-4" un-rtl="float-left -left-16 ml-4" un-w="12"
+                            un-h="12"><span un-i="ms-settings" un-block un-w="full" un-h="full"
+                                un-text-prim></span></button>
                     </div>
                 </header>
-                <main id="tide-main-content" un-bg="yellow" un-flex="1" un-overflow="auto">
+                <main id="tide-main-content" un-bg="b-prim" un-flex="1" un-overflow="auto">
                     <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
                     </p>
                     <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -198,6 +170,12 @@
             </div>
     </div>
     <script>
+        // $('#tide-btn-search').click(() => {
+        //     if ($('html').hasClass('debug-large-font-size'))
+        //         $('html').removeClass('debug-large-font-size');
+        //     else
+        //         $('html').addClass('debug-large-font-size');
+        // });
         $('#tide-btn-settings').click(() => {
             if ($('html').attr('dir') === 'ltr')
                 $('html').attr('dir', 'rtl');
@@ -205,32 +183,14 @@
                 $('html').attr('dir', 'ltr');
         });
         $('#tide-btn-nav').click(() => {
-            if ($('#tide-root').attr('tide-left-bar-expanded') === 'true')
+            if ($('#tide-root').attr('tide-left-bar-expanded') === 'true') {
                 $('#tide-root').attr('tide-left-bar-expanded', 'false');
-            else
+                $('#tide-btn-nav-icon').attr('un-i', 'ms-menu');
+            }
+            else {
                 $('#tide-root').attr('tide-left-bar-expanded', 'true');
-
-
-
-
-            // // 左栏折叠状态：
-            // if ($('#tide-left-bar').attr('un-ltr') !== 'left-0') {
-            //     $('#tide-left-bar').attr('un-ltr', 'left-0'); // 展开左栏。
-            //     $('#tide-content').attr('un-ltr', 'left-72'); // 向右移动内容，需要配置 safelist。
-            // }
-            // // 左栏展开状态：
-            // else {
-            //     $('#tide-left-bar').attr('un-ltr', '-left-72'); // 收起左栏。
-            //     $('#tide-content').attr('un-ltr', 'left-0'); // 向左移动内容。
-            // }
-            // if ($('#tide-left-bar').attr('un-rtl') !== 'right-0') {
-            //     $('#tide-left-bar').attr('un-rtl', 'right-0');
-            //     $('#tide-content').attr('un-rtl', 'right-72');
-            // }
-            // else {
-            //     $('#tide-left-bar').attr('un-rtl', '-right-72');
-            //     $('#tide-content').attr('un-rtl', 'right-0');
-            // }
+                $('#tide-btn-nav-icon').attr('un-i', 'ms-close');
+            }
         });
     </script>
 </body>
