@@ -1,5 +1,5 @@
 // uno.config.ts
-import { defineConfig, presetUno, presetTypography, transformerDirectives, transformerVariantGroup, presetAttributify } from 'unocss';
+import { defineConfig, presetUno, presetAttributify, presetTypography, presetIcons, transformerDirectives, transformerVariantGroup } from 'unocss';
 
 export default defineConfig({
     content: {
@@ -8,6 +8,9 @@ export default defineConfig({
     preflights: [], // 这里写的 preflight 会在 UnoCSS 默认的 preflight 之后，@import 不在最前面。决定在 _tide.src.css 里添加 preflight。
     presets: [
         presetUno(),
+        presetAttributify({
+            prefixedOnly: true
+        }),
         presetTypography({
             cssExtend: {
                 'a:link': {
@@ -54,8 +57,16 @@ export default defineConfig({
                 }
             }
         }),
-        presetAttributify({
-            prefixedOnly: true
+        presetIcons({
+            collections: {
+                ms: () => import('@iconify-json/material-symbols').then((i) => i.icons as any),
+                bxl: () => import('@iconify-json/bxl').then((i) => i.icons as any),
+                spinners: () => import('@iconify-json/svg-spinners').then((i) => i.icons as any)
+            },
+            extraProperties: {
+                display: 'inline-block',
+                'vertical-align': 'middle'
+            }
         })
     ],
     transformers: [
@@ -71,6 +82,7 @@ export default defineConfig({
             'tPrim': 'var(--tide-color-text-primary)',
             'tScnd': 'var(--tide-color-text-secondary)',
             'tDmsh': 'var(--tide-color-text-diminished)',
+            'fcsBd': 'var(--tide-color-focused-border)',
             'lk': 'var(--tide-color-link)',
             'lkHvr': 'var(--tide-color-link-hover)',
             'lkVst': 'var(--tide-color-link-visited)',

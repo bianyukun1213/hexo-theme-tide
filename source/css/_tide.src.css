@@ -1,6 +1,7 @@
 @import url('./third-party/modern-normalize.min.css');
-/* @import url('./tide.mixin.css'); */
 @unocss;
+
+/* 自定义样式 */
 
 html {
     --tide-color-primary: black;
@@ -10,6 +11,7 @@ html {
     --tide-color-text-primary: black;
     --tide-color-text-secondary: black;
     --tide-color-text-diminished: black;
+    --tide-color-focused-border: black;
     --tide-color-link: black;
     --tide-color-link-hover: black;
     --tide-color-link-visited: black;
@@ -19,7 +21,14 @@ html {
     --tide-color-table-border-even: black;
 }
 
+html *:focus-visible {
+    @apply border-4 border-blue;
+}
+
+/* 侧边栏 */
+
 /* 默认小屏幕 */
+/* 使用 [dir="ltr"] 而非 @apply ltr:…… ，因为后者在转换后会有空的样式，显示警告 */
 [dir="ltr"] [tide-left-bar-expanded="true"] #tide-left-bar,
 [dir="ltr"] [tide-left-bar-expanded="true"] #tide-content {
     @apply translate-x-75vw;
@@ -32,6 +41,19 @@ html {
 
 /* md 往后调整侧边栏宽度为 96 */
 @media (min-width: 768px) {
+
+    #tide-left-bar {
+        @apply w-96;
+    }
+
+    [dir="ltr"] #tide-left-bar {
+        @apply -left-96;
+    }
+
+    [dir="rtl"] #tide-left-bar {
+        @apply -right-96 w-96;
+    }
+
 
     [dir="ltr"] [tide-left-bar-expanded="true"] #tide-left-bar,
     [dir="ltr"] [tide-left-bar-expanded="true"] #tide-content {
