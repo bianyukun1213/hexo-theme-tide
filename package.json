@@ -4,12 +4,9 @@
   "description": "",
   "private": true,
   "devDependencies": {
-    "@iconify-json/bxl": "^1.2.0",
     "@iconify-json/logos": "^1.2.0",
-    "@iconify-json/material-symbols": "^1.2.0",
-    "@iconify-json/svg-spinners": "^1.2.0",
     "@unocss/postcss": "^0.62.3",
-    "postcss": "^8.4.42",
+    "postcss": "^8.4.45",
     "postcss-cli": "^11.0.0",
     "unocss": "^0.62.3"
   }

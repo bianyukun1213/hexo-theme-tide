@@ -1,9 +1,14 @@
-<article id="post" class="prose">
+<article id="post">
   <h1>
     <%=page.title%>
   </h1>
-  <%-page.content%>
+<!-- 应该是这种结构 -->
+  <div un-prose>
+    <%-page.content%>
+  </div>
 </article>
+
+<!--  -->
 
 <div id="paginator">
   <%-paginator()%>

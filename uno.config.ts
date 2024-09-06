@@ -33,16 +33,16 @@ export default defineConfig({
                     color: 'var(--tide-color-code)'
                 },
                 hr: {
-                    border: '2px var(--tide-color-text-diminished) solid'
+                    border: '1px var(--tide-color-text-diminished) solid'
                 },
                 table: {
                     'table-layout': 'auto',
                     'border-collapse': 'separate',
                     'border-spacing': 0,
-                    border: '2px var(--tide-color-table-border) solid'
+                    border: '1px var(--tide-color-table-border) solid'
                 },
                 'td, th': {
-                    'border-left': '2px var(--tide-color-table-border) solid'
+                    'border-left': '1px var(--tide-color-table-border) solid'
                 },
                 'td:first-child, th:first-child': {
                     'border-left': 'none'
@@ -52,7 +52,7 @@ export default defineConfig({
                 },
                 th: {
                     background: 'var(--tide-color-table-background-head)',
-                    'border-bottom': '2px var(--tide-color-table-border) solid'
+                    'border-bottom': '1px var(--tide-color-table-border) solid'
                 },
                 'tr:nth-child(2n)': {
                     background: 'var(--tide-color-table-background-even)'
@@ -62,11 +62,9 @@ export default defineConfig({
                 }
             }
         }),
+        // 无法动态引入，改为 Font Awesome，仅使用 logos。
         presetIcons({
             collections: {
-                ms: () => import('@iconify-json/material-symbols').then((i) => i.icons as any),
-                bxl: () => import('@iconify-json/bxl').then((i) => i.icons as any),
-                spinners: () => import('@iconify-json/svg-spinners').then((i) => i.icons as any),
                 logos: () => import('@iconify-json/logos').then((i) => i.icons as any)
             },
             extraProperties: {
@@ -80,7 +78,7 @@ export default defineConfig({
         'sc-trans-default': 'transition-all ease-in-out duration-200',
         'sc-link-default': 'sc-trans-default inline underline link:text-lk hover:(inline-block -translate-y-2px) text-lk-hvr visited:text-lk-vst',
         'sc-link-plain': 'transition-none inline no-underline hover:(transform-none underline) text-t-prim',
-        'sc-btn-default': 'sc-trans-default bg-transparent border-(2 prim solid) hover:scale-105 active:scale-95 cursor-pointer'
+        'sc-btn-default': 'sc-trans-default flex items-center justify-center bg-transparent text-prim border-(2 prim solid) hover:scale-105 active:scale-95 cursor-pointer disabled:(opacity-50 cursor-not-allowed hover:transform-none active:transform-none)'
     },
     transformers: [
         transformerDirectives(),

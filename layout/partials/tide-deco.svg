@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
+<!-- 确保没有宽高，删掉 #triangle-big 的 fill -->
 <svg
-   width="100"
-   height="600"
    viewBox="0 0 100 600"
    version="1.1"
-   id="svg1"
+   id="tide-deco"
    inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
    sodipodi:docname="tide-deco.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -40,12 +39,12 @@
   <defs
      id="defs1" />
   <g
-     inkscape:label="图层 1"
+     inkscape:label="layer-1"
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       id="rect1"
-       style="fill-opacity:1;stroke-width:0;fill:#000000"
+       id="triangle-big"
+       style="fill-opacity:1;stroke-width:0;"
        d="M 0,600 V 0 h 100"
        sodipodi:nodetypes="ccc" />
   </g>

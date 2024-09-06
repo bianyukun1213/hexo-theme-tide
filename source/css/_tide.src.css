@@ -6,7 +6,7 @@ html {
     --tide-color-primary: #3F72AF;
     --tide-color-secondary: #00ADB5;
     --tide-color-background-primary: #FFFFFF;
-    --tide-color-background-secondary: #F7F7F7;
+    --tide-color-background-secondary: #FAFAFA;
     --tide-color-text-primary: #323739;
     --tide-color-text-secondary: #5c6669;
     --tide-color-text-diminished: #EAECED;
@@ -17,9 +17,12 @@ html {
     --tide-color-link-visited: #00ADB5;
     --tide-color-code: #3F72AF;
     --tide-color-table-border: #E5E7EB;
-    --tide-color-table-border-head: #F7F7F7;
-    --tide-color-table-border-even: #F7F7F7;
-    /* @apply text-base; 改为在 ejs 中直接指定，方便通过 js 修改 */
+    --tide-color-table-background-head: #F3F3F3;
+    --tide-color-table-background-even: #FAFAFA;
+}
+
+* {
+    scrollbar-width: thin;
 }
 
 *:focus-visible {
@@ -30,39 +33,39 @@ a {
     @apply sc-link-default;
 }
 
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
 @unocss;
 
 /* 自定义样式 */
 
-/* 侧边栏 */
-/* #tide-deco {
-    position: fixed;
-    left: 24rem;
-    height: 100%;
-    width: 12.5%;
-    z-index: 30;
-    pointer-events: none;
+html.tide-large-font {
+    font-size: 32px;
+    /* 直接调整基础字体，不要用 unocss 的 text-lg 等，目的只是调节 rem 值 */
 }
 
-#tide-deco img {
-    width: 100%;
-    height: 100%;
+/* 斜角，暂时舍弃，因为如果使用过渡效果会穿帮，而且 rtl 下有白色接缝 */
+/* #tide-deco {
+    @apply sc-trans-default left-0;
 } */
 
-#tide-left-bar {
-    /* box-sizing: content-box;
-    border-image-source: url('../img/tide-deco.svg'); */
-}
+/* [dir="rtl"] #tide-deco {
+    transform: rotateY(180deg)
+} */
 
-[dir="ltr"] [tide-left-bar-expanded="true"] #tide-left-bar {
-    box-shadow: 1rem 0 20px 0 rgba(0, 0, 0, 0.25);
-}
-
-[dir="rtl"] [tide-left-bar-expanded="true"] #tide-left-bar {
-    box-shadow: -1rem 0 20px 0 rgba(0, 0, 0, 0.25);
+[tide-left-bar-expanded="true"] #tide-left-bar {
+    box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.5);
+    /* unocss 精细控制不好使，这里写原生 */
 }
 
 /* 默认小屏幕 */
+/* 侧栏默认整体滚动 */
+#tide-left-bar {
+    @apply overflow-auto;
+}
+
 /* 使用 [dir="ltr"] 而非 @apply ltr:…… ，因为后者在转换后会有空的样式，显示警告 */
 [dir="ltr"] [tide-left-bar-expanded="true"] #tide-left-bar,
 [dir="ltr"] [tide-left-bar-expanded="true"] #tide-content {
@@ -90,7 +93,6 @@ a {
         @apply -right-96 w-96;
     }
 
-
     [dir="ltr"] [tide-left-bar-expanded="true"] #tide-left-bar,
     [dir="ltr"] [tide-left-bar-expanded="true"] #tide-content {
         @apply translate-x-96;
@@ -102,9 +104,20 @@ a {
     }
 }
 
-/* xl 往后横向非文章页不再允许折叠 */
-@media (min-width: 1280px) {
-    @media (orientation: landscape) {
+/* xl 往后非文章页横向不再允许折叠 */
+@media (orientation: landscape) {
+
+    @media (min-width: 1280px) {
+        /* 1280*768 后侧栏整体不再允许滚动，导航部分允许滚动 */
+        @media (min-height: 768px) {
+            #tide-left-bar {
+                @apply overflow-clip;
+            }
+
+            #tide-navigation {
+                @apply overflow-auto;
+            }
+        }
 
         [dir="ltr"] :not([tide-is-post]) #tide-left-bar,
         [dir="ltr"] :not([tide-is-post]) #tide-content {
@@ -114,6 +127,27 @@ a {
         [dir="rtl"] :not([tide-is-post]) #tide-left-bar,
         [dir="rtl"] :not([tide-is-post]) #tide-content {
             @apply -translate-x-96;
+        }
+
+        /* 只在 1280*768 后展示斜角 */
+        /* [dir="ltr"] :not([tide-is-post]) [tide-left-bar-expanded="true"] #tide-left-bar {
+            @apply shadow-none;
+        } */
+
+        /* [dir="rtl"] :not([tide-is-post]) [tide-left-bar-expanded="true"] #tide-left-bar {
+            @apply shadow-none;
+        } */
+
+        /* [dir="ltr"] :not([tide-is-post]) [tide-left-bar-expanded="true"] #tide-deco {
+            @apply fixed left-96 h-full z-30 pointer-events-none;
+        } */
+
+        /* [dir="rtl"] :not([tide-is-post]) [tide-left-bar-expanded="true"] #tide-deco {
+            @apply fixed right-96 h-full z-30 pointer-events-none;
+        } */
+
+        #tide-deco #triangle-big {
+            @apply fill-prim;
         }
 
         :not([tide-is-post]) #tide-content {
