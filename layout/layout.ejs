@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN" dir="ltr">
+<html lang="zh-CN" dir="ltr" un-text="base">
 
 <head>
     <meta charset="UTF-8">
@@ -26,7 +26,7 @@
                 <nav id="tide-navigation" un-flex="initial" un-self="center" un-max-w="full" un-overflow="auto">
                     <ul un-flex="~ col" un-items="start" un-p="0" un-list="none" un-text="2xl">
                         <li un-mb="8"><span un-i="ms-home-rounded" un-ltr="mr-2" un-rtl="ml-2"></span><a
-                                un-sc-link-plain un-text="t-lb" href="#">首页</a>
+                                un-sc-link-plain un-text="!t-lb" href="#">首页</a>
                         </li>
                     </ul>
                 </nav>
@@ -44,7 +44,8 @@
             <!-- <div id="tide-deco"><img src="./img/tide-deco.svg" alt=""></div> -->
             <div id="tide-content" un-sc-trans-default un-fixed un-flex="~ col" un-w="full" un-h="full">
                 <!-- 顶部工具栏 -->
-                <header id="tide-top-bar" un-bg="b-prim" un-flex un-justify="stretch" un-items="center" un-h="16">
+                <header id="tide-top-bar" un-bg="b-prim" un-flex un-justify="stretch" un-items="center" un-min-w="64"
+                    un-h="16">
                     <div un-w="full" un-h="12">
                         <button id="tide-btn-nav" aria-label="打开导航菜单" un-sc-btn-default un-relative
                             un-ltr="float-left ml-4" un-rtl="float-right mr-4" un-w="12" un-h="12"><span
@@ -172,10 +173,10 @@
     </div>
     <script>
         $('#tide-btn-search').click(() => {
-            if ($('html').hasClass('debug-large-font-size'))
-                $('html').removeClass('debug-large-font-size');
+            if ($('html').attr('un-text') === 'base')
+                $('html').attr('un-text', '2xl');
             else
-                $('html').addClass('debug-large-font-size');
+                $('html').attr('un-text', 'base');
         });
         $('#tide-btn-settings').click(() => {
             if ($('html').attr('dir') === 'ltr')

@@ -1,7 +1,6 @@
 @import url('./third-party/modern-normalize.min.css');
-@unocss;
 
-/* 自定义样式 */
+/* preflights */
 
 html {
     --tide-color-primary: #3F72AF;
@@ -20,15 +19,20 @@ html {
     --tide-color-table-border: #E5E7EB;
     --tide-color-table-border-head: #F7F7F7;
     --tide-color-table-border-even: #F7F7F7;
+    /* @apply text-base; 改为在 ejs 中直接指定，方便通过 js 修改 */
 }
 
-html *:focus-visible {
+*:focus-visible {
     @apply outline-4 outline-fcs-ol;
 }
 
-html.debug-large-font-size {
-    font-size: 32px;
+a {
+    @apply sc-link-default;
 }
+
+@unocss;
+
+/* 自定义样式 */
 
 /* 侧边栏 */
 /* #tide-deco {

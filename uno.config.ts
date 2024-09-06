@@ -5,7 +5,7 @@ export default defineConfig({
     content: {
         filesystem: ['./layout/*.ejs', './layout/partials/*.ejs']
     },
-    preflights: [], // 这里写的 preflight 会在 UnoCSS 默认的 preflight 之后，@import 不在最前面。决定在 _tide.src.css 里添加 preflight。
+    preflights: [], // 在 _tide.src.css 中设置。
     presets: [
         presetUno(),
         presetAttributify({
@@ -78,8 +78,8 @@ export default defineConfig({
     shortcuts: {
         // 与上方 prose 部分对应。
         'sc-trans-default': 'transition-all ease-in-out duration-200',
-        'sc-link-default': 'sc-trans-default underline link:text-lk hover:(inline-block -translate-y-2px) text-lk-hvr visited:text-lk-vst',
-        'sc-link-plain': 'no-underline hover:underline text-t-prim',
+        'sc-link-default': 'sc-trans-default inline underline link:text-lk hover:(inline-block -translate-y-2px) text-lk-hvr visited:text-lk-vst',
+        'sc-link-plain': 'transition-none inline no-underline hover:(transform-none underline) text-t-prim',
         'sc-btn-default': 'sc-trans-default bg-transparent border-(2 prim solid) hover:scale-105 active:scale-95 cursor-pointer'
     },
     transformers: [
@@ -106,5 +106,12 @@ export default defineConfig({
             'tbBgEvn': 'var(--tide-color-table-border-even)',
         }
     },
-    safelist: ['[un-i="ms-close"]']
+    safelist: [
+        '[un-text="base"]',
+        '[un-text="lg"]',
+        '[un-text="xl"]',
+        '[un-text="2xl"]',
+        '[un-text="3xl"]',
+        '[un-i="ms-close"]'
+    ] // JavaScript 切换字体大小、侧边栏按钮图标使用。
 });
