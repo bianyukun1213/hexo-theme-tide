@@ -55,9 +55,26 @@ html.tide-large-font {
     transform: rotateY(180deg)
 } */
 
-[tide-left-bar-expanded="true"] #tide-left-bar {
-    box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.5);
+/* 暂时去掉 shadow，因为 tide-content 也移动了，tide-left-bar 就不像是浮在上面的一层 */
+/* [tide-left-bar-expanded="true"] #tide-left-bar { */
+    /* box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.5); */
     /* unocss 精细控制不好使，这里写原生 */
+/* } */
+
+[tide-left-bar-expanded="true"] #tide-btn-nav-icon-bars {
+    @apply hidden;
+}
+
+[tide-left-bar-expanded="true"] #tide-btn-nav-icon-close {
+    @apply inline;
+}
+
+[tide-left-bar-expanded="false"] #tide-btn-nav-icon-bars {
+    @apply inline;
+}
+
+[tide-left-bar-expanded="false"] #tide-btn-nav-icon-close {
+    @apply hidden;
 }
 
 /* 默认小屏幕 */
@@ -129,15 +146,12 @@ html.tide-large-font {
             @apply -translate-x-96;
         }
 
+        /* [dir="ltr"] :not([tide-is-post]) [tide-left-bar-expanded="true"] #tide-left-bar,
+        [dir="rtl"] :not([tide-is-post]) [tide-left-bar-expanded="true"] #tide-left-bar {
+            @apply shadow-none;
+        } */
+
         /* 只在 1280*768 后展示斜角 */
-        /* [dir="ltr"] :not([tide-is-post]) [tide-left-bar-expanded="true"] #tide-left-bar {
-            @apply shadow-none;
-        } */
-
-        /* [dir="rtl"] :not([tide-is-post]) [tide-left-bar-expanded="true"] #tide-left-bar {
-            @apply shadow-none;
-        } */
-
         /* [dir="ltr"] :not([tide-is-post]) [tide-left-bar-expanded="true"] #tide-deco {
             @apply fixed left-96 h-full z-30 pointer-events-none;
         } */

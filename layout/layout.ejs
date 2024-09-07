@@ -8,11 +8,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="<%- url_for('/css/tide.css') %>">
-    <script src="<%- url_for('/js/third-party/jquery.min.js') %>"></script>
+    <%- meta_generator() %>
+        <%- css('/css/tide.css') %>
+            <%- js('/js/third-party/jquery.min.js') %>
 </head>
 
 <body>
+    <textarea un-w="full" un-h="96">
+        <%- JSON.stringify(parse_config(site, config, theme, page),null,2) %>
+    </textarea>
     <div id="tide-root" <% if(is_post()) { %>
         tide-is-post="true"
         <% } %>
@@ -50,20 +54,25 @@
                     <!-- 顶部工具栏 -->
                     <header id="tide-top-bar" un-bg="b-prim" un-flex un-justify="stretch" un-items="center"
                         un-min-w="64" un-h="16">
-                        <div un-w="full" un-h="12">
-                            <button id="tide-btn-nav" aria-label="打开导航菜单" un-sc-btn-default un-relative
+                        <div un-w="1/4" un-h="12">
+                            <button id="tide-btn-nav" aria-label="打开或关闭导航菜单" un-sc-btn-default un-relative
                                 un-ltr="float-left ml-4" un-rtl="float-right mr-4" un-w="12" un-h="12">
-                                <i id="tide-btn-nav-icon" class="fa-solid fa-bars" aria-hidden="true"></i>
+                                <i id="tide-btn-nav-icon-bars" class="fa-solid fa-bars" aria-hidden="true"></i>
+                                <i id="tide-btn-nav-icon-close" class="fa-solid fa-close" aria-hidden="true"></i>
                             </button>
                         </div>
-                        <div un-w="full" un-h="12">
+                        <div un-w="3/4" un-h="12">
                             <!-- 开启 relative，使用 right 让元素具有符合直觉的 tab index -->
+                            <button id="tide-btn-scroll-top" aria-label="回到顶部" un-sc-btn-default un-relative
+                                un-ltr="float-right right-32 mr-4" un-rtl="float-left left-32 ml-4" un-w="12" un-h="12">
+                                <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+                            </button>
                             <button id="tide-btn-search" aria-label="打开搜索页面" un-sc-btn-default un-relative
-                                un-ltr="float-right right-16 mr-4" un-rtl="float-left left-16 ml-4" un-w="12" un-h="12">
+                                un-ltr="float-right mr-4" un-rtl="float-left ml-4" un-w="12" un-h="12">
                                 <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
                             </button>
                             <button id="tide-btn-settings" aria-label="打开设置页面" un-sc-btn-default un-relative
-                                un-ltr="float-right -right-16 mr-4" un-rtl="float-left -left-16 ml-4" un-w="12"
+                                un-ltr="float-right -right-32 mr-4" un-rtl="float-left -left-32 ml-4" un-w="12"
                                 un-h="12">
                                 <i class="fa-solid fa-gear" aria-hidden="true"></i>
                             </button>
@@ -72,52 +81,18 @@
                     <main id="tide-main-content" un-bg="b-prim" un-flex="1" un-px="16" un-overflow="auto">
                         <%- body %>
                             <!-- 页面 -->
-                            <article></article>
+                            <!-- <article></article> -->
                             <!-- 评论 -->
-                            <article></article>
+                            <!-- <article></article> -->
                             <!-- TOC，从 lg 开始显示 -->
-                            <aside></aside>
+                            <!-- <aside></aside> -->
                     </main>
+                    <!-- <aside id="tide-side-tools" un-bg="red" un-fixed un-right="4" un-bottom="4" un-w="32" un-h="64" un-flex="~ col">
+
+                    </aside> -->
                 </div>
     </div>
-    <script>
-        $('#tide-btn-search').click(() => {
-            if ($('html').hasClass('tide-large-font'))
-                $('html').removeClass('tide-large-font');
-            else
-                $('html').addClass('tide-large-font');
-        });
-        $('#tide-btn-settings').click(() => {
-            if ($('html').attr('dir') === 'ltr')
-                $('html').attr('dir', 'rtl');
-            else
-                $('html').attr('dir', 'ltr');
-        });
-        // todo：初始化 tide-left-bar-expanded 属性，并根据 resize 事件实时更新。
-        if (document.documentElement.clientWidth >= 1280)
-            $('#tide-root').attr('tide-left-bar-expanded', 'true');
-        else
-            $('#tide-root').attr('tide-left-bar-expanded', 'false');
-        // window.addEventListener('resize',
-        $(window).on('resize', () => {
-            if (document.documentElement.clientWidth >= 1280)
-                $('#tide-root').attr('tide-left-bar-expanded', 'true');
-            else
-                $('#tide-root').attr('tide-left-bar-expanded', 'false');
-        });
-        $('#tide-btn-nav').click(() => {
-            if ($('#tide-root').attr('tide-left-bar-expanded') === 'true') {
-                $('#tide-root').attr('tide-left-bar-expanded', 'false');
-                $('#tide-btn-nav-icon').removeClass('fa-solid fa-xmark');
-                $('#tide-btn-nav-icon').addClass('fa-solid fa-bars');
-            }
-            else {
-                $('#tide-root').attr('tide-left-bar-expanded', 'true');
-                $('#tide-btn-nav-icon').removeClass('fa-solid fa-bars');
-                $('#tide-btn-nav-icon').addClass('fa-solid fa-xmark');
-            }
-        });
-    </script>
+    <%- js('/js/tide.js') %>
 </body>
 
 </html>

@@ -1,18 +1,75 @@
-
-# html lang
-language: en
-
 # main menu navigation
-menu:
-  Home: /
-  About: /about
-  Contact: /contact
-  Archives: /archives
+navigation:
+  首页:
+    icon: "fa-solid fa-house"
+    link: /
+  归档:
+    icon: "fa-solid fa-house"
+    link: /archives
+  分类:
+    icon: "fa-solid fa-house"
+    link: /categories
+  标签:
+    icon: "fa-solid fa-house"
+    link: /tags
+  关于:
+    icon: "fa-solid fa-house"
+    link: /about
+
+microformats2:
+  enable: true
+  ## h_card 可在 front-matter 中指定，优先于此处的配置。
+  h_card:
+    p_honorific_prefix: ""
+    p_name: "Bian Yukun"
+    p_given_name: Yukun
+    p_additional_name: ""
+    p_family_name: Bian
+    p_honorific_suffix: ""
+    p_nickname: Hollis
+    u_photo: "https://bucket.hollisdevhub.com/blog/common/avatar.webp"
+    u_uid:
+      - 
+        text: "His 2nd Life"
+        link: "https://his2nd.life/"
+      - 
+        text: Mastodon
+        link: "https://m.cmx.im/@Hollis"
+      -
+        text: GitHub
+        link: "https://github.com/bianyukun1213"
+    u_email: bianyukun1213@outlook.com
+
+meta_links:
+  -
+    rel: me
+    link: "mailto:bianyukun1213@outlook.com"
+  -
+    rel: me
+    link: "https://github.com/bianyukun1213"
+  -
+    rel: me
+    link: "https://m.cmx.im/@Hollis"
+  -
+    rel: authorization_endpoint
+    link: "https://indieauth.com/auth"
+  -
+    rel: webmention
+    link: "https://webmention.io/his2nd.life/webmention"
+
+
+img_handler:
+  priority: 5
+
+copyright:
+  cc_by_sa_4: "CC-BY-SA 4.0"
+# config_handler:
+#   priority: 5
 
 # stylesheets loaded in the <head>
-stylesheets:
+# stylesheets:
 # - /css/hexo-theme-tide.css
 
 # scripts loaded in the end of the body
-scripts:
+# scripts:
 # - /js/hexo-theme-tide.js
