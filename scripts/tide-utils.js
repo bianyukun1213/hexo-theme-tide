@@ -36,6 +36,31 @@ function isPhoneNumber(num) {
     return /^1[3456789]\d{9}$/.test(num);
 }
 
+function deepClone(obj) {
+    return structuredClone(obj);
+}
+
+function deepMergeObj(obj, ...source) {
+    if (!isPlainObject(obj))
+        throw `assign 失败，不是 plain object：${obj}。`;
+    obj = deepClone(obj);
+    if (source.length === 0)
+        return obj;
+    for (const key in source[0]) {
+        if (source[0].hasOwnProperty(key)) {
+            const element = source[0][key];
+            if (isPlainObject(element) && isPlainObject(obj[key]))
+                obj[key] = deepMergeObj(obj[key], element);
+            else if (element !== null && typeof element !== 'undefined') // 数组也不合并，而是直接替换。
+                obj[key] = deepClone(element);
+        }
+    }
+    if (source.length === 1)
+        return obj;
+    else
+        return deepMergeObj(obj, source.slice(1, source.length - 1));
+}
+
 function unixTimestampToDate(ts) {
     return new Date(ts);
 }
@@ -98,6 +123,8 @@ module.exports = {
     isPlainObject,
     isEmptyObject,
     isPhoneNumber,
+    deepClone,
+    deepMergeObj,
     unixTimestampToDate,
     toCamelCase,
     toUnderScoreCase,

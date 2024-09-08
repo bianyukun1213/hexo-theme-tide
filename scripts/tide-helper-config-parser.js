@@ -1,6 +1,6 @@
 'use strict';
 
-const _ = require('lodash');
+// const _ = require('lodash');
 const {
     isNumber,
     isInteger,
@@ -10,6 +10,8 @@ const {
     isPlainObject,
     isEmptyObject,
     isPhoneNumber,
+    deepClone,
+    deepMergeObj,
     unixTimestampToDate,
     toCamelCase,
     toUnderScoreCase,
@@ -37,6 +39,9 @@ hexo.extend.helper.register('parse_config', (site, config, theme, page) => {
     // 上为站点配置，下为主题配置。
     out.navigation = theme?.navigation ?? {};
     out.microformats2 = theme?.microformats2?.enable ?? false;
+    // 对象的合并：
+    // key 都是固定的话，可以 deepAssign 合并，页面的优先级最高，页面没有的会有配置值和默认值兜底。
+    // key 可以自定义的话，就不 deepAssign，而是发现页面有就取页面，否则发现配置有就取配置。如果 deepAssign 的话，配置有但用户想页面没有，也去不掉。
     out.h_card = {
         p_honorific_prefix: '',
         p_name: '',
@@ -62,7 +67,13 @@ hexo.extend.helper.register('parse_config', (site, config, theme, page) => {
         } catch (error) {
             pageHCard = {};
         }
-        _.assign(out.h_card, themeHCard, pageHCard);
+        // _.assign(out.h_card, themeHCard, pageHCard);
+        // Object.assign(out.h_card, themeHCard, pageHCard);
+        out.h_card = deepMergeObj(out.h_card, themeHCard, pageHCard);
+        if (out.h_card.p_name === '')
+            out.h_card.p_name = out.author;
+        if (out.h_card.p_nickname === '')
+            out.h_card.p_nickname = out.author;
     }
     out.meta_links = theme?.meta_links ?? [];
     out.copyright = '';
@@ -71,7 +82,7 @@ hexo.extend.helper.register('parse_config', (site, config, theme, page) => {
             out.copyright = theme.copyright[page.copyright];
         else
             out.copyright = page.copyright;
-
+    out.syndications = page?.syndications ?? [];
 
 
 
