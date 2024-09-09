@@ -1,5 +1,9 @@
 'use strict';
 
+function getTideVersion() {
+    return '0.1.0';
+}
+
 function isNumber(num) {
     return typeof num === 'number';
 }
@@ -42,7 +46,7 @@ function deepClone(obj) {
 
 function deepMergeObj(obj, ...source) {
     if (!isPlainObject(obj))
-        throw `assign 失败，不是 plain object：${obj}。`;
+        throw `深度合并失败，不是 plain object：${obj}。`;
     obj = deepClone(obj);
     if (source.length === 0)
         return obj;
@@ -115,6 +119,7 @@ function camelCaseObjToUnderScoreCaseObj(cCObj) {
 }
 
 module.exports = {
+    getTideVersion,
     isNumber,
     isInteger,
     isString,

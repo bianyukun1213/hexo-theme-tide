@@ -93,7 +93,7 @@ export default defineConfig({
             'tPrim': 'var(--tide-color-text-primary)',
             'tScnd': 'var(--tide-color-text-secondary)',
             'tDmsh': 'var(--tide-color-text-diminished)',
-            'tLb': 'var(--tide-color-text-left-bar)',
+            'tLb': 'var(--tide-color-text-side-bar)',
             'fcsOl': 'var(--tide-color-focused-outline)',
             'lk': 'var(--tide-color-link)',
             'lkHvr': 'var(--tide-color-link-hover)',

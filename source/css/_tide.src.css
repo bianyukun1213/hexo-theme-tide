@@ -10,7 +10,7 @@ html {
     --tide-color-text-primary: #323739;
     --tide-color-text-secondary: #5c6669;
     --tide-color-text-diminished: #EAECED;
-    --tide-color-text-left-bar: #FFFFFF;
+    --tide-color-text-side-bar: #FFFFFF;
     --tide-color-focused-outline: #E36209;
     --tide-color-link: #3F72AF;
     --tide-color-link-hover: #3F72AF;
@@ -55,68 +55,68 @@ html.tide-large-font {
     transform: rotateY(180deg)
 } */
 
-/* 暂时去掉 shadow，因为 tide-content 也移动了，tide-left-bar 就不像是浮在上面的一层 */
-/* [tide-left-bar-expanded="true"] #tide-left-bar { */
+/* 暂时去掉 shadow，因为 tide-content 也移动了，tide-side-bar 就不像是浮在上面的一层 */
+/* [tide-side-bar-expanded="true"] #tide-side-bar { */
     /* box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.5); */
     /* unocss 精细控制不好使，这里写原生 */
 /* } */
 
-[tide-left-bar-expanded="true"] #tide-btn-nav-icon-bars {
+[tide-side-bar-expanded="true"] #tide-btn-nav-icon-bars {
     @apply hidden;
 }
 
-[tide-left-bar-expanded="true"] #tide-btn-nav-icon-close {
+[tide-side-bar-expanded="true"] #tide-btn-nav-icon-close {
     @apply inline;
 }
 
-[tide-left-bar-expanded="false"] #tide-btn-nav-icon-bars {
+[tide-side-bar-expanded="false"] #tide-btn-nav-icon-bars {
     @apply inline;
 }
 
-[tide-left-bar-expanded="false"] #tide-btn-nav-icon-close {
+[tide-side-bar-expanded="false"] #tide-btn-nav-icon-close {
     @apply hidden;
 }
 
 /* 默认小屏幕 */
 /* 侧栏默认整体滚动 */
-#tide-left-bar {
+#tide-side-bar {
     @apply overflow-auto;
 }
 
 /* 使用 [dir="ltr"] 而非 @apply ltr:…… ，因为后者在转换后会有空的样式，显示警告 */
-[dir="ltr"] [tide-left-bar-expanded="true"] #tide-left-bar,
-[dir="ltr"] [tide-left-bar-expanded="true"] #tide-content {
+[dir="ltr"] [tide-side-bar-expanded="true"] #tide-side-bar,
+[dir="ltr"] [tide-side-bar-expanded="true"] #tide-content {
     @apply translate-x-75vw;
     /* @apply shadow-[-30px_0_30px_30px_rgba(0, 0, 0, 0.3)]; */
 }
 
-[dir="rtl"] [tide-left-bar-expanded="true"] #tide-left-bar,
-[dir="rtl"] [tide-left-bar-expanded="true"] #tide-content {
+[dir="rtl"] [tide-side-bar-expanded="true"] #tide-side-bar,
+[dir="rtl"] [tide-side-bar-expanded="true"] #tide-content {
     @apply -translate-x-75vw;
 }
 
 /* md 往后调整侧边栏宽度为 96 */
 @media (min-width: 768px) {
 
-    #tide-left-bar {
+    #tide-side-bar {
         @apply w-96;
     }
 
-    [dir="ltr"] #tide-left-bar {
+    [dir="ltr"] #tide-side-bar {
         @apply -left-96;
     }
 
-    [dir="rtl"] #tide-left-bar {
+    [dir="rtl"] #tide-side-bar {
         @apply -right-96 w-96;
     }
 
-    [dir="ltr"] [tide-left-bar-expanded="true"] #tide-left-bar,
-    [dir="ltr"] [tide-left-bar-expanded="true"] #tide-content {
+    [dir="ltr"] [tide-side-bar-expanded="true"] #tide-side-bar,
+    [dir="ltr"] [tide-side-bar-expanded="true"] #tide-content {
         @apply translate-x-96;
     }
 
-    [dir="rtl"] [tide-left-bar-expanded="true"] #tide-left-bar,
-    [dir="rtl"] [tide-left-bar-expanded="true"] #tide-content {
+    [dir="rtl"] [tide-side-bar-expanded="true"] #tide-side-bar,
+    [dir="rtl"] [tide-side-bar-expanded="true"] #tide-content {
         @apply -translate-x-96;
     }
 }
@@ -127,7 +127,7 @@ html.tide-large-font {
     @media (min-width: 1280px) {
         /* 1280*768 后侧栏整体不再允许滚动，导航部分允许滚动 */
         @media (min-height: 768px) {
-            #tide-left-bar {
+            #tide-side-bar {
                 @apply overflow-clip;
             }
 
@@ -136,27 +136,27 @@ html.tide-large-font {
             }
         }
 
-        [dir="ltr"] :not([tide-is-post]) #tide-left-bar,
+        [dir="ltr"] :not([tide-is-post]) #tide-side-bar,
         [dir="ltr"] :not([tide-is-post]) #tide-content {
             @apply translate-x-96;
         }
 
-        [dir="rtl"] :not([tide-is-post]) #tide-left-bar,
+        [dir="rtl"] :not([tide-is-post]) #tide-side-bar,
         [dir="rtl"] :not([tide-is-post]) #tide-content {
             @apply -translate-x-96;
         }
 
-        /* [dir="ltr"] :not([tide-is-post]) [tide-left-bar-expanded="true"] #tide-left-bar,
-        [dir="rtl"] :not([tide-is-post]) [tide-left-bar-expanded="true"] #tide-left-bar {
+        /* [dir="ltr"] :not([tide-is-post]) [tide-side-bar-expanded="true"] #tide-side-bar,
+        [dir="rtl"] :not([tide-is-post]) [tide-side-bar-expanded="true"] #tide-side-bar {
             @apply shadow-none;
         } */
 
         /* 只在 1280*768 后展示斜角 */
-        /* [dir="ltr"] :not([tide-is-post]) [tide-left-bar-expanded="true"] #tide-deco {
+        /* [dir="ltr"] :not([tide-is-post]) [tide-side-bar-expanded="true"] #tide-deco {
             @apply fixed left-96 h-full z-30 pointer-events-none;
         } */
 
-        /* [dir="rtl"] :not([tide-is-post]) [tide-left-bar-expanded="true"] #tide-deco {
+        /* [dir="rtl"] :not([tide-is-post]) [tide-side-bar-expanded="true"] #tide-deco {
             @apply fixed right-96 h-full z-30 pointer-events-none;
         } */
 

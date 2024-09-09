@@ -1,24 +1,23 @@
-# main menu navigation
-navigation:
-  首页:
-    icon: "fa-solid fa-house"
-    link: /
-  归档:
-    icon: "fa-solid fa-house"
-    link: /archives
-  分类:
-    icon: "fa-solid fa-house"
-    link: /categories
-  标签:
-    icon: "fa-solid fa-house"
-    link: /tags
-  关于:
-    icon: "fa-solid fa-house"
-    link: /about
+meta_links:
+  -
+    rel: me
+    link: "mailto:bianyukun1213@outlook.com"
+  -
+    rel: me
+    link: "https://github.com/bianyukun1213"
+  -
+    rel: me
+    link: "https://m.cmx.im/@Hollis"
+  -
+    rel: authorization_endpoint
+    link: "https://indieauth.com/auth"
+  -
+    rel: webmention
+    link: "https://webmention.io/his2nd.life/webmention"
 
 microformats2:
   enable: true
-  ## h_card 可在 front-matter 中指定，优先于此处的配置。
+  # h_card 可在 front-matter 中指定，优先于此处的配置。
   h_card:
     p_honorific_prefix: ""
     p_name: "Bian Yukun"
@@ -40,29 +39,47 @@ microformats2:
         link: "https://github.com/bianyukun1213"
     u_email: bianyukun1213@outlook.com
 
-meta_links:
-  -
-    rel: me
-    link: "mailto:bianyukun1213@outlook.com"
-  -
-    rel: me
-    link: "https://github.com/bianyukun1213"
-  -
-    rel: me
-    link: "https://m.cmx.im/@Hollis"
-  -
-    rel: authorization_endpoint
-    link: "https://indieauth.com/auth"
-  -
-    rel: webmention
-    link: "https://webmention.io/his2nd.life/webmention"
+# main menu navigation
+navigation:
+  首页:
+    icon: "fa-solid fa-house"
+    link: /
+  归档:
+    icon: "fa-solid fa-house"
+    link: /archives
+  分类:
+    icon: "fa-solid fa-house"
+    link: /categories
+  标签:
+    icon: "fa-solid fa-house"
+    link: /tags
+  关于:
+    icon: "fa-solid fa-house"
+    link: /about
+
+# 页脚备案……
+icp_record:
+  text:
+  link:
+
+copyright:
+  # default: "cc_by_sa_4"
+  default: "CC-BY-SA 4.0" # 可留空。
+  cc_by_sa_4: "CC-BY-SA 4.0"
+
+comments:
+  enable: ["webmentions", "twikoo"]
+  webmentions:
+  twikoo:
+
+
 
 
 img_handler:
   priority: 5
 
-copyright:
-  cc_by_sa_4: "CC-BY-SA 4.0"
+
+
 # config_handler:
 #   priority: 5
 

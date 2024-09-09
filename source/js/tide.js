@@ -13,42 +13,42 @@ $('#tide-btn-settings').click(() => {
     else
         $('html').attr('dir', 'ltr');
 });
-// todo：初始化 tide-left-bar-expanded 属性，并根据 resize 事件实时更新。
+// todo：初始化 tide-side-bar-expanded 属性，并根据 resize 事件实时更新。
 
-const toggleLeftBar = (status, buttonTriggered = false) => {
+const toggleSideBar = (status, buttonTriggered = false) => {
     if (status) {
-        $('#tide-root').attr('tide-left-bar-expanded', 'true');
-        // $('#tide-left-bar').removeAttr('aria-hidden');
-        $('#tide-left-bar').attr('aria-expanded', 'true');
-        $('#tide-left-bar a, #tide-left-bar :input').removeAttr('tabindex');
+        $('#tide-root').attr('tide-side-bar-expanded', 'true');
+        // $('#tide-side-bar').removeAttr('aria-hidden');
+        $('#tide-side-bar').attr('aria-expanded', 'true');
+        $('#tide-side-bar a, #tide-side-bar :input').removeAttr('tabindex');
         if (buttonTriggered)
-            $('#tide-left-bar nav a:first-of-type').focus(); // todo：只在按钮触发时聚焦？还是只要展开就聚焦？
+            $('#tide-side-bar nav a:first-of-type').focus(); // todo：只在按钮触发时聚焦？还是只要展开就聚焦？
     }
     else {
-        $('#tide-root').attr('tide-left-bar-expanded', 'false');
-        // $('#tide-left-bar').attr('aria-hidden', 'true'); // 阻止读屏器阅读。
-        $('#tide-left-bar').attr('aria-expanded', 'false');
-        $('#tide-left-bar a, #tide-left-bar :input').attr('tabindex', '-1'); // 阻止键盘 tab 导航。
+        $('#tide-root').attr('tide-side-bar-expanded', 'false');
+        // $('#tide-side-bar').attr('aria-hidden', 'true'); // 阻止读屏器阅读。
+        $('#tide-side-bar').attr('aria-expanded', 'false');
+        $('#tide-side-bar a, #tide-side-bar :input').attr('tabindex', '-1'); // 阻止键盘 tab 导航。
         // $('#tide-btn-nav').focus();
 
     }
 };
-const toggleLeftBarOnResize = () => {
+const toggleSideBarOnResize = () => {
     if (document.documentElement.clientWidth >= 1280)
-        toggleLeftBar(true);
+        toggleSideBar(true);
     else
-        toggleLeftBar(false);
+        toggleSideBar(false);
 };
-toggleLeftBarOnResize();
+toggleSideBarOnResize();
 // window.addEventListener('resize',
 $(window).on('resize', () => {
-    toggleLeftBarOnResize();
+    toggleSideBarOnResize();
 });
 $('#tide-btn-nav').click(() => {
-    if ($('#tide-root').attr('tide-left-bar-expanded') === 'true') {
-        toggleLeftBar(false, true);
+    if ($('#tide-root').attr('tide-side-bar-expanded') === 'true') {
+        toggleSideBar(false, true);
     }
     else {
-        toggleLeftBar(true, true);
+        toggleSideBar(true, true);
     }
 });

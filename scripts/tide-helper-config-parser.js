@@ -1,7 +1,7 @@
 'use strict';
 
-// const _ = require('lodash');
 const {
+    getTideVersion,
     isNumber,
     isInteger,
     isString,
@@ -19,13 +19,6 @@ const {
     camelCaseObjToUnderScoreCaseObj
 } = require('./tide-utils.js');
 
-// const utils = require('./tide-utils');
-// console.info(typeof utils);
-// console.info(typeof utils.isNumber)
-// console.info(JSON.stringify(utils))
-
-
-
 const scriptName = 'tide-helper-config-parser';
 // 合并站点、主题、页面和默认的配置，只检查空值不检查类型。
 hexo.extend.helper.register('parse_config', (site, config, theme, page) => {
@@ -37,12 +30,12 @@ hexo.extend.helper.register('parse_config', (site, config, theme, page) => {
     out.author = page?.author ?? config?.author ?? '';
     out.language = page?.language ?? page?.lang ?? config?.language;
     // 上为站点配置，下为主题配置。
-    out.navigation = theme?.navigation ?? {};
+    out.meta_links = theme?.meta_links ?? [];
     out.microformats2 = theme?.microformats2?.enable ?? false;
     // 对象的合并：
-    // key 都是固定的话，可以 deepAssign 合并，页面的优先级最高，页面没有的会有配置值和默认值兜底。
-    // key 可以自定义的话，就不 deepAssign，而是发现页面有就取页面，否则发现配置有就取配置。如果 deepAssign 的话，配置有但用户想页面没有，也去不掉。
-    out.h_card = {
+    // key 都是固定的话，可以 deepMerge 合并，页面的优先级最高，页面没有的会有配置值和默认值兜底。
+    // key 可以自定义的话，就不 deepMerge，而是发现页面有就取页面，否则发现配置有就取配置。如果 deepMerge 的话，配置有但用户想页面没有，也去不掉。
+    out.site_h_card = {
         p_honorific_prefix: '',
         p_name: '',
         p_given_name: '',
@@ -61,22 +54,32 @@ hexo.extend.helper.register('parse_config', (site, config, theme, page) => {
         } catch (error) {
             themeHCard = {};
         }
+        out.site_h_card = deepMergeObj(out.site_h_card, themeHCard);
+        // 实际生成 HTML 结构时，h_card 是单独的。
+        if (out.site_h_card.p_name === '')
+            out.site_h_card.p_name = out.author;
+        if (out.site_h_card.p_nickname === '')
+            out.site_h_card.p_nickname = out.author;
         let pageHCard;
         try {
             pageHCard = page?.h_card ?? {};
         } catch (error) {
             pageHCard = {};
         }
-        // _.assign(out.h_card, themeHCard, pageHCard);
-        // Object.assign(out.h_card, themeHCard, pageHCard);
-        out.h_card = deepMergeObj(out.h_card, themeHCard, pageHCard);
-        if (out.h_card.p_name === '')
-            out.h_card.p_name = out.author;
-        if (out.h_card.p_nickname === '')
-            out.h_card.p_nickname = out.author;
+        out.page_h_card = deepMergeObj(out.site_h_card, pageHCard);
+        if (out.page_h_card.p_name === '')
+            out.page_h_card.p_name = out.author;
+        if (out.page_h_card.p_nickname === '')
+            out.page_h_card.p_nickname = out.author;
     }
-    out.meta_links = theme?.meta_links ?? [];
-    out.copyright = '';
+    out.navigation = theme?.navigation ?? {};
+    out.icp_record = theme?.icp_record ?? {};
+    // 上为主题配置，下为页面配置。
+    // todo: out.comments
+
+
+
+    out.copyright = theme?.copyright?.default ?? ''; // 主题配置中只是预置键值，具体还要看页面，所以认为是页面配置。
     if (page.copyright)
         if (theme.copyright && page.copyright in theme.copyright)
             out.copyright = theme.copyright[page.copyright];
@@ -85,29 +88,7 @@ hexo.extend.helper.register('parse_config', (site, config, theme, page) => {
     out.syndications = page?.syndications ?? [];
 
 
-
-    // if(!is)
-    // console.log(theme.microformats2.h_card)
-
-
-    // out.hCard = {
-    //     pHonorificPrefix: page?.microformats2?.h_card?.p_honorific_prefix ?? theme?.microformats2?.h_card?.p_honorific_prefix ?? '',
-    //     pName: theme?.microformats2?.h_card?.p_name ?? '',
-    //     pGivenName: '',
-    //     pAdditionalName: '',
-    //     pFamilyName: '',
-    //     pHonorificSuffix: '',
-    //     pNickname: '',
-    //     uPhoto: '',
-    //     uUid: [],
-    //     uEmail: ''
-    // };
-
-
-
-
-
-
+    // 插件适配。
     out.search_db_path = config?.search?.path;
     out.page_hidden = false;
     if (config?.hide_posts?.enable ?? false) {
