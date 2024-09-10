@@ -30,6 +30,12 @@ hexo.extend.helper.register('parse_config', (site, config, theme, page) => {
     out.author = page?.author ?? config?.author ?? '';
     out.language = page?.language ?? page?.lang ?? config?.language;
     // 上为站点配置，下为主题配置。
+    out.direction = theme.direction === 'rtl' ? 'rtl' : 'ltr';
+    if (isString(page.direction))
+        if (page.direction === 'rtl')
+            out.direction = 'rtl';
+        else
+            out.direction = 'ltr';
     out.meta_links = theme?.meta_links ?? [];
     out.microformats2 = theme?.microformats2?.enable ?? false;
     // 对象的合并：
@@ -76,7 +82,7 @@ hexo.extend.helper.register('parse_config', (site, config, theme, page) => {
     out.icp_record = theme?.icp_record ?? {};
     // 上为主题配置，下为页面配置。
     // todo: out.comments
-
+    out.page_title = page?.title ?? ''; // 有些内置页面此项为空，需单独处理。
 
 
     out.copyright = theme?.copyright?.default ?? ''; // 主题配置中只是预置键值，具体还要看页面，所以认为是页面配置。
@@ -86,6 +92,33 @@ hexo.extend.helper.register('parse_config', (site, config, theme, page) => {
         else
             out.copyright = page.copyright;
     out.syndications = page?.syndications ?? [];
+    // page: ["webmentions", "twikoo"] or false
+    // theme: enabel: ["webmentions", "twikoo"] webmentions: xxx twikoo: xxx
+    // out: {webmentions: xxx, twikoo: xxx} or false
+    out.comments = {};
+    if (isArray(page.comments)) {
+        if (page.comments.includes('webmentions'))
+            out.comments.webmentions = theme?.comments?.webmentions ?? {};
+        if (page.comments.includes('twikoo'))
+            out.comments.twikoo = theme?.comments?.twikoo ?? {};
+    } else if (page.comments === true) {
+        if (theme?.comments?.enable?.includes('webmentions'))
+            out.comments.webmentions = theme.comments?.webmentions ?? {};
+        if (theme?.comments?.enable?.includes('twikoo'))
+            out.comments.twikoo = theme.comments?.twikoo ?? {};
+    } else if (page.comments === false) {
+        out.comments = false;
+    }
+    else if (isArray(theme?.comments?.enable)) {
+        if (theme.comments.enable.includes('webmentions'))
+            out.comments.webmentions = theme.comments?.webmentions ?? {};
+        if (theme.comments.enable.includes('twikoo'))
+            out.comments.twikoo = theme.comments?.twikoo ?? {};
+    }
+    else {
+        out.comments = false;
+    }
+
 
 
     // 插件适配。

@@ -1,3 +1,5 @@
+direction: ltr
+
 meta_links:
   -
     rel: me
@@ -46,34 +48,31 @@ navigation:
     link: /
   归档:
     icon: "fa-solid fa-house"
-    link: /archives
+    link: /archives.html
   分类:
     icon: "fa-solid fa-house"
-    link: /categories
+    link: /categories.html
   标签:
     icon: "fa-solid fa-house"
-    link: /tags
+    link: /tags.html
   关于:
     icon: "fa-solid fa-house"
-    link: /about
+    link: /about.html
 
 # 页脚备案……
 icp_record:
-  text:
-  link:
+  text: 萌ICP备20230041号
+  link: "https://icp.gov.moe/?keyword=20230041"
 
 copyright:
   # default: "cc_by_sa_4"
-  default: "CC-BY-SA 4.0" # 可留空。
+  default: "CC-BY-SA 4.0" # 文字，并非属性名可留空。
   cc_by_sa_4: "CC-BY-SA 4.0"
 
 comments:
   enable: ["webmentions", "twikoo"]
-  webmentions:
-  twikoo:
-
-
-
+  webmentions: 111
+  twikoo: 123
 
 img_handler:
   priority: 5
