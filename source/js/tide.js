@@ -19,7 +19,7 @@ const toggleSideBar = (status, buttonTriggered = false) => {
     if (status) {
         $('#tide-root').attr('tide-side-bar-expanded', 'true');
         // $('#tide-side-bar').removeAttr('aria-hidden');
-        $('#tide-side-bar').attr('aria-expanded', 'true');
+        // $('#tide-side-bar').attr('aria-expanded', 'true'); lighthouse 会报 aria-* 属性与角色不匹配
         $('#tide-side-bar a, #tide-side-bar :input').removeAttr('tabindex');
         if (buttonTriggered)
             $('#tide-side-bar nav a:first-of-type').focus(); // todo：只在按钮触发时聚焦？还是只要展开就聚焦？
@@ -27,7 +27,7 @@ const toggleSideBar = (status, buttonTriggered = false) => {
     else {
         $('#tide-root').attr('tide-side-bar-expanded', 'false');
         // $('#tide-side-bar').attr('aria-hidden', 'true'); // 阻止读屏器阅读。
-        $('#tide-side-bar').attr('aria-expanded', 'false');
+        // $('#tide-side-bar').attr('aria-expanded', 'false');
         $('#tide-side-bar a, #tide-side-bar :input').attr('tabindex', '-1'); // 阻止键盘 tab 导航。
         // $('#tide-btn-nav').focus();
 

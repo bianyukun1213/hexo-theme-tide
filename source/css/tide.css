@@ -2,7 +2,7 @@
 
 /* preflights */
 
-html {
+/* html {
     --tide-color-primary: #3F72AF;
     --tide-color-secondary: #00ADB5;
     --tide-color-background-primary: #FFFFFF;
@@ -19,6 +19,44 @@ html {
     --tide-color-table-border: #E5E7EB;
     --tide-color-table-background-head: #F3F3F3;
     --tide-color-table-background-even: #FAFAFA;
+} */
+
+html {
+    --tide-color-primary: <TIDE_COLOR_PRIMARY_LIGHT>;
+    --tide-color-secondary: <TIDE_COLOR_SECONDARY_LIGHT>;
+    --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_LIGHT>;
+    --tide-color-background-secondary: <TIDE_COLOR_BACKGROUND_SECONDARY_LIGHT>;
+    --tide-color-text-primary: <TIDE_COLOR_TEXT_PRIMARY_LIGHT>;
+    --tide-color-text-secondary: <TIDE_COLOR_TEXT_SECONDARY_LIGHT>;
+    --tide-color-text-diminished: <TIDE_COLOR_TEXT_DIMINISHED_LIGHT>;
+    --tide-color-text-side-bar: <TIDE_COLOR_TEXT_SIDE_BAR_LIGHT>;
+    --tide-color-focused-outline: <TIDE_COLOR_FOCUSED_OUTLINE_LIGHT>;
+    --tide-color-link: <TIDE_COLOR_LINK_LIGHT>;
+    --tide-color-link-hover: <TIDE_COLOR_LINK_HOVER_LIGHT>;
+    --tide-color-link-visited: <TIDE_COLOR_LINK_VISITED_LIGHT>;
+    --tide-color-code: <TIDE_COLOR_CODE_LIGHT>;
+    --tide-color-table-border: <TIDE_COLOR_TABLE_BORDER_LIGHT>;
+    --tide-color-table-background-head: <TIDE_COLOR_TABLE_BACKGROUND_HEAD_LIGHT>;
+    --tide-color-table-background-even: <TIDE_COLOR_TABLE_BACKGROUND_EVEN_LIGHT>;
+}
+
+html[tide-dark] {
+    --tide-color-primary: <TIDE_COLOR_PRIMARY_DARK>;
+    --tide-color-secondary: <TIDE_COLOR_SECONDARY_DARK>;
+    --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_DARK>;
+    --tide-color-background-secondary: <TIDE_COLOR_BACKGROUND_SECONDARY_DARK>;
+    --tide-color-text-primary: <TIDE_COLOR_TEXT_PRIMARY_DARK>;
+    --tide-color-text-secondary: <TIDE_COLOR_TEXT_SECONDARY_DARK>;
+    --tide-color-text-diminished: <TIDE_COLOR_TEXT_DIMINISHED_DARK>;
+    --tide-color-text-side-bar: <TIDE_COLOR_TEXT_SIDE_BAR_DARK>;
+    --tide-color-focused-outline: <TIDE_COLOR_FOCUSED_OUTLINE_DARK>;
+    --tide-color-link: <TIDE_COLOR_LINK_DARK>;
+    --tide-color-link-hover: <TIDE_COLOR_LINK_HOVER_DARK>;
+    --tide-color-link-visited: <TIDE_COLOR_LINK_VISITED_DARK>;
+    --tide-color-code: <TIDE_COLOR_CODE_DARK>;
+    --tide-color-table-border: <TIDE_COLOR_TABLE_BORDER_DARK>;
+    --tide-color-table-background-head: <TIDE_COLOR_TABLE_BACKGROUND_HEAD_DARK>;
+    --tide-color-table-background-even: <TIDE_COLOR_TABLE_BACKGROUND_EVEN_DARK>;
 }
 
 * {
@@ -49,7 +87,7 @@ button {
 
 /* layer: icons */
 
-[un-i~="logos-hexo"]{background:url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 256 295' display='inline-block' vertical-align='middle' width='0.87em' height='1em' xmlns='http://www.w3.org/2000/svg' %3E%3Cpath fill='%230E83CD' d='M128.04 0L.574 73.768L.59 221.079l127.754 73.465l127.464-73.769l.002-147.23z'/%3E%3Cpath fill='%23FFF' d='m68.242 211.051l.01-63.7l.01-63.702l11.573-6.768l11.085 6.56l.12 26.03l.12 26.031h74.075l.12-26.013l.12-26.014l11.257-6.505l11.412 6.68l-.006 63.658l-.005 63.659l-11.298 6.31l-11.361-6.392l-.12-25.885l-.12-25.886H91.16l-.12 25.878l.034 26.008l-11.36 6.663z'/%3E%3C/svg%3E") no-repeat;background-size:100% 100%;background-color:transparent;display:inline-block;vertical-align:middle;width:0.87em;height:1em;}
+[un-i="logos-hexo"]{background:url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 256 295' display='inline-block' vertical-align='middle' width='0.87em' height='1em' xmlns='http://www.w3.org/2000/svg' %3E%3Cpath fill='%230E83CD' d='M128.04 0L.574 73.768L.59 221.079l127.754 73.465l127.464-73.769l.002-147.23z'/%3E%3Cpath fill='%23FFF' d='m68.242 211.051l.01-63.7l.01-63.702l11.573-6.768l11.085 6.56l.12 26.03l.12 26.031h74.075l.12-26.013l.12-26.014l11.257-6.505l11.412 6.68l-.006 63.658l-.005 63.659l-11.298 6.31l-11.361-6.392l-.12-25.885l-.12-25.886H91.16l-.12 25.878l.034 26.008l-11.36 6.663z'/%3E%3C/svg%3E") no-repeat;background-size:100% 100%;background-color:transparent;display:inline-block;vertical-align:middle;width:0.87em;height:1em;}
 
 /* layer: typography */
 
@@ -153,13 +191,13 @@ button {
 
 [un-sc-link-plain=""]{display:inline;color:var(--tide-color-text-primary);text-decoration:none;transition:none;}
 
+[un-sc-link-plain=""]:hover{display:inline;transform:none;text-decoration-line:underline;}
+
 [un-sc-btn-default=""]{display:flex;cursor:pointer;align-items:center;justify-content:center;border-width:2px;border-color:var(--tide-color-primary);border-style:solid;background-color:transparent;color:var(--tide-color-primary);transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms;transition-duration:200ms;}
 
 [un-sc-btn-default=""]:hover{--un-scale-x:1.05;--un-scale-y:1.05;transform:translateX(var(--un-translate-x)) translateY(var(--un-translate-y)) translateZ(var(--un-translate-z)) rotate(var(--un-rotate)) rotateX(var(--un-rotate-x)) rotateY(var(--un-rotate-y)) rotateZ(var(--un-rotate-z)) skewX(var(--un-skew-x)) skewY(var(--un-skew-y)) scaleX(var(--un-scale-x)) scaleY(var(--un-scale-y)) scaleZ(var(--un-scale-z));}
 
 [un-sc-btn-default=""]:active{--un-scale-x:0.95;--un-scale-y:0.95;transform:translateX(var(--un-translate-x)) translateY(var(--un-translate-y)) translateZ(var(--un-translate-z)) rotate(var(--un-rotate)) rotateX(var(--un-rotate-x)) rotateY(var(--un-rotate-y)) rotateZ(var(--un-rotate-z)) skewX(var(--un-skew-x)) skewY(var(--un-skew-y)) scaleX(var(--un-scale-x)) scaleY(var(--un-scale-y)) scaleZ(var(--un-scale-z));}
-
-[un-sc-link-plain=""]:hover{transform:none;text-decoration-line:underline;}
 
 [un-sc-btn-default=""]:active:disabled{transform:none;}
 
@@ -193,9 +231,15 @@ button {
 .right-32,
 [dir="ltr"] [un-ltr~="right-32"]{right:8rem;}
 
+[un-bottom~="\30 "]{bottom:0;}
+
 [un-bottom~="\34 "]{bottom:1rem;}
 
+[un-right~="\30 "]{right:0;}
+
 [un-right~="\34 "]{right:1rem;}
+
+[un-z~="\31 00"]{z-index:100;}
 
 [un-z~="\33 0"]{z-index:30;}
 
@@ -209,11 +253,13 @@ button {
 
 [un-m~="\30 "]{margin:0;}
 
-[un-mx~="\31 "]{margin-left:0.25rem;margin-right:0.25rem;}
+[un-mx="\31 "]{margin-left:0.25rem;margin-right:0.25rem;}
 
 [un-my~="\32 "]{margin-top:0.5rem;margin-bottom:0.5rem;}
 
 [un-my~="\34 "]{margin-top:1rem;margin-bottom:1rem;}
+
+.me{margin-inline-end:1rem;}
 
 .ml-4,
 [dir="ltr"] [un-ltr~="ml-4"],
@@ -237,6 +283,8 @@ button {
 
 [un-h~="\36 4"]{height:16rem;}
 
+[un-h~="\39 6"]{height:24rem;}
+
 [un-h~="full"]{height:100%;}
 
 [un-min-w~="\36 4"]{min-width:16rem;}
@@ -252,6 +300,8 @@ button {
 [un-w~="\33 2"]{width:8rem;}
 
 [un-w~="\37 5vw"]{width:75vw;}
+
+[un-w~="\39 6"]{width:24rem;}
 
 [un-w~="auto"]{width:auto;}
 
@@ -344,8 +394,8 @@ html.tide-large-font {
 
 /* 暂时去掉 shadow，因为 tide-content 也移动了，tide-side-bar 就不像是浮在上面的一层 */
 /* [tide-side-bar-expanded="true"] #tide-side-bar { */
-    /* box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.5); */
-    /* unocss 精细控制不好使，这里写原生 */
+/* box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.5); */
+/* unocss 精细控制不好使，这里写原生 */
 /* } */
 
 [tide-side-bar-expanded="true"] #tide-btn-nav-icon-bars {display:none;

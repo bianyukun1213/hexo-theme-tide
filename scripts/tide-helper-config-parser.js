@@ -36,6 +36,7 @@ hexo.extend.helper.register('parse_config', (site, config, theme, page) => {
             out.direction = 'rtl';
         else
             out.direction = 'ltr';
+    out.meta_icons = theme?.meta_icons ?? {};
     out.meta_links = theme?.meta_links ?? [];
     out.microformats2 = theme?.microformats2?.enable ?? false;
     // 对象的合并：
@@ -51,7 +52,8 @@ hexo.extend.helper.register('parse_config', (site, config, theme, page) => {
         p_nickname: '',
         u_photo: '',
         u_uid: [],
-        u_email: ''
+        u_email: '',
+        p_note: ''
     };
     if (out.microformats2) {
         let themeHCard;
@@ -80,6 +82,7 @@ hexo.extend.helper.register('parse_config', (site, config, theme, page) => {
     }
     out.navigation = theme?.navigation ?? {};
     out.icp_record = theme?.icp_record ?? {};
+
     // 上为主题配置，下为页面配置。
     out.page_title = page?.title ?? ''; // 有些内置页面此项为空，需单独处理。
 

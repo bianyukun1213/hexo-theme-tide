@@ -1,5 +1,9 @@
 direction: ltr
 
+meta_icons:
+  favicon: "/img/favicon.ico"
+  apple_touch_icon: "/img/favicon.ico"
+
 meta_links:
   -
     rel: me
@@ -16,6 +20,42 @@ meta_links:
   -
     rel: webmention
     link: "https://webmention.io/his2nd.life/webmention"
+
+colors:
+  light:
+    primary: "#3F72AF"
+    secondary: "#00ADB5"
+    backgroundPrimary: "#FFFFFF"
+    backgroundSecondary: "#FAFAFA"
+    textPrimary: "#323739"
+    textSecondary: "#5c6669"
+    textDiminished: "#EAECED"
+    textSideBar: "#FFFFFF"
+    focusedOutline: "#E36209"
+    link: "#3F72AF"
+    linkHover: "#3F72AF"
+    linkVisited: "#00ADB5"
+    code: "#3F72AF"
+    tableBorder: "#E5E7EB"
+    tableBackgroundHead: "#F3F3F3"
+    tableBackgroundEven: "#FAFAFA"
+  dark:
+    primary: "#3F72AF"
+    secondary: "#00ADB5"
+    backgroundPrimary: "#FFFFFF"
+    backgroundSecondary: "#FAFAFA"
+    textPrimary: "#323739"
+    textSecondary: "#5c6669"
+    textDiminished: "#EAECED"
+    textSideBar: "#FFFFFF"
+    focusedOutline: "#E36209"
+    link: "#3F72AF"
+    linkHover: "#3F72AF"
+    linkVisited: "#00ADB5"
+    code: "#3F72AF"
+    tableBorder: "#E5E7EB"
+    tableBackgroundHead: "#F3F3F3"
+    tableBackgroundEven: "#FAFAFA"
 
 microformats2:
   enable: true
@@ -40,6 +80,7 @@ microformats2:
         text: GitHub
         link: "https://github.com/bianyukun1213"
     u_email: bianyukun1213@outlook.com
+    p_note: "Just a **S**illy **B**oy."
 
 # main menu navigation
 navigation:
@@ -47,17 +88,17 @@ navigation:
     icon: "fa-solid fa-house"
     link: /
   归档:
-    icon: "fa-solid fa-house"
-    link: /archives.html
+    icon: "fa-solid fa-box-archive"
+    link: /archives/
   分类:
-    icon: "fa-solid fa-house"
-    link: /categories.html
+    icon: "fa-solid fa-folder-open"
+    link: /categories/
   标签:
-    icon: "fa-solid fa-house"
-    link: /tags.html
+    icon: "fa-solid fa-tag"
+    link: /tags/
   关于:
-    icon: "fa-solid fa-house"
-    link: /about.html
+    icon: "fa-solid fa-user"
+    link: /about/
 
 # 页脚备案……
 icp_record:

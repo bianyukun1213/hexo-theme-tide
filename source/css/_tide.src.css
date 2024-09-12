@@ -2,7 +2,7 @@
 
 /* preflights */
 
-html {
+/* html {
     --tide-color-primary: #3F72AF;
     --tide-color-secondary: #00ADB5;
     --tide-color-background-primary: #FFFFFF;
@@ -19,6 +19,44 @@ html {
     --tide-color-table-border: #E5E7EB;
     --tide-color-table-background-head: #F3F3F3;
     --tide-color-table-background-even: #FAFAFA;
+} */
+
+html {
+    --tide-color-primary: <TIDE_COLOR_PRIMARY_LIGHT>;
+    --tide-color-secondary: <TIDE_COLOR_SECONDARY_LIGHT>;
+    --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_LIGHT>;
+    --tide-color-background-secondary: <TIDE_COLOR_BACKGROUND_SECONDARY_LIGHT>;
+    --tide-color-text-primary: <TIDE_COLOR_TEXT_PRIMARY_LIGHT>;
+    --tide-color-text-secondary: <TIDE_COLOR_TEXT_SECONDARY_LIGHT>;
+    --tide-color-text-diminished: <TIDE_COLOR_TEXT_DIMINISHED_LIGHT>;
+    --tide-color-text-side-bar: <TIDE_COLOR_TEXT_SIDE_BAR_LIGHT>;
+    --tide-color-focused-outline: <TIDE_COLOR_FOCUSED_OUTLINE_LIGHT>;
+    --tide-color-link: <TIDE_COLOR_LINK_LIGHT>;
+    --tide-color-link-hover: <TIDE_COLOR_LINK_HOVER_LIGHT>;
+    --tide-color-link-visited: <TIDE_COLOR_LINK_VISITED_LIGHT>;
+    --tide-color-code: <TIDE_COLOR_CODE_LIGHT>;
+    --tide-color-table-border: <TIDE_COLOR_TABLE_BORDER_LIGHT>;
+    --tide-color-table-background-head: <TIDE_COLOR_TABLE_BACKGROUND_HEAD_LIGHT>;
+    --tide-color-table-background-even: <TIDE_COLOR_TABLE_BACKGROUND_EVEN_LIGHT>;
+}
+
+html[tide-dark] {
+    --tide-color-primary: <TIDE_COLOR_PRIMARY_DARK>;
+    --tide-color-secondary: <TIDE_COLOR_SECONDARY_DARK>;
+    --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_DARK>;
+    --tide-color-background-secondary: <TIDE_COLOR_BACKGROUND_SECONDARY_DARK>;
+    --tide-color-text-primary: <TIDE_COLOR_TEXT_PRIMARY_DARK>;
+    --tide-color-text-secondary: <TIDE_COLOR_TEXT_SECONDARY_DARK>;
+    --tide-color-text-diminished: <TIDE_COLOR_TEXT_DIMINISHED_DARK>;
+    --tide-color-text-side-bar: <TIDE_COLOR_TEXT_SIDE_BAR_DARK>;
+    --tide-color-focused-outline: <TIDE_COLOR_FOCUSED_OUTLINE_DARK>;
+    --tide-color-link: <TIDE_COLOR_LINK_DARK>;
+    --tide-color-link-hover: <TIDE_COLOR_LINK_HOVER_DARK>;
+    --tide-color-link-visited: <TIDE_COLOR_LINK_VISITED_DARK>;
+    --tide-color-code: <TIDE_COLOR_CODE_DARK>;
+    --tide-color-table-border: <TIDE_COLOR_TABLE_BORDER_DARK>;
+    --tide-color-table-background-head: <TIDE_COLOR_TABLE_BACKGROUND_HEAD_DARK>;
+    --tide-color-table-background-even: <TIDE_COLOR_TABLE_BACKGROUND_EVEN_DARK>;
 }
 
 * {
@@ -57,8 +95,8 @@ html.tide-large-font {
 
 /* 暂时去掉 shadow，因为 tide-content 也移动了，tide-side-bar 就不像是浮在上面的一层 */
 /* [tide-side-bar-expanded="true"] #tide-side-bar { */
-    /* box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.5); */
-    /* unocss 精细控制不好使，这里写原生 */
+/* box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.5); */
+/* unocss 精细控制不好使，这里写原生 */
 /* } */
 
 [tide-side-bar-expanded="true"] #tide-btn-nav-icon-bars {

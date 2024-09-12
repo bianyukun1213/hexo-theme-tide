@@ -77,7 +77,7 @@ export default defineConfig({
         // 与上方 prose 部分对应。
         'sc-trans-default': 'transition-all ease-in-out duration-200',
         'sc-link-default': 'sc-trans-default inline underline link:text-lk hover:(inline-block -translate-y-2px) text-lk-hvr visited:text-lk-vst',
-        'sc-link-plain': 'transition-none inline no-underline hover:(transform-none underline) text-t-prim',
+        'sc-link-plain': 'transition-none inline no-underline hover:(transform-none inline underline) text-t-prim',
         'sc-btn-default': 'sc-trans-default flex items-center justify-center bg-transparent text-prim border-(2 prim solid) hover:scale-105 active:scale-95 cursor-pointer disabled:(opacity-50 cursor-not-allowed hover:transform-none active:transform-none)'
     },
     transformers: [
@@ -110,6 +110,7 @@ export default defineConfig({
         '[un-text="xl"]',
         '[un-text="2xl"]',
         '[un-text="3xl"]',
-        '[un-i="ms-close"]'
+        '[un-i="logos-hexo"]',
+        '[un-mx="1"]'
     ] // JavaScript 切换字体大小、侧边栏按钮图标使用。
 });
