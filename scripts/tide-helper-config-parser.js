@@ -81,9 +81,18 @@ hexo.extend.helper.register('parse_config', (site, config, theme, page) => {
     out.navigation = theme?.navigation ?? {};
     out.icp_record = theme?.icp_record ?? {};
     // 上为主题配置，下为页面配置。
-    // todo: out.comments
     out.page_title = page?.title ?? ''; // 有些内置页面此项为空，需单独处理。
 
+    // out.languages = site?.data?.language_map[page.path] ?? {};
+    // if (page.languages)
+    //     out.languages = page.languages;
+    out.languages = {};
+    if (page.languages)
+        out.languages = page.languages;
+    else if (site?.data?.language_map)
+        out.languages = site.data.language_map[page.path] ?? {};
+
+    // out.languages = site?.data?.language_map;
 
     out.copyright = theme?.copyright?.default ?? ''; // 主题配置中只是预置键值，具体还要看页面，所以认为是页面配置。
     if (page.copyright)
