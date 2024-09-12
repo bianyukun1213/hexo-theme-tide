@@ -90,8 +90,7 @@ hexo.extend.helper.register('parse_config', (site, config, theme, page) => {
     if (page.languages)
         out.languages = page.languages;
     else if (site?.data?.language_map)
-        out.languages = site.data.language_map[page.path] ?? {};
-
+        out.languages = site.data.language_map[page.path]?.languages ?? {};
     // out.languages = site?.data?.language_map;
 
     out.copyright = theme?.copyright?.default ?? ''; // 主题配置中只是预置键值，具体还要看页面，所以认为是页面配置。
