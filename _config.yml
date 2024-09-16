@@ -117,6 +117,8 @@ comments:
 
 img_handler:
   priority: 5
+colors_modifier:
+  priority: 5
 
 
 

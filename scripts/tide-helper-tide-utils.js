@@ -20,7 +20,7 @@ const {
 } = require('./tide-utils.js');
 
 const scriptName = 'tide-helper-tide-utils';
-hexo.extend.helper.register('tide_utils', () => {
+hexo.extend.helper.register('tide_utils', function () {
     return {
         getTideVersion,
         isNumber,

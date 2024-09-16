@@ -21,7 +21,7 @@ const {
 
 const scriptName = 'tide-helper-config-parser';
 // 合并站点、主题、页面和默认的配置，只检查空值不检查类型。
-hexo.extend.helper.register('parse_config', (site, config, theme, page) => {
+hexo.extend.helper.register('parse_config', function (site, config, theme, page) {
     let out = {};
     out.site_title = config?.title ?? '';
     out.site_subtitle = config?.siteSubtitle ?? '';

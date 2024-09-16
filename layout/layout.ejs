@@ -6,11 +6,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>
-            <% if(tideConfig.page_title==='' ) { %>
-                <%= tideConfig.site_title %>
-                    <% } else { %>
-                        <%= tideConfig.page_title %>
-                            <% } %>
+            <%= tideConfig.page_title==='' ?tideConfig.site_title:tideConfig.page_title %>
         </title>
 
         <!-- favivon、description、keywords…… -->
@@ -18,29 +14,20 @@
         <link rel="apple-touch-icon" href="<%= tideConfig.meta_icons?.apple_touch_icon %>">
         <meta name="description" content="<%= tideConfig.description %>">
         <!-- robots index follow……，如果检测到页面隐藏，就不加这个，而是让插件决定 -->
-        <!-- 这样写有格式化 -->
-        <!-- 我得把 open graph 的选项写在 ogOptions 里，如果直接写在函数参数处，unocss 会生成错误的样式 -->
-        <%- '<meta name="keywords" content="' %>
-            <% for(let i=0; i < tideConfig.keywords.length ; ++i) { %>
-                <% if(i!==tideConfig.keywords.length-1) {%>
-                    <%= tideConfig.keywords[i]+' ,' %>
-            <% } else {%>
-                <%= tideConfig.keywords[i] %>
-                    <% } %>
-                        <% } %>
-                            <%- '">' %>
-                                <%- meta_generator() %>
-                                    <%- meta_generator_tide() %>
-                                        <% const ogOptions={title: tideConfig.page_title==='' ?
-                                            tideConfig.site_title:tideConfig.page_title,author:tideConfig.author,language:tideConfig.language,description:tideConfig.description}
-                                            %>
-                                            <%- open_graph(ogOptions) %>
-                                                <link rel="stylesheet"
-                                                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-                                                    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-                                                    crossorigin="anonymous" referrerpolicy="no-referrer" />
-                                                <%- css('/css/tide.css') %>
-                                                    <%- js('/js/third-party/jquery.min.js') %>
+        <meta name="keywords" content="<%= tideConfig.keywords %>">
+        <%- meta_generator() %>
+            <%- meta_generator_tide() %>
+                <!-- 我得把 open graph 的选项写在 ogOptions 里，如果直接写在函数参数处，unocss 会生成错误的样式 -->
+                <% const ogOptions={title: tideConfig.page_title==='' ?
+                    tideConfig.site_title:tideConfig.page_title,author:tideConfig.author,language:tideConfig.language,description:tideConfig.description}
+                    %>
+                    <%- open_graph(ogOptions) %>
+                        <link rel="stylesheet"
+                            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+                            integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+                            crossorigin="anonymous" referrerpolicy="no-referrer" />
+                        <%- css('/css/tide.css') %>
+                            <%- js('/js/third-party/jquery.min.js') %>
     </head>
 
     <body>
@@ -137,7 +124,7 @@
                                         </p>
                             </footer>
                 </div>
-                <%- /* partial('./partials/tide-deco.svg') 斜角，废弃 */ %>
+                <%# partial('./partials/tide-deco.svg') 斜角，废弃 %>
                     <!-- <div id="tide-deco"><img src="./img/tide-deco.svg" alt=""></div> -->
                     <div id="tide-content" un-sc-trans-default un-fixed un-flex="~ col" un-w="full" un-h="full">
                         <!-- 顶部工具栏 -->
