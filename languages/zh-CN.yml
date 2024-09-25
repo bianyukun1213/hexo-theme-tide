@@ -1,3 +1,7 @@
+paginator:
+  prev: "上一页"
+  next: "下一页"
+
 navigation:
   btnNav:
     ariaLable: "打开或关闭导航菜单"
@@ -9,3 +13,5 @@ navigation:
     ariaLable: "打开设置窗口"
   footer:
     poweredBy: '由<span un-i="logos-hexo" un-mx="1"></span><a un-sc-link-plain un-text="!t-lb" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 强力驱动'
+
+no_title: "无标题"

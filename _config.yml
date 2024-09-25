@@ -87,9 +87,6 @@ navigation:
   首页:
     icon: "fa-solid fa-house"
     link: /
-  归档:
-    icon: "fa-solid fa-box-archive"
-    link: /archives/
   分类:
     icon: "fa-solid fa-folder-open"
     link: /categories/
@@ -99,6 +96,9 @@ navigation:
   关于:
     icon: "fa-solid fa-user"
     link: /about/
+  外部:
+    icon: "fa-solid fa-pen"
+    link: "https://www.bing.com/"
 
 # 页脚备案……
 icp_record:

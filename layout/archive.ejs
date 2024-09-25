@@ -1,70 +1,54 @@
-
-<%
-const categoriesList = list_categories({ show_count: false });
-const tagsList = list_tags({ show_count: false });
-const archivesList = list_archives({ show_count: false });
-%>
-
-<% if (is_year() === false) { %>
-  <div id="archive">
-
-    <h1>Archives</h1>
-
-    <% if (theme.atom !== undefined) { %>
-      <p>
-        The feed is available via
-        <a href="<%=theme.atom%>">atom</a>.
-      </p>
-      <br>
+<% const tideMeta=get_meta(site, config, theme, page) %>
+  <% if(site.posts.length> 0) { %>
+    <ul id="tide-archive" un-bg="yellow" un-p="0" un-my="8" un-w="full" un-list="none">
+      <% const indexStart=(tideMeta.index_current - 1) * tideMeta.index_per_page; %>
+        <% site.posts.sort('date', -1).slice(indexStart, indexStart + tideMeta.index_per_page).forEach((post)=> { %>
+          <% const pageMeta=get_meta(site, config, theme, post); %>
+            <li class="tide-archive-post" un-block>
+              <div class="tide-archive-post-title">
+                <a href="<%= url_for(pageMeta.path) %>">
+                  <h2>
+                    <%= pageMeta.page_title==='' ? __('no_title') : pageMeta.page_title %>
+                  </h2>
+                </a>
+              </div>
+              <div class="tide-archive-post-meta">
+                <%- time_tag(pageMeta.date) %>
+                  <% if(pageMeta.page_categories.length> 0) { %>
+                    <span>
+                      <% pageMeta.page_categories.forEach((cate, i)=> { %>
+                        <a href="<%= url_for(cate.path) %>">
+                          <%= cate.name %>
+                        </a>
+                        <% if(i < pageMeta.page_categories.length - 1) {%>
+                          ,
+                          <% } %>
+                            <% }); %>
+                    </span>
+                    <% } %>
+                      <% if(pageMeta.page_tags.length> 0) { %>
+                        <span>
+                          <% pageMeta.page_tags.forEach((tag, i)=> { %>
+                            <a href="<%= url_for(tag.path) %>">
+                              <%= tag.name %>
+                            </a>
+                            <% if(i < pageMeta.page_tags.length - 1) {%>
+                              ,
+                              <% } %>
+                                <% }); %>
+                        </span>
+                        <% } %>
+              </div>
+              <div class="tide-archive-post-excerpt" un-prose un-max-w="none">
+                <!-- 摘要 -->
+                <!-- 记得给上样式，必要的话加入 unocss 安全列表 -->
+                <%- pageMeta.excerpt %>
+              </div>
+            </li>
+            <% }); %>
+    </ul>
     <% } %>
-
-    <aside>
-      <h2>Categories</h2>
-      <% if (categoriesList !== "") { %>
-        <%-categoriesList%>
-      <% } else { %>
-        <p>None.</p>
-      <% } %>
-    </aside>
-    <br>
-
-    <aside>
-      <h2>Tags</h2>
-      <% if (tagsList !== "") { %>
-        <%-tagsList%>
-      <% } else { %>
-        <p>None.</p>
-      <% } %>
-    </aside>
-    <br>
-
-    <aside>
-      <h2>Archives</h2>
-      <% if (archivesList !== "") { %>
-        <%-archivesList%>
-      <% } else { %>
-        <p>None.</p>
-      <% } %>
-    </aside>
-
-  </div>
-<% } else { %>
-
-  <h1><%=page.month + '/' + page.year%></h1>
-
-  <% page.posts.each(article => { %>
-    <div class="archive-item">
-      <a href="<%=url_for(article.path)%>">
-        <%=article.title%>
-      </a>
-      <time datetime="<%=date_xml(article.date)%>">
-        <%=date(article.date)%>
-      </time>
-    </div>
-  <% }) %>
-
-  <div id="paginator">
-    <%-paginator()%>
-  </div>
-
-<% } %>
+      <div id="tide-archive-paginator">
+        <!-- 上样式 -->
+        <%- paginator({ prev_text: __('paginator.prev') , next_text: __('paginator.next') }) %>
+      </div>
