@@ -129,14 +129,14 @@ html[tide-dark] {
 *:focus-visible {outline-width:4px;outline-color:var(--tide-color-focused-outline);
 }
 
-a {display:inline;color:var(--tide-color-link-hover);text-decoration-line:underline;transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms;transition-duration:200ms;
+a {color:var(--tide-color-link-hover);text-decoration-line:underline;
 }
-
-a:hover{display:inline-block;--un-translate-y:-2px;transform:translateX(var(--un-translate-x)) translateY(var(--un-translate-y)) translateZ(var(--un-translate-z)) rotate(var(--un-rotate)) rotateX(var(--un-rotate-x)) rotateY(var(--un-rotate-y)) rotateZ(var(--un-rotate-z)) skewX(var(--un-skew-x)) skewY(var(--un-skew-y)) scaleX(var(--un-scale-x)) scaleY(var(--un-scale-y)) scaleZ(var(--un-scale-z));}
 
 a:link{color:var(--tide-color-link);}
 
 a:visited{color:var(--tide-color-link-visited);}
+
+a:hover{text-underline-offset:4px;}
 
 button {
     -webkit-tap-highlight-color: transparent;
@@ -220,7 +220,7 @@ button {
 
 :is([un-prose=""],.prose) :where(tr):not(:where(.not-prose,.not-prose *)):nth-child(2n){background:var(--tide-color-table-background-even);}
 
-:is([un-prose=""],.prose) :where(td,th):not(:where(.not-prose,.not-prose *)){border:1px solid var(--un-prose-borders);padding:.625em 1em;}
+:is([un-prose=""],.prose) :where(td,th):not(:where(.not-prose,.not-prose *)){border:1px solid var(--un-prose-borders);padding:.625em 1em;border-left:1px var(--tide-color-table-border) solid;}
 
 :is([un-prose=""],.prose) :where(abbr):not(:where(.not-prose,.not-prose *)){cursor:help;}
 
@@ -232,15 +232,13 @@ button {
 
 :is([un-prose=""],.prose) :where(a):not(:where(.not-prose,.not-prose *)):link{color:var(--tide-color-link);}
 
-:is([un-prose=""],.prose) :where(a):not(:where(.not-prose,.not-prose *)):hover{display:inline-block;transform:translateY(-2px);color:var(--tide-color-link-hover);}
+:is([un-prose=""],.prose) :where(a):not(:where(.not-prose,.not-prose *)):hover{text-underline-offset:4px;color:var(--tide-color-link-hover);}
 
 :is([un-prose=""],.prose) :where(a):not(:where(.not-prose,.not-prose *)):visited{color:var(--tide-color-link-visited);}
 
 :is([un-prose=""],.prose) :where(code:not([class])):not(:where(.not-prose,.not-prose *)){color:var(--tide-color-code);}
 
-:is([un-prose=""],.prose) :where(td, th):not(:where(.not-prose,.not-prose *)){border-left:1px var(--tide-color-table-border) solid;}
-
-:is([un-prose=""],.prose) :where(td):not(:where(.not-prose,.not-prose *)):first-child,:is([un-prose=""],.prose) :where( th):not(:where(.not-prose,.not-prose *)):first-child{border-left:none;}
+:is([un-prose=""],.prose) :where(td):not(:where(.not-prose,.not-prose *)):first-child,:is([un-prose=""],.prose) :where(th):not(:where(.not-prose,.not-prose *)):first-child{border-left:none;}
 
 :is([un-prose=""],.prose) :where(td):not(:where(.not-prose,.not-prose *)){width:100%;}
 
@@ -251,10 +249,6 @@ button {
 [un-prose=""]{color:var(--un-prose-body);max-width:65ch;}
 
 /* layer: shortcuts */
-
-[un-sc-link-plain=""]{display:inline;color:var(--tide-color-text-primary);text-decoration:none;transition:none;}
-
-[un-sc-link-plain=""]:hover{display:inline;transform:none;text-decoration-line:underline;}
 
 [un-sc-btn-default=""]{display:flex;cursor:pointer;align-items:center;justify-content:center;border-width:2px;border-color:var(--tide-color-primary);border-style:solid;background-color:transparent;color:var(--tide-color-primary);transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms;transition-duration:200ms;}
 
@@ -267,6 +261,10 @@ button {
 [un-sc-btn-default=""]:hover:disabled{transform:none;}
 
 [un-sc-btn-default=""]:disabled{cursor:not-allowed;opacity:0.5;}
+
+[un-sc-link-plain=""]{color:var(--tide-color-text-primary);text-decoration:none;}
+
+[un-sc-link-plain=""]:hover{text-decoration-line:underline;}
 
 [un-sc-trans-default=""]{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms;transition-duration:200ms;}
 
@@ -421,10 +419,11 @@ button {
 
 [un-text~="center"]{text-align:center;}
 
-[un-text="\32 xl"],
-[un-text~="\32 xl"]{font-size:1.5rem;line-height:2rem;}
+[un-text="\32 xl"]{font-size:1.5rem;line-height:2rem;}
 
 [un-text="\33 xl"]{font-size:1.875rem;line-height:2.25rem;}
+
+[un-text="\34 xl"]{font-size:2.25rem;line-height:2.5rem;}
 
 [un-text="base"]{font-size:1rem;line-height:1.5rem;}
 
@@ -432,11 +431,9 @@ button {
 
 [un-text="xl"]{font-size:1.25rem;line-height:1.75rem;}
 
-[un-text~="\34 xl"]{font-size:2.25rem;line-height:2.5rem;}
+[un-text~="\!t-sb"]{color:var(--tide-color-text-side-bar) !important;}
 
-[un-text~="\!t-lb"]{color:var(--tide-color-text-side-bar) !important;}
-
-[un-text~="t-lb"]{color:var(--tide-color-text-side-bar);}
+[un-text~="t-sb"]{color:var(--tide-color-text-side-bar);}
 
 [un-font~="bold"]{font-weight:700;}
 
@@ -491,6 +488,15 @@ html.tide-large-font {
 [dir="rtl"] [tide-side-bar-expanded="true"] #tide-content {--un-translate-x:-75vw;transform:translateX(var(--un-translate-x)) translateY(var(--un-translate-y)) translateZ(var(--un-translate-z)) rotate(var(--un-rotate)) rotateX(var(--un-rotate-x)) rotateY(var(--un-rotate-y)) rotateZ(var(--un-rotate-z)) skewX(var(--un-skew-x)) skewY(var(--un-skew-y)) scaleX(var(--un-scale-x)) scaleY(var(--un-scale-y)) scaleZ(var(--un-scale-z));
 }
 
+#tide-site-name {font-size:1.875rem;line-height:2.25rem;
+}
+
+#tide-site-author {font-size:1.25rem;line-height:1.75rem;
+}
+
+#tide-navigation ul {font-size:1.25rem;line-height:1.75rem;
+}
+
 /* md 往后调整侧边栏宽度为 96 */
 @media (min-width: 768px) {
 
@@ -509,6 +515,15 @@ html.tide-large-font {
 
     [dir="rtl"] [tide-side-bar-expanded="true"] #tide-side-bar,
     [dir="rtl"] [tide-side-bar-expanded="true"] #tide-content {--un-translate-x:-24rem;transform:translateX(var(--un-translate-x)) translateY(var(--un-translate-y)) translateZ(var(--un-translate-z)) rotate(var(--un-rotate)) rotateX(var(--un-rotate-x)) rotateY(var(--un-rotate-y)) rotateZ(var(--un-rotate-z)) skewX(var(--un-skew-x)) skewY(var(--un-skew-y)) scaleX(var(--un-scale-x)) scaleY(var(--un-scale-y)) scaleZ(var(--un-scale-z));
+    }
+
+    #tide-site-name {font-size:2.25rem;line-height:2.5rem;
+    }
+
+    #tide-site-author {font-size:1.5rem;line-height:2rem;
+    }
+
+    #tide-navigation ul {font-size:1.5rem;line-height:2rem;
     }
 }
 

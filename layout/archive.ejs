@@ -3,36 +3,30 @@
 <ul id="tide-archive" un-bg="yellow" un-p="0" un-my="8" un-w="full" un-list="none">
   <% const indexStart=(tideCtx.index_current-1)*tideCtx.index_per_page; %>
   <% site.posts.sort('date',-1).slice(indexStart,indexStart+tideCtx.index_per_page).forEach((post)=>{ %>
-  <% const pageMeta=get_meta(site,config,theme,post); %>
+  <% const postCtx=get_ctx(site,config,theme,post); %>
   <li class="tide-archive-post" un-block>
     <div class="tide-archive-post-title">
-      <a href="<%= url_for(pageMeta.path) %>">
-        <h2>
-          <%= pageMeta.page_title===''?__('no_title'):pageMeta.page_title %>
-        </h2>
+      <a href="<%= url_for(postCtx.path) %>">
+        <h2><%= postCtx.page_title===''?__('no_title'):postCtx.page_title %></h2>
       </a>
     </div>
     <div class="tide-archive-post-meta">
-      <%- time_tag(pageMeta.date) %>
-      <% if(pageMeta.page_categories.length>0) { %>
+      <%- time_tag(postCtx.date) %>
+      <% if(postCtx.page_categories.length>0){ %>
       <span>
-        <% pageMeta.page_categories.forEach((cate,i)=>{ %>
-        <a href="<%= url_for(cate.path) %>">
-          <%= cate.name %>
-        </a>
-        <% if(i<pageMeta.page_categories.length-1){%>
+        <% postCtx.page_categories.forEach((cate,i)=>{ %>
+        <a href="<%= url_for(cate.path) %>"><%= cate.name %></a>
+        <% if(i<postCtx.page_categories.length-1){%>
         ,
         <% } %>
         <% }); %>
       </span>
       <% } %>
-      <% if(pageMeta.page_tags.length>0){ %>
+      <% if(postCtx.page_tags.length>0){ %>
       <span>
-        <% pageMeta.page_tags.forEach((tag,i)=>{ %>
-        <a href="<%= url_for(tag.path) %>">
-          <%= tag.name %>
-        </a>
-        <% if(i<pageMeta.page_tags.length-1){ %>
+        <% postCtx.page_tags.forEach((tag,i)=>{ %>
+        <a href="<%= url_for(tag.path) %>"><%= tag.name %></a>
+        <% if(i<postCtx.page_tags.length-1){ %>
         ,
         <% } %>
         <% }); %>
@@ -42,7 +36,7 @@
     <div class="tide-archive-post-excerpt" un-prose un-max-w="none">
       <!-- 摘要 -->
       <!-- 记得给上样式，必要的话加入 unocss 安全列表 -->
-      <%- pageMeta.excerpt %>
+      <%- postCtx.excerpt %>
     </div>
   </li>
   <% }); %>

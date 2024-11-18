@@ -5,9 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>
-    <%= tideCtx.page_title===''?tideCtx.site_title:tideCtx.page_title %>
-  </title>
+  <title><%= tideCtx.page_title===''?tideCtx.site_title:tideCtx.page_title %></title>
 
   <!-- favivon、description、keywords…… -->
   <link rel="icon" href="<%= url_for(tideCtx.meta_icons?.favicon) %>">
@@ -18,9 +16,7 @@
   <%- meta_generator() %>
   <%- meta_generator_tide() %>
   <!-- 我得把 open graph 的选项写在 ogOptions 里，如果直接写在函数参数处，unocss 会生成错误的样式 -->
-  <% const ogOptions={title: tideCtx.page_title==='' ?
-                    tideCtx.site_title:tideCtx.page_title,author:tideCtx.author,language:tideCtx.language,description:tideCtx.description}
-                    %>
+  <% const ogOptions={title:tideCtx.page_title===''?tideCtx.site_title:tideCtx.page_title,author:tideCtx.author,language:tideCtx.language,description:tideCtx.description} %>
   <%- open_graph(ogOptions) %>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <%- css('/css/tide.css') %>
@@ -28,56 +24,42 @@
 </head>
 
 <body>
-  <textarea un-fixed un-w="96" un-h="96" un-right="0" un-bottom="0" un-z="100">
-        <%- JSON.stringify(tideCtx,null,2) %>
-    </textarea>
+  <textarea id="ctx" style="display:none;" un-fixed un-w="96" un-h="96" un-right="0" un-bottom="0" un-z="100"><%- JSON.stringify(tideCtx,null,2) %></textarea>
   <div id="tide-root" <% if(is_post()) { %> tide-is-post="true" <% } %> un-bg="b-scnd" un-absolute un-top="0" un-bottom="0" un-left="0" un-right="0" un-text="base">
-    <div id="tide-side-bar" un-sc-trans-default un-bg="prim" un-fixed un-ltr="-left-75vw" un-rtl="-right-75vw" un-flex="~ col" un-justify="between" un-z="30" un-text="center t-lb" un-w="75vw" un-h="full">
+    <div id="tide-side-bar" un-sc-trans-default un-bg="prim" un-fixed un-ltr="-left-75vw" un-rtl="-right-75vw" un-flex="~ col" un-justify="between" un-z="30" un-text="center t-sb" un-w="75vw" un-h="full">
       <header un-flex="none" un-p="8">
         <% if(is_home()) { %>
-        <h1 id="tide-site-name" un-my="4" un-text="4xl" un-font="bold">
-          <%= tideCtx.site_title %>
-        </h1>
+        <h1 id="tide-site-name" un-my="4" un-font="bold"><%= tideCtx.site_title %></h1>
         <% } else { %>
-        <p id="tide-site-name" un-my="4" un-text="4xl" un-font="bold">
-          <%= tideCtx.site_title %>
-        </p>
+        <p id="tide-site-name" un-my="4" un-font="bold"><%= tideCtx.site_title %></p>
         <% } %>
         <!-- <img id="author-avatar" src="https://bucket.hollisdevhub.com/blog/common/avatar.webp"
                                     alt="" un-w="1/3" un-aspect="auto"> -->
-        <p id="author" un-my="2" un-text="2xl" un-font="bold">
-          <%= tideCtx.site_author %>
-        </p>
+        <p id="tide-site-author" un-my="2" un-font="bold"><%= tideCtx.site_author %></p>
       </header>
       <% if(tideCtx.microformats2){ %>
       <%- partial('./partials/h-card.ejs',{h_card:tideCtx.site_h_card}) %>
       <% } %>
       <nav id="tide-navigation" un-flex="initial" un-self="center" un-w="full">
-        <ul un-inline-flex un-flex="col" un-items="start" un-p="0" un-m="0" un-w="auto" un-list="none" un-text="2xl">
-          <% for(const key in tideCtx.navigation) { %>
-          <% if(Object.prototype.hasOwnProperty.call(tideCtx.navigation,key)) { %>
+        <ul un-inline-flex un-flex="col" un-items="start" un-p="0" un-m="0" un-w="auto" un-list="none">
+          <% for(const key in tideCtx.navigation){ %>
+          <% if(Object.prototype.hasOwnProperty.call(tideCtx.navigation,key)){ %>
           <% const element=tideCtx.navigation[key]; %>
           <li un-inline-block un-mb="8">
             <i class="<%= element.icon %>" un-ltr="mr-4" un-rtl="ml-4" aria-hidden="true"></i>
-            <a un-sc-link-plain un-text="!t-lb" href="<%= url_for(element.link) %>">
-              <%= key %>
-            </a>
+            <a un-sc-link-plain un-text="!t-sb" href="<%= url_for(element.link) %>"><%= key %></a>
           </li>
           <% } %>
-          <%} %>
+          <% } %>
         </ul>
       </nav>
       <footer un-flex="none" un-p="8">
         <!-- 留一个隐藏的 div，方便用户通过修改注入 -->
         <div class="tide-footer-injection-point" un-hidden></div>
         <% if(!tide_utils().isEmptyObject(tideCtx.icp_record)) { %>
-        <p id="tide-icp-record"><a un-sc-link-plain un-text="!t-lb" href="<%= tideCtx.icp_record.link %>">
-            <%= tideCtx.icp_record.text %>
-          </a></p>
+        <p id="tide-icp-record"><a un-sc-link-plain un-text="!t-lb" href="<%= tideCtx.icp_record.link %>"><%= tideCtx.icp_record.text %></a></p>
         <% } %>
-        <p id="tide-powered-by">
-          <%- __('navigation.footer.poweredBy') %>
-        </p>
+        <p id="tide-powered-by"><%- __('navigation.footer.poweredBy') %></p>
       </footer>
     </div>
     <%# partial('./partials/tide-deco.svg') 斜角，废弃 %>

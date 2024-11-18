@@ -1,34 +1,16 @@
 <div class="h-card" un-hidden>
-  <span class="p-honorific-prefix">
-    <%= h_card.p_honorific_prefix %>
-  </span>
-  <span class="p-name">
-    <%= h_card.p_name %>
-  </span>
-  <span class="p-given-name">
-    <%= h_card.p_given_name %>
-  </span>
-  <span class="p-additional-name">
-    <%= h_card.p_additional_name %>
-  </span>
-  <span class="p-family-name">
-    <%= h_card.p_family_name %>
-  </span>
-  <span class="p-honorific-suffix">
-    <%= h_card.p_honorific_suffix %>
-  </span>
-  <span class="p-nickname">
-    <%= h_card.p_nickname %>
-  </span>
+  <span class="p-honorific-prefix"><%= h_card.p_honorific_prefix %></span>
+  <span class="p-name"><%= h_card.p_name %></span>
+  <span class="p-given-name"><%= h_card.p_given_name %></span>
+  <span class="p-additional-name"><%= h_card.p_additional_name %></span>
+  <span class="p-family-name"><%= h_card.p_family_name %></span>
+  <span class="p-honorific-suffix"><%= h_card.p_honorific_suffix %></span>
+  <span class="p-nickname"><%= h_card.p_nickname %></span>
   <img class="u-photo" src="<%= h_card.u_photo %>" alt="<%= h_card.p_name %>">
   <% for(const item of h_card.u_uid){ %>
-  <a class="u-url u-uid" href="<%= item.link %>">
-    <%= item.text %>
-  </a>
+  <a class="u-url u-uid" href="<%= item.link %>"><%= item.text %></a>
   <% } %>
-  <a class="u-email" href="mailto:<%= h_card.u_email %>">
-    <%= h_card.u_email %>
-  </a>
+  <a class="u-email" href="mailto:<%= h_card.u_email %>"><%= h_card.u_email %></a>
   <div class="p-note">
     <%= h_card.p_note %>
   </div>

@@ -22,8 +22,7 @@ export default defineConfig({
                     // 用不了 transformerDirectives，如 '@apply': 'text-lk'。
                 },
                 'a:hover': {
-                    display: 'inline-block',
-                    transform: 'translateY(-2px)',
+                    'text-underline-offset': '4px',
                     color: 'var(--tide-color-link-hover)'
                 },
                 'a:visited': {
@@ -41,10 +40,10 @@ export default defineConfig({
                     'border-spacing': 0,
                     border: '1px var(--tide-color-table-border) solid'
                 },
-                'td, th': {
+                'td,th': {
                     'border-left': '1px var(--tide-color-table-border) solid'
                 },
-                'td:first-child, th:first-child': {
+                'td:first-child,th:first-child': {
                     'border-left': 'none'
                 },
                 td: {
@@ -76,8 +75,8 @@ export default defineConfig({
     shortcuts: {
         // 与上方 prose 部分对应。
         'sc-trans-default': 'transition-all ease-in-out duration-200',
-        'sc-link-default': 'sc-trans-default inline underline link:text-lk hover:(inline-block -translate-y-2px) text-lk-hvr visited:text-lk-vst',
-        'sc-link-plain': 'transition-none inline no-underline hover:(transform-none inline underline) text-t-prim',
+        'sc-link-default': 'underline link:text-lk hover:(underline-offset-4) text-lk-hvr visited:text-lk-vst',
+        'sc-link-plain': 'no-underline hover:(underline) text-t-prim',
         'sc-btn-default': 'sc-trans-default flex items-center justify-center bg-transparent text-prim border-(2 prim solid) hover:scale-105 active:scale-95 cursor-pointer disabled:(opacity-50 cursor-not-allowed hover:transform-none active:transform-none)'
     },
     transformers: [
@@ -93,7 +92,7 @@ export default defineConfig({
             'tPrim': 'var(--tide-color-text-primary)',
             'tScnd': 'var(--tide-color-text-secondary)',
             'tDmsh': 'var(--tide-color-text-diminished)',
-            'tLb': 'var(--tide-color-text-side-bar)',
+            'tSb': 'var(--tide-color-text-side-bar)',
             'fcsOl': 'var(--tide-color-focused-outline)',
             'lk': 'var(--tide-color-link)',
             'lkHvr': 'var(--tide-color-link-hover)',
@@ -110,6 +109,7 @@ export default defineConfig({
         '[un-text="xl"]',
         '[un-text="2xl"]',
         '[un-text="3xl"]',
+        '[un-text="4xl"]',
         '[un-i="logos-hexo"]',
         '[un-mx="1"]'
     ] // JavaScript 切换字体大小、侧边栏按钮图标使用。
