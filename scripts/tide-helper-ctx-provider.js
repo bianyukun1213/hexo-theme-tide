@@ -19,13 +19,13 @@ const {
     camelCaseObjToUnderScoreCaseObj
 } = require('./tide-utils.js');
 
-let metaCache = {};
+let ctxCache = {};
 
-const scriptName = 'tide-helper-meta-provider';
+const scriptName = 'tide-helper-ctx-provider';
 // 合并站点、主题、页面和默认的配置，只检查空值不检查类型。
-hexo.extend.helper.register('get_meta', function (site, config, theme, page) {
-    if (isPlainObject(metaCache[page.path]))
-        return metaCache[page.path];
+hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
+    if (isPlainObject(ctxCache[page.path]))
+        return ctxCache[page.path];
     let out = {};
     out.site_title = config?.title ?? '';
     out.site_subtitle = config?.siteSubtitle ?? '';
@@ -179,6 +179,6 @@ hexo.extend.helper.register('get_meta', function (site, config, theme, page) {
     out.page_encrypted = false;
     if ('encrypt' in config && 'password' in page)
         out.page_encrypted = true;
-    metaCache[page.path] = out;
+    ctxCache[page.path] = out;
     return out;
 }); // todo：优先级设为可配置项。
