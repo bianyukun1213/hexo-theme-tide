@@ -4,14 +4,35 @@ paginator:
 
 navigation:
   btnNav:
-    ariaLable: "打开或关闭导航菜单"
+    title: "打开或关闭导航菜单"
   btnScrollTop:
-    ariaLable: "回到顶部"
+    title: "回到顶部"
   btnSearch:
-    ariaLable: "打开搜索窗口"
+    title: "打开搜索窗口"
   btnSettings:
-    ariaLable: "打开设置窗口"
+    title: "打开设置窗口"
   footer:
     poweredBy: '由<span un-i="logos-hexo" un-mx="1"></span><a un-sc-link-plain un-text="!t-sb" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 强力驱动'
 
 no_title: "无标题"
+
+post_meta:
+  author:
+    title:
+      zero: "作者"
+      one: "作者"
+      other: "作者"
+  date:
+    title: "发表"
+  updated:
+    title: "更新"
+  categories:
+    title: "分类"
+  tags:
+    title: "标签"
+  comment:
+    title: "注释"
+  word_count:
+    title: "字数"
+  views:
+    title: "访问量" # View(s)，因为生成时无法确定具体的访问量。

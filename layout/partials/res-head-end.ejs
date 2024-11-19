@@ -1,0 +1,7 @@
+<% if(tideCtx.fonts.web_fonts.enable){ %>
+<link rel="preconnect" href="<%= tideCtx.fonts.web_fonts.preconnect %>">
+<link rel="stylesheet" href="<%= tideCtx.fonts.web_fonts.css_href %>">
+<% } %>
+<link rel="stylesheet" href="<%= tideCtx.cdn.font_awesome_css.href %>" integrity="<%= tideCtx.cdn.font_awesome_css.integrity %>" crossorigin="anonymous" referrerpolicy="no-referrer">
+<%- css('/css/tide.css') %>
+<script src="<%= tideCtx.cdn.jquery_js.src %>" integrity="<%= tideCtx.cdn.jquery_js.integrity %>" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

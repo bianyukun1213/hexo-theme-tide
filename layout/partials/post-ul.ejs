@@ -1,0 +1,52 @@
+<% if(site.posts.length>0){ %>
+<ul class="tide-post-ul" un-p="0" un-my="8" un-w="full" un-list="none">
+  <% const indexStart=(tideCtx.index_current-1)*tideCtx.index_per_page %>
+  <% site.posts.sort('date',-1).slice(indexStart,indexStart+tideCtx.index_per_page).forEach((post)=>{ %>
+  <% const postCtx=get_ctx(site,config,theme,post) %>
+  <li class="tide-post-li" un-block un-mb="16">
+    <div class="tide-post-li-title" un-mb="4">
+      <a un-sc-link-plain un-text="!t-prim" href="<%= url_for(postCtx.path) %>">
+        <h2 un-inline><%= postCtx.page_title===''?__('no_title'):postCtx.page_title %></h2>
+      </a>
+    </div>
+    <div class="tide-post-meta" un-mb="4" un-text="t-scnd">
+      <span class="tide-post-meta-date" un-ltr="mr-8" un-rtl="ml-8">
+        <i class="fa-solid fa-pen" title="<%= __('post_meta.date.title') %>" un-ltr="mr-1" un-rtl="ml-1"></i>
+        <%- time_tag(postCtx.date) %>
+      </span>
+      <% if(postCtx.page_categories.length>0){ %>
+      <span class="tide-post-meta-categories" un-ltr="mr-8" un-rtl="ml-8">
+        <i class="fa-solid fa-folder-open" title="<%= __('post_meta.categories.title') %>" un-ltr="mr-1" un-rtl="ml-1"></i>
+        <% postCtx.page_categories.forEach((cate,i)=>{ %>
+        <a un-sc-link-plain un-text="!t-scnd" href="<%= url_for(cate.path) %>"><%= cate.name %></a>
+        <% if(i<postCtx.page_categories.length-1){%>
+        ,
+        <% } %>
+        <% }) %>
+      </span>
+      <% } %>
+      <% if(postCtx.page_tags.length>0){ %>
+      <span class="tide-post-meta-tags" un-ltr="mr-8" un-rtl="ml-8">
+        <i class="fa-solid fa-tag" title="<%= __('post_meta.tags.title') %>" un-ltr="mr-1" un-rtl="ml-1"></i>
+        <% postCtx.page_tags.forEach((tag,i)=>{ %>
+        <a un-sc-link-plain un-text="!t-scnd" href="<%= url_for(tag.path) %>"><%= tag.name %></a>
+        <% if(i<postCtx.page_tags.length-1){ %>
+        ,
+        <% } %>
+        <% }) %>
+      </span>
+      <% } %>
+    </div>
+    <div class="tide-post-excerpt" un-prose un-max-w="none">
+      <!-- 摘要 -->
+      <!-- 记得给上样式，必要的话加入 unocss 安全列表 -->
+      <% if(postCtx.excerpt!==''){ %>
+      <%- postCtx.excerpt %>
+      <% }else{ %>
+      <!-- <p>…</p> -->
+      <% } %>
+    </div>
+  </li>
+  <% }) %>
+</ul>
+<% } %>

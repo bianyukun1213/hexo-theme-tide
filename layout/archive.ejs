@@ -1,48 +1,9 @@
 <% const tideCtx=get_ctx(site,config,theme,page) %>
-<% if(site.posts.length>0){ %>
-<ul id="tide-archive" un-bg="yellow" un-p="0" un-my="8" un-w="full" un-list="none">
-  <% const indexStart=(tideCtx.index_current-1)*tideCtx.index_per_page; %>
-  <% site.posts.sort('date',-1).slice(indexStart,indexStart+tideCtx.index_per_page).forEach((post)=>{ %>
-  <% const postCtx=get_ctx(site,config,theme,post); %>
-  <li class="tide-archive-post" un-block>
-    <div class="tide-archive-post-title">
-      <a href="<%= url_for(postCtx.path) %>">
-        <h2><%= postCtx.page_title===''?__('no_title'):postCtx.page_title %></h2>
-      </a>
-    </div>
-    <div class="tide-archive-post-meta">
-      <%- time_tag(postCtx.date) %>
-      <% if(postCtx.page_categories.length>0){ %>
-      <span>
-        <% postCtx.page_categories.forEach((cate,i)=>{ %>
-        <a href="<%= url_for(cate.path) %>"><%= cate.name %></a>
-        <% if(i<postCtx.page_categories.length-1){%>
-        ,
-        <% } %>
-        <% }); %>
-      </span>
-      <% } %>
-      <% if(postCtx.page_tags.length>0){ %>
-      <span>
-        <% postCtx.page_tags.forEach((tag,i)=>{ %>
-        <a href="<%= url_for(tag.path) %>"><%= tag.name %></a>
-        <% if(i<postCtx.page_tags.length-1){ %>
-        ,
-        <% } %>
-        <% }); %>
-      </span>
-      <% } %>
-    </div>
-    <div class="tide-archive-post-excerpt" un-prose un-max-w="none">
-      <!-- 摘要 -->
-      <!-- 记得给上样式，必要的话加入 unocss 安全列表 -->
-      <%- postCtx.excerpt %>
-    </div>
-  </li>
-  <% }); %>
-</ul>
-<% } %>
+<div id="tide-archive-posts">
+  <%- partial('./partials/post-ul.ejs',{tideCtx}) %>
+<div>
+    <!-- <ul id="tide-archive" un-bg="yellow" un-p="0" un-my="8" un-w="full" un-list="none"> -->
 <div id="tide-archive-paginator">
   <!-- 上样式 -->
-  <%- paginator({prev_text:__('paginator.prev'),next_text:__('paginator.next')}) %>
+  <%- partial('./partials/paginator.ejs') %>
 </div>

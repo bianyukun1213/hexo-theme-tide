@@ -88,6 +88,17 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
         if (out.page_h_card.p_nickname === '')
             out.page_h_card.p_nickname = out.author;
     }
+    out.cdn = theme?.cdn ?? {};
+    out.fonts = theme?.fonts ?? {};
+    if (!isPlainObject(out.fonts?.web_fonts) || !isBool(out.fonts?.web_fonts?.enable) || !isString(out.fonts?.web_fonts?.preconnect) || !isString(out.fonts?.web_fonts?.css_href)) {
+        out.fonts.web_fonts = {
+            enable: false,
+            preconnect: '',
+            css_href: ''
+        };
+    } 
+    // if(!isString(out.fonts?.global))
+    //     out.fonts.global = '';
     out.navigation = theme?.navigation ?? {};
     out.icp_record = theme?.icp_record ?? {};
 

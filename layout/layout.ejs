@@ -3,24 +3,8 @@
 <html lang="<%= tideCtx.language %>" dir="<%= tideCtx.direction %>">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title><%= tideCtx.page_title===''?tideCtx.site_title:tideCtx.page_title %></title>
-
-  <!-- favivon、description、keywords…… -->
-  <link rel="icon" href="<%= url_for(tideCtx.meta_icons?.favicon) %>">
-  <link rel="apple-touch-icon" href="<%= url_for(tideCtx.meta_icons?.apple_touch_icon) %>">
-  <meta name="description" content="<%= tideCtx.description %>">
-  <!-- robots index follow……，如果检测到页面隐藏，就不加这个，而是让插件决定 -->
-  <meta name="keywords" content="<%= tideCtx.keywords %>">
-  <%- meta_generator() %>
-  <%- meta_generator_tide() %>
-  <!-- 我得把 open graph 的选项写在 ogOptions 里，如果直接写在函数参数处，unocss 会生成错误的样式 -->
-  <% const ogOptions={title:tideCtx.page_title===''?tideCtx.site_title:tideCtx.page_title,author:tideCtx.author,language:tideCtx.language,description:tideCtx.description} %>
-  <%- open_graph(ogOptions) %>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <%- css('/css/tide.css') %>
-  <%- js('/js/third-party/jquery.min.js') %>
+  <%- partial('./partials/meta.ejs',{tideCtx}) %>
+  <%- partial('./partials/res-head-end.ejs',{tideCtx}) %>
 </head>
 
 <body>
@@ -29,9 +13,9 @@
     <div id="tide-side-bar" un-sc-trans-default un-bg="prim" un-fixed un-ltr="-left-75vw" un-rtl="-right-75vw" un-flex="~ col" un-justify="between" un-z="30" un-text="center t-sb" un-w="75vw" un-h="full">
       <header un-flex="none" un-p="8">
         <% if(is_home()) { %>
-        <h1 id="tide-site-name" un-my="4" un-font="bold"><%= tideCtx.site_title %></h1>
+        <h1 id="tide-site-title" un-my="4" un-font="bold"><%= tideCtx.site_title %></h1>
         <% } else { %>
-        <p id="tide-site-name" un-my="4" un-font="bold"><%= tideCtx.site_title %></p>
+        <p id="tide-site-title" un-my="4" un-font="bold"><%= tideCtx.site_title %></p>
         <% } %>
         <!-- <img id="author-avatar" src="https://bucket.hollisdevhub.com/blog/common/avatar.webp"
                                     alt="" un-w="1/3" un-aspect="auto"> -->
@@ -44,7 +28,7 @@
         <ul un-inline-flex un-flex="col" un-items="start" un-p="0" un-m="0" un-w="auto" un-list="none">
           <% for(const key in tideCtx.navigation){ %>
           <% if(Object.prototype.hasOwnProperty.call(tideCtx.navigation,key)){ %>
-          <% const element=tideCtx.navigation[key]; %>
+          <% const element=tideCtx.navigation[key] %>
           <li un-inline-block un-mb="8">
             <i class="<%= element.icon %>" un-ltr="mr-4" un-rtl="ml-4" aria-hidden="true"></i>
             <a un-sc-link-plain un-text="!t-sb" href="<%= url_for(element.link) %>"><%= key %></a>
@@ -68,20 +52,20 @@
       <!-- 顶部工具栏 -->
       <header id="tide-top-bar" un-bg="b-prim" un-flex un-justify="stretch" un-items="center" un-min-w="64" un-h="16">
         <div un-w="1/4" un-h="12">
-          <button id="tide-btn-nav" aria-label="<%= __('navigation.btnNav.ariaLable') %>" un-sc-btn-default un-relative un-ltr="float-left ml-4" un-rtl="float-right mr-4" un-w="12" un-h="12">
+          <button id="tide-btn-nav" title="<%= __('navigation.btnNav.title') %>" un-sc-btn-default un-relative un-ltr="float-left ml-4" un-rtl="float-right mr-4" un-w="12" un-h="12">
             <i id="tide-btn-nav-icon-bars" class="fa-solid fa-bars" aria-hidden="true"></i>
             <i id="tide-btn-nav-icon-close" class="fa-solid fa-close" aria-hidden="true"></i>
           </button>
         </div>
         <div un-w="3/4" un-h="12">
           <!-- 开启 relative，使用 right 让元素具有符合直觉的 tab index -->
-          <button id="tide-btn-scroll-top" aria-label="<%= __('navigation.btnScrollTop.ariaLable') %>" un-sc-btn-default un-relative un-ltr="float-right right-32 mr-4" un-rtl="float-left left-32 ml-4" un-w="12" un-h="12">
+          <button id="tide-btn-scroll-top" title="<%= __('navigation.btnScrollTop.title') %>" un-sc-btn-default un-relative un-ltr="float-right right-32 mr-4" un-rtl="float-left left-32 ml-4" un-w="12" un-h="12">
             <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
           </button>
-          <button id="tide-btn-search" aria-label="<%= __('navigation.btnSearch.ariaLable') %>" un-sc-btn-default un-relative un-ltr="float-right mr-4" un-rtl="float-left ml-4" un-w="12" un-h="12">
+          <button id="tide-btn-search" title="<%= __('navigation.btnSearch.title') %>" un-sc-btn-default un-relative un-ltr="float-right mr-4" un-rtl="float-left ml-4" un-w="12" un-h="12">
             <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
           </button>
-          <button id="tide-btn-settings" aria-label="<%= __('navigation.btnSettings.ariaLable') %>" un-sc-btn-default un-relative un-ltr="float-right -right-32 mr-4" un-rtl="float-left -left-32 ml-4" un-w="12" un-h="12">
+          <button id="tide-btn-settings" title="<%= __('navigation.btnSettings.title') %>" un-sc-btn-default un-relative un-ltr="float-right -right-32 mr-4" un-rtl="float-left -left-32 ml-4" un-w="12" un-h="12">
             <i class="fa-solid fa-gear" aria-hidden="true"></i>
           </button>
         </div>
@@ -99,7 +83,7 @@
                     </aside> -->
     </div>
   </div>
-  <%- js('/js/tide.js') %>
+  <%- partial('./partials/res-body-end.ejs',{tideCtx}) %>
 </body>
 
 </html>

@@ -7,55 +7,55 @@ meta_icons:
 meta_links:
   -
     rel: me
-    link: "mailto:bianyukun1213@outlook.com"
+    href: "mailto:bianyukun1213@outlook.com"
   -
     rel: me
-    link: "https://github.com/bianyukun1213"
+    href: "https://github.com/bianyukun1213"
   -
     rel: me
-    link: "https://m.cmx.im/@Hollis"
+    href: "https://m.cmx.im/@Hollis"
   -
     rel: authorization_endpoint
-    link: "https://indieauth.com/auth"
+    href: "https://indieauth.com/auth"
   -
     rel: webmention
-    link: "https://webmention.io/his2nd.life/webmention"
+    href: "https://webmention.io/his2nd.life/webmention"
 
 colors:
   light:
     primary: "#3F72AF"
     secondary: "#00ADB5"
-    backgroundPrimary: "#FFFFFF"
-    backgroundSecondary: "#FAFAFA"
-    textPrimary: "#323739"
-    textSecondary: "#5c6669"
-    textDiminished: "#EAECED"
-    textSideBar: "#FFFFFF"
-    focusedOutline: "#E36209"
+    background_primary: "#FFFFFF"
+    background_secondary: "#FAFAFA"
+    text_primary: "#323739"
+    text_secondary: "#5c6669"
+    text_diminished: "#EAECED"
+    text_side_bar: "#FFFFFF"
+    focused_outline: "#E36209"
     link: "#3F72AF"
-    linkHover: "#3F72AF"
-    linkVisited: "#00ADB5"
+    link_hover: "#3F72AF"
+    link_visited: "#00ADB5"
     code: "#3F72AF"
-    tableBorder: "#E5E7EB"
-    tableBackgroundHead: "#F3F3F3"
-    tableBackgroundEven: "#FAFAFA"
+    table_border: "#E5E7EB"
+    table_background_head: "#F3F3F3"
+    table_background_even: "#FAFAFA"
   dark:
     primary: "#3F72AF"
     secondary: "#00ADB5"
-    backgroundPrimary: "#FFFFFF"
-    backgroundSecondary: "#FAFAFA"
-    textPrimary: "#323739"
-    textSecondary: "#5c6669"
-    textDiminished: "#EAECED"
-    textSideBar: "#FFFFFF"
-    focusedOutline: "#E36209"
+    background_primary: "#FFFFFF"
+    background_secondary: "#FAFAFA"
+    text_primary: "#323739"
+    text_secondary: "#5c6669"
+    text_diminished: "#EAECED"
+    text_side_bar: "#FFFFFF"
+    focused_outline: "#E36209"
     link: "#3F72AF"
-    linkHover: "#3F72AF"
-    linkVisited: "#00ADB5"
+    link_hover: "#3F72AF"
+    link_visited: "#00ADB5"
     code: "#3F72AF"
-    tableBorder: "#E5E7EB"
-    tableBackgroundHead: "#F3F3F3"
-    tableBackgroundEven: "#FAFAFA"
+    table_border: "#E5E7EB"
+    table_background_head: "#F3F3F3"
+    table_background_even: "#FAFAFA"
 
 microformats2:
   enable: true
@@ -81,6 +81,24 @@ microformats2:
         link: "https://github.com/bianyukun1213"
     u_email: bianyukun1213@outlook.com
     p_note: "Just a **S**illy **B**oy."
+
+cdn:
+  font_awesome_css:
+    href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity: "sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+  jquery_js:
+    src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity: "sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+
+fonts:
+  web_fonts:
+    enable: true
+    preconnect: "https://fonts.bunny.net"
+    css_href: "https://fonts.bunny.net/css?family=jetbrains-mono:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i|noto-sans-sc:100,200,300,400,500,600,700,800,900|noto-serif-sc:200,300,400,500,600,700,800,900"
+  global: "'Noto Sans SC', sans-serif"
+  site_title: "'Noto Serif SC', serif"
+  prose: "'Noto Serif SC', serif"
+  code: "'JetBrains Mono', monospace"
 
 # main menu navigation
 navigation:
@@ -117,7 +135,7 @@ comments:
 
 img_handler:
   priority: 5
-colors_modifier:
+css_modifier:
   priority: 5
 
 

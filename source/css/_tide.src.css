@@ -122,6 +122,14 @@ html[tide-dark] {
     --tide-color-table-background-even: <TIDE_COLOR_TABLE_BACKGROUND_EVEN_DARK>;
 }
 
+html {
+    --tide-font-global: <TIDE_FONT_GLOBAL>;
+    --tide-font-site-title: <TIDE_FONT_SITE_TITLE>;
+    --tide-font-prose: <TIDE_FONT_PROSE>;
+    --tide-font-code: <TIDE_FONT_CODE>;
+    /* --tide-font-global: 'Noto Serif SC', serif; */
+}
+
 * {
     scrollbar-width: thin;
 }
@@ -136,6 +144,22 @@ a {
 
 button {
     -webkit-tap-highlight-color: transparent;
+}
+
+#tide-root {
+    font-family: var(--tide-font-global);
+}
+
+#tide-site-title {
+    font-family: var(--tide-font-site-title);
+}
+
+[un-prose] {
+    font-family: var(--tide-font-prose) !important;
+}
+
+[un-prose] code {
+    font-family: var(--tide-font-code) !important;
 }
 
 @unocss;
