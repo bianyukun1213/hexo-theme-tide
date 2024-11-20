@@ -11,29 +11,16 @@
     </div>
     <div class="tide-post-meta" un-mb="4" un-text="t-scnd">
       <span class="tide-post-meta-date" un-ltr="mr-8" un-rtl="ml-8">
-        <i class="fa-solid fa-pen" title="<%= __('post_meta.date.title') %>" un-ltr="mr-1" un-rtl="ml-1"></i>
-        <%- time_tag(postCtx.date) %>
+        <i class="fa-solid fa-pen" title="<%= __('post_meta.date.title') %>" un-ltr="mr-1" un-rtl="ml-1"></i><%- time_tag(postCtx.date) %>
       </span>
       <% if(postCtx.page_categories.length>0){ %>
       <span class="tide-post-meta-categories" un-ltr="mr-8" un-rtl="ml-8">
-        <i class="fa-solid fa-folder-open" title="<%= __('post_meta.categories.title') %>" un-ltr="mr-1" un-rtl="ml-1"></i>
-        <% postCtx.page_categories.forEach((cate,i)=>{ %>
-        <a un-sc-link-plain un-text="!t-scnd" href="<%= url_for(cate.path) %>"><%= cate.name %></a>
-        <% if(i<postCtx.page_categories.length-1){%>
-        ,
-        <% } %>
-        <% }) %>
+        <i class="fa-solid fa-folder-open" title="<%= __('post_meta.categories.title') %>" un-ltr="mr-1" un-rtl="ml-1"></i><% postCtx.page_categories.forEach((cate,i)=>{ %><a un-sc-link-plain un-text="!t-scnd" href="<%= url_for(cate.path) %>"><%= cate.name %></a><% if(i<postCtx.page_categories.length-1){ %>,&nbsp;<% } %><% }) %>
       </span>
       <% } %>
       <% if(postCtx.page_tags.length>0){ %>
       <span class="tide-post-meta-tags" un-ltr="mr-8" un-rtl="ml-8">
-        <i class="fa-solid fa-tag" title="<%= __('post_meta.tags.title') %>" un-ltr="mr-1" un-rtl="ml-1"></i>
-        <% postCtx.page_tags.forEach((tag,i)=>{ %>
-        <a un-sc-link-plain un-text="!t-scnd" href="<%= url_for(tag.path) %>"><%= tag.name %></a>
-        <% if(i<postCtx.page_tags.length-1){ %>
-        ,
-        <% } %>
-        <% }) %>
+        <i class="fa-solid fa-tag" title="<%= __('post_meta.tags.title') %>" un-ltr="mr-1" un-rtl="ml-1"></i><% postCtx.page_tags.forEach((tag,i)=>{ %><a un-sc-link-plain un-text="!t-scnd" href="<%= url_for(tag.path) %>"><%= tag.name %></a><% if(i<postCtx.page_tags.length-1){ %>,&nbsp;<% } %><% }) %>
       </span>
       <% } %>
     </div>

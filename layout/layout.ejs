@@ -30,8 +30,7 @@
           <% if(Object.prototype.hasOwnProperty.call(tideCtx.navigation,key)){ %>
           <% const element=tideCtx.navigation[key] %>
           <li un-inline-block un-mb="8">
-            <i class="<%= element.icon %>" un-ltr="mr-4" un-rtl="ml-4" aria-hidden="true"></i>
-            <a un-sc-link-plain un-text="!t-sb" href="<%= url_for(element.link) %>"><%= key %></a>
+            <i class="<%= element.icon %>" un-ltr="mr-4" un-rtl="ml-4" aria-hidden="true"></i><a un-sc-link-plain un-text="!t-sb" href="<%= url_for(element.link) %>"><%= key %></a>
           </li>
           <% } %>
           <% } %>
@@ -70,7 +69,7 @@
           </button>
         </div>
       </header>
-      <main id="tide-main-content" un-bg="b-prim" un-flex="1" un-px="16" un-overflow="auto">
+      <main id="tide-main-content" un-bg="b-prim" un-flex="1" un-overflow="auto">
         <%- body %>
         <!-- 页面 -->
         <!-- <article></article> -->

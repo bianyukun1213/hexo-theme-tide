@@ -154,6 +154,10 @@ button {
     font-family: var(--tide-font-site-title);
 }
 
+/* #tide-site-author {
+    font-family: var(--tide-font-site-title);
+} */
+
 [un-prose] {
     font-family: var(--tide-font-prose) !important;
 }
@@ -220,7 +224,7 @@ html.tide-large-font {
     @apply -translate-x-75vw;
 }
 
-#tide-site-name {
+#tide-site-title {
     @apply text-3xl;
 }
 
@@ -230,6 +234,10 @@ html.tide-large-font {
 
 #tide-navigation ul {
     @apply text-xl;
+}
+
+#tide-main-content {
+    @apply px-4;
 }
 
 /* md 往后调整侧边栏宽度为 96 */
@@ -257,7 +265,7 @@ html.tide-large-font {
         @apply -translate-x-96;
     }
 
-    #tide-site-name {
+    #tide-site-title {
         @apply text-4xl;
     }
 
@@ -267,6 +275,10 @@ html.tide-large-font {
 
     #tide-navigation ul {
         @apply text-2xl;
+    }
+
+    #tide-main-content {
+        @apply px-16;
     }
 }
 
@@ -321,4 +333,18 @@ html.tide-large-font {
             @apply hidden;
         }
     }
+}
+
+.tide-paginator span {
+    @apply inline-block;
+    @apply mx-1;
+    @apply underline;
+    @apply underline-offset-4;
+}
+
+.tide-paginator a {
+    @apply inline-block;
+    @apply mx-1;
+    @apply sc-link-plain;
+    @apply !text-t-scnd;
 }

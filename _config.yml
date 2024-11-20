@@ -94,9 +94,9 @@ fonts:
   web_fonts:
     enable: true
     preconnect: "https://fonts.bunny.net"
-    css_href: "https://fonts.bunny.net/css?family=jetbrains-mono:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i|noto-sans-sc:100,200,300,400,500,600,700,800,900|noto-serif-sc:200,300,400,500,600,700,800,900"
+    css_href: "https://fonts.bunny.net/css?family=jetbrains-mono:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i|ma-shan-zheng:400|noto-sans-sc:100,200,300,400,500,600,700,800,900|noto-serif-sc:200,300,400,500,600,700,800,900"
   global: "'Noto Sans SC', sans-serif"
-  site_title: "'Noto Serif SC', serif"
+  site_title: "'Ma Shan Zheng', handwriting"
   prose: "'Noto Serif SC', serif"
   code: "'JetBrains Mono', monospace"
 

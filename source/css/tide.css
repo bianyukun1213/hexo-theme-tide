@@ -158,6 +158,10 @@ button {
     font-family: var(--tide-font-site-title);
 }
 
+/* #tide-site-author {
+    font-family: var(--tide-font-site-title);
+} */
+
 [un-prose] {
     font-family: var(--tide-font-prose) !important;
 }
@@ -435,6 +439,8 @@ button {
 
 [un-self~="center"]{align-self:center;}
 
+[un-justify~="center"]{justify-content:center;}
+
 [un-justify~="between"]{justify-content:space-between;}
 
 [un-justify~="stretch"]{justify-content:stretch;}
@@ -456,8 +462,6 @@ button {
 [un-p~="\30 "]{padding:0;}
 
 [un-p~="\38 "]{padding:2rem;}
-
-[un-px~="\31 6"]{padding-left:4rem;padding-right:4rem;}
 
 [un-text~="center"]{text-align:center;}
 
@@ -536,13 +540,16 @@ html.tide-large-font {
 [dir="rtl"] [tide-side-bar-expanded="true"] #tide-content {--un-translate-x:-75vw;transform:translateX(var(--un-translate-x)) translateY(var(--un-translate-y)) translateZ(var(--un-translate-z)) rotate(var(--un-rotate)) rotateX(var(--un-rotate-x)) rotateY(var(--un-rotate-y)) rotateZ(var(--un-rotate-z)) skewX(var(--un-skew-x)) skewY(var(--un-skew-y)) scaleX(var(--un-scale-x)) scaleY(var(--un-scale-y)) scaleZ(var(--un-scale-z));
 }
 
-#tide-site-name {font-size:1.875rem;line-height:2.25rem;
+#tide-site-title {font-size:1.875rem;line-height:2.25rem;
 }
 
 #tide-site-author {font-size:1.25rem;line-height:1.75rem;
 }
 
 #tide-navigation ul {font-size:1.25rem;line-height:1.75rem;
+}
+
+#tide-main-content {padding-left:1rem;padding-right:1rem;
 }
 
 /* md 往后调整侧边栏宽度为 96 */
@@ -565,13 +572,16 @@ html.tide-large-font {
     [dir="rtl"] [tide-side-bar-expanded="true"] #tide-content {--un-translate-x:-24rem;transform:translateX(var(--un-translate-x)) translateY(var(--un-translate-y)) translateZ(var(--un-translate-z)) rotate(var(--un-rotate)) rotateX(var(--un-rotate-x)) rotateY(var(--un-rotate-y)) rotateZ(var(--un-rotate-z)) skewX(var(--un-skew-x)) skewY(var(--un-skew-y)) scaleX(var(--un-scale-x)) scaleY(var(--un-scale-y)) scaleZ(var(--un-scale-z));
     }
 
-    #tide-site-name {font-size:2.25rem;line-height:2.5rem;
+    #tide-site-title {font-size:2.25rem;line-height:2.5rem;
     }
 
     #tide-site-author {font-size:1.5rem;line-height:2rem;
     }
 
     #tide-navigation ul {font-size:1.5rem;line-height:2rem;
+    }
+
+    #tide-main-content {padding-left:4rem;padding-right:4rem;
     }
 }
 
@@ -620,3 +630,11 @@ html.tide-large-font {
         }
     }
 }
+
+.tide-paginator span {display:inline-block;margin-left:0.25rem;margin-right:0.25rem;text-decoration-line:underline;text-underline-offset:4px;
+}
+
+.tide-paginator a {display:inline-block;margin-left:0.25rem;margin-right:0.25rem;color:var(--tide-color-text-secondary) !important;color:var(--tide-color-text-primary);text-decoration:none;
+}
+
+.tide-paginator a:hover{text-decoration-line:underline;}
