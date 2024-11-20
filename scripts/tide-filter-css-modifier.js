@@ -23,6 +23,10 @@ hexo.extend.filter.register('after_render:css', function (cssSrc, local) {
                 }
             }
         }
+        const bgiLight = hexo.theme.config?.side_bar_background_image?.light ?? '';
+        const bgiDark = hexo.theme.config?.side_bar_background_image?.dark ?? '';
+        cssSrc = cssSrc.replace(new RegExp('<TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT>', 'g'), bgiLight);
+        cssSrc = cssSrc.replace(new RegExp('<TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK>', 'g'), bgiDark);
         const fonts = hexo.theme.config?.fonts ?? {
             global: "",
             site_title: "",

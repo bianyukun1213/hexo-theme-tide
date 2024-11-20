@@ -37,6 +37,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.index_total = page?.total ?? 0;
     out.index_current = page?.current ?? 0;
     out.index_current_url = page?.current_url ?? '';
+    out.meta_generator = config?.meta_generator ?? true;
     // 上为站点配置，下为主题配置。
     out.direction = theme.direction === 'rtl' ? 'rtl' : 'ltr';
     if (isString(page.direction))
@@ -101,6 +102,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     //     out.fonts.global = '';
     out.navigation = theme?.navigation ?? {};
     out.icp_record = theme?.icp_record ?? {};
+    out.generated_by_hexo = theme?.generated_by_hexo ?? true;
 
     // 上为主题配置，下为页面配置。
     out.page_title = page?.title ?? ''; // 有些内置页面此项为空，需单独处理。
@@ -181,11 +183,17 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
 
     // 插件适配。
     out.search_db_path = config?.search?.path;
-    out.page_hidden = false;
+    out.page_visibility = {
+        hidden: false,
+        no_index: false
+    };
     if (config?.hide_posts?.enable ?? false) {
         const hidePostsFilter = config?.hide_posts?.filter;
         if (hidePostsFilter in page)
-            out.page_hidden = true;
+            out.page_visibility.hidden = true;
+    }
+    if (config?.hide_posts?.no_index ?? false) {
+        out.page_visibility.no_index = true;
     }
     out.page_encrypted = false;
     if ('encrypt' in config && 'password' in page)

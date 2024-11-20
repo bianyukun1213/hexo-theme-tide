@@ -1,5 +1,5 @@
 <% if(site.posts.length>0){ %>
-<ul class="tide-post-ul" un-p="0" un-my="8" un-w="full" un-list="none">
+<ul class="tide-post-ul" un-p="0" un-m="0" un-w="full" un-list="none">
   <% const indexStart=(tideCtx.index_current-1)*tideCtx.index_per_page %>
   <% site.posts.sort('date',-1).slice(indexStart,indexStart+tideCtx.index_per_page).forEach((post)=>{ %>
   <% const postCtx=get_ctx(site,config,theme,post) %>

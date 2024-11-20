@@ -23,6 +23,7 @@
 
 @media (prefers-color-scheme: no-preference) {
     html {
+        --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT>;
         --tide-color-primary: <TIDE_COLOR_PRIMARY_LIGHT>;
         --tide-color-secondary: <TIDE_COLOR_SECONDARY_LIGHT>;
         --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_LIGHT>;
@@ -44,6 +45,7 @@
 
 @media (prefers-color-scheme: light) {
     html {
+        --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT>;
         --tide-color-primary: <TIDE_COLOR_PRIMARY_LIGHT>;
         --tide-color-secondary: <TIDE_COLOR_SECONDARY_LIGHT>;
         --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_LIGHT>;
@@ -65,6 +67,7 @@
 
 @media (prefers-color-scheme: dark) {
     html {
+        --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK>;
         --tide-color-primary: <TIDE_COLOR_PRIMARY_DARK>;
         --tide-color-secondary: <TIDE_COLOR_SECONDARY_DARK>;
         --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_DARK>;
@@ -85,6 +88,7 @@
 }
 
 html[tide-light] {
+    --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT>;
     --tide-color-primary: <TIDE_COLOR_PRIMARY_LIGHT>;
     --tide-color-secondary: <TIDE_COLOR_SECONDARY_LIGHT>;
     --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_LIGHT>;
@@ -104,6 +108,7 @@ html[tide-light] {
 }
 
 html[tide-dark] {
+    --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK>;
     --tide-color-primary: <TIDE_COLOR_PRIMARY_DARK>;
     --tide-color-secondary: <TIDE_COLOR_SECONDARY_DARK>;
     --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_DARK>;
@@ -168,6 +173,10 @@ button {
 
 [un-prose] code {
     font-family: var(--tide-font-code) !important;
+}
+
+#tide-side-bar {
+    background-image: var(--tide-background-image-side-bar);
 }
 
 /* layer: preflights */
@@ -549,7 +558,7 @@ html.tide-large-font {
 #tide-navigation ul {font-size:1.25rem;line-height:1.75rem;
 }
 
-#tide-main-content {padding-left:1rem;padding-right:1rem;
+#tide-main-content {padding-left:1rem;padding-right:1rem;padding-top:2rem;padding-bottom:2rem;
 }
 
 /* md 往后调整侧边栏宽度为 96 */

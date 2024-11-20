@@ -3,16 +3,16 @@ paginator:
   next: "下一页"
 
 navigation:
-  btnNav:
+  btn_nav:
     title: "打开或关闭导航菜单"
-  btnScrollTop:
+  btn_scroll_to_top:
     title: "回到顶部"
-  btnSearch:
+  btn_search:
     title: "打开搜索窗口"
-  btnSettings:
+  btn_settings:
     title: "打开设置窗口"
   footer:
-    poweredBy: '由<span un-i="logos-hexo" un-mx="1"></span><a un-sc-link-plain un-text="!t-sb" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 强力驱动'
+    generated_by_hexo: '使用<span un-i="logos-hexo" un-mx="1"></span><a un-sc-link-plain un-text="!t-sb" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 生成'
 
 no_title: "无标题"
 
