@@ -1,7 +1,36 @@
-<article id="post">
-  <h1>
-    <%=page.title%>
-  </h1>
+<% const tideCtx=get_ctx(site,config,theme,page) %>
+
+<!-- https://microformats.org/wiki/h-entry -->
+<!-- <article class="h-entry">
+  <h1 class="p-name">Microformats are amazing</h1>
+  <p>Published by <a class="p-author h-card" href="http://example.com">W. Developer</a>
+     on <time class="dt-published" datetime="2013-06-13 12:00:00">13<sup>th</sup> June 2013</time></p>
+  
+  <p class="p-summary">In which I extoll the virtues of using microformats.</p>
+  
+  <div class="e-content">
+    <p>Blah blah blah</p>
+  </div>
+</article> -->
+
+
+<article id="post" class="">
+    <h1 class="tide-post-li-title" un-mt="0" un-mb="2" un-text="4xl" un-font="bold"><%= tideCtx.page_title===''?__('no_title'):tideCtx.page_title %></h1>
+
+    <%# if(tideCtx.microformats2){ %>
+      <%#- partial('./partials/h-card.ejs',{h_card:tideCtx.site_h_card}) %>
+      <%# } %>
+    
+
+    <!-- post-meta test -->
+    <%- partial('./partials/post-meta.ejs',{postCtx:tideCtx,detailed:true}) %>
+
+<!-- 应为 microformats2 单独提供 meta -->
+
+
+
+
+
 <!-- 应该是这种结构 -->
   <div un-prose un-max-w="none">
     <%-page.content%>

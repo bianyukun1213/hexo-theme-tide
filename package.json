@@ -4,10 +4,10 @@
   "description": "",
   "private": true,
   "devDependencies": {
-    "@iconify-json/logos": "^1.2.3",
-    "@unocss/postcss": "^0.64.1",
-    "postcss": "^8.4.49",
+    "@iconify-json/logos": "^1.2.4",
+    "@unocss/postcss": "^65.4.3",
+    "postcss": "^8.5.1",
     "postcss-cli": "^11.0.0",
-    "unocss": "^0.64.1"
+    "unocss": "^65.4.3"
   }
 }

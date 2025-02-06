@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 <% const tideCtx=get_ctx(site,config,theme,page) %>
+<!DOCTYPE html>
 <html lang="<%= tideCtx.language %>" dir="<%= tideCtx.direction %>">
 
 <head>
@@ -17,12 +17,15 @@
         <% } else { %>
         <p id="tide-site-title" un-my="4" un-font="bold"><%= tideCtx.site_title %></p>
         <% } %>
+        <p id="tide-site-subtitle" un-my="2" un-font="italic"><%= tideCtx.site_subtitle %></p>
         <!-- <img id="author-avatar" src="https://bucket.hollisdevhub.com/blog/common/avatar.webp"
                                     alt="" un-w="1/3" un-aspect="auto"> -->
-        <p id="tide-site-author" un-my="2" un-font="bold"><%= tideCtx.site_author %></p>
+        <!-- <p id="tide-site-author" un-my="2" un-font="bold"><%= tideCtx.site_author %></p> -->
       </header>
       <% if(tideCtx.microformats2){ %>
-      <%- partial('./partials/h-card.ejs',{h_card:tideCtx.site_h_card}) %>
+        <% for (const card of tideCtx.site_h_cards){ %>
+          <%- partial('./partials/h-card.ejs',{h_card:card,authorCard:false}) %>
+        <% } %>
       <% } %>
       <nav id="tide-navigation" un-flex="initial" un-self="center" un-w="full">
         <ul un-inline-flex un-flex="col" un-items="start" un-p="0" un-m="0" un-w="auto" un-list="none">

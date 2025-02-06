@@ -35,7 +35,7 @@ colors:
     link: "#3F72AF"
     link_hover: "#3F72AF"
     link_visited: "#00ADB5"
-    code: "#3F72AF"
+    code_inline: "#3F72AF"
     table_border: "#E5E7EB"
     table_background_head: "#F3F3F3"
     table_background_even: "#FAFAFA"
@@ -52,7 +52,7 @@ colors:
     link: "#3F72AF"
     link_hover: "#3F72AF"
     link_visited: "#00ADB5"
-    code: "#3F72AF"
+    code_inline: "#3F72AF"
     table_border: "#E5E7EB"
     table_background_head: "#F3F3F3"
     table_background_even: "#FAFAFA"
@@ -67,27 +67,28 @@ side_bar_background_image:
 microformats2:
   enable: true
   # h_card 可在 front-matter 中指定，优先于此处的配置。
-  h_card:
-    p_honorific_prefix: ""
-    p_name: "Bian Yukun"
-    p_given_name: Yukun
-    p_additional_name: ""
-    p_family_name: Bian
-    p_honorific_suffix: ""
-    p_nickname: Hollis
-    u_photo: "https://bucket.hollisdevhub.com/blog/common/avatar.webp"
-    u_uid:
-      - 
-        text: "His 2nd Life"
-        link: "https://his2nd.life/"
-      - 
-        text: Mastodon
-        link: "https://m.cmx.im/@Hollis"
-      -
-        text: GitHub
-        link: "https://github.com/bianyukun1213"
-    u_email: bianyukun1213@outlook.com
-    p_note: "Just a **S**illy **B**oy."
+  h_cards:
+    -
+      p_honorific_prefix: ""
+      p_name: "Bian Yukun"
+      p_given_name: Yukun
+      p_additional_name: ""
+      p_family_name: Bian
+      p_honorific_suffix: ""
+      p_nickname: Hollis
+      u_photo: "https://bucket.hollisdevhub.com/blog/common/avatar.webp"
+      u_uid:
+        - 
+          text: "His 2nd Life"
+          link: "https://his2nd.life/"
+        - 
+          text: Mastodon
+          link: "https://m.cmx.im/@Hollis"
+        -
+          text: GitHub
+          link: "https://github.com/bianyukun1213"
+      u_email: bianyukun1213@outlook.com
+      p_note: "Just a **S**illy **B**oy."
 
 cdn:
   font_awesome_css:
@@ -119,11 +120,13 @@ fonts:
   web_fonts:
     enable: true
     preconnect: "https://fonts.bunny.net"
-    css_href: "https://fonts.bunny.net/css?family=jetbrains-mono:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i|ma-shan-zheng:400|noto-sans-sc:100,200,300,400,500,600,700,800,900|noto-serif-sc:200,300,400,500,600,700,800,900"
+    # css_href: "https://fonts.bunny.net/css?family=jetbrains-mono:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i|ma-shan-zheng:400|noto-sans-sc:100,200,300,400,500,600,700,800,900|noto-serif-sc:200,300,400,500,600,700,800,900"
+    css_href: "https://fonts.bunny.net/css?family=ma-shan-zheng:400|noto-sans-sc:100,200,300,400,500,600,700,800,900|noto-serif-sc:200,300,400,500,600,700,800,900"
   global: "'Noto Sans SC', sans-serif"
-  site_title: "'Ma Shan Zheng', handwriting"
+  site_title: "'Noto Sans SC', sans-serif"
+  # site_title: "'Ma Shan Zheng', handwriting"
+  site_subtitle: "'Ma Shan Zheng', handwriting"
   prose: "'Noto Serif SC', serif"
-  code: "'JetBrains Mono', monospace"
 
 # main menu navigation
 navigation:
@@ -163,6 +166,8 @@ comments:
 img_handler:
   priority: 5
 css_modifier:
+  priority: 5
+page_modifier:
   priority: 5
 
 

@@ -30,8 +30,9 @@ hexo.extend.filter.register('after_render:css', function (cssSrc, local) {
         const fonts = hexo.theme.config?.fonts ?? {
             global: "",
             site_title: "",
-            prose: "",
-            code: ""
+            site_subtitle: "",
+            prose: ""
+            // code: "" 由 prism.js 指定，否则可能出现行号对不上的问题。
         };
         for (const fontKey in fonts) {
             if (Object.prototype.hasOwnProperty.call(fonts, fontKey)) {

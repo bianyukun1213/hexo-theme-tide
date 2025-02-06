@@ -29,7 +29,7 @@ export default defineConfig({
                     color: 'var(--tide-color-link-visited)'
                 },
                 'code:not([class])': {
-                    color: 'var(--tide-color-code)'
+                    color: 'var(--tide-color-code-inline)'
                 },
                 hr: {
                     border: '1px var(--tide-color-text-diminished) solid'
@@ -58,6 +58,10 @@ export default defineConfig({
                 },
                 figure: {
                     'text-align': 'center'
+                },
+                // 代码块锁定 ltr。
+                'pre:has(code)': {
+                    direction: 'ltr'
                 }
             }
         }),

@@ -28,7 +28,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
         return ctxCache[page.path];
     let out = {};
     out.site_title = config?.title ?? '';
-    out.site_subtitle = config?.siteSubtitle ?? '';
+    out.site_subtitle = config?.subtitle ?? '';
     out.description = page?.description ?? config?.description ?? '';
     out.keywords = page?.keywords ?? config?.keywords ?? [];
     out.site_author = config?.author ?? '';
@@ -38,6 +38,8 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.index_current = page?.current ?? 0;
     out.index_current_url = page?.current_url ?? '';
     out.meta_generator = config?.meta_generator ?? true;
+    out.date_format = config?.date_format ?? '';
+    out.time_format = config?.time_format ?? '';
     // 上为站点配置，下为主题配置。
     out.direction = theme.direction === 'rtl' ? 'rtl' : 'ltr';
     if (isString(page.direction))
@@ -51,43 +53,67 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     // 对象的合并：
     // key 都是固定的话，可以 deepMerge 合并，页面的优先级最高，页面没有的会有配置值和默认值兜底。
     // key 可以自定义的话，就不 deepMerge，而是发现页面有就取页面，否则发现配置有就取配置。如果 deepMerge 的话，配置有但用户想页面没有，也去不掉。
-    out.site_h_card = {
-        p_honorific_prefix: '',
-        p_name: '',
-        p_given_name: '',
-        p_additional_name: '',
-        p_family_name: '',
-        p_honorific_suffix: '',
-        p_nickname: '',
-        u_photo: '',
-        u_uid: [],
-        u_email: '',
-        p_note: ''
-    };
+    out.site_h_cards = [];
+    out.page_h_cards = [];
+    // out.site_h_card = {
+    //     p_honorific_prefix: '',
+    //     p_name: '',
+    //     p_given_name: '',
+    //     p_additional_name: '',
+    //     p_family_name: '',
+    //     p_honorific_suffix: '',
+    //     p_nickname: '',
+    //     u_photo: '',
+    //     u_uid: [],
+    //     u_email: '',
+    //     p_note: ''
+    // };
     if (out.microformats2) {
-        let themeHCard;
-        try {
-            themeHCard = theme?.microformats2?.h_card ?? {};
-        } catch (error) {
-            themeHCard = {};
-        }
-        out.site_h_card = deepMergeObj(out.site_h_card, themeHCard);
-        // 实际生成 HTML 结构时，h_card 是单独的。
-        if (out.site_h_card.p_name === '')
-            out.site_h_card.p_name = out.author;
-        if (out.site_h_card.p_nickname === '')
-            out.site_h_card.p_nickname = out.author;
-        let pageHCard;
-        try {
-            pageHCard = page?.h_card ?? {};
-        } catch (error) {
-            pageHCard = {};
-        }
-        out.page_h_card = deepMergeObj(out.site_h_card, pageHCard);
-        if (out.page_h_card.p_name === '')
-            out.page_h_card.p_name = out.author;
-        if (out.page_h_card.p_nickname === '')
-            out.page_h_card.p_nickname = out.author;
+        // let themeHCard;
+        // try {
+        //     themeHCard = theme?.microformats2?.h_card ?? {};
+        // } catch (error) {
+        //     themeHCard = {};
+        // }
+        // out.site_h_card = deepMergeObj(out.site_h_card, themeHCard);
+        // // 实际生成 HTML 结构时，h_card 是单独的。
+        // if (out.site_h_card.p_name === '')
+        //     out.site_h_card.p_name = out.author;
+        // if (out.site_h_card.p_nickname === '')
+        //     out.site_h_card.p_nickname = out.author;
+        // let pageHCard;
+        // try {
+        //     pageHCard = page?.h_card ?? {};
+        // } catch (error) {
+        //     pageHCard = {};
+        // }
+        // out.page_h_card = deepMergeObj(out.site_h_card, pageHCard);
+        // if (out.page_h_card.p_name === '')
+        //     out.page_h_card.p_name = out.author;
+        // if (out.page_h_card.p_nickname === '')
+        //     out.page_h_card.p_nickname = out.author;
+
+        const blankHCard = {
+            p_honorific_prefix: '',
+            p_name: '',
+            p_given_name: '',
+            p_additional_name: '',
+            p_family_name: '',
+            p_honorific_suffix: '',
+            p_nickname: '',
+            u_photo: '',
+            u_uid: [],
+            u_email: '',
+            p_note: ''
+        };
+        const themeHCards = isArray(theme?.microformats2.h_cards) ? theme?.microformats2.h_cards : [];
+        for (const themeHCard of themeHCards)
+            if (isPlainObject(themeHCard))
+                out.site_h_cards.push(deepMergeObj(blankHCard, themeHCard));
+        const pageHCards = isArray(page.h_cards) ? page.h_cards : themeHCards;
+        for (const pageHCard of pageHCards)
+            if (isPlainObject(pageHCard))
+                out.page_h_cards.push(deepMergeObj(blankHCard, pageHCard));
     }
     out.cdn = theme?.cdn ?? {};
     out.fonts = theme?.fonts ?? {};
@@ -97,7 +123,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
             preconnect: '',
             css_href: ''
         };
-    } 
+    }
     // if(!isString(out.fonts?.global))
     //     out.fonts.global = '';
     out.navigation = theme?.navigation ?? {};
@@ -120,7 +146,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
         out.languages = page.languages;
     else if (site?.data?.language_map)
         out.languages = site.data.language_map[page.path]?.languages ?? {};
-    out.page_categories = [];
+    out.page_categories = []; // site 范围可能也有 categories，所以加上 page 前缀。
     if (page?.categories?.length) {
         page.categories.forEach((cate) => {
             out.page_categories.push({
@@ -133,7 +159,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
             });
         });
     }
-    out.page_tags = [];
+    out.page_tags = []; // site 范围可能也有 tags，所以加上 page 前缀。
     if (page?.tags?.length) {
         page.tags.forEach((tag) => {
             out.page_tags.push({
@@ -146,14 +172,25 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
         });
     }
     out.copyright = theme?.copyright?.default ?? ''; // 主题配置中只是预置键值，具体还要看页面，所以认为是页面配置。
-    if (page.copyright)
+    if (page.copyright) {
         if (theme.copyright && page.copyright in theme.copyright)
             out.copyright = theme.copyright[page.copyright];
         else
             out.copyright = page.copyright;
-    out.syndications = page?.syndications ?? [];
+    }
+    out.indieweb_interactions = {};
+    if (isPlainObject(page.indieweb_interactions)) {
+        for (const key in page.indieweb_interactions) {
+            if (Object.prototype.hasOwnProperty.call(page.indieweb_interactions, key)) {
+                const element = page.indieweb_interactions[key];
+                if (isArray(element))
+                    out.indieweb_interactions[key] = element;
+            }
+        }
+    }
+    out.syndications = isArray(page.syndications) ? page.syndications : [];
     // page: ["webmentions", "twikoo"] or false
-    // theme: enabel: ["webmentions", "twikoo"] webmentions: xxx twikoo: xxx
+    // theme: enable: ["webmentions", "twikoo"] webmentions: xxx twikoo: xxx
     // out: {webmentions: xxx, twikoo: xxx} or false
     out.comments = {};
     if (isArray(page.comments)) {

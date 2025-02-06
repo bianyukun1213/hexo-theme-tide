@@ -36,7 +36,7 @@
         --tide-color-link: <TIDE_COLOR_LINK_LIGHT>;
         --tide-color-link-hover: <TIDE_COLOR_LINK_HOVER_LIGHT>;
         --tide-color-link-visited: <TIDE_COLOR_LINK_VISITED_LIGHT>;
-        --tide-color-code: <TIDE_COLOR_CODE_LIGHT>;
+        --tide-color-code-inline: <TIDE_COLOR_CODE_INLINE_LIGHT>;
         --tide-color-table-border: <TIDE_COLOR_TABLE_BORDER_LIGHT>;
         --tide-color-table-background-head: <TIDE_COLOR_TABLE_BACKGROUND_HEAD_LIGHT>;
         --tide-color-table-background-even: <TIDE_COLOR_TABLE_BACKGROUND_EVEN_LIGHT>;
@@ -58,7 +58,7 @@
         --tide-color-link: <TIDE_COLOR_LINK_LIGHT>;
         --tide-color-link-hover: <TIDE_COLOR_LINK_HOVER_LIGHT>;
         --tide-color-link-visited: <TIDE_COLOR_LINK_VISITED_LIGHT>;
-        --tide-color-code: <TIDE_COLOR_CODE_LIGHT>;
+        --tide-color-code-inline: <TIDE_COLOR_CODE_INLINE_LIGHT>;
         --tide-color-table-border: <TIDE_COLOR_TABLE_BORDER_LIGHT>;
         --tide-color-table-background-head: <TIDE_COLOR_TABLE_BACKGROUND_HEAD_LIGHT>;
         --tide-color-table-background-even: <TIDE_COLOR_TABLE_BACKGROUND_EVEN_LIGHT>;
@@ -80,7 +80,7 @@
         --tide-color-link: <TIDE_COLOR_LINK_DARK>;
         --tide-color-link-hover: <TIDE_COLOR_LINK_HOVER_DARK>;
         --tide-color-link-visited: <TIDE_COLOR_LINK_VISITED_DARK>;
-        --tide-color-code: <TIDE_COLOR_CODE_DARK>;
+        --tide-color-code-inline: <TIDE_COLOR_CODE_INLINE_DARK>;
         --tide-color-table-border: <TIDE_COLOR_TABLE_BORDER_DARK>;
         --tide-color-table-background-head: <TIDE_COLOR_TABLE_BACKGROUND_HEAD_DARK>;
         --tide-color-table-background-even: <TIDE_COLOR_TABLE_BACKGROUND_EVEN_DARK>;
@@ -101,7 +101,7 @@ html[tide-light] {
     --tide-color-link: <TIDE_COLOR_LINK_LIGHT>;
     --tide-color-link-hover: <TIDE_COLOR_LINK_HOVER_LIGHT>;
     --tide-color-link-visited: <TIDE_COLOR_LINK_VISITED_LIGHT>;
-    --tide-color-code: <TIDE_COLOR_CODE_LIGHT>;
+    --tide-color-code-inline: <TIDE_COLOR_CODE_INLINE_DARK>;
     --tide-color-table-border: <TIDE_COLOR_TABLE_BORDER_LIGHT>;
     --tide-color-table-background-head: <TIDE_COLOR_TABLE_BACKGROUND_HEAD_LIGHT>;
     --tide-color-table-background-even: <TIDE_COLOR_TABLE_BACKGROUND_EVEN_LIGHT>;
@@ -130,8 +130,9 @@ html[tide-dark] {
 html {
     --tide-font-global: <TIDE_FONT_GLOBAL>;
     --tide-font-site-title: <TIDE_FONT_SITE_TITLE>;
+    --tide-font-site-subtitle: <TIDE_FONT_SITE_SUBTITLE>;
     --tide-font-prose: <TIDE_FONT_PROSE>;
-    --tide-font-code: <TIDE_FONT_CODE>;
+    /* --tide-font-code: <TIDE_FONT_CODE>; */
     /* --tide-font-global: 'Noto Serif SC', serif; */
 }
 
@@ -159,6 +160,10 @@ button {
     font-family: var(--tide-font-site-title);
 }
 
+#tide-site-subtitle {
+    font-family: var(--tide-font-site-subtitle);
+}
+
 /* #tide-site-author {
     font-family: var(--tide-font-site-title);
 } */
@@ -167,9 +172,9 @@ button {
     font-family: var(--tide-font-prose) !important;
 }
 
-[un-prose] code {
-    font-family: var(--tide-font-code) !important;
-}
+/* [un-prose] code:not(.not-prose) {
+    font-family: var(--tide-font-code) !important; 由 prism.js 指定，否则可能出现行号对不上的问题。
+} */
 
 #tide-side-bar {
     background-image: var(--tide-background-image-side-bar);
@@ -237,9 +242,9 @@ html.tide-large-font {
     @apply text-3xl;
 }
 
-#tide-site-author {
+/* #tide-site-subtitle, #tide-site-author {
     @apply text-xl;
-}
+} */
 
 #tide-navigation ul {
     @apply text-xl;
@@ -279,9 +284,9 @@ html.tide-large-font {
         @apply text-4xl;
     }
 
-    #tide-site-author {
+    /* #tide-site-subtitle, #tide-site-author {
         @apply text-2xl;
-    }
+    } */
 
     #tide-navigation ul {
         @apply text-2xl;
