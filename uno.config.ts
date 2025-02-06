@@ -35,6 +35,8 @@ export default defineConfig({
                     border: '1px var(--tide-color-text-diminished) solid'
                 },
                 table: {
+                    display: 'table',
+                    width: '100%',
                     'table-layout': 'auto',
                     'border-collapse': 'separate',
                     'border-spacing': 0,
@@ -45,9 +47,6 @@ export default defineConfig({
                 },
                 'td:first-child,th:first-child': {
                     'border-left': 'none'
-                },
-                td: {
-                    width: '100%'
                 },
                 th: {
                     background: 'var(--tide-color-table-background-head)',

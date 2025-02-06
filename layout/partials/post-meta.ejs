@@ -26,10 +26,10 @@
     <% } %>
     <% if(detailed&&postCtx.word_counter){ %>
       <span class="tide-post-meta-word-count" title="<%= __('post_meta.word_count.title') %>" un-inline-block un-ltr="mr-8" un-rtl="ml-8">
-        <i class="fa-solid fa-keyboard" aria-hidden="true" un-ltr="mr-1" un-rtl="ml-1"></i><%= symbolsCount(page) %><%#= _p('post_meta.word_count.text',symbolsCount(page)) %>
+        <i class="fa-solid fa-keyboard" aria-hidden="true" un-ltr="mr-1" un-rtl="ml-1"></i><%= symbolsCount(page) %>
       </span>
       <span class="tide-post-meta-reading-time" title="<%= __('post_meta.reading_time.title') %>" un-inline-block un-ltr="mr-8" un-rtl="ml-8">
-        <i class="fa-solid fa-clock" aria-hidden="true" un-ltr="mr-1" un-rtl="ml-1"></i><%= symbolsTime(page) %><%#= _p('post_meta.reading_time.text',symbolsTime(page)) %>
+        <i class="fa-solid fa-clock" aria-hidden="true" un-ltr="mr-1" un-rtl="ml-1"></i><%= symbolsTime(page) %>
       </span>
     <% } %>
     <% if(detailed&&postCtx.extra!==''){ %>
