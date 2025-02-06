@@ -9,6 +9,7 @@ const {
     isArray,
     isPlainObject,
     isEmptyObject,
+    isFunction,
     isPhoneNumber,
     deepClone,
     deepMergeObj,
@@ -16,7 +17,8 @@ const {
     toCamelCase,
     toUnderScoreCase,
     underScoreCaseObjToCamelCaseObj,
-    camelCaseObjToUnderScoreCaseObj
+    camelCaseObjToUnderScoreCaseObj,
+    extractHostFromUrl
 } = require('./tide-utils.js');
 
 const scriptName = 'tide-helper-tide-utils';
@@ -30,6 +32,7 @@ hexo.extend.helper.register('tide_utils', function () {
         isArray,
         isPlainObject,
         isEmptyObject,
+        isFunction,
         isPhoneNumber,
         deepClone,
         deepMergeObj,
@@ -37,7 +40,8 @@ hexo.extend.helper.register('tide_utils', function () {
         toCamelCase,
         toUnderScoreCase,
         underScoreCaseObjToCamelCaseObj,
-        camelCaseObjToUnderScoreCaseObj
+        camelCaseObjToUnderScoreCaseObj,
+        extractHostFromUrl
     };
 });
 

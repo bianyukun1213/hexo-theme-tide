@@ -32,6 +32,16 @@ post_meta:
     title: "标签"
   word_count:
     title: "字数"
+    # text:
+      # zero: "-"
+      # one: "%d 字"
+      # other: "%d 字"
+  reading_time:
+    title: "预计阅读时间"
+    # text:
+      # zero: "-"
+      # one: "%d 分钟"
+      # other: "%d 分钟"
   extra:
     title: "注释"
   syndications:

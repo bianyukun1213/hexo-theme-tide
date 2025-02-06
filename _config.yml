@@ -170,7 +170,8 @@ css_modifier:
 page_modifier:
   priority: 5
 
-
+search: true
+word_counter: true
 
 # config_handler:
 #   priority: 5

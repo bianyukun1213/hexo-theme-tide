@@ -130,6 +130,10 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.icp_record = theme?.icp_record ?? {};
     out.generated_by_hexo = theme?.generated_by_hexo ?? true;
 
+    // 小功能
+    out.search = theme?.search ?? true;
+    out.word_counter = theme?.word_counter ?? true;
+
     // 上为主题配置，下为页面配置。
     out.page_title = page?.title ?? ''; // 有些内置页面此项为空，需单独处理。
     out.page_author = page?.author ?? config?.author ?? '';
@@ -215,6 +219,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     else {
         out.comments = false;
     }
+    out.extra = page?.extra ?? '';
 
 
 

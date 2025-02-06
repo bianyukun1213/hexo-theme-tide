@@ -36,6 +36,10 @@ function isEmptyObject(obj) {
     return JSON.stringify(obj) === '{}';
 }
 
+function isFunction(fun) {
+    return typeof fun === 'function';
+}
+
 function isPhoneNumber(num) {
     return /^1[3456789]\d{9}$/.test(num);
 }
@@ -118,6 +122,11 @@ function camelCaseObjToUnderScoreCaseObj(cCObj) {
     return uSCObj;
 }
 
+function extractHostFromUrl(url) {
+    const match = url.match(/^(?:https?:\/\/)?([^\/:]+(:\d+)?)/);
+    return match ? match[1] : '';
+}
+
 module.exports = {
     getTideVersion,
     isNumber,
@@ -127,6 +136,7 @@ module.exports = {
     isArray,
     isPlainObject,
     isEmptyObject,
+    isFunction,
     isPhoneNumber,
     deepClone,
     deepMergeObj,
@@ -134,5 +144,6 @@ module.exports = {
     toCamelCase,
     toUnderScoreCase,
     underScoreCaseObjToCamelCaseObj,
-    camelCaseObjToUnderScoreCaseObj
+    camelCaseObjToUnderScoreCaseObj,
+    extractHostFromUrl
 };
