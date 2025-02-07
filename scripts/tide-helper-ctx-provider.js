@@ -55,44 +55,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     // key 可以自定义的话，就不 deepMerge，而是发现页面有就取页面，否则发现配置有就取配置。如果 deepMerge 的话，配置有但用户想页面没有，也去不掉。
     out.site_h_cards = [];
     out.page_h_cards = [];
-    // out.site_h_card = {
-    //     p_honorific_prefix: '',
-    //     p_name: '',
-    //     p_given_name: '',
-    //     p_additional_name: '',
-    //     p_family_name: '',
-    //     p_honorific_suffix: '',
-    //     p_nickname: '',
-    //     u_photo: '',
-    //     u_uid: [],
-    //     u_email: '',
-    //     p_note: ''
-    // };
     if (out.microformats2) {
-        // let themeHCard;
-        // try {
-        //     themeHCard = theme?.microformats2?.h_card ?? {};
-        // } catch (error) {
-        //     themeHCard = {};
-        // }
-        // out.site_h_card = deepMergeObj(out.site_h_card, themeHCard);
-        // // 实际生成 HTML 结构时，h_card 是单独的。
-        // if (out.site_h_card.p_name === '')
-        //     out.site_h_card.p_name = out.author;
-        // if (out.site_h_card.p_nickname === '')
-        //     out.site_h_card.p_nickname = out.author;
-        // let pageHCard;
-        // try {
-        //     pageHCard = page?.h_card ?? {};
-        // } catch (error) {
-        //     pageHCard = {};
-        // }
-        // out.page_h_card = deepMergeObj(out.site_h_card, pageHCard);
-        // if (out.page_h_card.p_name === '')
-        //     out.page_h_card.p_name = out.author;
-        // if (out.page_h_card.p_nickname === '')
-        //     out.page_h_card.p_nickname = out.author;
-
         const blankHCard = {
             p_honorific_prefix: '',
             p_name: '',
@@ -133,10 +96,22 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     // 小功能
     out.search = theme?.search ?? true;
     out.word_counter = theme?.word_counter ?? true;
+    out.list_separator = theme?.list_separator ?? ', ';
 
     // 上为主题配置，下为页面配置。
     out.page_title = page?.title ?? ''; // 有些内置页面此项为空，需单独处理。
-    out.page_author = page?.author ?? config?.author ?? '';
+    out.page_author = config?.author ?? '';
+    if (isArray(page.author)) {
+        out.page_author = [];
+        for (const au of page.author)
+            if (isString(au) && au !== '')
+                out.page_author.push(au);
+        if (out.page_author.length === 0)
+            out.page_author = '';
+    }
+    else if (isString(page.author) && page.author !== '') {
+        out.page_author = page.author;
+    }
     out.path = page?.path ?? '';
     out.permalink = page?.permalink ?? '';
     out.date = page?.date ?? '';

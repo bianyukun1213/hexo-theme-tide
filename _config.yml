@@ -172,6 +172,7 @@ page_modifier:
 
 search: true
 word_counter: true
+list_separator: ", "
 
 # config_handler:
 #   priority: 5
