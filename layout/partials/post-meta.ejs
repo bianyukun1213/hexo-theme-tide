@@ -21,12 +21,12 @@
     <% } %>
     <% if(postCtx.page_categories.length>0){ %>
     <span class="tide-post-meta-categories" title="<%= __('post_meta.categories.title') %>" un-inline-block un-ltr="mr-8" un-rtl="ml-8">
-      <i class="fa-solid fa-folder-open" aria-hidden="true" un-ltr="mr-1" un-rtl="ml-1"></i><% postCtx.page_categories.forEach((cate,i)=>{ %><a un-sc-link-plain un-text="!t-scnd" href="<%= url_for(cate.path) %>"><%= cate.name %></a><% if(i<postCtx.page_categories.length-1){ %><%= postCtx.list_separator %><% }}) %>
+      <i class="fa-solid fa-folder-open" aria-hidden="true" un-ltr="mr-1" un-rtl="ml-1"></i><% postCtx.page_categories.forEach((cate,i)=>{ %><a un-sc-link-plain un-text="!t-scnd" href="<%= full_url_for(cate.path) %>"><%= cate.name %></a><% if(i<postCtx.page_categories.length-1){ %><%= postCtx.list_separator %><% }}) %>
     </span>
     <% } %>
     <% if(postCtx.page_tags.length>0){ %>
     <span class="tide-post-meta-tags" title="<%= __('post_meta.tags.title') %>" un-inline-block un-ltr="mr-8" un-rtl="ml-8">
-      <i class="fa-solid fa-tag" aria-hidden="true" un-ltr="mr-1" un-rtl="ml-1"></i><% postCtx.page_tags.forEach((tag,i)=>{ %><a un-sc-link-plain un-text="!t-scnd" href="<%= url_for(tag.path) %>"><%= tag.name %></a><% if(i<postCtx.page_tags.length-1){ %><%= postCtx.list_separator %><% }}) %>
+      <i class="fa-solid fa-tag" aria-hidden="true" un-ltr="mr-1" un-rtl="ml-1"></i><% postCtx.page_tags.forEach((tag,i)=>{ %><a un-sc-link-plain un-text="!t-scnd" href="<%= full_url_for(tag.path) %>"><%= tag.name %></a><% if(i<postCtx.page_tags.length-1){ %><%= postCtx.list_separator %><% }}) %>
     </span>
     <% } %>
     <% if(detailed&&postCtx.word_counter){ %>

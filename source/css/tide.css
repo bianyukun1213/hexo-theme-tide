@@ -422,8 +422,6 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 
 [un-mb~="\38 "]{margin-bottom:2rem;}
 
-[un-mt~="\30 "]{margin-top:0;}
-
 [un-inline=""]{display:inline;}
 
 [un-block=""]{display:block;}
