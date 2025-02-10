@@ -10,7 +10,7 @@
 <body>
   <%- partial('./partials/res-body-begin.ejs',{tideCtx}) %>
   <textarea id="ctx" style="display:none;" un-fixed un-w="96" un-h="96" un-right="0" un-bottom="0" un-z="100"><%= JSON.stringify(tideCtx,null,2) %></textarea>
-  <div id="tide-root" <% if(is_post()) { %> tide-is-post="true" <% } %> un-bg="b-scnd" un-absolute un-w="full" un-h="full" un-text="base">
+  <div id="tide-root" <% if(is_post()) { %> tide-is-post="true" <% } %> un-bg="b-scnd" un-absolute un-w="full" un-h="full" un-text="base" un-break="words">
     <div id="tide-side-bar" un-sc-trans-default un-bg="prim" un-fixed un-ltr="-left-75vw" un-rtl="-right-75vw" un-flex="~ col" un-justify="between" un-z="30" un-text="center t-sb" un-w="75vw" un-h="full">
       <header un-flex="none" un-p="8">
         <% if(is_home()) { %>
@@ -60,7 +60,7 @@
         <div un-w="3/4" un-min-w="48" un-h="12">
           <!-- 开启 relative，使用 right 让元素具有符合直觉的 tab index -->
           <button id="tide-btn-scroll-to-top" title="<%= __('navigation.btn_scroll_to_top.title') %>" un-sc-btn-default un-relative un-ltr="float-right right-32 mr-4" un-rtl="float-left left-32 ml-4" un-w="12" un-h="12">
-            <i class="fa-solid fa-chevron-up" aria-hidden="true"></i>
+            <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
           </button>
           <button id="tide-btn-search" title="<%= __('navigation.btn_search.title') %>" un-sc-btn-default un-relative un-ltr="float-right mr-4" un-rtl="float-left ml-4" un-w="12" un-h="12">
             <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>

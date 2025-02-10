@@ -58,7 +58,8 @@ export default defineConfig({
                     background: 'var(--tide-color-table-background-even)'
                 },
                 figure: {
-                    'text-align': 'center'
+                    'text-align': 'center',
+                    'overflow-wrap': 'break-word'
                 },
                 // 代码块锁定 ltr。
                 'pre:has(code)': {
@@ -113,12 +114,19 @@ export default defineConfig({
         }
     },
     safelist: [
-        '[un-text="base"]',
-        '[un-text="lg"]',
-        '[un-text="xl"]',
-        '[un-text="2xl"]',
-        '[un-text="3xl"]',
-        '[un-text="4xl"]',
+        '[un-text~="xs"]',
+        '[un-text~="sm"]',
+        '[un-text~="base"]',
+        '[un-text~="lg"]',
+        '[un-text~="xl"]',
+        '[un-text~="2xl"]',
+        '[un-text~="3xl"]',
+        '[un-text~="4xl"]',
+        '[un-text~="5xl"]',
+        '[un-text~="6xl"]',
+        '[un-text~="7xl"]',
+        '[un-text~="8xl"]',
+        '[un-text~="9xl"]',
         '[un-i="logos-hexo"]',
         '[un-mx="1"]'
     ] // JavaScript 切换字体大小、侧边栏按钮图标使用。

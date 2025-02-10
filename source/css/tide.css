@@ -128,6 +128,8 @@ html[tide-dark] {
 }
 
 html {
+    /* 要与 unocss（tailwind 4.0？）主题配置同步 */
+    --tide-unocss-spacing: 0.25rem;
     --tide-font-global: <TIDE_FONT_GLOBAL>;
     --tide-font-site-title: <TIDE_FONT_SITE_TITLE>;
     --tide-font-site-subtitle: <TIDE_FONT_SITE_SUBTITLE>;
@@ -138,9 +140,6 @@ html {
 
 * {
     scrollbar-width: thin;
-}
-
-*:focus-visible {outline-width:4px;outline-color:var(--tide-color-focused-outline) !important;outline-offset:4px;
 }
 
 a {color:var(--tide-color-link-hover);text-decoration-line:underline;
@@ -173,10 +172,6 @@ button {
     font-family: var(--tide-font-site-subtitle);
 }
 
-/* #tide-site-author {
-    font-family: var(--tide-font-site-title);
-} */
-
 [un-prose] {
     font-family: var(--tide-font-prose) !important;
 }
@@ -187,6 +182,14 @@ button {
 
 #tide-side-bar {
     background-image: var(--tide-background-image-side-bar);
+}
+
+[tabindex]:not([tabindex="-1"]):focus,
+a:focus,
+button:focus,
+input:focus,
+select:focus:focus,
+textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline) !important;outline-offset:4px;outline-style:solid;
 }
 
 /* layer: preflights */
@@ -289,7 +292,7 @@ button {
 
 :is([un-prose=""],.prose) :where(th):not(:where(.not-prose,.not-prose *)){background:var(--tide-color-table-background-head);border-bottom:1px var(--tide-color-table-border) solid;}
 
-:is([un-prose=""],.prose) :where(figure):not(:where(.not-prose,.not-prose *)){text-align:center;}
+:is([un-prose=""],.prose) :where(figure):not(:where(.not-prose,.not-prose *)){text-align:center;overflow-wrap:break-word;}
 
 :is([un-prose=""],.prose) :where(pre):not(:where(.not-prose,.not-prose *)):has(code){direction:ltr;border-radius:0;}
 
@@ -360,8 +363,6 @@ button {
 [un-right~="\30 "]{right:0;}
 
 [un-right~="\34 "]{right:1rem;}
-
-[un-top~="\37 \/10"]{top:70%;}
 
 [un-z~="\31 00"]{z-index:100;}
 
@@ -441,13 +442,17 @@ button {
 
 [un-h~="full"]{height:100%;}
 
-[un-max-w~="\38 5\/100"]{max-width:85%;}
+[un-max-h~="\31 \/3"]{max-height:33.3333333333%;}
+
+[un-max-w~="full"]{max-width:100%;}
 
 [un-max-w~="none"]{max-width:none;}
 
 [un-min-w~="\32 0"]{min-width:5rem;}
 
 [un-min-w~="\34 8"]{min-width:12rem;}
+
+[un-min-w~="\38 4"]{min-width:21rem;}
 
 [un-w~="\31 \/4"]{width:25%;}
 
@@ -480,9 +485,9 @@ button {
 
 [un-flex~="col"]{flex-direction:column;}
 
-[un-translate-x~="-\31 \/2"]{--un-translate-x:-50%;transform:translateX(var(--un-translate-x)) translateY(var(--un-translate-y)) translateZ(var(--un-translate-z)) rotate(var(--un-rotate)) rotateX(var(--un-rotate-x)) rotateY(var(--un-rotate-y)) rotateZ(var(--un-rotate-z)) skewX(var(--un-skew-x)) skewY(var(--un-skew-y)) scaleX(var(--un-scale-x)) scaleY(var(--un-scale-y)) scaleZ(var(--un-scale-z));}
+[un-flex~="wrap"]{flex-wrap:wrap;}
 
-[un-translate-y~="-\31 \/2"]{--un-translate-y:-50%;transform:translateX(var(--un-translate-x)) translateY(var(--un-translate-y)) translateZ(var(--un-translate-z)) rotate(var(--un-rotate)) rotateX(var(--un-rotate-x)) rotateY(var(--un-rotate-y)) rotateZ(var(--un-rotate-z)) skewX(var(--un-skew-x)) skewY(var(--un-skew-y)) scaleX(var(--un-scale-x)) scaleY(var(--un-scale-y)) scaleZ(var(--un-scale-z));}
+[un-translate-x~="-\31 \/2"]{--un-translate-x:-50%;transform:translateX(var(--un-translate-x)) translateY(var(--un-translate-y)) translateZ(var(--un-translate-z)) rotate(var(--un-rotate)) rotateX(var(--un-rotate-x)) rotateY(var(--un-rotate-y)) rotateZ(var(--un-rotate-z)) skewX(var(--un-skew-x)) skewY(var(--un-skew-y)) scaleX(var(--un-scale-x)) scaleY(var(--un-scale-y)) scaleZ(var(--un-scale-z));}
 
 [un-list~="none"]{list-style-type:none;}
 
@@ -500,6 +505,8 @@ button {
 
 [un-overflow~="auto"]{overflow:auto;}
 
+[un-break~="words"]{overflow-wrap:break-word;}
+
 .b-prim{border-color:var(--tide-color-primary);}
 
 .b-scnd{border-color:var(--tide-color-secondary);}
@@ -510,13 +517,9 @@ button {
 
 [un-rounded~="full"]{border-radius:9999px;}
 
-[un-rounded~="lg"]{border-radius:0.5rem;}
-
 [un-bg~="b-prim"]{background-color:var(--tide-color-background-primary);}
 
 [un-bg~="black\/75"]{background-color:rgb(0 0 0 / 0.75);}
-
-[un-bg~="gray-700"]{--un-bg-opacity:1;background-color:rgb(55 65 81 / var(--un-bg-opacity));}
 
 [un-bg~="prim"]{background-color:var(--tide-color-primary);}
 
@@ -532,19 +535,31 @@ button {
 
 [un-text~="center"]{text-align:center;}
 
-[un-text="\32 xl"],
 [un-text~="\32 xl"]{font-size:1.5rem;line-height:2rem;}
 
-[un-text="\33 xl"]{font-size:1.875rem;line-height:2.25rem;}
+[un-text~="\33 xl"]{font-size:1.875rem;line-height:2.25rem;}
 
-[un-text="\34 xl"],
 [un-text~="\34 xl"]{font-size:2.25rem;line-height:2.5rem;}
 
-[un-text="base"]{font-size:1rem;line-height:1.5rem;}
+[un-text~="\35 xl"]{font-size:3rem;line-height:1;}
 
-[un-text="lg"]{font-size:1.125rem;line-height:1.75rem;}
+[un-text~="\36 xl"]{font-size:3.75rem;line-height:1;}
 
-[un-text="xl"]{font-size:1.25rem;line-height:1.75rem;}
+[un-text~="\37 xl"]{font-size:4.5rem;line-height:1;}
+
+[un-text~="\38 xl"]{font-size:6rem;line-height:1;}
+
+[un-text~="\39 xl"]{font-size:8rem;line-height:1;}
+
+[un-text~="base"]{font-size:1rem;line-height:1.5rem;}
+
+[un-text~="lg"]{font-size:1.125rem;line-height:1.75rem;}
+
+[un-text~="sm"]{font-size:0.875rem;line-height:1.25rem;}
+
+[un-text~="xl"]{font-size:1.25rem;line-height:1.75rem;}
+
+[un-text~="xs"]{font-size:0.75rem;line-height:1rem;}
 
 [un-text~="\!t-prim"]{color:var(--tide-color-text-primary) !important;}
 
@@ -565,29 +580,7 @@ button {
 
 .tab{-moz-tab-size:4;-o-tab-size:4;tab-size:4;}
 
-[un-backdrop-blur~="lg"]{--un-backdrop-blur:blur(16px);-webkit-backdrop-filter:var(--un-backdrop-blur) var(--un-backdrop-brightness) var(--un-backdrop-contrast) var(--un-backdrop-grayscale) var(--un-backdrop-hue-rotate) var(--un-backdrop-invert) var(--un-backdrop-opacity) var(--un-backdrop-saturate) var(--un-backdrop-sepia);backdrop-filter:var(--un-backdrop-blur) var(--un-backdrop-brightness) var(--un-backdrop-contrast) var(--un-backdrop-grayscale) var(--un-backdrop-hue-rotate) var(--un-backdrop-invert) var(--un-backdrop-opacity) var(--un-backdrop-saturate) var(--un-backdrop-sepia);}
-
 /* 自定义样式 */
-
-html.tide-large-font {
-    font-size: 32px;
-    /* 直接调整基础字体，不要用 unocss 的 text-lg 等，目的只是调节 rem 值 */
-}
-
-/* 斜角，暂时舍弃，因为如果使用过渡效果会穿帮，而且 rtl 下有白色接缝 */
-/* #tide-deco {
-    @apply sc-trans-default left-0;
-} */
-
-/* [dir="rtl"] #tide-deco {
-    transform: rotateY(180deg)
-} */
-
-/* 暂时去掉 shadow，因为 tide-content 也移动了，tide-side-bar 就不像是浮在上面的一层 */
-/* [tide-side-bar-expanded="true"] #tide-side-bar { */
-/* box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.5); */
-/* unocss 精细控制不好使，这里写原生 */
-/* } */
 
 [tide-side-bar-expanded="true"] #tide-btn-nav-icon-bars {display:none;
 }
@@ -604,34 +597,30 @@ html.tide-large-font {
 /* 默认小屏幕 */
 /* 侧栏默认整体滚动 */
 #tide-side-bar {
-    width: min(24rem, 75vw);overflow:auto;
+    width: min(var(--tide-unocss-spacing) * 96, 75vw);overflow:auto;
 }
 
 [dir="ltr"] #tide-side-bar {
-    left: max(-24rem, -75vw);
+    left: max(var(--tide-unocss-spacing) * -96, -75vw);
 }
 
 /* 使用 [dir="ltr"] 而非 @apply ltr:…… ，因为后者在转换后会有空的样式，显示警告 */
 [dir="ltr"] [tide-side-bar-expanded="true"] #tide-side-bar,
 [dir="ltr"] [tide-side-bar-expanded="true"] #tide-content {
-    transform: translateX(min(24rem, 75vw));
+    transform: translateX(min(var(--tide-unocss-spacing) * 96, 75vw));
 }
 
 [dir="rtl"] #tide-side-bar {
-    right: max(-24rem, -75vw);
+    right: max(var(--tide-unocss-spacing) * -96, -75vw);
 }
 
 [dir="rtl"] [tide-side-bar-expanded="true"] #tide-side-bar,
 [dir="rtl"] [tide-side-bar-expanded="true"] #tide-content {
-    transform: translateX(max(-24rem, -75vw));
+    transform: translateX(max(var(--tide-unocss-spacing) * -96, -75vw));
 }
 
 #tide-site-title {font-size:1.875rem;line-height:2.25rem;
 }
-
-/* #tide-site-subtitle, #tide-site-author {
-    @apply text-xl;
-} */
 
 #tide-navigation ul {font-size:1.25rem;line-height:1.75rem;
 }
@@ -642,30 +631,10 @@ html.tide-large-font {
 .tide-image-figure {max-width:80%;margin-left:auto;margin-right:auto;
 }
 
-.tide-image-caption {overflow:auto;
-}
-
 /* md 往后调整侧边栏宽度为 96 */
 @media (min-width: 768px) {
-
-    /* #tide-side-bar {
-        @apply w-96;
-    }
-
-    [dir="ltr"] #tide-side-bar {
-        @apply -left-96;
-    }
-
-    [dir="rtl"] #tide-side-bar {
-        @apply -right-96 w-96;
-    } */
-
     #tide-site-title {font-size:2.25rem;line-height:2.5rem;
     }
-
-    /* #tide-site-subtitle, #tide-site-author {
-        @apply text-2xl;
-    } */
 
     #tide-navigation ul {font-size:1.5rem;line-height:2rem;
     }
@@ -697,36 +666,19 @@ html.tide-large-font {
 
         [dir="ltr"] :not([tide-is-post]) #tide-side-bar,
         [dir="ltr"] :not([tide-is-post]) #tide-content {
-            /* @apply translate-x-96; */
-            transform: translateX(min(24rem, 75vw));
+            transform: translateX(min(var(--tide-unocss-spacing) * 96, 75vw));
         }
 
         [dir="rtl"] :not([tide-is-post]) #tide-side-bar,
         [dir="rtl"] :not([tide-is-post]) #tide-content {
-            /* @apply -translate-x-96; */
-            transform: translateX(max(-24rem, -75vw));
+            transform: translateX(max(var(--tide-unocss-spacing) * -96, -75vw));
         }
-
-        /* [dir="ltr"] :not([tide-is-post]) [tide-side-bar-expanded="true"] #tide-side-bar,
-        [dir="rtl"] :not([tide-is-post]) [tide-side-bar-expanded="true"] #tide-side-bar {
-            @apply shadow-none;
-        } */
-
-        /* 只在 1280*768 后展示斜角 */
-        /* [dir="ltr"] :not([tide-is-post]) [tide-side-bar-expanded="true"] #tide-deco {
-            @apply fixed left-96 h-full z-30 pointer-events-none;
-        } */
-
-        /* [dir="rtl"] :not([tide-is-post]) [tide-side-bar-expanded="true"] #tide-deco {
-            @apply fixed right-96 h-full z-30 pointer-events-none;
-        } */
 
         #tide-deco #triangle-big {fill:var(--tide-color-primary);
         }
 
         :not([tide-is-post]) #tide-content {
-            /* @apply w-[calc(100%-24rem)]; */
-            width: calc(100% - min(24rem, 75vw));
+            width: calc(100% - min(var(--tide-unocss-spacing) * 96, 75vw));
         }
 
         :not([tide-is-post]) #tide-btn-nav {display:none;

@@ -1,12 +1,23 @@
-$('#tide-btn-scroll-top').click(() => {
+$('#tide-btn-scroll-to-top').click(() => {
     $('#tide-main-content').animate({ scrollTop: 0 }, 300);
 });
 $('#tide-btn-search').click(() => {
-    // $('#ctx').toggle();
-    if ($('html').hasClass('tide-large-font'))
-        $('html').removeClass('tide-large-font');
-    else
-        $('html').addClass('tide-large-font');
+    $('#ctx').toggle();
+    // $('[un-text]').each(function (index) {
+
+    //     const sizeList = ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl', '7xl', '8xl', '9xl'];
+
+    //     for (let i = 0; i < sizeList.length; ++i) {
+    //         const sz = sizeList[i];
+    //         const regex = new RegExp(`\\b${sz}\\b`);
+    //         if (regex.test($(this).attr('un-text'))) {
+    //             if (i < sizeList.length - 1) {
+    //                 $(this).attr('un-text', sizeList[i + 1]);
+    //             }
+    //             break;
+    //         }
+    //     }
+    // });
 });
 $('#tide-btn-settings').click(() => {
     if ($('html').attr('dir') === 'ltr')
@@ -14,7 +25,6 @@ $('#tide-btn-settings').click(() => {
     else
         $('html').attr('dir', 'ltr');
 });
-// todo：初始化 tide-side-bar-expanded 属性，并根据 resize 事件实时更新。
 
 const toggleSideBar = (status, buttonTriggered = false) => {
     if (status) {
@@ -22,8 +32,8 @@ const toggleSideBar = (status, buttonTriggered = false) => {
         // $('#tide-side-bar').removeAttr('aria-hidden');
         // $('#tide-side-bar').attr('aria-expanded', 'true'); lighthouse 会报 aria-* 属性与角色不匹配
         $('#tide-side-bar a, #tide-side-bar :input').removeAttr('tabindex');
-        if (buttonTriggered)
-            $('#tide-side-bar nav a:first-of-type').focus(); // todo：只在按钮触发时聚焦？还是只要展开就聚焦？
+        // if (buttonTriggered)
+            // $('#tide-side-bar nav a:first-of-type').focus(); // todo：只在按钮触发时聚焦？还是只要展开就聚焦？
     }
     else {
         $('#tide-root').attr('tide-side-bar-expanded', 'false');

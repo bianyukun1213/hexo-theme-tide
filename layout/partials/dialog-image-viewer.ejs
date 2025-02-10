@@ -3,15 +3,15 @@
   <div class="tide-dialog-mask" un-sc-dlg-mask>
     <img id="tide-viewing-image" tabindex="0">
   </div>
-  <!-- <div id="tide-viewing-image-title" un-bg="black/75" un-backdrop-blur="lg" un-absolute un-top="7/10" un-left="1/2" un-translate-x="-1/2" un-translate-y="-1/2" un-px="4" un-py="2" un-rounded="lg" un-text="2xl white"></div> -->
-  <div id="tide-image-viewer-toolbar" class="tide-dialog-container" un-bg="gray-700" un-absolute un-bottom="1/5" un-left="1/2" un-translate-x="-1/2" un-px="4" un-py="2" un-max-w="85/100" un-rounded="2xl" un-text="2xl white">
-    <div id="tide-image-viewer-counter" un-mb="4" un-text="center" un-overflow="auto"></div>
-    <div id="tide-image-viewer-controls" un-flex un-overflow="auto">
+  <div id="tide-image-viewer-toolbar" class="tide-dialog-container" un-bg="black/75" un-absolute un-bottom="1/5" un-left="1/2" un-translate-x="-1/2" un-px="4" un-py="2" un-min-w="84" un-max-w="full" un-max-h="1/3" un-rounded="2xl" un-text="base white" un-overflow="auto" un-break="words">
+    <div id="tide-viewing-image-title" un-mb="4" un-text="center xl"></div>
+    <div id="tide-image-viewer-counter" un-mb="4" un-text="center"></div>
+    <div id="tide-image-viewer-controls" un-flex="~ wrap" un-justify="center">
       <button id="tide-image-viewer-btn-prev" title="<%= __('image_viewer.btn_prev.title') %>" un-sc-btn-default un-text="white" un-border="white" un-rounded="full" un-w="12" un-h="12" un-ltr="mr-2" un-rtl="ml-2" un-shrink="0">
-        <i class="fa-solid <%= tideCtx.dir==='rtl'?'fa-arrow-right':'fa-arrow-left' %>" aria-hidden="true"></i>
+        <i class="fa-solid <%= tideCtx.dir==='rtl'?'fa-chevron-right':'fa-chevron-left' %>" aria-hidden="true"></i>
       </button>
       <button id="tide-image-viewer-btn-next" title="<%= __('image_viewer.btn_next.title') %>" un-sc-btn-default un-text="white" un-border="white" un-rounded="full" un-w="12" un-h="12" un-mx="2" un-shrink="0">
-        <i class="fa-solid <%= tideCtx.dir==='rtl'?'fa-arrow-left':'fa-arrow-right' %>" aria-hidden="true"></i>
+        <i class="fa-solid <%= tideCtx.dir==='rtl'?'fa-chevron-left':'fa-chevron-right' %>" aria-hidden="true"></i>
       </button>
       <button id="tide-image-viewer-btn-zoom-in" title="<%= __('image_viewer.btn_zoom_in.title') %>" un-sc-btn-default un-text="white" un-border="white" un-rounded="full" un-w="12" un-h="12" un-mx="2" un-shrink="0">
         <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
@@ -29,6 +29,7 @@
     const imgViewerDialogDom = $('#tide-dialog-image-viewer').get(0);
     let imgDom = $('#tide-viewing-image').get(0);
     const pz = new PinchZoom.default(imgDom, {
+      listenOnElementNotContainer: true,
       useMouseWheel: true,
       rtl: $('html').attr('dir') === 'rtl' ? true : false,
       minZoom: 0.25,
@@ -60,11 +61,12 @@
       imgDom.alt = dom.alt;
       if (dom.title) {
         imgDom.title = dom.title;
-        $('#tide-image-viewer-counter').html(`${dom.title}<br>${currentImgIndex+1}/${imgCounts}`);
+        $('#tide-viewing-image-title').text(dom.title).show();
       } else {
         imgDom.title = '';
-        $('#tide-image-viewer-counter').text(currentImgIndex + 1 + '/' + imgCounts);
+        $('#tide-viewing-image-title').text('').hide();
       }
+      $('#tide-image-viewer-counter').text(currentImgIndex + 1 + '/' + imgCounts);
       pz.zoomFactor = 1;
       pz.lastScale = 1;
       pz.resetOffset();
@@ -87,6 +89,7 @@
     }
 
     function zoomIn(step) {
+      // pz.handleZoomStart();
       const zoomFactor = pz.getInitialZoomFactor() * pz.zoomFactor,
         center = {
           x: -pz.offset.x + pz.el.offsetWidth * zoomFactor / 2,
@@ -99,10 +102,12 @@
         scale = newScale / pz.lastScale;
       pz.scale(scale, center);
       pz.lastScale = newScale;
+      // pz.handleZoomEnd();
       pz.update();
     }
 
     function zoomOut(step) {
+      // pz.handleZoomStart();
       const zoomFactor = pz.getInitialZoomFactor() * pz.zoomFactor,
         center = {
           x: -pz.offset.x + pz.el.offsetWidth * zoomFactor / 2,
@@ -115,10 +120,12 @@
         scale = newScale / pz.lastScale;
       pz.scale(scale, center);
       pz.lastScale = newScale;
+      // pz.handleZoomEnd();
       pz.update();
     }
 
     function addOffset(offset) {
+      // pz.handleDragStart();
       pz.offset.x += offset.x;
       pz.offset.y += offset.y;
       pz.offset = pz.sanitizeOffset(pz.offset);
@@ -210,7 +217,7 @@
           e.preventDefault();
           break;
         case 'ArrowRight':
-        $('html').attr('dir') === 'rtl' ? toPrev() : toNext();
+          $('html').attr('dir') === 'rtl' ? toPrev() : toNext();
           e.preventDefault();
           break;
       }
