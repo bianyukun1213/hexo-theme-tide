@@ -47,4 +47,9 @@
         <i class="fa-solid fa-copy" aria-hidden="true" un-ltr="mr-1" un-rtl="ml-1"></i><% postCtx.syndications.forEach((syn,i)=>{ %><a un-sc-link-plain un-text="!t-scnd" href="<%= syn %>"><%= tide_utils().extractHostFromUrl(syn) %></a><% if(i<postCtx.syndications.length-1){ %><%= postCtx.list_separator %><% }}) %>
       </span>
     <% } %>
+    <% if(detailed&&postCtx.copyright!==''){ %>
+      <span class="tide-post-meta-extra" title="<%= __('post_meta.copyright.title') %>" un-inline-block un-ltr="mr-8" un-rtl="ml-8">
+        <i class="fa-solid fa-copyright" aria-hidden="true" un-ltr="mr-1" un-rtl="ml-1"></i><%= postCtx.copyright %>
+      </span>
+    <% } %>
 </div>

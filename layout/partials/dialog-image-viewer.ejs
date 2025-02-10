@@ -44,11 +44,15 @@
     });
     pz.enable();
     $(imgDom).css({
-      '-webkit-user-drag': 'none',
-      '-moz-user-drag': 'none',
-      '-ms-user-drag': 'none',
       'user-drag': 'none',
+      '-webkit-user-drag': 'none',
+      'user-select': 'none',
+      '-moz-user-select': 'none',
+      '-webkit-user-select': 'none',
+      '-ms-user-select': 'none',
       'cursor': 'grab'
+    }).on('dragstart', () => {
+      return false;
     });
     let pageImgs = $('#page figure>img, #post figure>img');
     const imgCounts = pageImgs.length;
@@ -89,7 +93,6 @@
     }
 
     function zoomIn(step) {
-      // pz.handleZoomStart();
       const zoomFactor = pz.getInitialZoomFactor() * pz.zoomFactor,
         center = {
           x: -pz.offset.x + pz.el.offsetWidth * zoomFactor / 2,
@@ -102,12 +105,10 @@
         scale = newScale / pz.lastScale;
       pz.scale(scale, center);
       pz.lastScale = newScale;
-      // pz.handleZoomEnd();
       pz.update();
     }
 
     function zoomOut(step) {
-      // pz.handleZoomStart();
       const zoomFactor = pz.getInitialZoomFactor() * pz.zoomFactor,
         center = {
           x: -pz.offset.x + pz.el.offsetWidth * zoomFactor / 2,
@@ -120,12 +121,10 @@
         scale = newScale / pz.lastScale;
       pz.scale(scale, center);
       pz.lastScale = newScale;
-      // pz.handleZoomEnd();
       pz.update();
     }
 
     function addOffset(offset) {
-      // pz.handleDragStart();
       pz.offset.x += offset.x;
       pz.offset.y += offset.y;
       pz.offset = pz.sanitizeOffset(pz.offset);
@@ -168,10 +167,10 @@
       toNext();
     });
     $('#tide-image-viewer-btn-zoom-in').click(() => {
-      zoomIn(0.1);
+      zoomIn(0.2);
     });
     $('#tide-image-viewer-btn-zoom-out').click(() => {
-      zoomOut(0.1);
+      zoomOut(0.2);
     });
     $('#tide-image-viewer-btn-close').click(() => {
       imgViewerDialogDom.close();
@@ -222,18 +221,5 @@
           break;
       }
     });
-
-    // 缩小代码：
-    // var center = pz.getCurrentZoomCenter(),
-    //             newScale = Math.min(
-    //                 Math.max(pz.options.minZoom, pz.lastScale + 10 * -0.01),
-    //                 pz.options.maxZoom
-    //             ),
-    //             scale = newScale / pz.lastScale;
-
-    //         pz.scale(scale, center);
-
-    //         pz.lastScale = newScale;
-    //         pz.update()
   </script>
 </dialog>

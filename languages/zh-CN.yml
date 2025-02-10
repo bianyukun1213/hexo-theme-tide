@@ -46,6 +46,8 @@ post_meta:
     title: "注释"
   syndications:
     title: "副本"
+  copyright:
+    title: "版权声明"
   # views:
   #   title: "访问量" # View(s)，因为生成时无法确定具体的访问量。
 
