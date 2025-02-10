@@ -1,3 +1,5 @@
+'use strict';
+
 const scriptName = 'tide-filter-page-modifier';
 hexo.extend.filter.register('after_post_render', function (page) {
     let pgContent = page.content;

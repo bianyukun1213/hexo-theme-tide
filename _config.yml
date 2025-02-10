@@ -1,4 +1,4 @@
-direction: ltr
+dir: ltr
 
 meta_icons:
   favicon: "/img/favicon.ico"
@@ -115,6 +115,9 @@ cdn:
   jquery_js:
     src: "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
     integrity: "sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+  pinchzoom_js:
+    src: "/js/third-party/pinch-zoom.umd.min.js" # patched
+    integrity: ""
 
 fonts:
   web_fonts:
@@ -159,11 +162,13 @@ copyright:
   cc_by_sa_4: "CC-BY-SA 4.0"
 
 comments:
-  enable: ["webmentions", "twikoo"]
+  enable: ["webmentionio", "twikoo"]
   webmentions: 111
   twikoo: 123
 
 img_handler:
+  priority: 5
+table_handler:
   priority: 5
 css_modifier:
   priority: 5

@@ -1,0 +1,232 @@
+<!-- image-viewer 是全屏模态对话框，点击单独实现的遮罩层关闭，无需关闭按钮 -->
+<dialog id="tide-dialog-image-viewer" un-sc-dlg-fullscreen>
+  <div class="tide-dialog-mask" un-sc-dlg-mask>
+    <img id="tide-viewing-image" tabindex="0">
+  </div>
+  <!-- <div id="tide-viewing-image-title" un-bg="black/75" un-backdrop-blur="lg" un-absolute un-top="7/10" un-left="1/2" un-translate-x="-1/2" un-translate-y="-1/2" un-px="4" un-py="2" un-rounded="lg" un-text="2xl white"></div> -->
+  <div id="tide-image-viewer-toolbar" class="tide-dialog-container" un-bg="gray-700" un-absolute un-bottom="1/5" un-left="1/2" un-translate-x="-1/2" un-px="4" un-py="2" un-max-w="85/100" un-rounded="2xl" un-text="2xl white">
+    <div id="tide-image-viewer-counter" un-mb="4" un-text="center" un-overflow="auto"></div>
+    <div id="tide-image-viewer-controls" un-flex un-overflow="auto">
+      <button id="tide-image-viewer-btn-prev" title="<%= __('image_viewer.btn_prev.title') %>" un-sc-btn-default un-text="white" un-border="white" un-rounded="full" un-w="12" un-h="12" un-ltr="mr-2" un-rtl="ml-2" un-shrink="0">
+        <i class="fa-solid <%= tideCtx.dir==='rtl'?'fa-arrow-right':'fa-arrow-left' %>" aria-hidden="true"></i>
+      </button>
+      <button id="tide-image-viewer-btn-next" title="<%= __('image_viewer.btn_next.title') %>" un-sc-btn-default un-text="white" un-border="white" un-rounded="full" un-w="12" un-h="12" un-mx="2" un-shrink="0">
+        <i class="fa-solid <%= tideCtx.dir==='rtl'?'fa-arrow-left':'fa-arrow-right' %>" aria-hidden="true"></i>
+      </button>
+      <button id="tide-image-viewer-btn-zoom-in" title="<%= __('image_viewer.btn_zoom_in.title') %>" un-sc-btn-default un-text="white" un-border="white" un-rounded="full" un-w="12" un-h="12" un-mx="2" un-shrink="0">
+        <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
+      </button>
+      <button id="tide-image-viewer-btn-zoom-out" title="<%= __('image_viewer.btn_zoom_out.title') %>" un-sc-btn-default un-text="white" un-border="white" un-rounded="full" un-w="12" un-h="12" un-mx="2" un-shrink="0">
+        <i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i>
+      </button>
+      <button id="tide-image-viewer-btn-close" title="<%= __('image_viewer.btn_close.title') %>" un-sc-btn-default un-text="white" un-border="white" un-rounded="full" un-w="12" un-h="12" un-ltr="ml-2" un-rtl="mr-2" un-shrink="0">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+  <script src="<%= tideCtx.cdn.pinchzoom_js.src %>" integrity="<%= tideCtx.cdn.pinchzoom_js.integrity %>" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    const imgViewerDialogDom = $('#tide-dialog-image-viewer').get(0);
+    let imgDom = $('#tide-viewing-image').get(0);
+    const pz = new PinchZoom.default(imgDom, {
+      useMouseWheel: true,
+      rtl: $('html').attr('dir') === 'rtl' ? true : false,
+      minZoom: 0.25,
+      maxZoom: 4,
+      zoomOutFactor: 0,
+      onDragStart: (object, event) => {
+        $(imgDom).css('cursor', 'grabbing');
+      },
+      onDragEnd: (object, event) => {
+        $(imgDom).css('cursor', 'grab');
+      }
+    });
+    pz.enable();
+    $(imgDom).css({
+      '-webkit-user-drag': 'none',
+      '-moz-user-drag': 'none',
+      '-ms-user-drag': 'none',
+      'user-drag': 'none',
+      'cursor': 'grab'
+    });
+    let pageImgs = $('#page figure>img, #post figure>img');
+    const imgCounts = pageImgs.length;
+    let currentImgIndex;
+    pageImgs.css('cursor', 'zoom-in');
+
+    function openImage(index) {
+      const dom = pageImgs.get(index);
+      imgDom.src = dom.src;
+      imgDom.alt = dom.alt;
+      if (dom.title) {
+        imgDom.title = dom.title;
+        $('#tide-image-viewer-counter').html(`${dom.title}<br>${currentImgIndex+1}/${imgCounts}`);
+      } else {
+        imgDom.title = '';
+        $('#tide-image-viewer-counter').text(currentImgIndex + 1 + '/' + imgCounts);
+      }
+      pz.zoomFactor = 1;
+      pz.lastScale = 1;
+      pz.resetOffset();
+    }
+
+    function toPrev() {
+      if (currentImgIndex <= 0)
+        currentImgIndex = imgCounts - 1;
+      else
+        --currentImgIndex;
+      openImage(currentImgIndex);
+    }
+
+    function toNext() {
+      if (currentImgIndex >= imgCounts - 1)
+        currentImgIndex = 0;
+      else
+        ++currentImgIndex;
+      openImage(currentImgIndex);
+    }
+
+    function zoomIn(step) {
+      const zoomFactor = pz.getInitialZoomFactor() * pz.zoomFactor,
+        center = {
+          x: -pz.offset.x + pz.el.offsetWidth * zoomFactor / 2,
+          y: -pz.offset.y + pz.el.offsetHeight * zoomFactor / 2
+        },
+        newScale = Math.max(
+          Math.min(pz.options.maxZoom, pz.lastScale + step),
+          pz.options.minZoom
+        ),
+        scale = newScale / pz.lastScale;
+      pz.scale(scale, center);
+      pz.lastScale = newScale;
+      pz.update();
+    }
+
+    function zoomOut(step) {
+      const zoomFactor = pz.getInitialZoomFactor() * pz.zoomFactor,
+        center = {
+          x: -pz.offset.x + pz.el.offsetWidth * zoomFactor / 2,
+          y: -pz.offset.y + pz.el.offsetHeight * zoomFactor / 2
+        },
+        newScale = Math.min(
+          Math.max(pz.options.minZoom, pz.lastScale - step),
+          pz.options.maxZoom
+        ),
+        scale = newScale / pz.lastScale;
+      pz.scale(scale, center);
+      pz.lastScale = newScale;
+      pz.update();
+    }
+
+    function addOffset(offset) {
+      pz.offset.x += offset.x;
+      pz.offset.y += offset.y;
+      pz.offset = pz.sanitizeOffset(pz.offset);
+      pz.update();
+    }
+
+    function moveDown(step) {
+      addOffset({
+        x: 0,
+        y: -step
+      });
+    }
+
+    function moveRight(step) {
+      addOffset({
+        x: -step,
+        y: 0
+      });
+    }
+
+    function openImageViewer() {
+      openImage(currentImgIndex);
+      imgViewerDialogDom.showModal();
+      $('#tide-image-viewer-btn-next').focus();
+    };
+    pageImgs.click(function(e) {
+      currentImgIndex = $.inArray(e.target, pageImgs);
+      openImageViewer();
+    }).keydown(function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        currentImgIndex = $.inArray(e.target, pageImgs);
+        openImageViewer();
+      }
+    });
+    $('#tide-image-viewer-btn-prev').click(() => {
+      toPrev();
+    });
+    $('#tide-image-viewer-btn-next').click(() => {
+      toNext();
+    });
+    $('#tide-image-viewer-btn-zoom-in').click(() => {
+      zoomIn(0.1);
+    });
+    $('#tide-image-viewer-btn-zoom-out').click(() => {
+      zoomOut(0.1);
+    });
+    $('#tide-image-viewer-btn-close').click(() => {
+      imgViewerDialogDom.close();
+    });
+    $('#tide-viewing-image').keydown(function(e) {
+      const xStep = $('.tide-dialog-mask:has(#tide-viewing-image)').width() / 20;
+      const yStep = $('.tide-dialog-mask:has(#tide-viewing-image)').height() / 20;
+      switch (e.key) {
+        case 'ArrowUp':
+          moveDown(-xStep);
+          e.preventDefault();
+          e.stopPropagation();
+          break;
+        case 'ArrowDown':
+          moveDown(xStep);
+          e.preventDefault();
+          e.stopPropagation();
+          break;
+        case 'ArrowLeft':
+          moveRight(-yStep);
+          e.preventDefault();
+          e.stopPropagation();
+          break;
+        case 'ArrowRight':
+          moveRight(yStep);
+          e.preventDefault();
+          e.stopPropagation();
+          break;
+      }
+    });
+    $('#tide-dialog-image-viewer').keydown(function(e) {
+      switch (e.key) {
+        case 'ArrowUp':
+          zoomIn(0.1);
+          e.preventDefault();
+          break;
+        case 'ArrowDown':
+          zoomOut(0.1);
+          e.preventDefault();
+          break;
+        case 'ArrowLeft':
+          $('html').attr('dir') === 'rtl' ? toNext() : toPrev();
+          e.preventDefault();
+          break;
+        case 'ArrowRight':
+        $('html').attr('dir') === 'rtl' ? toPrev() : toNext();
+          e.preventDefault();
+          break;
+      }
+    });
+
+    // 缩小代码：
+    // var center = pz.getCurrentZoomCenter(),
+    //             newScale = Math.min(
+    //                 Math.max(pz.options.minZoom, pz.lastScale + 10 * -0.01),
+    //                 pz.options.maxZoom
+    //             ),
+    //             scale = newScale / pz.lastScale;
+
+    //         pz.scale(scale, center);
+
+    //         pz.lastScale = newScale;
+    //         pz.update()
+  </script>
+</dialog>

@@ -36,8 +36,10 @@ export default defineConfig({
                 },
                 table: {
                     display: 'table',
-                    width: '100%',
+                    'min-width': '100%',
+                    margin: 0,
                     'table-layout': 'auto',
+                    'white-space': 'nowrap',
                     'border-collapse': 'separate',
                     'border-spacing': 0,
                     border: '1px var(--tide-color-table-border) solid'
@@ -60,7 +62,8 @@ export default defineConfig({
                 },
                 // 代码块锁定 ltr。
                 'pre:has(code)': {
-                    direction: 'ltr'
+                    direction: 'ltr',
+                    'border-radius': 0
                 }
             }
         }),
@@ -79,8 +82,11 @@ export default defineConfig({
         // 与上方 prose 部分对应。
         'sc-trans-default': 'transition-all ease-in-out duration-200',
         'sc-link-default': 'underline link:text-lk hover:(underline-offset-4) text-lk-hvr visited:text-lk-vst',
-        'sc-link-plain': 'no-underline hover:(underline) text-t-prim',
-        'sc-btn-default': 'sc-trans-default flex items-center justify-center bg-transparent text-prim border-(2 prim solid) hover:scale-105 active:scale-95 cursor-pointer disabled:(opacity-50 cursor-not-allowed hover:transform-none active:transform-none)'
+        // 'sc-link-plain': 'no-underline hover:(underline) text-t-prim',
+        'sc-link-plain': 'decoration-transparent hover:(decoration-current) text-t-prim',
+        'sc-btn-default': 'bg-transparent sc-trans-default flex items-center justify-center text-prim border-(2 prim solid) hover:scale-110 active:scale-90 cursor-pointer disabled:(opacity-50 cursor-not-allowed hover:transform-none active:transform-none)',
+        'sc-dlg-fullscreen': 'bg-transparent absolute w-full max-w-full h-full max-h-full p-0 m-0 z-100 border-none',
+        'sc-dlg-mask': 'bg-black/75 absolute w-full h-full'
     },
     transformers: [
         transformerDirectives(),

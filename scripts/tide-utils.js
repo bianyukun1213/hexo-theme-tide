@@ -50,7 +50,7 @@ function deepClone(obj) {
 
 function deepMergeObj(obj, ...source) {
     if (!isPlainObject(obj))
-        throw `深度合并失败，不是 plain object：${obj}。`;
+        throw `deepMergeObj failed, target is not a plain object: ${obj} .`;
     obj = deepClone(obj);
     if (source.length === 0)
         return obj;
@@ -89,7 +89,7 @@ function toUnderScoreCase(name) {
 function underScoreCaseObjToCamelCaseObj(uSCObj) {
     if (!isPlainObject(uSCObj))
         // return {};
-        throw `转换失败，不是 plain object：${cCObj}。`;
+        throw `underScoreCaseObjToCamelCaseObj failed, target is not a plain object: ${cCObj} .`;
     let cCObj = {};
     for (const key in uSCObj) {
         // 忽略下划线开头的属性。
@@ -107,7 +107,7 @@ function underScoreCaseObjToCamelCaseObj(uSCObj) {
 function camelCaseObjToUnderScoreCaseObj(cCObj) {
     if (!isPlainObject(cCObj))
         // return {};
-        throw `转换失败，不是 plain object：${cCObj}。`;
+        throw `camelCaseObjToUnderScoreCaseObj failed, target is not a plain object: ${cCObj} .`;
     let uSCObj = {};
     for (const key in cCObj) {
         // 忽略下划线开头的属性。

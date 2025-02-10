@@ -48,3 +48,15 @@ post_meta:
     title: "副本"
   # views:
   #   title: "访问量" # View(s)，因为生成时无法确定具体的访问量。
+
+image_viewer:
+  btn_prev:
+    title: "上一张"
+  btn_next:
+    title: "下一张"
+  btn_zoom_in:
+    title: "放大"
+  btn_zoom_out:
+    title: "缩小"
+  btn_close:
+    title: "关闭"

@@ -2,11 +2,11 @@ $('#tide-btn-scroll-top').click(() => {
     $('#tide-main-content').animate({ scrollTop: 0 }, 300);
 });
 $('#tide-btn-search').click(() => {
-    $('#ctx').toggle();
-    // if ($('html').hasClass('tide-large-font'))
-        // $('html').removeClass('tide-large-font');
-    // else
-        // $('html').addClass('tide-large-font');
+    // $('#ctx').toggle();
+    if ($('html').hasClass('tide-large-font'))
+        $('html').removeClass('tide-large-font');
+    else
+        $('html').addClass('tide-large-font');
 });
 $('#tide-btn-settings').click(() => {
     if ($('html').attr('dir') === 'ltr')

@@ -141,7 +141,7 @@ html {
 }
 
 *:focus-visible {
-    @apply outline-4 outline-fcs-ol;
+    @apply outline-4 outline-offset-4 !outline-fcs-ol;
 }
 
 a {
@@ -150,6 +150,12 @@ a {
 
 button {
     -webkit-tap-highlight-color: transparent;
+}
+
+.tide-table-wrapper {
+    @apply overflow-auto;
+    /* unocss prose 的 table 默认有 1em 0px 的 margin，转移到 wrapper 上。 */
+    margin: 1em 0;
 }
 
 #tide-root {
@@ -223,19 +229,27 @@ html.tide-large-font {
 /* 默认小屏幕 */
 /* 侧栏默认整体滚动 */
 #tide-side-bar {
+    width: min(24rem, 75vw);
     @apply overflow-auto;
+}
+
+[dir="ltr"] #tide-side-bar {
+    left: max(-24rem, -75vw);
 }
 
 /* 使用 [dir="ltr"] 而非 @apply ltr:…… ，因为后者在转换后会有空的样式，显示警告 */
 [dir="ltr"] [tide-side-bar-expanded="true"] #tide-side-bar,
 [dir="ltr"] [tide-side-bar-expanded="true"] #tide-content {
-    @apply translate-x-75vw;
-    /* @apply shadow-[-30px_0_30px_30px_rgba(0, 0, 0, 0.3)]; */
+    transform: translateX(min(24rem, 75vw));
+}
+
+[dir="rtl"] #tide-side-bar {
+    right: max(-24rem, -75vw);
 }
 
 [dir="rtl"] [tide-side-bar-expanded="true"] #tide-side-bar,
 [dir="rtl"] [tide-side-bar-expanded="true"] #tide-content {
-    @apply -translate-x-75vw;
+    transform: translateX(max(-24rem, -75vw));
 }
 
 #tide-site-title {
@@ -255,10 +269,19 @@ html.tide-large-font {
     @apply py-8;
 }
 
+.tide-image-figure {
+    @apply max-w-4/5;
+    @apply mx-auto;
+}
+
+.tide-image-caption {
+    @apply overflow-auto;
+}
+
 /* md 往后调整侧边栏宽度为 96 */
 @media (min-width: 768px) {
 
-    #tide-side-bar {
+    /* #tide-side-bar {
         @apply w-96;
     }
 
@@ -268,17 +291,7 @@ html.tide-large-font {
 
     [dir="rtl"] #tide-side-bar {
         @apply -right-96 w-96;
-    }
-
-    [dir="ltr"] [tide-side-bar-expanded="true"] #tide-side-bar,
-    [dir="ltr"] [tide-side-bar-expanded="true"] #tide-content {
-        @apply translate-x-96;
-    }
-
-    [dir="rtl"] [tide-side-bar-expanded="true"] #tide-side-bar,
-    [dir="rtl"] [tide-side-bar-expanded="true"] #tide-content {
-        @apply -translate-x-96;
-    }
+    } */
 
     #tide-site-title {
         @apply text-4xl;
@@ -297,10 +310,20 @@ html.tide-large-font {
     }
 }
 
+@media (min-width: 1280px) {
+    .tide-image-figure {
+        @apply max-w-1/2;
+    }
+}
+
 /* xl 往后非文章页横向不再允许折叠 */
 @media (orientation: landscape) {
+    .tide-image-figure {
+        @apply max-w-1/2;
+    }
 
     @media (min-width: 1280px) {
+
         /* 1280*768 后侧栏整体不再允许滚动，导航部分允许滚动 */
         @media (min-height: 768px) {
             #tide-side-bar {
@@ -314,12 +337,14 @@ html.tide-large-font {
 
         [dir="ltr"] :not([tide-is-post]) #tide-side-bar,
         [dir="ltr"] :not([tide-is-post]) #tide-content {
-            @apply translate-x-96;
+            /* @apply translate-x-96; */
+            transform: translateX(min(24rem, 75vw));
         }
 
         [dir="rtl"] :not([tide-is-post]) #tide-side-bar,
         [dir="rtl"] :not([tide-is-post]) #tide-content {
-            @apply -translate-x-96;
+            /* @apply -translate-x-96; */
+            transform: translateX(max(-24rem, -75vw));
         }
 
         /* [dir="ltr"] :not([tide-is-post]) [tide-side-bar-expanded="true"] #tide-side-bar,
@@ -341,7 +366,8 @@ html.tide-large-font {
         }
 
         :not([tide-is-post]) #tide-content {
-            @apply w-[calc(100%-24rem)];
+            /* @apply w-[calc(100%-24rem)]; */
+            width: calc(100% - min(24rem, 75vw));
         }
 
         :not([tide-is-post]) #tide-btn-nav {
@@ -362,4 +388,21 @@ html.tide-large-font {
     @apply mx-1;
     @apply sc-link-plain;
     @apply !text-t-scnd;
+}
+
+/* high contrust optimization */
+
+#tide-side-bar,
+.tide-dialog-container,
+.tide-dialog-container button,
+iframe,
+pre:has(code),
+.gist {
+    @apply outline-2 outline-transparent outline-solid;
+}
+
+@media (forced-colors: active) {
+    .tide-dialog-mask {
+        @apply bg-black;
+    }
 }

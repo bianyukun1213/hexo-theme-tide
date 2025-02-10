@@ -9,6 +9,7 @@ const {
     isArray,
     isPlainObject,
     isEmptyObject,
+    isFunction,
     isPhoneNumber,
     deepClone,
     deepMergeObj,
@@ -16,7 +17,8 @@ const {
     toCamelCase,
     toUnderScoreCase,
     underScoreCaseObjToCamelCaseObj,
-    camelCaseObjToUnderScoreCaseObj
+    camelCaseObjToUnderScoreCaseObj,
+    extractHostFromUrl
 } = require('./tide-utils.js');
 
 let ctxCache = {};
@@ -41,12 +43,12 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.date_format = config?.date_format ?? '';
     out.time_format = config?.time_format ?? '';
     // 上为站点配置，下为主题配置。
-    out.direction = theme.direction === 'rtl' ? 'rtl' : 'ltr';
-    if (isString(page.direction))
-        if (page.direction === 'rtl')
-            out.direction = 'rtl';
+    out.dir = theme.dir === 'rtl' ? 'rtl' : 'ltr';
+    if (isString(page.dir))
+        if (page.dir === 'rtl')
+            out.dir = 'rtl';
         else
-            out.direction = 'ltr';
+            out.dir = 'ltr';
     out.meta_icons = theme?.meta_icons ?? {};
     out.meta_links = theme?.meta_links ?? [];
     out.microformats2 = theme?.microformats2?.enable ?? false;
@@ -168,26 +170,26 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
         }
     }
     out.syndications = isArray(page.syndications) ? page.syndications : [];
-    // page: ["webmentions", "twikoo"] or false
-    // theme: enable: ["webmentions", "twikoo"] webmentions: xxx twikoo: xxx
-    // out: {webmentions: xxx, twikoo: xxx} or false
+    // page: ["webmentionio", "twikoo"] or false
+    // theme: enable: ["webmentionio", "twikoo"] webmentionio: xxx twikoo: xxx
+    // out: {webmentionio: xxx, twikoo: xxx} or false
     out.comments = {};
     if (isArray(page.comments)) {
-        if (page.comments.includes('webmentions'))
-            out.comments.webmentions = theme?.comments?.webmentions ?? {};
+        if (page.comments.includes('webmentionio'))
+            out.comments.webmentionio = theme?.comments?.webmentionio ?? {};
         if (page.comments.includes('twikoo'))
             out.comments.twikoo = theme?.comments?.twikoo ?? {};
     } else if (page.comments === true) {
-        if (theme?.comments?.enable?.includes('webmentions'))
-            out.comments.webmentions = theme.comments?.webmentions ?? {};
+        if (theme?.comments?.enable?.includes('webmentionio'))
+            out.comments.webmentionio = theme.comments?.webmentionio ?? {};
         if (theme?.comments?.enable?.includes('twikoo'))
             out.comments.twikoo = theme.comments?.twikoo ?? {};
     } else if (page.comments === false) {
         out.comments = false;
     }
     else if (isArray(theme?.comments?.enable)) {
-        if (theme.comments.enable.includes('webmentions'))
-            out.comments.webmentions = theme.comments?.webmentions ?? {};
+        if (theme.comments.enable.includes('webmentionio'))
+            out.comments.webmentionio = theme.comments?.webmentionio ?? {};
         if (theme.comments.enable.includes('twikoo'))
             out.comments.twikoo = theme.comments?.twikoo ?? {};
     }
