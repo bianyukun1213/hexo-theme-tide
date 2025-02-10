@@ -276,9 +276,7 @@ textarea:focus {
 
 /* xl 往后非文章页横向不再允许折叠 */
 @media (orientation: landscape) {
-    .tide-image-figure {
-        @apply max-w-1/2;
-    }
+
 
     @media (min-width: 1280px) {
 
@@ -313,6 +311,10 @@ textarea:focus {
 
         :not([tide-is-post]) #tide-btn-nav {
             @apply hidden;
+        }
+
+        .tide-image-figure {
+            @apply max-w-1/2;
         }
     }
 }

@@ -422,6 +422,10 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 
 [un-mb~="\38 "]{margin-bottom:2rem;}
 
+[un-mt=""]{margin-top:1rem;}
+
+[un-mt~="\30 "]{margin-top:0;}
+
 [un-inline=""]{display:inline;}
 
 [un-block=""]{display:block;}
@@ -440,7 +444,7 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 
 [un-h~="full"]{height:100%;}
 
-[un-max-h~="\31 \/3"]{max-height:33.3333333333%;}
+[un-max-h~="\32 \/5"]{max-height:40%;}
 
 [un-max-w~="full"]{max-width:100%;}
 
@@ -648,8 +652,7 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 
 /* xl 往后非文章页横向不再允许折叠 */
 @media (orientation: landscape) {
-    .tide-image-figure {max-width:50%;
-    }
+
 
     @media (min-width: 1280px) {
 
@@ -680,6 +683,9 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
         }
 
         :not([tide-is-post]) #tide-btn-nav {display:none;
+        }
+
+        .tide-image-figure {max-width:50%;
         }
     }
 }
