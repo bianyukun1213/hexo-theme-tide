@@ -1,77 +1,77 @@
-{? const tideCtx=get_ctx(site,config,theme,page) ?}
+/% const tideCtx=get_ctx(site,config,theme,page) %/
 <!DOCTYPE html>
-<html lang="{?= tideCtx.language ?}" dir="{?= tideCtx.dir ?}">
+<html lang="/%= tideCtx.language %/" dir="/%= tideCtx.dir %/">
 
 <head>
-  {?- partial('./partials/meta.ejs',{tideCtx}) ?}
-  {?- partial('./partials/res-head-end.ejs',{tideCtx}) ?}
+  /%- partial('./partials/meta.ejs',{tideCtx}) %/
+  /%- partial('./partials/res-head-end.ejs',{tideCtx}) %/
 </head>
 
 <body>
-  {?- partial('./partials/res-body-begin.ejs',{tideCtx}) ?}
-  <textarea id="ctx" style="display:none;" un-fixed un-w="96" un-h="96" un-right="0" un-bottom="0" un-z="100">{?= JSON.stringify(tideCtx,null,2) ?}</textarea>
-  <div id="tide-root" {? if(is_post()) { ?} tide-is-post="true" {? } ?} un-bg="b-scnd" un-absolute un-w="full" un-h="full" un-text="base" un-break="words">
+  /%- partial('./partials/res-body-begin.ejs',{tideCtx}) %/
+  <textarea id="ctx" style="display:none;" un-fixed un-w="96" un-h="96" un-right="0" un-bottom="0" un-z="100">/%= JSON.stringify(tideCtx,null,2) %/</textarea>
+  <div id="tide-root" /% if(is_post()) { %/ tide-is-post="true" /% } %/ un-bg="b-scnd" un-absolute un-w="full" un-h="full" un-text="base" un-break="words">
     <div id="tide-side-bar" un-sc-trans-default un-bg="prim" un-fixed un-ltr="-left-75vw" un-rtl="-right-75vw" un-flex="~ col" un-justify="between" un-z="30" un-text="center t-sb" un-w="75vw" un-h="full">
       <header un-flex="none" un-p="8">
-        {? if(is_home()) { ?}
-        <h1 id="tide-site-title" un-my="4" un-font="bold">{?= tideCtx.site_title ?}</h1>
-        {? } else { ?}
-        <p id="tide-site-title" un-my="4" un-font="bold">{?= tideCtx.site_title ?}</p>
-        {? } ?}
-        <p id="tide-site-subtitle" un-my="2" un-font="italic">{?= tideCtx.site_subtitle ?}</p>
+        /% if(is_home()) { %/
+        <h1 id="tide-site-title" un-my="4" un-font="bold">/%= tideCtx.site_title %/</h1>
+        /% } else { %/
+        <p id="tide-site-title" un-my="4" un-font="bold">/%= tideCtx.site_title %/</p>
+        /% } %/
+        <p id="tide-site-subtitle" un-my="2" un-font="italic">/%= tideCtx.site_subtitle %/</p>
       </header>
-      {? if(tideCtx.microformats2){ ?}
-      {? for(const card of tideCtx.site_h_cards){ ?}
-      {?- partial('./partials/h-card.ejs',{h_card:card,authorCard:false}) ?}
-      {? } ?}
-      {? } ?}
+      /% if(tideCtx.microformats2){ %/
+      /% for(const card of tideCtx.site_h_cards){ %/
+      /%- partial('./partials/h-card.ejs',{h_card:card,authorCard:false}) %/
+      /% } %/
+      /% } %/
       <nav id="tide-navigation" un-flex="initial" un-self="center" un-w="full">
         <ul un-inline-flex un-flex="col" un-items="start" un-p="0" un-m="0" un-w="auto" un-list="none">
-          {? for(const key in tideCtx.navigation){ ?}
-          {? if(Object.prototype.hasOwnProperty.call(tideCtx.navigation,key)){ ?}
-          {? const element=tideCtx.navigation[key] ?}
+          /% for(const key in tideCtx.navigation){ %/
+          /% if(Object.prototype.hasOwnProperty.call(tideCtx.navigation,key)){ %/
+          /% const element=tideCtx.navigation[key] %/
           <li un-inline-block un-mb="8">
-            <i class="{?= element.icon ?}" un-ltr="mr-4" un-rtl="ml-4" aria-hidden="true"></i><a un-sc-link-plain un-text="!t-sb" href="{?= full_url_for(element.link) ?}">{?= key ?}</a>
+            <i class="/%= element.icon %/" un-ltr="mr-4" un-rtl="ml-4" aria-hidden="true"></i><a un-sc-link-plain un-text="!t-sb" href="/%= full_url_for(element.link) %/">/%= key %/</a>
           </li>
-          {? } ?}
-          {? } ?}
+          /% } %/
+          /% } %/
         </ul>
       </nav>
       <footer un-flex="none" un-p="8">
         <!-- 留一个隐藏的 div，方便用户通过修改注入 -->
         <div class="tide-footer-injection-point" un-hidden></div>
-        {? if(!tide_utils().isEmptyObject(tideCtx.icp_record)) { ?}
-        <p id="tide-icp-record"><a un-sc-link-plain un-text="!t-sb" href="{?= tideCtx.icp_record.link ?}">{?= tideCtx.icp_record.text ?}</a></p>
-        {? } ?}
-        {? if(tideCtx.generated_by_hexo){ ?}
-        <p id="tide-generated-by-hexo">{?- __('navigation.footer.generated_by_hexo') ?}</p>
-        {? } ?}
+        /% if(!tide_utils().isEmptyObject(tideCtx.icp_record)) { %/
+        <p id="tide-icp-record"><a un-sc-link-plain un-text="!t-sb" href="/%= tideCtx.icp_record.link %/">/%= tideCtx.icp_record.text %/</a></p>
+        /% } %/
+        /% if(tideCtx.generated_by_hexo){ %/
+        <p id="tide-generated-by-hexo">/%- __('navigation.footer.generated_by_hexo') %/</p>
+        /% } %/
       </footer>
     </div>
     <div id="tide-content" un-sc-trans-default un-fixed un-flex="~ col" un-w="full" un-h="full">
       <!-- 顶部工具栏 -->
       <header id="tide-top-bar" un-bg="b-prim" un-flex un-justify="stretch" un-items="center" un-h="16" un-overflow="auto">
         <div un-w="1/4" un-min-w="20" un-h="12">
-          <button id="tide-btn-nav" title="{?= __('navigation.btn_nav.title') ?}" un-sc-btn-default un-relative un-ltr="float-left ml-4" un-rtl="float-right mr-4" un-w="12" un-h="12">
+          <button id="tide-btn-nav" title="/%= __('navigation.btn_nav.title') %/" un-sc-btn-default un-relative un-ltr="float-left ml-4" un-rtl="float-right mr-4" un-w="12" un-h="12">
             <i id="tide-btn-nav-icon-bars" class="fa-solid fa-bars" aria-hidden="true"></i>
             <i id="tide-btn-nav-icon-close" class="fa-solid fa-close" aria-hidden="true"></i>
           </button>
         </div>
         <div un-w="3/4" un-min-w="48" un-h="12">
           <!-- 开启 relative，使用 right 让元素具有符合直觉的 tab index -->
-          <button id="tide-btn-scroll-to-top" title="{?= __('navigation.btn_scroll_to_top.title') ?}" un-sc-btn-default un-relative un-ltr="float-right right-32 mr-4" un-rtl="float-left left-32 ml-4" un-w="12" un-h="12">
+          <button id="tide-btn-scroll-to-top" title="/%= __('navigation.btn_scroll_to_top.title') %/" un-sc-btn-default un-relative un-ltr="float-right right-32 mr-4" un-rtl="float-left left-32 ml-4" un-w="12" un-h="12">
             <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
           </button>
-          <button id="tide-btn-search" title="{?= __('navigation.btn_search.title') ?}" un-sc-btn-default un-relative un-ltr="float-right mr-4" un-rtl="float-left ml-4" un-w="12" un-h="12">
+          <button id="tide-btn-search" title="/%= __('navigation.btn_search.title') %/" un-sc-btn-default un-relative un-ltr="float-right mr-4" un-rtl="float-left ml-4" un-w="12" un-h="12">
             <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
           </button>
-          <button id="tide-btn-settings" title="{?= __('navigation.btn_settings.title') ?}" un-sc-btn-default un-relative un-ltr="float-right -right-32 mr-4" un-rtl="float-left -left-32 ml-4" un-w="12" un-h="12">
+          <button id="tide-btn-settings" title="/%= __('navigation.btn_settings.title') %/" un-sc-btn-default un-relative un-ltr="float-right -right-32 mr-4" un-rtl="float-left -left-32 ml-4" un-w="12" un-h="12">
             <i class="fa-solid fa-gear" aria-hidden="true"></i>
           </button>
         </div>
       </header>
       <main id="tide-main-content" un-bg="b-prim" un-flex="1" un-overflow="auto">
-        {?- body ?}
+        /%- body %/
         <!-- 页面 -->
         <!-- <article></article> -->
         <!-- 评论 -->
@@ -83,8 +83,8 @@
                     </aside> -->
     </div>
   </div>
-  {?- partial('./partials/res-body-end.ejs',{tideCtx}) ?}
-  {?- partial('./partials/dialog-image-viewer.ejs',{tideCtx}) ?}
+  /%- partial('./partials/res-body-end.ejs',{tideCtx}) %/
+  /%- partial('./partials/dialog-image-viewer.ejs',{tideCtx}) %/
 </body>
 
 </html>
