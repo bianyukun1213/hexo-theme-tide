@@ -1,7 +1,7 @@
-<% const tideCtx=get_ctx(site,config,theme,page) %>
+{? const tideCtx=get_ctx(site,config,theme,page) ?}
 <div id="tide-archive-posts">
-  <%- partial('./partials/post-ul.ejs',{tideCtx}) %>
+  {?- partial('./partials/post-ul.ejs',{tideCtx}) ?}
 <div>
 <div id="tide-archive-paginator">
-  <%- partial('./partials/paginator.ejs') %>
+  {?- partial('./partials/paginator.ejs') ?}
 </div>
