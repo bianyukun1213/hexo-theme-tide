@@ -23,9 +23,9 @@ u-in-reply-to - the URL which the h-entry is considered reply to (i.e. doesn’t
 u-like-of - the URL which the h-entry is considered a “like” (favorite, star) of. Optionally an embedded h-cite
 u-repost-of - the URL which the h-entry is considered a “repost” of. Optionally an embedded h-cite. -->
 
-<article id="tide-post" class="<%= tideCtx.microformats2?'h-entry':''%>">
+<article id="tide-post" class="<%= tideCtx.microformats2?'h-entry':'' %>">
   <!-- 如果 microformats2 未开启，class 会是空，但是只有这样写才能让 un-mt 生效。可能别的写法和 unocss 的正则表达式处理冲突 -->
-  <h1 id="tide-post-title" class="<%= tideCtx.microformats2?'p-name':''%>" un-mt="0" un-mb="2" un-text="4xl" un-font="bold"><%= tideCtx.page_title?tideCtx.page_title:__('no_title') %></h1>
+  <h1 id="tide-post-title" class="<%= tideCtx.microformats2?'p-name':'' %>" un-mt="0" un-mb="2" un-text="4xl" un-font="bold"><%= tideCtx.page_title?tideCtx.page_title:__('no_title') %></h1>
   <%- partial('./partials/post-meta.ejs',{postCtx:tideCtx,detailed:true}) %>
   <% if(tideCtx.microformats2){ %>
   <div class="tide-hidden-microformats2-group" un-hidden>

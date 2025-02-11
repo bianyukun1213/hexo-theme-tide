@@ -224,7 +224,7 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 
 :is([un-prose=""],.prose) :where(figure,picture):not(:where(.not-prose,.not-prose *)){margin:1em 0;}
 
-:is([un-prose=""],.prose) :where(figcaption):not(:where(.not-prose,.not-prose *)){color:var(--un-prose-captions);font-size:.875em;}
+:is([un-prose=""],.prose) :where(figcaption):not(:where(.not-prose,.not-prose *)){color:var(--un-prose-captions);font-size:.875em;text-align:center;overflow-wrap:break-word;}
 
 :is([un-prose=""],.prose) :where(code):not(:where(.not-prose,.not-prose *)){color:var(--un-prose-code);font-size:.875em;font-weight:600;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
 
@@ -290,9 +290,9 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 
 :is([un-prose=""],.prose) :where(th):not(:where(.not-prose,.not-prose *)){background:var(--tide-color-table-background-head);border-bottom:1px var(--tide-color-table-border) solid;}
 
-:is([un-prose=""],.prose) :where(figure):not(:where(.not-prose,.not-prose *)){text-align:center;overflow-wrap:break-word;}
-
 :is([un-prose=""],.prose) :where(pre):not(:where(.not-prose,.not-prose *)):has(code){direction:ltr;border-radius:0;}
+
+:is([un-prose=""],.prose) :where(iframe):not(:where(.not-prose,.not-prose *)){max-width:100%;margin-left:auto;margin-right:auto;}
 
 [un-prose=""]{color:var(--un-prose-body);max-width:65ch;}
 

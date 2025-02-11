@@ -57,7 +57,7 @@ export default defineConfig({
                 'tr:nth-child(2n)': {
                     background: 'var(--tide-color-table-background-even)'
                 },
-                figure: {
+                figcaption: {
                     'text-align': 'center',
                     'overflow-wrap': 'break-word'
                 },
@@ -65,6 +65,11 @@ export default defineConfig({
                 'pre:has(code)': {
                     direction: 'ltr',
                     'border-radius': 0
+                },
+                iframe: {
+                    'max-width': '100%',
+                    'margin-left': 'auto',
+                    'margin-right': 'auto'
                 }
             }
         }),
