@@ -7,15 +7,15 @@ hexo.extend.filter.register('after_post_render', function (data) {
     const classCaption = 'tide-image-caption';
     if (data.layout === 'post' || data.layout === 'page') {
         // ![]() 间无空行，多张图片被渲染为一个段落，中间以 br 隔开。
-        data.content = data.content.replace(/<p\b[^>]*>([\s\S]*?)<\/p>/gi, (match, inner) => {
-            if (/^(<img\b[^>]*>(<br\s*\/?>[\s\n]*)*)+$/i.test(inner)) {
-                return inner.replace(/<img\b([^>]*)>/gi, (imgMatch, imgAttrs) => {
+        data.content = data.content.replace(/<p\b[^>]*>([\s\S]*?)<\/p>/g, (match, inner) => {
+            if (/^(<img\b[^>]*>(<br\s*\/?>[\s\n]*)*)+$/.test(inner)) {
+                return inner.replace(/<img\b([^>]*)>/g, (imgMatch, imgAttrs) => {
                     const titleMatch = imgAttrs.match(/\btitle="([^"]*)"/);
                     const modifiedImg = imgMatch.replace('<img', '<img tabindex="0"');
                     if (titleMatch)
                         return `<figure class="${classFigure}">${modifiedImg}<figcaption class="${classCaption}">${titleMatch[1]}</figcaption></figure>`;
                     return `<figure class="${classFigure}">${modifiedImg}</figure>`;
-                }).replace(/<br\s*\/?>/gi, '');
+                }).replace(/<br\s*\/?>/i, '');
             }
             return match;
         });
