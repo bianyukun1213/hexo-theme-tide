@@ -1,5 +1,3 @@
-@import url('./third-party/modern-normalize.min.css');
-
 /* preflights */
 
 /* html {
@@ -327,6 +325,32 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 [detailed\:false=""]{detailed:false="";}
 
 [detailed\:true=""]{detailed:true="";}
+
+[href\:tideCtx\.cdn\.font_awesome_css\.href=""]{href:tideCtx.cdn.font awesome css.href="";}
+
+[href\:tideCtx\.cdn\.prism_css\.href=""]{href:tideCtx.cdn.prism css.href="";}
+
+[href\:tideCtx\.cdn\.prism_line_highlight_css\.href=""]{href:tideCtx.cdn.prism line highlight css.href="";}
+
+[href\:tideCtx\.cdn\.prism_line_numbers_css\.href=""]{href:tideCtx.cdn.prism line numbers css.href="";}
+
+[href\:tideCtx\.fonts\.web_fonts\.css_href=""]{href:tideCtx.fonts.web fonts.css href="";}
+
+[integrity\:tideCtx\.cdn\.font_awesome_css\.integrity=""]{integrity:tideCtx.cdn.font awesome css.integrity="";}
+
+[integrity\:tideCtx\.cdn\.jquery_js\.integrity=""]{integrity:tideCtx.cdn.jquery js.integrity="";}
+
+[integrity\:tideCtx\.cdn\.pinchzoom_js\.integrity=""]{integrity:tideCtx.cdn.pinchzoom js.integrity="";}
+
+[integrity\:tideCtx\.cdn\.prism_css\.integrity=""]{integrity:tideCtx.cdn.prism css.integrity="";}
+
+[integrity\:tideCtx\.cdn\.prism_line_highlight_css\.integrity=""]{integrity:tideCtx.cdn.prism line highlight css.integrity="";}
+
+[integrity\:tideCtx\.cdn\.prism_line_numbers_css\.integrity=""]{integrity:tideCtx.cdn.prism line numbers css.integrity="";}
+
+[src\:tideCtx\.cdn\.jquery_js\.src=""]{src:tideCtx.cdn.jquery js.src="";}
+
+[src\:tideCtx\.cdn\.pinchzoom_js\.src=""]{src:tideCtx.cdn.pinchzoom js.src="";}
 
 [un-absolute=""]{position:absolute;}
 
