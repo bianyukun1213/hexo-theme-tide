@@ -23,7 +23,7 @@
       </button>
     </div>
   </div>
-  <script src="<%= tideCtx.cdn.pinchzoom_js.src %>" integrity="<%= tideCtx.cdn.pinchzoom_js.integrity %>" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <%- js({src:tideCtx.cdn.pinchzoom_js.src,integrity:tideCtx.cdn.pinchzoom_js.integrity,crossorigin:'anonymous',referrerpolicy:'no-referrer'}) %>
   <script>
     const imgViewerDialogDom = $('#tide-dialog-image-viewer').get(0);
     let imgDom = $('#tide-viewing-image').get(0);
