@@ -24,12 +24,12 @@ u-like-of - the URL which the h-entry is considered a “like” (favorite, star
 u-repost-of - the URL which the h-entry is considered a “repost” of. Optionally an embedded h-cite. -->
 <article id="tide-post"/%- tideCtx.microformats2?' class="h-entry"':'' %/>
   <h1 id="tide-post-title"/%- tideCtx.microformats2?' class="p-name"':'' %/ un-mt="0" un-mb="2" un-text="4xl" un-font="bold">/%= tideCtx.page_title?tideCtx.page_title:__('no_title') %/</h1>
-  /%- partial('./partials/post-meta.ejs',{postCtx:tideCtx,detailed:true}) %/
+  /%- partial('./partials/post-meta.tidejs',{postCtx:tideCtx,detailed:true}) %/
   /% if(tideCtx.microformats2){ %/
   <div class="tide-hidden-microformats2-group" un-hidden>
     <a class="u-url" href="/%= full_url_for(tideCtx.path) %/" un-hidden>/%= full_url_for(tideCtx.path) %/</a>
     /% for(const card of tideCtx.page_h_cards){ %/
-    /%- partial('./partials/h-card.ejs',{h_card:card,authorCard:true}) %/
+    /%- partial('./partials/h-card.tidejs',{h_card:card,authorCard:true}) %/
     /% } %/
     <time class="dt-published" datetime="/%= date_xml(tideCtx.date) %/" un-hidden>/%= date_xml(tideCtx.date) %/</time>
     <time class="dt-updated" datetime="/%= date_xml(tideCtx.updated) %/" un-hidden>/%= date_xml(tideCtx.updated) %/</time>

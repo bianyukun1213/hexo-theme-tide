@@ -290,6 +290,8 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 
 :is([un-prose=""],.prose) :where(th):not(:where(.not-prose,.not-prose *)){background:var(--tide-color-table-background-head);border-bottom:1px var(--tide-color-table-border) solid;}
 
+:is([un-prose=""],.prose) :where(figure):not(:where(.not-prose,.not-prose *)){text-align:center;}
+
 :is([un-prose=""],.prose) :where(pre):not(:where(.not-prose,.not-prose *)):has(code){direction:ltr;border-radius:0;}
 
 :is([un-prose=""],.prose) :where(iframe):not(:where(.not-prose,.not-prose *)){max-width:100%;margin-left:auto;margin-right:auto;}

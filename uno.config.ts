@@ -3,7 +3,7 @@ import { defineConfig, presetUno, presetAttributify, presetTypography, presetIco
 
 export default defineConfig({
     content: {
-        filesystem: ['./layout/*.ejs', './layout/partials/*.ejs']
+        filesystem: ['./layout/*.tidejs', './layout/partials/*.tidejs']
     },
     preflights: [], // 在 _tide.src.css 中设置。
     presets: [
@@ -56,6 +56,9 @@ export default defineConfig({
                 },
                 'tr:nth-child(2n)': {
                     background: 'var(--tide-color-table-background-even)'
+                },
+                figure: {
+                    'text-align': 'center',
                 },
                 figcaption: {
                     'text-align': 'center',

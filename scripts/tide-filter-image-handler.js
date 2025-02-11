@@ -15,7 +15,7 @@ hexo.extend.filter.register('after_post_render', function (data) {
                     if (titleMatch)
                         return `<figure class="${classFigure}">${modifiedImg}<figcaption class="${classCaption}">${titleMatch[1]}</figcaption></figure>`;
                     return `<figure class="${classFigure}">${modifiedImg}</figure>`;
-                }).replace(/<br\s*\/?>/i, '');
+                }).replace(/<br\s*\/?>/g, '');
             }
             return match;
         });

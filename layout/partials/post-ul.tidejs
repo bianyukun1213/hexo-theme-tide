@@ -10,7 +10,7 @@
       </a>
     </div>
     <!-- 之后分离 post-meta 为 partial -->
-    /%- partial('./post-meta.ejs',{postCtx,detailed:false}) %/
+    /%- partial('./post-meta.tidejs',{postCtx,detailed:false}) %/
     <div class="tide-post-excerpt" un-prose un-max-w="none">
       <!-- 摘要 -->
       <!-- 记得给上样式，必要的话加入 unocss 安全列表 -->
