@@ -106,12 +106,12 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     if (isArray(page.author)) {
         out.page_author = [];
         for (const au of page.author)
-            if (isString(au) && au !== '')
+            if (isString(au) && au)
                 out.page_author.push(au);
         if (out.page_author.length === 0)
             out.page_author = '';
     }
-    else if (isString(page.author) && page.author !== '') {
+    else if (isString(page.author) && page.author) {
         out.page_author = page.author;
     }
     out.path = page?.path ?? '';

@@ -6,7 +6,7 @@
   <li class="tide-post-li" un-block un-mb="16">
     <div class="tide-post-li-title" un-mb="2">
       <a un-sc-link-plain un-text="!t-prim" href="<%= full_url_for(postCtx.path) %>">
-        <h2 un-inline un-text="2xl" un-font="bold"><%= postCtx.page_title===''?__('no_title'):postCtx.page_title %></h2>
+        <h2 un-inline un-text="2xl" un-font="bold"><%= postCtx.page_title?postCtx.page_title:__('no_title') %></h2>
       </a>
     </div>
     <!-- 之后分离 post-meta 为 partial -->
@@ -14,7 +14,7 @@
     <div class="tide-post-excerpt" un-prose un-max-w="none">
       <!-- 摘要 -->
       <!-- 记得给上样式，必要的话加入 unocss 安全列表 -->
-      <% if(postCtx.excerpt!==''){ %>
+      <% if(postCtx.excerpt){ %>
       <%- postCtx.excerpt %>
       <% }else{ %>
       <!-- <p>…</p> -->

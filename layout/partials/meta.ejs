@@ -2,10 +2,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <link rel="icon" href="<%= url_for(tideCtx.meta_icons?.favicon) %>">
 <link rel="apple-touch-icon" href="<%= url_for(tideCtx.meta_icons?.apple_touch_icon) %>">
-<title><%= tideCtx.page_title===''?tideCtx.site_title:tideCtx.page_title %></title>
+<title><%= tideCtx.page_title?tideCtx.page_title:tideCtx.site_title %></title>
 <meta name="keywords" content="<%= tideCtx.keywords %>">
 <!-- 我得把 open graph 的选项写在 ogOptions 里，如果直接写在函数参数处，unocss 会生成错误的样式 -->
-<% const ogOptions={title:tideCtx.page_title===''?tideCtx.site_title:tideCtx.page_title,author:tideCtx.author,language:tideCtx.language,description:tideCtx.description} %>
+<% const ogOptions={title:tideCtx.page_titl?tideCtx.page_title:tideCtx.site_title,author:tideCtx.author,language:tideCtx.language,description:tideCtx.description} %>
 <%- open_graph(ogOptions) %>
 <!-- og 包含 description，不用单独写 -->
 <% if(!tideCtx.page_visibility.no_index){ %>
