@@ -141,7 +141,7 @@ html {
 }
 
 a {
-    @apply sc-link-default;
+    @apply un-sc-link-default;
 }
 
 button {
@@ -149,7 +149,7 @@ button {
 }
 
 .tide-table-wrapper {
-    @apply overflow-auto;
+    @apply un-overflow-auto;
     /* unocss prose 的 table 默认有 1em 0px 的 margin，转移到 wrapper 上。 */
     margin: 1em 0;
 }
@@ -166,7 +166,7 @@ button {
     font-family: var(--tide-font-site-subtitle);
 }
 
-[un-prose] {
+.un-prose {
     font-family: var(--tide-font-prose) !important;
 }
 
@@ -184,7 +184,7 @@ button:focus,
 input:focus,
 select:focus:focus,
 textarea:focus {
-    @apply outline-4 outline-offset-4 !outline-fcs-ol outline-solid;
+    @apply un-outline-4 un-outline-offset-4 un-outline-fcs-ol! un-outline-solid;
 }
 
 /* 插件样式修复 */
@@ -199,33 +199,33 @@ textarea:focus {
 /* 自定义样式 */
 
 [tide-side-bar-expanded="true"] #tide-btn-nav-icon-bars {
-    @apply hidden;
+    @apply un-hidden;
 }
 
 [tide-side-bar-expanded="true"] #tide-btn-nav-icon-close {
-    @apply inline;
+    @apply un-inline;
 }
 
 [tide-side-bar-expanded="false"] #tide-btn-nav-icon-bars {
-    @apply inline;
+    @apply un-inline;
 }
 
 [tide-side-bar-expanded="false"] #tide-btn-nav-icon-close {
-    @apply hidden;
+    @apply un-hidden;
 }
 
 /* 默认小屏幕 */
 /* 侧栏默认整体滚动 */
 #tide-side-bar {
     width: min(var(--tide-unocss-spacing) * 120, 75vw);
-    @apply overflow-auto;
+    @apply un-overflow-auto;
 }
 
 #tide-side-bar {
     inset-inline-start: max(var(--tide-unocss-spacing) * -120, -75vw);
 }
 
-/* 使用 [dir="ltr"] 而非 @apply ltr:…… ，因为后者在转换后会有空的样式，显示警告 */
+/* 使用 [dir="ltr"] 而非 @apply un-ltr:…… ，因为后者在转换后会有空的样式，显示警告 */
 [dir="ltr"] [tide-side-bar-expanded="true"] #tide-side-bar,
 [dir="ltr"] [tide-side-bar-expanded="true"] #tide-content {
     transform: translateX(min(var(--tide-unocss-spacing) * 120, 75vw));
@@ -237,41 +237,41 @@ textarea:focus {
 }
 
 #tide-site-title {
-    @apply text-3xl;
+    @apply un-text-3xl;
 }
 
 #tide-navigation ul {
-    @apply text-xl;
+    @apply un-text-xl;
 }
 
 #tide-main-content {
-    @apply px-4;
-    @apply py-8;
+    @apply un-px-4;
+    @apply un-py-8;
 }
 
 .tide-image-figure {
-    @apply max-w-4/5;
-    @apply mx-auto;
+    @apply un-max-w-4/5;
+    @apply un-mx-auto;
 }
 
 /* md 往后调整侧边栏宽度为 120 */
 @media (min-width: 768px) {
     #tide-site-title {
-        @apply text-4xl;
+        @apply un-text-4xl;
     }
 
     #tide-navigation ul {
-        @apply text-2xl;
+        @apply un-text-2xl;
     }
 
     #tide-main-content {
-        @apply px-16;
+        @apply un-px-16;
     }
 }
 
 @media (min-width: 1280px) {
     .tide-image-figure {
-        @apply max-w-1/2;
+        @apply un-max-w-1/2;
     }
 }
 
@@ -284,11 +284,11 @@ textarea:focus {
         /* 1280*768 后侧栏整体不再允许滚动，导航部分允许滚动 */
         @media (min-height: 768px) {
             #tide-side-bar {
-                @apply overflow-clip;
+                @apply un-overflow-clip;
             }
 
             #tide-navigation {
-                @apply overflow-auto;
+                @apply un-overflow-auto;
             }
         }
 
@@ -303,7 +303,7 @@ textarea:focus {
         }
 
         #tide-deco #triangle-big {
-            @apply fill-prim;
+            @apply un-fill-prim;
         }
 
         :not([tide-is-post]) #tide-content {
@@ -311,27 +311,27 @@ textarea:focus {
         }
 
         :not([tide-is-post]) #tide-btn-nav {
-            @apply hidden;
+            @apply un-hidden;
         }
 
         .tide-image-figure {
-            @apply max-w-1/2;
+            @apply un-max-w-1/2;
         }
     }
 }
 
 .tide-paginator span {
-    @apply inline-block;
-    @apply mx-1;
-    @apply underline;
-    @apply underline-offset-4;
+    @apply un-inline-block;
+    @apply un-mx-1;
+    @apply un-underline;
+    @apply un-underline-offset-4;
 }
 
 .tide-paginator a {
-    @apply inline-block;
-    @apply mx-1;
-    @apply sc-link-plain;
-    @apply !text-t-scnd;
+    @apply un-inline-block;
+    @apply un-mx-1;
+    @apply un-sc-link-plain;
+    @apply un-!text-t-scnd;
 }
 
 /* high contrust optimization */
@@ -342,11 +342,11 @@ textarea:focus {
 iframe,
 pre:has(code),
 .gist {
-    @apply outline-2 outline-transparent outline-solid;
+    @apply un-outline-2 outline-transparent outline-solid;
 }
 
 @media (forced-colors: active) {
     .tide-dialog-mask {
-        @apply bg-black;
+        @apply un-bg-black;
     }
 }

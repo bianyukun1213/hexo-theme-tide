@@ -1,0 +1,54 @@
+<div class="tide-post-meta un-mb-2 un-text-t-scnd">
+  <!-- 为 span 添加 un-inline-block 以在 rtl 下适应方向 -->
+  <% if(detailed){ %>
+  <% let authorCount %>
+  <% if(tide_utils().isArray(postCtx.page_author)){ %>
+  <% authorCount=postCtx.page_author.length %>
+  <% }else{ %>
+  <% authorCount=1 %>
+  <% } %>
+  <span class="tide-post-meta-author un-inline-block un-me-8" title="<%= _p('post_meta.author.title',authorCount) %>">
+    <i class="fa-solid fa-user<%= authorCount>1?'-group':'' %> un-me-1" aria-hidden="true"></i><% if(authorCount===1){ %><%= postCtx.page_author %><% }else{ %><% postCtx.page_author.forEach((au,i)=>{ %><%= au %><% if(i<postCtx.page_author.length-1){ %><%=postCtx.list_separator %><% }})} %> </span>
+  <% } %>
+  <span class="tide-post-meta-date un-inline-block un-me-8" title="<%= __('post_meta.date.title') %>">
+    <i class="fa-solid fa-pen un-me-1" aria-hidden="true"></i><%- time_tag(postCtx.date,detailed?`${postCtx.date_format} ${postCtx.time_format}`:`${postCtx.date_format}`) %>
+  </span>
+  <% if(detailed){ %>
+  <span class="tide-post-meta-updated un-inline-block un-me-8" title="<%= __('post_meta.updated.title') %>">
+    <i class="fa-solid fa-wrench un-me-1" aria-hidden="true"></i><%- time_tag(postCtx.updated,detailed?`${postCtx.date_format} ${postCtx.time_format}`:`${postCtx.date_format}`) %>
+  </span>
+  <% } %>
+  <% if(postCtx.page_categories.length>0){ %>
+  <span class="tide-post-meta-categories un-inline-block un-me-8" title="<%= __('post_meta.categories.title') %>">
+    <i class="fa-solid fa-folder-open un-me-1" aria-hidden="true"></i><% postCtx.page_categories.forEach((cate,i)=>{ %><a class="un-sc-link-plain un-text-t-scnd!" href="<%= url_for(cate.path) %>"><%= cate.name %></a><% if(i<postCtx.page_categories.length-1){ %><%=postCtx.list_separator %><% }}) %>
+  </span>
+  <% } %>
+  <% if(postCtx.page_tags.length>0){ %>
+  <span class="tide-post-meta-tags un-inline-block un-me-8" title="<%= __('post_meta.tags.title') %>">
+    <i class="fa-solid fa-tag un-me-1" aria-hidden="true"></i><% postCtx.page_tags.forEach((tag,i)=>{ %><a class="un-sc-link-plain un-text-t-scnd!" href="<%= url_for(tag.path) %>"><%= tag.name %></a><% if(i<postCtx.page_tags.length-1){ %><%=postCtx.list_separator %><% }}) %>
+  </span>
+  <% } %>
+  <% if(detailed&&postCtx.word_counter){ %>
+  <span class="tide-post-meta-word-count un-inline-block un-me-8" title="<%= __('post_meta.word_count.title') %>">
+    <i class="fa-solid fa-keyboard un-me-1" aria-hidden="true"></i><%= symbolsCount(page) %>
+  </span>
+  <span class="tide-post-meta-reading-time un-inline-block un-me-8" title="<%= __('post_meta.reading_time.title') %>">
+    <i class="fa-solid fa-clock un-me-1" aria-hidden="true"></i><%= symbolsTime(page) %>
+  </span>
+  <% } %>
+  <% if(detailed&&postCtx.extra!==''){ %>
+  <span class="tide-post-meta-extra un-inline-block un-me-8" title="<%= __('post_meta.extra.title') %>">
+    <i class="fa-solid fa-comment un-me-1" aria-hidden="true"></i><%= postCtx.extra %>
+  </span>
+  <% } %>
+  <% if(detailed&&postCtx.syndications.length>0){ %>
+  <span class="tide-post-meta-extra un-inline-block un-me-8" title="<%= __('post_meta.syndications.title') %>">
+    <i class="fa-solid fa-copy un-me-1" aria-hidden="true"></i><% postCtx.syndications.forEach((syn,i)=>{ %><a class="un-sc-link-plain un-text-t-scnd!" href="<%= syn %>"><%= tide_utils().extractHostFromUrl(syn) %></a><% if(i<postCtx.syndications.length-1){ %><%=postCtx.list_separator %><% }}) %>
+  </span>
+  <% } %>
+  <% if(detailed&&postCtx.copyright!==''){ %>
+  <span class="tide-post-meta-extra un-inline-block un-me-8" title="<%= __('post_meta.copyright.title') %>">
+    <i class="fa-solid fa-copyright un-me-1" aria-hidden="true"></i><%= postCtx.copyright %>
+  </span>
+  <% } %>
+</div>

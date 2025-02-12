@@ -1,17 +1,15 @@
 // uno.config.ts
-import { defineConfig, presetUno, presetAttributify, presetTypography, presetIcons, transformerDirectives, transformerVariantGroup } from 'unocss';
+import { defineConfig, presetUno, presetTypography, presetIcons, transformerDirectives, transformerVariantGroup } from 'unocss';
 
 export default defineConfig({
     content: {
-        filesystem: ['./layout/*.tidejs', './layout/partials/*.tidejs']
+        filesystem: ['./layout/*.ejs', './layout/partials/*.ejs']
     },
     preflights: [], // 在 _tide.src.css 中设置。
     presets: [
-        presetUno({prefix:'un-'}),
-        // presetAttributify({
-        //     prefixedOnly: true
-        // }),
+        presetUno({ prefix: 'un-' }),
         presetTypography({
+            selectorName: 'un-prose',
             cssExtend: {
                 a: {
                     transition: 'transform ease-in-out 0.2s',
@@ -79,12 +77,12 @@ export default defineConfig({
                 blockquote: {
                     padding: '0.5rem 1rem', // 切换至 tailwind 4 后，可能需要同步为 spacing 值
                     background: 'var(--tide-color-background-secondary)',
-                    'border-inline-start': '4px var(--tide-color-primary) solid' 
+                    'border-inline-start': '4px var(--tide-color-primary) solid'
                 },
-                'blockquote *:first-child':{
+                'blockquote *:first-child': {
                     'margin-top': '0'
                 },
-                'blockquote *:last-child':{
+                'blockquote *:last-child': {
                     'margin-bottom': '0'
                 },
                 iframe: {
@@ -97,6 +95,7 @@ export default defineConfig({
         }),
         // 无法动态引入，改为 Font Awesome，仅使用 logos。
         presetIcons({
+            prefix: 'un-i-',
             collections: {
                 logos: () => import('@iconify-json/logos').then((i) => i.icons as any)
             },
@@ -108,17 +107,16 @@ export default defineConfig({
     ],
     shortcuts: {
         // 与上方 prose 部分对应。
-        'sc-trans-default': 'transition-all ease-in-out duration-200',
-        'sc-link-default': 'underline link:text-lk hover:(underline-offset-4) text-lk-hvr visited:text-lk-vst',
-        // 'sc-link-plain': 'no-underline hover:(underline) text-t-prim',
-        'sc-link-plain': 'decoration-transparent hover:(decoration-current) text-t-prim',
-        'sc-btn-default': 'bg-transparent sc-trans-default flex items-center justify-center text-prim border-(2 prim solid) hover:scale-110 active:scale-90 cursor-pointer disabled:(opacity-50 cursor-not-allowed hover:transform-none active:transform-none)',
-        'sc-dlg-fullscreen': 'bg-transparent absolute w-full max-w-full h-full max-h-full p-0 m-0 z-100 border-none',
-        'sc-dlg-mask': 'bg-black/75 absolute w-full h-full'
+        'un-sc-trans-default': 'un-transition-all un-ease-in-out un-duration-200',
+        'un-sc-link-default': 'un-underline link:un-text-lk hover:(un-underline-offset-4) un-text-lk-hvr visited:un-text-lk-vst',
+        'un-sc-link-plain': 'un-decoration-transparent hover:(un-decoration-current) un-text-t-prim',
+        'un-sc-btn-default': 'un-bg-transparent un-sc-trans-default un-flex un-items-center un-justify-center un-text-prim un-border-(2 prim solid) hover:un-scale-110 active:un-scale-90 un-cursor-pointer disabled:(un-opacity-50 un-cursor-not-allowed hover:un-transform-none active:un-transform-none)',
+        'un-sc-dlg-fullscreen': 'un-bg-transparent un-absolute un-w-full un-max-w-full un-h-full un-max-h-full un-p-0 un-m-0 un-z-100 un-border-none',
+        'un-sc-dlg-mask': 'un-bg-black/75 un-absolute un-w-full un-h-full'
     },
     transformers: [
         transformerDirectives(),
-        transformerVariantGroup()
+        // transformerVariantGroup() // 有前缀的情况下似乎无法生效。
     ],
     theme: {
         colors: {
@@ -141,20 +139,6 @@ export default defineConfig({
         }
     },
     safelist: [
-        '[un-text~="xs"]',
-        '[un-text~="sm"]',
-        '[un-text~="base"]',
-        '[un-text~="lg"]',
-        '[un-text~="xl"]',
-        '[un-text~="2xl"]',
-        '[un-text~="3xl"]',
-        '[un-text~="4xl"]',
-        '[un-text~="5xl"]',
-        '[un-text~="6xl"]',
-        '[un-text~="7xl"]',
-        '[un-text~="8xl"]',
-        '[un-text~="9xl"]',
-        '[un-i="logos-hexo"]',
-        '[un-mx="1"]'
-    ] // JavaScript 切换字体大小、侧边栏按钮图标使用。
+        'un-i-logos-hexo', 'un-mx-1' // 此二项在页脚显示图标时需要。
+    ]
 });

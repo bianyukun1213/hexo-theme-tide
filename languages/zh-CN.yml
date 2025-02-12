@@ -12,7 +12,7 @@ navigation:
   btn_settings:
     title: "打开设置窗口"
   footer:
-    generated_by_hexo: '使用<span un-i="logos-hexo" un-mx="1"></span><a un-sc-link-plain un-text="!t-sb" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 与 <a un-sc-link-plain un-text="!t-sb" href="https://github.com/bianyukun1213/hexo-theme-tide" target="_blank" rel="noopener">hexo-theme-tide</a> 生成'
+    generated_by_hexo: '使用<span class="un-i-logos-hexo un-mx-1"></span><a class="un-sc-link-plain un-text-t-sb!" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 与 <a class="un-sc-link-plain un-text-t-sb!" href="https://github.com/bianyukun1213/hexo-theme-tide" target="_blank" rel="noopener">hexo-theme-tide</a> 生成'
 
 no_title: "无标题"
 

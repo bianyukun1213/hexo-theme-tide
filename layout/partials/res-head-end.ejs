@@ -1,12 +1,12 @@
-/%- css('/css/third-party/modern-normalize.min.css') %/
-/% if(tideCtx.fonts.web_fonts.enable){ %/
-<link rel="preconnect" href="/%= tideCtx.fonts.web_fonts.preconnect %/">
-/%- css({href:tideCtx.fonts.web_fonts.css_href,integrity:'',crossorigin:'anonymous',referrerpolicy:'no-referrer'}) %/
-/% } %/
-/%- css([
+<%- css('/css/third-party/modern-normalize.min.css') %>
+<% if(tideCtx.fonts.web_fonts.enable){ %>
+<link rel="preconnect" href="<%= tideCtx.fonts.web_fonts.preconnect %>">
+<%- css({href:tideCtx.fonts.web_fonts.css_href,integrity:'',crossorigin:'anonymous',referrerpolicy:'no-referrer'}) %>
+<% } %>
+<%- css([
 {href:tideCtx.cdn.font_awesome_css.href,integrity:tideCtx.cdn.font_awesome_css.integrity,crossorigin:'anonymous',referrerpolicy:'no-referrer'},
 {href:tideCtx.cdn.prism_css.href,integrity:tideCtx.cdn.prism_css.integrity,crossorigin:'anonymous',referrerpolicy:'no-referrer'},
 {href:tideCtx.cdn.prism_line_numbers_css.href,integrity:tideCtx.cdn.prism_line_numbers_css.integrity,crossorigin:'anonymous',referrerpolicy:'no-referrer'},
 {href:tideCtx.cdn.prism_line_highlight_css.href,integrity:tideCtx.cdn.prism_line_highlight_css.integrity,crossorigin:'anonymous',referrerpolicy:'no-referrer'}
-]) %/
-/%- css('/css/tide.css') %/
+]) %>
+<%- css('/css/tide.css') %>
