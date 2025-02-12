@@ -39,6 +39,26 @@ u-repost-of - the URL which the h-entry is considered a “repost” of. Optiona
     /% tideCtx.syndications.forEach((syn,i)=>{ %/
     <a class="u-syndication" href="/%= syn %/" un-hidden>/%= syn %/</a>
     /% }) %/
+    /% for(const interKey of Object.keys(tideCtx.indieweb_interactions)){ %/
+      /% let interClass=''%/
+      /% switch(interKey){
+      case 'reply':
+      interClass='u-in-reply-to'
+      break
+      case 'like':
+      interClass='u-like-of'
+      break
+      case 'repost':
+      interClass='u-repost-of'
+      break
+      case 'bookmark':
+      interClass='u-bookmark-of'
+      break
+      } %/
+      /% if(interClass){ %/
+      /% for(const interUrl of tideCtx.indieweb_interactions[interKey]){ %/
+      <a class="/%= interClass %/" href="/%= interUrl %/" un-hidden>/%= interUrl %/</a>
+      /% }}} %/
   </div>
   /% } %/
 

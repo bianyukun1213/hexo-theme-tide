@@ -7,10 +7,10 @@ export default defineConfig({
     },
     preflights: [], // 在 _tide.src.css 中设置。
     presets: [
-        presetUno(),
-        presetAttributify({
-            prefixedOnly: true
-        }),
+        presetUno({prefix:'un-'}),
+        // presetAttributify({
+        //     prefixedOnly: true
+        // }),
         presetTypography({
             cssExtend: {
                 a: {
