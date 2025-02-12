@@ -5,20 +5,20 @@
   <div id="tide-image-viewer-toolbar" class="tide-dialog-container" un-bg="black/75" un-absolute un-bottom="1/5" un-left="1/2" un-translate-x="-1/2" un-px="4" un-py="2" un-min-w="84" un-max-w="full" un-max-h="2/5" un-rounded="2xl" un-text="base white" un-overflow="auto" un-break="words">
     <div id="tide-viewing-image-title" un-mb="4" un-text="center xl"></div>
     <div id="tide-image-viewer-counter" un-mb="4" un-text="center"></div>
-    <div id="tide-image-viewer-controls" un-flex="~ wrap" un-justify="center">
-      <button id="tide-image-viewer-btn-prev" title="/%= __('image_viewer.btn_prev.title') %/" un-sc-btn-default un-text="white" un-border="white" un-rounded="full" un-w="12" un-h="12" un-ltr="mr-2" un-rtl="ml-2" un-shrink="0">
+    <div id="tide-image-viewer-controls" un-flex="~ wrap" un-justify="between">
+      <button id="tide-image-viewer-btn-prev" title="/%= __('image_viewer.btn_prev.title') %/" un-sc-btn-default un-text="white" un-border="white" un-rounded="full" un-w="12" un-h="12" un-shrink="0">
         <i class="fa-solid /%= tideCtx.dir==='rtl'?'fa-chevron-right':'fa-chevron-left' %/" aria-hidden="true"></i>
       </button>
-      <button id="tide-image-viewer-btn-next" title="/%= __('image_viewer.btn_next.title') %/" un-sc-btn-default un-text="white" un-border="white" un-rounded="full" un-w="12" un-h="12" un-mx="2" un-shrink="0">
+      <button id="tide-image-viewer-btn-next" title="/%= __('image_viewer.btn_next.title') %/" un-sc-btn-default un-text="white" un-border="white" un-rounded="full" un-w="12" un-h="12" un-shrink="0">
         <i class="fa-solid /%= tideCtx.dir==='rtl'?'fa-chevron-left':'fa-chevron-right' %/" aria-hidden="true"></i>
       </button>
-      <button id="tide-image-viewer-btn-zoom-in" title="/%= __('image_viewer.btn_zoom_in.title') %/" un-sc-btn-default un-text="white" un-border="white" un-rounded="full" un-w="12" un-h="12" un-mx="2" un-shrink="0">
+      <button id="tide-image-viewer-btn-zoom-in" title="/%= __('image_viewer.btn_zoom_in.title') %/" un-sc-btn-default un-text="white" un-border="white" un-rounded="full" un-w="12" un-h="12" un-shrink="0">
         <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
       </button>
-      <button id="tide-image-viewer-btn-zoom-out" title="/%= __('image_viewer.btn_zoom_out.title') %/" un-sc-btn-default un-text="white" un-border="white" un-rounded="full" un-w="12" un-h="12" un-mx="2" un-shrink="0">
+      <button id="tide-image-viewer-btn-zoom-out" title="/%= __('image_viewer.btn_zoom_out.title') %/" un-sc-btn-default un-text="white" un-border="white" un-rounded="full" un-w="12" un-h="12" un-shrink="0">
         <i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i>
       </button>
-      <button id="tide-image-viewer-btn-close" title="/%= __('image_viewer.btn_close.title') %/" un-sc-btn-default un-text="white" un-border="white" un-rounded="full" un-w="12" un-h="12" un-ltr="ml-2" un-rtl="mr-2" un-shrink="0">
+      <button id="tide-image-viewer-btn-close" title="/%= __('image_viewer.btn_close.title') %/" un-sc-btn-default un-text="white" un-border="white" un-rounded="full" un-w="12" un-h="12" un-shrink="0">
         <i class="fa-solid fa-xmark" aria-hidden="true"></i>
       </button>
     </div>

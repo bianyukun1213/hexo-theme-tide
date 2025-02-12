@@ -343,23 +343,9 @@ textarea:focus {outline-width:4px;outline-color:var(--tide-color-focused-outline
 
 [un-relative=""]{position:relative;}
 
-.-left-32,
-[dir="rtl"] [un-rtl~="-left-32"]{left:-8rem;}
+[un-end~="-\33 2"]{inset-inline-end:-8rem;}
 
-.-left-75vw,
-[dir="ltr"] [un-ltr~="-left-75vw"]{left:-75vw;}
-
-.-right-32,
-[dir="ltr"] [un-ltr~="-right-32"]{right:-8rem;}
-
-.-right-75vw,
-[dir="rtl"] [un-rtl~="-right-75vw"]{right:-75vw;}
-
-.left-32,
-[dir="rtl"] [un-rtl~="left-32"]{left:8rem;}
-
-.right-32,
-[dir="ltr"] [un-ltr~="right-32"]{right:8rem;}
+[un-end~="\33 2"]{inset-inline-end:8rem;}
 
 [un-bottom~="\30 "]{bottom:0;}
 
@@ -377,51 +363,17 @@ textarea:focus {outline-width:4px;outline-color:var(--tide-color-focused-outline
 
 [un-z~="\33 0"]{z-index:30;}
 
-.float-left,
-[dir="ltr"] [un-ltr~="float-left"],
-[dir="rtl"] [un-rtl~="float-left"]{float:left;}
+[un-float~="start"]{float:inline-start;}
 
-.float-right,
-[dir="ltr"] [un-ltr~="float-right"],
-[dir="rtl"] [un-rtl~="float-right"]{float:right;}
+[un-float~="end"]{float:inline-end;}
 
 [un-m~="\30 "]{margin:0;}
 
 [un-mx="\31 "]{margin-left:0.25rem;margin-right:0.25rem;}
 
-[un-mx~="\32 "]{margin-left:0.5rem;margin-right:0.5rem;}
-
 [un-my~="\32 "]{margin-top:0.5rem;margin-bottom:0.5rem;}
 
 [un-my~="\34 "]{margin-top:1rem;margin-bottom:1rem;}
-
-.ml-1,
-[dir="rtl"] [un-rtl~="ml-1"]{margin-left:0.25rem;}
-
-.ml-2,
-[dir="ltr"] [un-ltr~="ml-2"],
-[dir="rtl"] [un-rtl~="ml-2"]{margin-left:0.5rem;}
-
-.ml-4,
-[dir="ltr"] [un-ltr~="ml-4"],
-[dir="rtl"] [un-rtl~="ml-4"]{margin-left:1rem;}
-
-.ml-8,
-[dir="rtl"] [un-rtl~="ml-8"]{margin-left:2rem;}
-
-.mr-1,
-[dir="ltr"] [un-ltr~="mr-1"]{margin-right:0.25rem;}
-
-.mr-2,
-[dir="ltr"] [un-ltr~="mr-2"],
-[dir="rtl"] [un-rtl~="mr-2"]{margin-right:0.5rem;}
-
-.mr-4,
-[dir="ltr"] [un-ltr~="mr-4"],
-[dir="rtl"] [un-rtl~="mr-4"]{margin-right:1rem;}
-
-.mr-8,
-[dir="ltr"] [un-ltr~="mr-8"]{margin-right:2rem;}
 
 [un-mb~="\31 6"]{margin-bottom:4rem;}
 
@@ -430,6 +382,14 @@ textarea:focus {outline-width:4px;outline-color:var(--tide-color-focused-outline
 [un-mb~="\34 "]{margin-bottom:1rem;}
 
 [un-mb~="\38 "]{margin-bottom:2rem;}
+
+[un-me~="\31 "]{margin-inline-end:0.25rem;}
+
+[un-me~="\34 "]{margin-inline-end:1rem;}
+
+[un-me~="\38 "]{margin-inline-end:2rem;}
+
+[un-ms~="\34 "]{margin-inline-start:1rem;}
 
 [un-mt~="\30 "]{margin-top:0;}
 
@@ -611,18 +571,14 @@ textarea:focus {outline-width:4px;outline-color:var(--tide-color-focused-outline
     width: min(var(--tide-unocss-spacing) * 120, 75vw);overflow:auto;
 }
 
-[dir="ltr"] #tide-side-bar {
-    left: max(var(--tide-unocss-spacing) * -120, -75vw);
+#tide-side-bar {
+    inset-inline-start: max(var(--tide-unocss-spacing) * -120, -75vw);
 }
 
 /* 使用 [dir="ltr"] 而非 @apply ltr:…… ，因为后者在转换后会有空的样式，显示警告 */
 [dir="ltr"] [tide-side-bar-expanded="true"] #tide-side-bar,
 [dir="ltr"] [tide-side-bar-expanded="true"] #tide-content {
     transform: translateX(min(var(--tide-unocss-spacing) * 120, 75vw));
-}
-
-[dir="rtl"] #tide-side-bar {
-    right: max(var(--tide-unocss-spacing) * -120, -75vw);
 }
 
 [dir="rtl"] [tide-side-bar-expanded="true"] #tide-side-bar,

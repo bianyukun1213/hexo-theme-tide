@@ -1,55 +1,51 @@
 <div class="tide-post-meta" un-mb="2" un-text="t-scnd">
-    <!-- 为 span 添加 un-inline-block 以在 rtl 下适应方向 -->
-    /% if(detailed){ %/
-      /% let authorCount %/
-      /% if(tide_utils().isArray(postCtx.page_author)){ %/
-        /% authorCount=postCtx.page_author.length %/
-      /% }else{ %/
-        /% authorCount=1 %/
+  <!-- 为 span 添加 un-inline-block 以在 rtl 下适应方向 -->
+  /% if(detailed){ %/
+  /% let authorCount %/
+  /% if(tide_utils().isArray(postCtx.page_author)){ %/
+  /% authorCount=postCtx.page_author.length %/
+  /% }else{ %/
+  /% authorCount=1 %/
+  /% } %/
+  <span class="tide-post-meta-author" title="/%= _p('post_meta.author.title',authorCount) %/" un-inline-block un-me="8">
+    <i class="fa-solid fa-user/%= authorCount>1?'-group':'' %/" aria-hidden="true" un-me="1"></i>/% if(authorCount===1){ %//%= postCtx.page_author %//% }else{ %//% postCtx.page_author.forEach((au,i)=>{ %//%= au %//% if(i<postCtx.page_author.length-1){ %//%=postCtx.list_separator %//% }})} %/ </span>
       /% } %/
-      <span class="tide-post-meta-author" title="/%= _p('post_meta.author.title',authorCount) %/" un-inline-block un-ltr="mr-8" un-rtl="ml-8">
-        <i class="fa-solid fa-user/%= authorCount>1?'-group':'' %/" aria-hidden="true" un-ltr="mr-1" un-rtl="ml-1"></i>/% if(authorCount===1){ %//%= postCtx.page_author %//% }else{ %//% postCtx.page_author.forEach((au,i)=>{ %//%= au %//% if(i<postCtx.page_author.length-1){ %//%= postCtx.list_separator %//% }})} %/
+      <span class="tide-post-meta-date" title="/%= __('post_meta.date.title') %/" un-inline-block un-me="8">
+        <i class="fa-solid fa-pen" aria-hidden="true" un-me="1"></i>/%- time_tag(postCtx.date,detailed?`${postCtx.date_format} ${postCtx.time_format}`:`${postCtx.date_format}`) %/
       </span>
-    /% } %/
-    <span class="tide-post-meta-date" title="/%= __('post_meta.date.title') %/" un-inline-block un-ltr="mr-8" un-rtl="ml-8">
-      <i class="fa-solid fa-pen" aria-hidden="true" un-ltr="mr-1" un-rtl="ml-1"></i>/%- time_tag(postCtx.date,detailed?`${postCtx.date_format} ${postCtx.time_format}`:`${postCtx.date_format}`) %/
-    </span>
-    /% if(detailed){ %/
-      <span class="tide-post-meta-updated" title="/%= __('post_meta.updated.title') %/" un-inline-block un-ltr="mr-8" un-rtl="ml-8">
-        <i class="fa-solid fa-wrench" aria-hidden="true" un-ltr="mr-1" un-rtl="ml-1"></i>/%- time_tag(postCtx.updated,detailed?`${postCtx.date_format} ${postCtx.time_format}`:`${postCtx.date_format}`) %/
+      /% if(detailed){ %/
+      <span class="tide-post-meta-updated" title="/%= __('post_meta.updated.title') %/" un-inline-block un-me="8">
+        <i class="fa-solid fa-wrench" aria-hidden="true" un-me="1"></i>/%- time_tag(postCtx.updated,detailed?`${postCtx.date_format} ${postCtx.time_format}`:`${postCtx.date_format}`) %/
       </span>
-    /% } %/
-    /% if(postCtx.page_categories.length>0){ %/
-    <span class="tide-post-meta-categories" title="/%= __('post_meta.categories.title') %/" un-inline-block un-ltr="mr-8" un-rtl="ml-8">
-      <i class="fa-solid fa-folder-open" aria-hidden="true" un-ltr="mr-1" un-rtl="ml-1"></i>/% postCtx.page_categories.forEach((cate,i)=>{ %/<a un-sc-link-plain un-text="!t-scnd" href="/%= url_for(cate.path) %/">/%= cate.name %/</a>/% if(i<postCtx.page_categories.length-1){ %//%= postCtx.list_separator %//% }}) %/
-    </span>
-    /% } %/
-    /% if(postCtx.page_tags.length>0){ %/
-    <span class="tide-post-meta-tags" title="/%= __('post_meta.tags.title') %/" un-inline-block un-ltr="mr-8" un-rtl="ml-8">
-      <i class="fa-solid fa-tag" aria-hidden="true" un-ltr="mr-1" un-rtl="ml-1"></i>/% postCtx.page_tags.forEach((tag,i)=>{ %/<a un-sc-link-plain un-text="!t-scnd" href="/%= url_for(tag.path) %/">/%= tag.name %/</a>/% if(i<postCtx.page_tags.length-1){ %//%= postCtx.list_separator %//% }}) %/
-    </span>
-    /% } %/
-    /% if(detailed&&postCtx.word_counter){ %/
-      <span class="tide-post-meta-word-count" title="/%= __('post_meta.word_count.title') %/" un-inline-block un-ltr="mr-8" un-rtl="ml-8">
-        <i class="fa-solid fa-keyboard" aria-hidden="true" un-ltr="mr-1" un-rtl="ml-1"></i>/%= symbolsCount(page) %/
-      </span>
-      <span class="tide-post-meta-reading-time" title="/%= __('post_meta.reading_time.title') %/" un-inline-block un-ltr="mr-8" un-rtl="ml-8">
-        <i class="fa-solid fa-clock" aria-hidden="true" un-ltr="mr-1" un-rtl="ml-1"></i>/%= symbolsTime(page) %/
-      </span>
-    /% } %/
-    /% if(detailed&&postCtx.extra!==''){ %/
-      <span class="tide-post-meta-extra" title="/%= __('post_meta.extra.title') %/" un-inline-block un-ltr="mr-8" un-rtl="ml-8">
-        <i class="fa-solid fa-comment" aria-hidden="true" un-ltr="mr-1" un-rtl="ml-1"></i>/%= postCtx.extra %/
-      </span>
-    /% } %/
-    /% if(detailed&&postCtx.syndications.length>0){ %/
-      <span class="tide-post-meta-extra" title="/%= __('post_meta.syndications.title') %/" un-inline-block un-ltr="mr-8" un-rtl="ml-8">
-        <i class="fa-solid fa-copy" aria-hidden="true" un-ltr="mr-1" un-rtl="ml-1"></i>/% postCtx.syndications.forEach((syn,i)=>{ %/<a un-sc-link-plain un-text="!t-scnd" href="/%= syn %/">/%= tide_utils().extractHostFromUrl(syn) %/</a>/% if(i<postCtx.syndications.length-1){ %//%= postCtx.list_separator %//% }}) %/
-      </span>
-    /% } %/
-    /% if(detailed&&postCtx.copyright!==''){ %/
-      <span class="tide-post-meta-extra" title="/%= __('post_meta.copyright.title') %/" un-inline-block un-ltr="mr-8" un-rtl="ml-8">
-        <i class="fa-solid fa-copyright" aria-hidden="true" un-ltr="mr-1" un-rtl="ml-1"></i>/%= postCtx.copyright %/
-      </span>
-    /% } %/
+      /% } %/
+      /% if(postCtx.page_categories.length>0){ %/
+      <span class="tide-post-meta-categories" title="/%= __('post_meta.categories.title') %/" un-inline-block un-me="8">
+        <i class="fa-solid fa-folder-open" aria-hidden="true" un-me="1"></i>/% postCtx.page_categories.forEach((cate,i)=>{ %/<a un-sc-link-plain un-text="!t-scnd" href="/%= url_for(cate.path) %/">/%= cate.name %/</a>/% if(i<postCtx.page_categories.length-1){ %//%=postCtx.list_separator %//% }}) %/ </span>
+          /% } %/
+          /% if(postCtx.page_tags.length>0){ %/
+          <span class="tide-post-meta-tags" title="/%= __('post_meta.tags.title') %/" un-inline-block un-me="8">
+            <i class="fa-solid fa-tag" aria-hidden="true" un-me="1"></i>/% postCtx.page_tags.forEach((tag,i)=>{ %/<a un-sc-link-plain un-text="!t-scnd" href="/%= url_for(tag.path) %/">/%= tag.name %/</a>/% if(i<postCtx.page_tags.length-1){ %//%=postCtx.list_separator %//% }}) %/ </span>
+              /% } %/
+              /% if(detailed&&postCtx.word_counter){ %/
+              <span class="tide-post-meta-word-count" title="/%= __('post_meta.word_count.title') %/" un-inline-block un-me="8">
+                <i class="fa-solid fa-keyboard" aria-hidden="true" un-me="1"></i>/%= symbolsCount(page) %/
+              </span>
+              <span class="tide-post-meta-reading-time" title="/%= __('post_meta.reading_time.title') %/" un-inline-block un-me="8">
+                <i class="fa-solid fa-clock" aria-hidden="true" un-me="1"></i>/%= symbolsTime(page) %/
+              </span>
+              /% } %/
+              /% if(detailed&&postCtx.extra!==''){ %/
+              <span class="tide-post-meta-extra" title="/%= __('post_meta.extra.title') %/" un-inline-block un-me="8">
+                <i class="fa-solid fa-comment" aria-hidden="true" un-me="1"></i>/%= postCtx.extra %/
+              </span>
+              /% } %/
+              /% if(detailed&&postCtx.syndications.length>0){ %/
+              <span class="tide-post-meta-extra" title="/%= __('post_meta.syndications.title') %/" un-inline-block un-me="8">
+                <i class="fa-solid fa-copy" aria-hidden="true" un-me="1"></i>/% postCtx.syndications.forEach((syn,i)=>{ %/<a un-sc-link-plain un-text="!t-scnd" href="/%= syn %/">/%= tide_utils().extractHostFromUrl(syn) %/</a>/% if(i<postCtx.syndications.length-1){ %//%=postCtx.list_separator %//% }}) %/ </span>
+                  /% } %/
+                  /% if(detailed&&postCtx.copyright!==''){ %/
+                  <span class="tide-post-meta-extra" title="/%= __('post_meta.copyright.title') %/" un-inline-block un-me="8">
+                    <i class="fa-solid fa-copyright" aria-hidden="true" un-me="1"></i>/%= postCtx.copyright %/
+                  </span>
+                  /% } %/
 </div>

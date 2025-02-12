@@ -221,18 +221,14 @@ textarea:focus {
     @apply overflow-auto;
 }
 
-[dir="ltr"] #tide-side-bar {
-    left: max(var(--tide-unocss-spacing) * -120, -75vw);
+#tide-side-bar {
+    inset-inline-start: max(var(--tide-unocss-spacing) * -120, -75vw);
 }
 
 /* 使用 [dir="ltr"] 而非 @apply ltr:…… ，因为后者在转换后会有空的样式，显示警告 */
 [dir="ltr"] [tide-side-bar-expanded="true"] #tide-side-bar,
 [dir="ltr"] [tide-side-bar-expanded="true"] #tide-content {
     transform: translateX(min(var(--tide-unocss-spacing) * 120, 75vw));
-}
-
-[dir="rtl"] #tide-side-bar {
-    right: max(var(--tide-unocss-spacing) * -120, -75vw);
 }
 
 [dir="rtl"] [tide-side-bar-expanded="true"] #tide-side-bar,
