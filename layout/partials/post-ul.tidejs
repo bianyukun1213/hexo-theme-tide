@@ -5,7 +5,7 @@
   /% const postCtx=get_ctx(site,config,theme,post) %/
   <li class="tide-post-li" un-block un-mb="16">
     <div class="tide-post-li-title" un-mb="2">
-      <a un-sc-link-plain un-text="!t-prim" href="/%= full_url_for(postCtx.path) %/">
+      <a un-sc-link-plain un-text="!t-prim" href="/%= url_for(postCtx.path) %/">
         <h2 un-inline un-text="2xl" un-font="bold">/%= postCtx.page_title?postCtx.page_title:__('no_title') %/</h2>
       </a>
     </div>

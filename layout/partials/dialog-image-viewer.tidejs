@@ -53,7 +53,7 @@
     }).on('dragstart', () => {
       return false;
     });
-    let pageImgs = $('#tide-page figure>img, #tide-post figure>img');
+    let pageImgs = $('#tide-page img:visible, #tide-post img:visible');
     const imgCounts = pageImgs.length;
     let currentImgIndex;
     pageImgs.css('cursor', 'zoom-in');

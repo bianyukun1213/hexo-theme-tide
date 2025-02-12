@@ -29,6 +29,8 @@ export default defineConfig({
                     color: 'var(--tide-color-link-visited)'
                 },
                 'code:not([class])': {
+                    'overflow-wrap': 'break-word',
+                    'white-space': 'normal',
                     color: 'var(--tide-color-code-inline)'
                 },
                 hr: {
@@ -64,12 +66,29 @@ export default defineConfig({
                     'text-align': 'center',
                     'overflow-wrap': 'break-word'
                 },
+                // 只将 figure 内的图片设为 block。行内图片保持行内。
+                'figure img': {
+                    display: 'block',
+                    margin: '0 auto'
+                },
                 // 代码块锁定 ltr。
                 'pre:has(code)': {
                     direction: 'ltr',
                     'border-radius': 0
                 },
+                blockquote: {
+                    padding: '0.5rem 1rem', // 切换至 tailwind 4 后，可能需要同步为 spacing 值
+                    background: 'var(--tide-color-background-secondary)',
+                    'border-inline-start': '4px var(--tide-color-primary) solid' 
+                },
+                'blockquote *:first-child':{
+                    'margin-top': '0'
+                },
+                'blockquote *:last-child':{
+                    'margin-bottom': '0'
+                },
                 iframe: {
+                    display: 'block',
                     'max-width': '100%',
                     'margin-left': 'auto',
                     'margin-right': 'auto'

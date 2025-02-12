@@ -142,7 +142,7 @@ navigation:
   标签:
     icon: "fa-solid fa-tag"
     link: /tags/
-  关于关于关于关于关于关于关于关于关于关于关于关于关于:
+  关于:
     icon: "fa-solid fa-user"
     link: /about/
   外部:
@@ -151,7 +151,7 @@ navigation:
 
 # 页脚备案……
 icp_record:
-  text: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+  text: 萌ICP备20230041号
   link: "https://icp.gov.moe/?keyword=20230041"
 
 generated_by_hexo: true

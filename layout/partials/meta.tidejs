@@ -1,5 +1,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<!-- favicon 可以使用 helper 插入，但为了与 apple-touch-icon 一致选择手写 -->
 <link rel="icon" href="/%= url_for(tideCtx.meta_icons?.favicon) %/">
 <link rel="apple-touch-icon" href="/%= url_for(tideCtx.meta_icons?.apple_touch_icon) %/">
 <title>/%= tideCtx.page_title?tideCtx.page_title:tideCtx.site_title %/</title>

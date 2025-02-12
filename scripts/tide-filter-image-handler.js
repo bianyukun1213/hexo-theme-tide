@@ -6,7 +6,7 @@ hexo.extend.filter.register('after_post_render', function (data) {
     const classFigure = 'tide-image-figure';
     const classCaption = 'tide-image-caption';
     if (data.layout === 'post' || data.layout === 'page') {
-        // ![]() 间无空行，多张图片被渲染为一个段落，中间以 br 隔开。
+        // ![]() 间无空行，连续多张图片被渲染为一个纯图片段落，中间以 br 隔开，认为等同于单段落中的单图片。
         data.content = data.content.replace(/<p\b[^>]*>([\s\S]*?)<\/p>/g, (match, inner) => {
             if (/^(<img\b[^>]*>(<br\s*\/?>[\s\n]*)*)+$/.test(inner)) {
                 return inner.replace(/<img\b([^>]*)>/g, (imgMatch, imgAttrs) => {
@@ -29,6 +29,8 @@ hexo.extend.filter.register('after_post_render', function (data) {
             const modifiedGroup2 = group2.replace('<img', '<img tabindex="0"');
             return `<figure class="${classFigure}">${modifiedGroup2}</figure>`;
         });
+        // 行内图片，不添加 figure 包裹，只添加 tabindex。
+        data.content = data.content.replace(/<img(?![^>]*\btabindex\s*=\s*["']?\d+["']?)([^>]*)>/g, '<img tabindex="0"$1>');
     }
     return data;
 }, hexo.theme.config?.image_handler?.priority ?? 5);

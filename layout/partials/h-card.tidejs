@@ -9,8 +9,12 @@
   <img class="u-photo" src="/%= h_card.u_photo %/" alt="/%= h_card.p_name %/">
   /% for(const item of h_card.u_uid){ %/
   <a class="u-url u-uid" href="/%= item.link %/">/%= item.text %/</a>
+  <!-- 元数据不涉及样式，可以使用 helper 生成链接，但为了一致性选择手写 -->
+  <!-- css、js 等则使用 helper -->
+  /%#- link_to(item.link,item.text,{external:true,class:'u-url u-uid'}) %/
   /% } %/
   <a class="u-email" href="mailto%/%= h_card.u_email %/">/%= h_card.u_email %/</a>
+  /%#- mail_to(h_card.u_email,h_card.u_email,{class:'u-email'}) %/
   <div class="p-note">
     /%= h_card.p_note %/
   </div>

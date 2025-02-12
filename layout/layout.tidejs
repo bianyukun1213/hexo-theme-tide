@@ -3,6 +3,7 @@
 <html lang="/%= tideCtx.language %/" dir="/%= tideCtx.dir %/">
 
 <head>
+  /%- partial('./partials/res-head-begin.tidejs',{tideCtx}) %/
   /%- partial('./partials/meta.tidejs',{tideCtx}) %/
   /%- partial('./partials/res-head-end.tidejs',{tideCtx}) %/
 </head>
@@ -31,7 +32,7 @@
           /% if(Object.prototype.hasOwnProperty.call(tideCtx.navigation,key)){ %/
           /% const element=tideCtx.navigation[key] %/
           <li un-inline-block un-mb="8">
-            <i class="/%= element.icon %/" un-ltr="mr-4" un-rtl="ml-4" aria-hidden="true"></i><a un-sc-link-plain un-text="!t-sb" href="/%= full_url_for(element.link) %/">/%= key %/</a>
+            <i class="/%= element.icon %/" un-ltr="mr-4" un-rtl="ml-4" aria-hidden="true"></i><a un-sc-link-plain un-text="!t-sb" href="/%= url_for(element.link) %/">/%= key %/</a>
           </li>
           /% } %/
           /% } %/
@@ -39,7 +40,7 @@
       </nav>
       <footer un-flex="none" un-p="8">
         <!-- 留一个隐藏的 div，方便用户通过修改注入 -->
-        <div class="tide-footer-injection-point" un-hidden></div>
+        <div id="tide-footer-injection-point" un-hidden></div>
         /% if(!tide_utils().isEmptyObject(tideCtx.icp_record)) { %/
         <p id="tide-icp-record"><a un-sc-link-plain un-text="!t-sb" href="/%= tideCtx.icp_record.link %/">/%= tideCtx.icp_record.text %/</a></p>
         /% } %/

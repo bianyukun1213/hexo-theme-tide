@@ -184,7 +184,14 @@ button:focus,
 input:focus,
 select:focus:focus,
 textarea:focus {
-    @apply outline-2 outline-offset-4 !outline-fcs-ol outline-solid;
+    @apply outline-4 outline-offset-4 !outline-fcs-ol outline-solid;
+}
+
+/* 插件样式修复 */
+
+/* hbe 强制 ltr */
+#hexo-blog-encrypt {
+    direction: ltr;
 }
 
 @unocss;
@@ -210,27 +217,27 @@ textarea:focus {
 /* 默认小屏幕 */
 /* 侧栏默认整体滚动 */
 #tide-side-bar {
-    width: min(var(--tide-unocss-spacing) * 96, 75vw);
+    width: min(var(--tide-unocss-spacing) * 120, 75vw);
     @apply overflow-auto;
 }
 
 [dir="ltr"] #tide-side-bar {
-    left: max(var(--tide-unocss-spacing) * -96, -75vw);
+    left: max(var(--tide-unocss-spacing) * -120, -75vw);
 }
 
 /* 使用 [dir="ltr"] 而非 @apply ltr:…… ，因为后者在转换后会有空的样式，显示警告 */
 [dir="ltr"] [tide-side-bar-expanded="true"] #tide-side-bar,
 [dir="ltr"] [tide-side-bar-expanded="true"] #tide-content {
-    transform: translateX(min(var(--tide-unocss-spacing) * 96, 75vw));
+    transform: translateX(min(var(--tide-unocss-spacing) * 120, 75vw));
 }
 
 [dir="rtl"] #tide-side-bar {
-    right: max(var(--tide-unocss-spacing) * -96, -75vw);
+    right: max(var(--tide-unocss-spacing) * -120, -75vw);
 }
 
 [dir="rtl"] [tide-side-bar-expanded="true"] #tide-side-bar,
 [dir="rtl"] [tide-side-bar-expanded="true"] #tide-content {
-    transform: translateX(max(var(--tide-unocss-spacing) * -96, -75vw));
+    transform: translateX(max(var(--tide-unocss-spacing) * -120, -75vw));
 }
 
 #tide-site-title {
@@ -251,7 +258,7 @@ textarea:focus {
     @apply mx-auto;
 }
 
-/* md 往后调整侧边栏宽度为 96 */
+/* md 往后调整侧边栏宽度为 120 */
 @media (min-width: 768px) {
     #tide-site-title {
         @apply text-4xl;
@@ -291,12 +298,12 @@ textarea:focus {
 
         [dir="ltr"] :not([tide-is-post]) #tide-side-bar,
         [dir="ltr"] :not([tide-is-post]) #tide-content {
-            transform: translateX(min(var(--tide-unocss-spacing) * 96, 75vw));
+            transform: translateX(min(var(--tide-unocss-spacing) * 120, 75vw));
         }
 
         [dir="rtl"] :not([tide-is-post]) #tide-side-bar,
         [dir="rtl"] :not([tide-is-post]) #tide-content {
-            transform: translateX(max(var(--tide-unocss-spacing) * -96, -75vw));
+            transform: translateX(max(var(--tide-unocss-spacing) * -120, -75vw));
         }
 
         #tide-deco #triangle-big {
@@ -304,7 +311,7 @@ textarea:focus {
         }
 
         :not([tide-is-post]) #tide-content {
-            width: calc(100% - min(var(--tide-unocss-spacing) * 96, 75vw));
+            width: calc(100% - min(var(--tide-unocss-spacing) * 120, 75vw));
         }
 
         :not([tide-is-post]) #tide-btn-nav {
