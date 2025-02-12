@@ -11,6 +11,7 @@ const {
     isEmptyObject,
     isFunction,
     isPhoneNumber,
+    isUrl,
     deepClone,
     deepMergeObj,
     unixTimestampToDate,
@@ -82,7 +83,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     }
     out.cdn = theme?.cdn ?? {};
     out.fonts = theme?.fonts ?? {};
-    if (!isPlainObject(out.fonts?.web_fonts) || !isBool(out.fonts?.web_fonts?.enable) || !isString(out.fonts?.web_fonts?.preconnect) || !isString(out.fonts?.web_fonts?.css_href)) {
+    if (!isPlainObject(out.fonts?.web_fonts) || !isBool(out.fonts?.web_fonts?.enable) || !isUrl(out.fonts?.web_fonts?.preconnect) || !isUrl(out.fonts?.web_fonts?.css_href)) {
         out.fonts.web_fonts = {
             enable: false,
             preconnect: '',
@@ -163,9 +164,14 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     if (isPlainObject(page.indieweb_interactions)) {
         for (const key in page.indieweb_interactions) {
             if (Object.prototype.hasOwnProperty.call(page.indieweb_interactions, key)) {
-                const element = page.indieweb_interactions[key];
-                if (isArray(element))
-                    out.indieweb_interactions[key] = element;
+                const interactions = page.indieweb_interactions[key];
+                if (isArray(interactions)) {
+                    let tmpInteractions = [];
+                    for (const interUrl of interactions)
+                        if(isUrl(interUrl))
+                            tmpInteractions.push(interUrl);
+                    out.indieweb_interactions[key] = tmpInteractions;
+                }
             }
         }
     }

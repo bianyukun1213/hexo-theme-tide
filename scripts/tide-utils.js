@@ -41,7 +41,15 @@ function isFunction(fun) {
 }
 
 function isPhoneNumber(num) {
+    if(!isString(num))
+        return false;
     return /^1[3456789]\d{9}$/.test(num);
+}
+
+function isUrl(text) {
+    if(!isString(text))
+        return false;
+    return /^(?:(?:https?|ftp):\/\/[^\s/$.?#].[^\s]*)|(?:\/|\.{1,2}\/)[^\s]*$/i.test(text);
 }
 
 function deepClone(obj) {
@@ -123,6 +131,8 @@ function camelCaseObjToUnderScoreCaseObj(cCObj) {
 }
 
 function extractHostFromUrl(url) {
+    if(!isString(url))
+        return '';
     const match = url.match(/^(?:https?:\/\/)?([^\/:]+(:\d+)?)/);
     return match ? match[1] : '';
 }
@@ -138,6 +148,7 @@ module.exports = {
     isEmptyObject,
     isFunction,
     isPhoneNumber,
+    isUrl,
     deepClone,
     deepMergeObj,
     unixTimestampToDate,
