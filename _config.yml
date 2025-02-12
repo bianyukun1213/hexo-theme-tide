@@ -26,7 +26,7 @@ colors:
     primary: "#3F72AF"
     secondary: "#00ADB5"
     background_primary: "#FFFFFF"
-    background_secondary: "#FAFAFA"
+    background_secondary: "#F1F1F1"
     text_primary: "#323739"
     text_secondary: "#5c6669"
     text_diminished: "#EAECED"
@@ -37,13 +37,13 @@ colors:
     link_visited: "#00ADB5"
     code_inline: "#3F72AF"
     table_border: "#E5E7EB"
-    table_background_head: "#F3F3F3"
-    table_background_even: "#FAFAFA"
+    table_background_head: "#F1F1F1"
+    table_background_even: "#F5F5F5"
   dark:
     primary: "#3F72AF"
     secondary: "#00ADB5"
     background_primary: "#FFFFFF"
-    background_secondary: "#FAFAFA"
+    background_secondary: "#F1F1F1"
     text_primary: "#323739"
     text_secondary: "#5c6669"
     text_diminished: "#EAECED"
@@ -54,8 +54,8 @@ colors:
     link_visited: "#00ADB5"
     code_inline: "#3F72AF"
     table_border: "#E5E7EB"
-    table_background_head: "#F3F3F3"
-    table_background_even: "#FAFAFA"
+    table_background_head: "#F1F1F1"
+    table_background_even: "#F5F5F5"
 
 side_bar_background_image:
   # enable: false

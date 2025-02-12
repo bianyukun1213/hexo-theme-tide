@@ -26,13 +26,41 @@ export default defineConfig({
                 'a:visited': {
                     color: 'var(--tide-color-link-visited)'
                 },
+                hr: {
+                    border: '1px var(--tide-color-text-diminished) solid'
+                },
+                // 'ul li': {
+                //     'list-style': 'disc'
+                // },
+                // 'ul li ul li': {
+                //     'list-style': 'circle'
+                // },
                 'code:not([class])': {
                     'overflow-wrap': 'break-word',
                     'white-space': 'normal',
-                    color: 'var(--tide-color-code-inline)'
+                    padding: '0.25rem',
+                    'background': 'var(--tide-color-background-secondary)',
+                    'border-radius': '0.25rem' // 升级至 tailwind 4.0 后可能需要读取 --radius-sm
+                    // color: 'var(--tide-color-code-inline)'
                 },
-                hr: {
-                    border: '1px var(--tide-color-text-diminished) solid'
+                'code:not([class])::before, code:not([class])::after': {
+                    content: '\"\"'
+                },
+                // 代码块锁定 ltr。
+                'pre:has(code)': {
+                    direction: 'ltr',
+                    'border-radius': 0
+                },
+                blockquote: {
+                    padding: '0.5rem 1rem', // 切换至 tailwind 4 后，可能需要同步为 spacing 值
+                    background: 'var(--tide-color-background-secondary)',
+                    'border-inline-start': '4px var(--tide-color-primary) solid'
+                },
+                'blockquote *:first-child': {
+                    'margin-top': '0'
+                },
+                'blockquote *:last-child': {
+                    'margin-bottom': '0'
                 },
                 table: {
                     display: 'table',
@@ -69,27 +97,10 @@ export default defineConfig({
                     display: 'block',
                     margin: '0 auto'
                 },
-                // 代码块锁定 ltr。
-                'pre:has(code)': {
-                    direction: 'ltr',
-                    'border-radius': 0
-                },
-                blockquote: {
-                    padding: '0.5rem 1rem', // 切换至 tailwind 4 后，可能需要同步为 spacing 值
-                    background: 'var(--tide-color-background-secondary)',
-                    'border-inline-start': '4px var(--tide-color-primary) solid'
-                },
-                'blockquote *:first-child': {
-                    'margin-top': '0'
-                },
-                'blockquote *:last-child': {
-                    'margin-bottom': '0'
-                },
                 iframe: {
                     display: 'block',
                     'max-width': '100%',
-                    'margin-left': 'auto',
-                    'margin-right': 'auto'
+                    'margin': '1rem auto' // 切换至 tailwind 4 后，可能需要同步为 spacing 值
                 }
             }
         }),
