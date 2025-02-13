@@ -1,1 +1,4 @@
-<%- js('/js/tide.js') %>
+<% if(is_post()||is_page()){ %>
+<%- partial('./dialog-image-viewer.ejs',{tideCtx}) %>
+<%- partial('./floating-utils.ejs',{tideCtx}) %>
+<% } %>

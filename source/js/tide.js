@@ -1,65 +1,75 @@
-$('#tide-btn-scroll-to-top').click(() => {
-    $('#tide-main-content').animate({ scrollTop: 0 }, 300);
-});
-$('#tide-btn-search').click(() => {
-    $('#ctx').toggle();
-    // $('[un-text]').each(function (index) {
+'use strict';
 
-    //     const sizeList = ['xs', 'sm', 'base', 'lg', 'xl', '2xl', '3xl', '4xl', '5xl', '6xl', '7xl', '8xl', '9xl'];
+console.log('tide.js loaded')
 
-    //     for (let i = 0; i < sizeList.length; ++i) {
-    //         const sz = sizeList[i];
-    //         const regex = new RegExp(`\\b${sz}\\b`);
-    //         if (regex.test($(this).attr('un-text'))) {
-    //             if (i < sizeList.length - 1) {
-    //                 $(this).attr('un-text', sizeList[i + 1]);
-    //             }
-    //             break;
-    //         }
-    //     }
-    // });
-});
-$('#tide-btn-settings').click(() => {
-    if ($('html').attr('dir') === 'ltr')
-        $('html').attr('dir', 'rtl');
-    else
-        $('html').attr('dir', 'ltr');
-});
+function isPageRtl() {
+    if (document.documentElement.getAttribute('dir') === 'rtl')
+        return true;
+    return false;
+}
 
-const toggleSideBar = (status, buttonTriggered = false) => {
-    if (status) {
-        $('#tide-root').attr('tide-side-bar-expanded', 'true');
-        // $('#tide-side-bar').removeAttr('aria-hidden');
-        // $('#tide-side-bar').attr('aria-expanded', 'true'); lighthouse 会报 aria-* 属性与角色不匹配
-        $('#tide-side-bar a, #tide-side-bar :input').removeAttr('tabindex');
-        // if (buttonTriggered)
-            // $('#tide-side-bar nav a:first-of-type').focus(); // todo：只在按钮触发时聚焦？还是只要展开就聚焦？
+function domContentLoadedHandler(e) {
+    const tideRoot = document.getElementById('tide-root');
+    const tideSideBarInputs = [...document.querySelectorAll('#tide-side-bar a')];
+    const tideMainContent = document.getElementById('tide-main-content');
+    const btnNav = document.getElementById('tide-btn-nav');
+    const btnScrollToTop = document.getElementById('tide-btn-scroll-to-top');
+    const btnSearch = document.getElementById('tide-btn-search');
+    const btnSettings = document.getElementById('tide-btn-settings');
+
+    function toggleSideBar(status, buttonTriggered = false) {
+        if (status) {
+            tideRoot.setAttribute('tide-side-bar-expanded', 'true');
+            for (const input of tideSideBarInputs)
+                input.removeAttribute('tabindex');
+        }
+        else {
+            tideRoot.setAttribute('tide-side-bar-expanded', 'false');
+            for (const input of tideSideBarInputs)
+                input.setAttribute('tabindex', '-1');
+        }
     }
-    else {
-        $('#tide-root').attr('tide-side-bar-expanded', 'false');
-        // $('#tide-side-bar').attr('aria-hidden', 'true'); // 阻止读屏器阅读。
-        // $('#tide-side-bar').attr('aria-expanded', 'false');
-        $('#tide-side-bar a, #tide-side-bar :input').attr('tabindex', '-1'); // 阻止键盘 tab 导航。
-        // $('#tide-btn-nav').focus();
 
+    function toggleSideBarOnResize() {
+        if (window.matchMedia('(min-width: 1280px)').matches)
+            toggleSideBar(true);
+        else
+            toggleSideBar(false);
     }
-};
-const toggleSideBarOnResize = () => {
-    if (document.documentElement.clientWidth >= 1280)
-        toggleSideBar(true);
-    else
-        toggleSideBar(false);
-};
-toggleSideBarOnResize();
-// window.addEventListener('resize',
-$(window).on('resize', () => {
+
+    btnScrollToTop.addEventListener('click', () => {
+        // $('#tide-main-content').animate({ scrollTop: 0 }, 300);
+        // tideMainContent.style.transition = 'all 300';
+        tideMainContent.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    btnSearch.addEventListener('click', function (e) {
+        const el = document.getElementById('ctx');
+        if (el.ownerDocument.defaultView.getComputedStyle(el, null).display === 'none')
+            el.style.display = 'block';
+        else
+            el.style.display = 'none';
+
+    });
+    btnSettings.addEventListener('click', function (e) {
+        const html = document.getElementsByTagName('html')[0];
+        if (isPageRtl())
+            html.setAttribute('dir', 'ltr');
+        else
+            html.setAttribute('dir', 'rtl');
+    });
+    window.addEventListener('resize', () => {
+        toggleSideBarOnResize();
+    });
     toggleSideBarOnResize();
-});
-$('#tide-btn-nav').click(() => {
-    if ($('#tide-root').attr('tide-side-bar-expanded') === 'true') {
-        toggleSideBar(false, true);
-    }
-    else {
-        toggleSideBar(true, true);
-    }
-});
+    btnNav.addEventListener('click', function (e) {
+        if (tideRoot.getAttribute('tide-side-bar-expanded') === 'true')
+            toggleSideBar(false, true);
+        else
+            toggleSideBar(true, true);
+    });
+}
+
+if (document.readyState !== 'loading')
+    domContentLoadedHandler();
+else
+    document.addEventListener('DOMContentLoaded', domContentLoadedHandler);

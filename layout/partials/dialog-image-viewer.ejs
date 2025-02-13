@@ -25,200 +25,224 @@
   </div>
   <%- js({src:tideCtx.cdn.pinchzoom_js.src,integrity:tideCtx.cdn.pinchzoom_js.integrity,crossorigin:'anonymous',referrerpolicy:'no-referrer'}) %>
   <script>
-    const imgViewerDialogDom = $('#tide-dialog-image-viewer').get(0);
-    let imgDom = $('#tide-viewing-image').get(0);
-    const pz = new PinchZoom.default(imgDom, {
-      listenOnElementNotContainer: true,
-      useMouseWheel: true,
-      rtl: $('html').attr('dir') === 'rtl' ? true : false,
-      minZoom: 0.25,
-      maxZoom: 4,
-      zoomOutFactor: 0,
-      onDragStart: (object, event) => {
-        $(imgDom).css('cursor', 'grabbing');
-      },
-      onDragEnd: (object, event) => {
-        $(imgDom).css('cursor', 'grab');
-      }
-    });
-    pz.enable();
-    $(imgDom).css({
-      'user-drag': 'none',
-      '-webkit-user-drag': 'none',
-      'user-select': 'none',
-      '-moz-user-select': 'none',
-      '-webkit-user-select': 'none',
-      '-ms-user-select': 'none',
-      'cursor': 'grab'
-    }).on('dragstart', () => {
-      return false;
-    });
-    let pageImgs = $('#tide-page :not(a)>img:visible, #tide-post :not(a)>img:visible');
-    const imgCounts = pageImgs.length;
-    let currentImgIndex;
-    pageImgs.css('cursor', 'zoom-in');
-
-    function openImage(index) {
-      const dom = pageImgs.get(index);
-      imgDom.src = dom.src;
-      imgDom.alt = dom.alt;
-      if (dom.title) {
-        imgDom.title = dom.title;
-        $('#tide-viewing-image-title').text(dom.title).show();
-      } else {
-        imgDom.title = '';
-        $('#tide-viewing-image-title').text('').hide();
-      }
-      $('#tide-image-viewer-counter').text(currentImgIndex + 1 + '/' + imgCounts);
-      pz.zoomFactor = 1;
-      pz.lastScale = 1;
-      pz.resetOffset();
-    }
-
-    function toPrev() {
-      if (currentImgIndex <= 0)
-        currentImgIndex = imgCounts - 1;
-      else
-        --currentImgIndex;
-      openImage(currentImgIndex);
-    }
-
-    function toNext() {
-      if (currentImgIndex >= imgCounts - 1)
-        currentImgIndex = 0;
-      else
-        ++currentImgIndex;
-      openImage(currentImgIndex);
-    }
-
-    function zoomIn(step) {
-      const zoomFactor = pz.getInitialZoomFactor() * pz.zoomFactor,
-        center = {
-          x: -pz.offset.x + pz.el.offsetWidth * zoomFactor / 2,
-          y: -pz.offset.y + pz.el.offsetHeight * zoomFactor / 2
+    'use strict';
+    (function() {
+      const imgViewerDialog = document.getElementById('tide-dialog-image-viewer');
+      const dialogMask = document.querySelector('.tide-dialog-mask:has(#tide-viewing-image)');
+      const viewingImg = document.getElementById('tide-viewing-image');
+      const viewingImgTitle = document.getElementById('tide-viewing-image-title');
+      const viewingImgCounter = document.getElementById('tide-image-viewer-counter');
+      const btnPrev = document.getElementById('tide-image-viewer-btn-prev');
+      const btnNext = document.getElementById('tide-image-viewer-btn-next');
+      const btnZoomIn = document.getElementById('tide-image-viewer-btn-zoom-in');
+      const btnZoomOut = document.getElementById('tide-image-viewer-btn-zoom-out');
+      const btnClose = document.getElementById('tide-image-viewer-btn-close');
+      const rtl = isPageRtl() ? true : false;
+      const pz = new PinchZoom.default(viewingImg, {
+        listenOnElementNotContainer: true,
+        useMouseWheel: true,
+        rtl: rtl,
+        minZoom: 0.25,
+        maxZoom: 4,
+        zoomOutFactor: 0,
+        onDragStart: function(object, event) {
+          viewingImg.style.cursor = 'grabbing';
         },
-        newScale = Math.max(
-          Math.min(pz.options.maxZoom, pz.lastScale + step),
-          pz.options.minZoom
-        ),
-        scale = newScale / pz.lastScale;
-      pz.scale(scale, center);
-      pz.lastScale = newScale;
-      pz.update();
-    }
-
-    function zoomOut(step) {
-      const zoomFactor = pz.getInitialZoomFactor() * pz.zoomFactor,
-        center = {
-          x: -pz.offset.x + pz.el.offsetWidth * zoomFactor / 2,
-          y: -pz.offset.y + pz.el.offsetHeight * zoomFactor / 2
-        },
-        newScale = Math.min(
-          Math.max(pz.options.minZoom, pz.lastScale - step),
-          pz.options.maxZoom
-        ),
-        scale = newScale / pz.lastScale;
-      pz.scale(scale, center);
-      pz.lastScale = newScale;
-      pz.update();
-    }
-
-    function addOffset(offset) {
-      pz.offset.x += offset.x;
-      pz.offset.y += offset.y;
-      pz.offset = pz.sanitizeOffset(pz.offset);
-      pz.update();
-    }
-
-    function moveDown(step) {
-      addOffset({
-        x: 0,
-        y: -step
+        onDragEnd: function(object, event) {
+          viewingImg.style.cursor = 'grab';
+        }
       });
-    }
-
-    function moveRight(step) {
-      addOffset({
-        x: -step,
-        y: 0
+      pz.enable();
+      const imgDomStyles = {
+        'user-drag': 'none',
+        '-webkit-user-drag': 'none',
+        'user-select': 'none',
+        '-moz-user-select': 'none',
+        '-webkit-user-select': 'none',
+        '-ms-user-select': 'none',
+        'cursor': 'grab'
+      };
+      for (const key in imgDomStyles) {
+        if (Object.prototype.hasOwnProperty.call(imgDomStyles, key)) {
+          viewingImg.style[key] = imgDomStyles[key];
+        }
+      }
+      viewingImg.addEventListener('dragstart', () => {
+        return;
       });
-    }
+      const pageImgs = [...document.querySelectorAll('#tide-page .un-prose :not(a)>img:not([display=none]):not(.tide-hidden-to-image-viewer), #tide-post .un-prose :not(a)>img:not([display=none]):not(.tide-hidden-to-image-viewer)')];
+      const imgCounts = pageImgs.length;
+      for (const element of pageImgs) {
+        element.style.cursor = 'zoom-in';
+        element.addEventListener('click', function(e) {
+          currentImgIndex = pageImgs.indexOf(e.target);
+          openImageViewer();
+        });
+        element.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            currentImgIndex = pageImgs.indexOf(e.target);
+            openImageViewer();
+          }
+        });
+      }
+      let currentImgIndex;
 
-    function openImageViewer() {
-      openImage(currentImgIndex);
-      imgViewerDialogDom.showModal();
-      $('#tide-image-viewer-btn-next').focus();
-    };
-    pageImgs.click(function(e) {
-      currentImgIndex = $.inArray(e.target, pageImgs);
-      openImageViewer();
-    }).keydown(function(e) {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        currentImgIndex = $.inArray(e.target, pageImgs);
-        openImageViewer();
+      function openImage(index) {
+        const targetImg = pageImgs[index];
+        viewingImg.src = targetImg.src;
+        viewingImg.alt = targetImg.alt;
+        if (targetImg.title) {
+          viewingImg.title = targetImg.title;
+          viewingImgTitle.textContent = targetImg.title;
+          viewingImgTitle.style.display = 'block';
+        } else {
+          viewingImg.title = '';
+          viewingImgTitle.textContent = '';
+          viewingImgTitle.style.display = 'none';
+        }
+        viewingImgCounter.textContent = currentImgIndex + 1 + '/' + imgCounts;
+        pz.zoomFactor = 1;
+        pz.lastScale = 1;
+        pz.resetOffset();
       }
-    });
-    $('#tide-image-viewer-btn-prev').click(() => {
-      toPrev();
-    });
-    $('#tide-image-viewer-btn-next').click(() => {
-      toNext();
-    });
-    $('#tide-image-viewer-btn-zoom-in').click(() => {
-      zoomIn(0.2);
-    });
-    $('#tide-image-viewer-btn-zoom-out').click(() => {
-      zoomOut(0.2);
-    });
-    $('#tide-image-viewer-btn-close').click(() => {
-      imgViewerDialogDom.close();
-    });
-    $('#tide-viewing-image').keydown(function(e) {
-      const xStep = $('.tide-dialog-mask:has(#tide-viewing-image)').width() / 20;
-      const yStep = $('.tide-dialog-mask:has(#tide-viewing-image)').height() / 20;
-      switch (e.key) {
-        case 'ArrowUp':
-          moveDown(-xStep);
-          e.preventDefault();
-          e.stopPropagation();
-          break;
-        case 'ArrowDown':
-          moveDown(xStep);
-          e.preventDefault();
-          e.stopPropagation();
-          break;
-        case 'ArrowLeft':
-          moveRight(-yStep);
-          e.preventDefault();
-          e.stopPropagation();
-          break;
-        case 'ArrowRight':
-          moveRight(yStep);
-          e.preventDefault();
-          e.stopPropagation();
-          break;
+
+      function toPrev() {
+        if (currentImgIndex <= 0)
+          currentImgIndex = imgCounts - 1;
+        else
+          --currentImgIndex;
+        openImage(currentImgIndex);
       }
-    });
-    $('#tide-dialog-image-viewer').keydown(function(e) {
-      switch (e.key) {
-        case 'ArrowUp':
-          zoomIn(0.1);
-          e.preventDefault();
-          break;
-        case 'ArrowDown':
-          zoomOut(0.1);
-          e.preventDefault();
-          break;
-        case 'ArrowLeft':
-          $('html').attr('dir') === 'rtl' ? toNext() : toPrev();
-          e.preventDefault();
-          break;
-        case 'ArrowRight':
-          $('html').attr('dir') === 'rtl' ? toPrev() : toNext();
-          e.preventDefault();
-          break;
+
+      function toNext() {
+        if (currentImgIndex >= imgCounts - 1)
+          currentImgIndex = 0;
+        else
+          ++currentImgIndex;
+        openImage(currentImgIndex);
       }
-    });
+
+      function zoomIn(step) {
+        const zoomFactor = pz.getInitialZoomFactor() * pz.zoomFactor,
+          center = {
+            x: -pz.offset.x + pz.el.offsetWidth * zoomFactor / 2,
+            y: -pz.offset.y + pz.el.offsetHeight * zoomFactor / 2
+          },
+          newScale = Math.max(
+            Math.min(pz.options.maxZoom, pz.lastScale + step),
+            pz.options.minZoom
+          ),
+          scale = newScale / pz.lastScale;
+        pz.scale(scale, center);
+        pz.lastScale = newScale;
+        pz.update();
+      }
+
+      function zoomOut(step) {
+        const zoomFactor = pz.getInitialZoomFactor() * pz.zoomFactor,
+          center = {
+            x: -pz.offset.x + pz.el.offsetWidth * zoomFactor / 2,
+            y: -pz.offset.y + pz.el.offsetHeight * zoomFactor / 2
+          },
+          newScale = Math.min(
+            Math.max(pz.options.minZoom, pz.lastScale - step),
+            pz.options.maxZoom
+          ),
+          scale = newScale / pz.lastScale;
+        pz.scale(scale, center);
+        pz.lastScale = newScale;
+        pz.update();
+      }
+
+      function addOffset(offset) {
+        pz.offset.x += offset.x;
+        pz.offset.y += offset.y;
+        pz.offset = pz.sanitizeOffset(pz.offset);
+        pz.update();
+      }
+
+      function moveDown(step) {
+        addOffset({
+          x: 0,
+          y: -step
+        });
+      }
+
+      function moveRight(step) {
+        addOffset({
+          x: -step,
+          y: 0
+        });
+      }
+
+      function openImageViewer() {
+        openImage(currentImgIndex);
+        imgViewerDialog.showModal();
+        btnNext.focus();
+      };
+
+      btnPrev.addEventListener('click', () => {
+        toPrev();
+      });
+      btnNext.addEventListener('click', () => {
+        toNext();
+      });
+      btnZoomIn.addEventListener('click', () => {
+        zoomIn(0.2);
+      });
+      btnZoomOut.addEventListener('click', () => {
+        zoomOut(0.2);
+      });
+      btnClose.addEventListener('click', () => {
+        imgViewerDialog.close();
+      });
+      viewingImg.addEventListener('keydown', function(e) {
+        const xStep = dialogMask.offsetWidth / 20;
+        const yStep = dialogMask.offsetHeight / 20;
+        switch (e.key) {
+          case 'ArrowUp':
+            moveDown(-xStep);
+            e.preventDefault();
+            e.stopPropagation();
+            break;
+          case 'ArrowDown':
+            moveDown(xStep);
+            e.preventDefault();
+            e.stopPropagation();
+            break;
+          case 'ArrowLeft':
+            moveRight(-yStep);
+            e.preventDefault();
+            e.stopPropagation();
+            break;
+          case 'ArrowRight':
+            moveRight(yStep);
+            e.preventDefault();
+            e.stopPropagation();
+            break;
+        }
+      });
+      imgViewerDialog.addEventListener('keydown', function(e) {
+        switch (e.key) {
+          case 'ArrowUp':
+            zoomIn(0.1);
+            e.preventDefault();
+            break;
+          case 'ArrowDown':
+            zoomOut(0.1);
+            e.preventDefault();
+            break;
+          case 'ArrowLeft':
+            rtl ? toNext() : toPrev();
+            e.preventDefault();
+            break;
+          case 'ArrowRight':
+            rtl ? toPrev() : toNext();
+            e.preventDefault();
+            break;
+        }
+      });
+    })();
   </script>
 </dialog>

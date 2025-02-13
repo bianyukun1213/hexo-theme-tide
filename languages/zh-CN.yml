@@ -5,8 +5,6 @@ paginator:
 navigation:
   btn_nav:
     title: "打开或关闭导航菜单"
-  btn_scroll_to_top:
-    title: "回到顶部"
   btn_search:
     title: "打开搜索窗口"
   btn_settings:
@@ -62,3 +60,7 @@ image_viewer:
     title: "缩小"
   btn_close:
     title: "关闭"
+
+floating_utils:
+  btn_scroll_to_top:
+    title: "回到顶部"

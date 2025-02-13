@@ -345,13 +345,21 @@ textarea:focus {outline-width:4px;outline-color:var(--tide-color-focused-outline
 
 .un-relative{position:relative;}
 
+.-un-end-16{inset-inline-end:-4rem;}
+
 .-un-end-32{inset-inline-end:-8rem;}
 
+.un-end-16{inset-inline-end:4rem;}
+
 .un-end-32{inset-inline-end:8rem;}
+
+.un-end-4{inset-inline-end:1rem;}
 
 .un-bottom-0{bottom:0;}
 
 .un-bottom-1\/5{bottom:20%;}
+
+.un-bottom-4{bottom:1rem;}
 
 .un-left-1\/2{left:50%;}
 
@@ -423,9 +431,11 @@ textarea:focus {outline-width:4px;outline-color:var(--tide-color-focused-outline
 
 .un-min-w-20{min-width:5rem;}
 
-.un-min-w-48{min-width:12rem;}
+.un-min-w-32{min-width:8rem;}
 
 .un-w-1\/4{width:25%;}
+
+.un-w-12{width:3rem;}
 
 .un-w-3\/4{width:75%;}
 
@@ -638,7 +648,6 @@ textarea:focus {outline-width:4px;outline-color:var(--tide-color-focused-outline
 
 #tide-side-bar,
 .tide-dialog-container,
-.tide-dialog-container button,
 iframe,
 pre:has(code),
 .gist {outline-width:2px;outline-color:transparent;outline-style:solid;
