@@ -118,10 +118,10 @@ export default defineConfig({
     ],
     shortcuts: {
         // 与上方 prose 部分对应。
-        'un-sc-trans-default': 'un-transition-all un-ease-in-out un-duration-200',
+        'un-sc-trans-default': 'motion-safe:(un-transition-all un-ease-in-out un-duration-200)',
         'un-sc-link-default': 'un-underline link:un-text-lk hover:(un-underline-offset-4) un-text-lk-hvr visited:un-text-lk-vst',
         'un-sc-link-plain': 'un-decoration-transparent hover:(un-decoration-current) un-text-t-prim',
-        'un-sc-btn-default': 'un-bg-transparent un-sc-trans-default un-flex un-items-center un-justify-center un-text-prim un-border-(2 prim solid) hover:un-scale-110 active:un-scale-90 un-cursor-pointer disabled:(un-opacity-50 un-cursor-not-allowed hover:un-transform-none active:un-transform-none)',
+        'un-sc-btn-default': 'un-bg-b-prim un-sc-trans-default un-flex un-items-center un-justify-center un-text-prim un-border-(2 prim solid) hover:un-scale-110 active:un-scale-90 un-cursor-pointer disabled:(un-opacity-50 un-cursor-not-allowed hover:un-transform-none active:un-transform-none)',
         'un-sc-dlg-fullscreen': 'un-bg-transparent un-absolute un-w-full un-max-w-full un-h-full un-max-h-full un-p-0 un-m-0 un-z-100 un-border-none',
         'un-sc-dlg-mask': 'un-bg-black/75 un-absolute un-w-full un-h-full'
     },

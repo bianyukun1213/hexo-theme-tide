@@ -187,6 +187,25 @@ textarea:focus {
     @apply un-outline-4 un-outline-offset-4 un-outline-fcs-ol ! un-outline-solid;
 }
 
+.tide-paginator span {
+    @apply un-inline-block;
+    @apply un-mx-1;
+    @apply un-text-t-scnd;
+}
+
+.tide-paginator span.current {
+    @apply un-underline;
+    @apply un-underline-offset-4;
+    @apply un-text-t-prim;
+}
+
+.tide-paginator a {
+    @apply un-inline-block;
+    @apply un-mx-1;
+    @apply un-sc-link-plain;
+    @apply un-text-t-scnd !;
+}
+
 /* 插件样式修复 */
 
 /* hbe 强制 ltr */
@@ -320,23 +339,45 @@ textarea:focus {
     }
 }
 
-.tide-paginator span {
-    @apply un-inline-block;
-    @apply un-mx-1;
-    @apply un-text-t-scnd;
+#tide-toc-panel {
+    width: min(var(--tide-unocss-spacing) * 90, 100vw);
 }
 
-.tide-paginator span.current {
-    @apply un-underline;
-    @apply un-underline-offset-4;
-    @apply un-text-t-prim;
+[dir="ltr"] #tide-toc-panel {
+    animation: toc-panel-slide-in-ltr 0.2s ease;
 }
 
-.tide-paginator a {
-    @apply un-inline-block;
-    @apply un-mx-1;
-    @apply un-sc-link-plain;
-    @apply un-text-t-scnd!;
+[dir="rtl"] #tide-toc-panel {
+    animation: toc-panel-slide-in-rtl 0.2s ease;
+}
+
+@keyframes toc-panel-slide-in-ltr {
+    from {
+        transform: translateX(max(var(--tide-unocss-spacing) * 90, 100vw));
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes toc-panel-slide-in-rtl {
+    from {
+        transform: translateX(min(var(--tide-unocss-spacing) * -90, -100vw));
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+    /* 覆盖权重 */
+    #tide-toc-panel {
+        animation: none !important;
+    }
 }
 
 /* high contrust optimization */

@@ -16,6 +16,7 @@ function domContentLoadedHandler(e) {
     const btnScrollToTop = document.getElementById('tide-btn-scroll-to-top');
     const btnSearch = document.getElementById('tide-btn-search');
     const btnSettings = document.getElementById('tide-btn-settings');
+    const btnOpenToc = document.getElementById('tide-btn-open-toc');
 
     function toggleSideBar(status, buttonTriggered = false) {
         if (status) {
@@ -38,8 +39,6 @@ function domContentLoadedHandler(e) {
     }
 
     btnScrollToTop.addEventListener('click', () => {
-        // $('#tide-main-content').animate({ scrollTop: 0 }, 300);
-        // tideMainContent.style.transition = 'all 300';
         tideMainContent.scrollTo({ top: 0, behavior: 'smooth' });
     });
     btnSearch.addEventListener('click', function (e) {
@@ -67,6 +66,11 @@ function domContentLoadedHandler(e) {
         else
             toggleSideBar(true, true);
     });
+    if (btnOpenToc) {
+        btnOpenToc.addEventListener('click', () => {
+            document.getElementById('tide-dialog-toc').showModal();
+        });
+    }
 }
 
 if (document.readyState !== 'loading')

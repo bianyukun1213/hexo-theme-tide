@@ -1,7 +1,15 @@
-<div id="tide-floating-utils " class="un-fixed un-w-12 un-bottom-4 un-end-4 un-flex un-flex-col">
-  <button id="tide-btn-scroll-to-top" class="un-sc-btn-default un-size-12" title="<%= __('floating-utils.btn_scroll_to_top.title') %>">
+<div id="tide-floating-utils" class="un-fixed un-bottom-4 un-end-4 un-max-h-1/2 un-flex un-flex-col un-flex-wrap-reverse un-gap-2">
+  <button id="tide-btn-scroll-to-top" class="un-sc-btn-default un-size-12" title="<%= __('floating_utils.btn_scroll_to_top.title') %>">
     <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
   </button>
-  <!-- <button></button>
-  <button></button> -->
+  <% if(is_post()){ %>
+  <button id="tide-btn-open-toc" class="un-sc-btn-default un-size-12" title="<%= __('floating_utils.btn_open_toc.title') %>">
+    <i class="fa-solid fa-bars-staggered" aria-hidden="true"></i>
+  </button>
+  <% } %>
+  <% if(!tide_utils().isEmptyObject(tideCtx.languages)){ %>
+  <button id="tide-btn-switch-lang" class="un-sc-btn-default un-size-12" title="<%= __('floating_utils.btn_switch_lang.title') %>">
+    <i class="fa-solid fa-language" aria-hidden="true"></i>
+  </button>
+  <% } %>
 </div>
