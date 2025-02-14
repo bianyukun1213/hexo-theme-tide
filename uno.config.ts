@@ -118,6 +118,7 @@ export default defineConfig({
     ],
     shortcuts: {
         // 与上方 prose 部分对应。
+        'un-sc-clearfix': 'after:un-clear-both after:un-content-empty after:un-block',
         'un-sc-trans-default': 'motion-safe:(un-transition-all un-ease-in-out un-duration-200)',
         'un-sc-link-default': 'un-underline link:un-text-lk hover:(un-underline-offset-4) un-text-lk-hvr visited:un-text-lk-vst',
         'un-sc-link-plain': 'un-decoration-transparent hover:(un-decoration-current) un-text-t-prim',

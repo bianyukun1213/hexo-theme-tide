@@ -391,6 +391,8 @@ textarea:focus {outline-width:4px;outline-color:var(--tide-color-focused-outline
 
 .un-float-end{float:inline-end;}
 
+.un-clear-end{clear:inline-end;}
+
 .un-m-0{margin:0;}
 
 .un-mx-1{margin-left:0.25rem;margin-right:0.25rem;}
@@ -501,6 +503,10 @@ textarea:focus {outline-width:4px;outline-color:var(--tide-color-focused-outline
 
 .un-overflow-auto{overflow:auto;}
 
+.un-overflow-hidden{overflow:hidden;}
+
+.un-text-ellipsis{text-overflow:ellipsis;}
+
 .un-break-words{overflow-wrap:break-word;}
 
 .un-border-white{--un-border-opacity:1;border-color:rgb(255 255 255 / var(--un-border-opacity));}
@@ -520,6 +526,8 @@ textarea:focus {outline-width:4px;outline-color:var(--tide-color-focused-outline
 .un-bg-transparent{background-color:transparent;}
 
 .un-p-0{padding:0;}
+
+.un-p-4{padding:1rem;}
 
 .un-p-8{padding:2rem;}
 
@@ -550,6 +558,8 @@ textarea:focus {outline-width:4px;outline-color:var(--tide-color-focused-outline
 .un-text-white{--un-text-opacity:1;color:rgb(255 255 255 / var(--un-text-opacity));}
 
 .un-font-bold{font-weight:700;}
+
+.un-leading-12{line-height:3rem;}
 
 .un-font-italic{font-style:italic;}
 
@@ -657,19 +667,19 @@ textarea:focus {outline-width:4px;outline-color:var(--tide-color-focused-outline
     }
 }
 
-#tide-toc-panel {
+.tide-side-panel {
     width: min(var(--tide-unocss-spacing) * 90, 100vw);
 }
 
-[dir="ltr"] #tide-toc-panel {
-    animation: toc-panel-slide-in-ltr 0.2s ease;
+[dir="ltr"] .tide-side-panel {
+    animation: side-panel-slide-in-ltr 0.2s ease;
 }
 
-[dir="rtl"] #tide-toc-panel {
-    animation: toc-panel-slide-in-rtl 0.2s ease;
+[dir="rtl"] .tide-side-panel {
+    animation: side-panel-slide-in-rtl 0.2s ease;
 }
 
-@keyframes toc-panel-slide-in-ltr {
+@keyframes side-panel-slide-in-ltr {
     from {
         transform: translateX(max(var(--tide-unocss-spacing) * 90, 100vw));
     }
@@ -679,7 +689,7 @@ textarea:focus {outline-width:4px;outline-color:var(--tide-color-focused-outline
     }
 }
 
-@keyframes toc-panel-slide-in-rtl {
+@keyframes side-panel-slide-in-rtl {
     from {
         transform: translateX(min(var(--tide-unocss-spacing) * -90, -100vw));
     }
@@ -693,7 +703,7 @@ textarea:focus {outline-width:4px;outline-color:var(--tide-color-focused-outline
 
 @media (prefers-reduced-motion: reduce) {
     /* 覆盖权重 */
-    #tide-toc-panel {
+    .tide-side-panel {
         animation: none !important;
     }
 }
