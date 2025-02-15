@@ -46,6 +46,8 @@ post_meta:
     title: "副本"
   copyright:
     title: "版权声明"
+  page_specific_description:
+    title: "描述"
   # views:
   #   title: "访问量" # View(s)，因为生成时无法确定具体的访问量。
 

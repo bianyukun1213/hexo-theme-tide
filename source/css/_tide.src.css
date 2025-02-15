@@ -136,9 +136,9 @@ html {
     /* --tide-font-global: 'Noto Serif SC', serif; */
 }
 
-* {
+/* * {
     scrollbar-width: thin;
-}
+} */
 
 a {
     @apply un-sc-link-default;
@@ -203,7 +203,35 @@ textarea:focus {
     @apply un-inline-block;
     @apply un-mx-1;
     @apply un-sc-link-plain;
-    @apply un-text-t-scnd !;
+    @apply un-text-t-scnd!;
+}
+
+/* .tide-toc {
+    @apply un-w-full;
+    @apply un-overflow-hidden un-text-ellipsis;
+} */
+
+.tide-toc, .tide-toc-child, .tide-toc-item {
+    @apply un-p-0;
+    @apply un-m-0;
+    @apply un-list-none;
+}
+
+.tide-toc-child {
+    @apply un-ps-4;
+}
+
+.tide-toc-link {
+    /* un-sc-link-default 实际上多余。 */
+    @apply un-sc-link-default;
+    @apply un-text-t-scnd!;
+    @apply un-inline-block;
+    @apply un-mb-4!;
+}
+
+.tide-toc-link:hover {
+    @apply un-text-lk-hvr!;
+    @apply un-font-bold;
 }
 
 /* 插件样式修复 */
@@ -321,10 +349,6 @@ textarea:focus {
             transform: translateX(max(var(--tide-unocss-spacing) * -120, -75vw));
         }
 
-        #tide-deco #triangle-big {
-            @apply un-fill-prim;
-        }
-
         :not([tide-is-post]) #tide-content {
             width: calc(100% - min(var(--tide-unocss-spacing) * 120, 75vw));
         }
@@ -339,44 +363,45 @@ textarea:focus {
     }
 }
 
+.tide-dialog {
+    @apply un-hidden;
+    @apply un-opacity-0;
+    @apply un-sc-trans-default un-transition-discrete;
+}
+
+.tide-dialog[open] {
+    @apply un-block;
+    @apply un-opacity-100;
+}
+
 .tide-side-panel {
     width: min(var(--tide-unocss-spacing) * 90, 100vw);
+    @apply un-sc-trans-default;
 }
 
-[dir="ltr"] .tide-side-panel {
-    animation: side-panel-slide-in-ltr 0.2s ease;
+[dir="ltr"] .tide-dialog .tide-side-panel {
+    transform: translateX(max(var(--tide-unocss-spacing) * 90, 100vw));
 }
 
-[dir="rtl"] .tide-side-panel {
-    animation: side-panel-slide-in-rtl 0.2s ease;
+[dir="rtl"] .tide-dialog .tide-side-panel {
+    transform: translateX(min(var(--tide-unocss-spacing) * -90, -100vw));
 }
 
-@keyframes side-panel-slide-in-ltr {
-    from {
+.tide-dialog[open] .tide-side-panel {
+    transform: translateX(0);
+}
+
+@starting-style {
+    .tide-dialog[open] {
+        opacity: 0;
+    }
+
+    [dir="ltr"] .tide-dialog[open] .tide-side-panel {
         transform: translateX(max(var(--tide-unocss-spacing) * 90, 100vw));
     }
 
-    to {
-        transform: translateX(0);
-    }
-}
-
-@keyframes side-panel-slide-in-rtl {
-    from {
+    [dir="rtl"] .tide-dialog[open] .tide-side-panel {
         transform: translateX(min(var(--tide-unocss-spacing) * -90, -100vw));
-    }
-
-    to {
-        transform: translateX(0);
-    }
-}
-
-/* reduced motion */
-
-@media (prefers-reduced-motion: reduce) {
-    /* 覆盖权重 */
-    .tide-side-panel {
-        animation: none !important;
     }
 }
 

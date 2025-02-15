@@ -175,6 +175,9 @@ css_modifier:
 page_modifier:
   priority: 5
 
+toc:
+  enable: true
+  list_number: true
 search: true
 word_counter: true
 list_separator: ", "

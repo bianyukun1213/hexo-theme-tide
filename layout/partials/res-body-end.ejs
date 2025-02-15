@@ -1,5 +1,9 @@
 <% if(is_post()||is_page()){ %>
 <%- partial('./dialog-image-viewer.ejs',{tideCtx}) %>
+<% if(tideCtx.toc.enable){ %>
 <%- partial('./dialog-toc.ejs',{tideCtx}) %>
+<% } %>
+<% if(!tide_utils().isEmptyObject(tideCtx.languages)){ %>
 <%- partial('./dialog-lang-picker.ejs',{tideCtx}) %>
+<% } %>
 <% } %>

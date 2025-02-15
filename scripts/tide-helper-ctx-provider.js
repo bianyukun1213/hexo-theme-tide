@@ -97,6 +97,9 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.generated_by_hexo = theme?.generated_by_hexo ?? true;
 
     // 小功能
+    out.toc = {};
+    out.toc.enable = theme?.toc?.enable ?? true;
+    out.toc.list_number = theme?.toc?.list_number ?? false;
     out.search = theme?.search ?? true;
     out.word_counter = theme?.word_counter ?? true;
     out.list_separator = theme?.list_separator ?? ', ';
@@ -120,6 +123,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.date = page?.date ?? '';
     out.updated = page?.updated ?? '';
     out.excerpt = page?.excerpt ?? '';
+    out.page_specific_description = page?.description ?? '';
     // out.languages = site?.data?.language_map[page.path] ?? {};
     // if (page.languages)
     //     out.languages = page.languages;

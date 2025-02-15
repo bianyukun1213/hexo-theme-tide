@@ -8,7 +8,7 @@ function isPageRtl() {
     return false;
 }
 
-function domContentLoadedHandler(e) {
+function domContentLoadedHandler(eDomContentLoaded) {
     const tideRoot = document.getElementById('tide-root');
     const tideSideBarInputs = [...document.querySelectorAll('#tide-side-bar a')];
     const tideMainContent = document.getElementById('tide-main-content');
@@ -17,6 +17,8 @@ function domContentLoadedHandler(e) {
     const btnSearch = document.getElementById('tide-btn-search');
     const btnSettings = document.getElementById('tide-btn-settings');
     const btnOpenToc = document.getElementById('tide-btn-open-toc');
+    const dialogToc = document.getElementById('tide-dialog-toc');
+    // const btnTocPanelClose = document.getElementById('tide-dialog-toc');
 
     function toggleSideBar(status, buttonTriggered = false) {
         if (status) {
@@ -68,8 +70,11 @@ function domContentLoadedHandler(e) {
     });
     if (btnOpenToc) {
         btnOpenToc.addEventListener('click', () => {
-            document.getElementById('tide-dialog-toc').showModal();
+            dialogToc.showModal();
         });
+        if (document.getElementsByClassName('tide-toc').length === 0) {
+            btnOpenToc.style.display = 'none';
+        }
     }
 }
 

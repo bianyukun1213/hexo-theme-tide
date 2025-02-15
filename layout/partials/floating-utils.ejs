@@ -2,7 +2,7 @@
   <button id="tide-btn-scroll-to-top" class="un-sc-btn-default un-size-12" title="<%= __('floating_utils.btn_scroll_to_top.title') %>">
     <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
   </button>
-  <% if(is_post()){ %>
+  <% if(is_post()&&tideCtx.toc.enable){ %>
   <button id="tide-btn-open-toc" class="un-sc-btn-default un-size-12" title="<%= __('floating_utils.btn_open_toc.title') %>">
     <i class="fa-solid fa-bars-staggered" aria-hidden="true"></i>
   </button>
