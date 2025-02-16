@@ -51,6 +51,12 @@ post_meta:
   # views:
   #   title: "访问量" # View(s)，因为生成时无法确定具体的访问量。
 
+page_nav:
+  prev:
+    title: "上一篇"
+  next:
+    title: "下一篇"
+
 image_viewer:
   btn_prev:
     title: "上一张"

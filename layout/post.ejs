@@ -1,27 +1,4 @@
 <% const tideCtx=get_ctx(site,config,theme,page) %>
-
-<!-- https%>/microformats.org/wiki/h-entry -->
-<!-- <article class="h-entry">
-  <h1 class="p-name">Microformats are amazing</h1>
-  <p>Published by <a class="p-author h-card" href="http%>/example.com">W. Developer</a>
-     on <time class="dt-published" datetime="2013-06-13 12:00:00">13<sup>th</sup> June 2013</time></p>
-  
-  <p class="p-summary">In which I extoll the virtues of using microformats.</p>
-  
-  <div class="e-content">
-    <p>Blah blah blah</p>
-  </div>
-</article> -->
-
-<!-- p-name - entry name/title
-p-summary - short entry summary
-e-content - full content of the entry
-
-
-u-in-reply-to - the URL which the h-entry is considered reply to (i.e. doesn’t make sense without context, could show up in comment thread), optionally an embedded h-cite (reply-context) (example)
-
-u-like-of - the URL which the h-entry is considered a “like” (favorite, star) of. Optionally an embedded h-cite
-u-repost-of - the URL which the h-entry is considered a “repost” of. Optionally an embedded h-cite. -->
 <article id="tide-post" <%- tideCtx.microformats2?' class="h-entry"':'' %>>
   <h1 id="tide-post-title" class="<%= tideCtx.microformats2?'p-name ':''%> un-mt-0 un-mb-2 un-text-4xl un-font-bold"><%= tideCtx.page_title?tideCtx.page_title:__('no_title') %></h1>
   <%- partial('./partials/post-meta.ejs',{postCtx:tideCtx,detailed:true}) %>
@@ -62,26 +39,17 @@ u-repost-of - the URL which the h-entry is considered a “repost” of. Optiona
     <% }}} %>
   </div>
   <% } %>
-
-
-
-
-  <!-- post-meta test -->
-
-  <!-- 应为 microformats2 单独提供 meta -->
-
-
-
-
-
-  <!-- 应该是这种结构 -->
   <div class="un-prose un-max-w-none">
     <%-page.content%>
   </div>
 </article>
-
-<!--  -->
-
-<div id="paginator">
-  <%-paginator()%>
-</div>
+<nav id="tide-page-nav" class="un-sc-clearfix un-py-4">
+  <% if(!tide_utils().isEmptyObject(tideCtx.prev)){ %>
+  <a class="un-sc-link-plain un-float-start un-text-t-scnd!" title="<%= __('page_nav.prev.title') %>" href="<%= url_for(tideCtx.prev.path) %>"><i class="fa-solid <%= tideCtx.dir==='rtl'?'fa-angle-right':'fa-angle-left' %> un-me-1" aria-hidden="true"></i><span><%= tideCtx.prev.title?tideCtx.prev.title:__('no_title') %></span></a>
+  <% } %>
+  <% if(!tide_utils().isEmptyObject(tideCtx.next)){ %>
+  <a class="un-sc-link-plain un-float-end un-text-t-scnd!" title="<%= __('page_nav.next.title') %>" href="<%= url_for(tideCtx.next.path) %>"><span><%= tideCtx.next.title?tideCtx.next.title:__('no_title') %></span><i class="fa-solid <%= tideCtx.dir==='rtl'?'fa-angle-left':'fa-angle-right' %> un-ms-1" aria-hidden="true"></i></a>
+  <% } %>
+</nav>
+<!-- 评论 -->
+<aside id="tide-page-interaction"></aside>

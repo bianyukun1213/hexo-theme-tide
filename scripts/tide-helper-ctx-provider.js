@@ -126,8 +126,6 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
             css_href: ''
         };
     }
-    // if(!isString(out.fonts?.global))
-    //     out.fonts.global = '';
     out.navigation = theme?.navigation ?? {};
     out.icp_record = theme?.icp_record ?? {};
     out.generated_by_hexo = theme?.generated_by_hexo ?? true;
@@ -240,6 +238,20 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
         out.comments = false;
     }
     out.extra = page?.extra ?? '';
+    // // out.prev = page?.prev ?? {};
+    // // out.next = page?.next ?? {};
+    // console.log(page?.prev);
+    // console.log(page?.next);
+    out.prev = {};
+    if(page.prev){
+        out.prev.title = page.prev.title;
+        out.prev.path = page.prev.path;
+    }
+    out.next = {};
+    if(page.next){
+        out.next.title = page.next.title;
+        out.next.path = page.next.path;
+    }
 
 
 

@@ -203,15 +203,12 @@ textarea:focus {
     @apply un-inline-block;
     @apply un-mx-1;
     @apply un-sc-link-plain;
-    @apply un-text-t-scnd!;
+    @apply un-text-t-scnd !;
 }
 
-/* .tide-toc {
-    @apply un-w-full;
-    @apply un-overflow-hidden un-text-ellipsis;
-} */
-
-.tide-toc, .tide-toc-child, .tide-toc-item {
+.tide-toc,
+.tide-toc-child,
+.tide-toc-item {
     @apply un-p-0;
     @apply un-m-0;
     @apply un-list-none;
@@ -224,13 +221,14 @@ textarea:focus {
 .tide-toc-link {
     /* un-sc-link-default 实际上多余。 */
     @apply un-sc-link-default;
+    /* @apply un-sc-link-plain; */
     @apply un-text-t-scnd!;
     @apply un-inline-block;
-    @apply un-mb-4!;
+    @apply un-mb-4 !;
 }
 
 .tide-toc-link:hover {
-    @apply un-text-lk-hvr!;
+    /* @apply un-text-lk-hvr!; */
     @apply un-font-bold;
 }
 
