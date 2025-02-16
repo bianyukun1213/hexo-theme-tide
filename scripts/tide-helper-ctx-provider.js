@@ -1,5 +1,7 @@
 'use strict';
 
+let languageMeta = require('./tide-predefined-language-meta.js');
+
 const {
     getTideVersion,
     isNumber,
@@ -21,6 +23,27 @@ const {
     camelCaseObjToUnderScoreCaseObj,
     extractHostFromUrl
 } = require('./tide-utils.js');
+
+hexo.on('generateBefore', function () {
+    const data = hexo.locals.get('data');
+    const { language } = hexo.config;
+    const { i18n } = hexo.theme;
+    if (isPlainObject(data.languages)) {
+        for (const langKey in data.languages) {
+            if (Object.prototype.hasOwnProperty.call(data.languages, langKey)) {
+                const lang = data.languages[langKey];
+                if (isPlainObject(lang.meta) && isString(lang.meta.display) && (lang.meta.direction === 'ltr' || lang.meta.direction === 'rtl')) {
+                    if (languageMeta[langKey])
+                        languageMeta[langKey] = deepMergeObj(languageMeta[langKey], lang.meta);
+                    else
+                        languageMeta[langKey] = lang.meta;
+                    if (isPlainObject(lang.i18n))
+                        i18n.set(langKey, deepMergeObj(i18n.get(langKey), lang.i18n));
+                }
+            }
+        }
+    }
+});
 
 let ctxCache = {};
 
@@ -44,12 +67,25 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.date_format = config?.date_format ?? '';
     out.time_format = config?.time_format ?? '';
     // 上为站点配置，下为主题配置。
-    out.dir = theme.dir === 'rtl' ? 'rtl' : 'ltr';
-    if (isString(page.dir))
+    out.language_meta = languageMeta;
+    if (languageMeta[out.language]) {
+        out.dir = languageMeta[out.language].direction;
+    }
+    else {
+        out.dir = 'ltr';
+    }
+    if (isString(theme.dir)) {
+        if (theme.dir === 'rtl')
+            out.dir = 'rtl';
+        else
+            out.dir = 'ltr';
+    }
+    if (isString(page.dir)) {
         if (page.dir === 'rtl')
             out.dir = 'rtl';
         else
             out.dir = 'ltr';
+    }
     out.meta_icons = theme?.meta_icons ?? {};
     out.meta_links = theme?.meta_links ?? [];
     out.microformats2 = theme?.microformats2?.enable ?? false;
@@ -124,14 +160,11 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.updated = page?.updated ?? '';
     out.excerpt = page?.excerpt ?? '';
     out.page_specific_description = page?.description ?? '';
-    // out.languages = site?.data?.language_map[page.path] ?? {};
-    // if (page.languages)
-    //     out.languages = page.languages;
     out.languages = {};
     if (page.languages)
         out.languages = page.languages;
     else if (site?.data?.language_map)
-        out.languages = site.data.language_map[page.path]?.languages ?? {};
+        out.languages = site.data.language_map[page.path] ?? {};
     out.page_categories = []; // site 范围可能也有 categories，所以加上 page 前缀。
     if (page?.categories?.length) {
         page.categories.forEach((cate) => {
@@ -172,7 +205,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
                 if (isArray(interactions)) {
                     let tmpInteractions = [];
                     for (const interUrl of interactions)
-                        if(isUrl(interUrl))
+                        if (isUrl(interUrl))
                             tmpInteractions.push(interUrl);
                     out.indieweb_interactions[key] = tmpInteractions;
                 }

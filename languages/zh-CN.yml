@@ -75,3 +75,9 @@ dialog_toc:
   title: "目录"
   btn_close:
     title: "关闭目录"
+
+dialog_lang_picker:
+  title: "切换语言"
+  btn_close:
+    title: "关闭语言选择器"
+

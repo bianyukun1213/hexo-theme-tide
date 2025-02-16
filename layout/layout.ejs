@@ -30,7 +30,8 @@
       <% if(tideCtx.microformats2){ %>
       <% for(const card of tideCtx.site_h_cards){ %>
       <%- partial('./partials/h-card.ejs',{h_card:card,authorCard:false}) %>
-      <% }} %>
+      <% } %>
+      <% } %>
       <nav id="tide-navigation" class="un-flex-initial un-self-center un-w-full">
         <ul class="un-inline-flex un-flex-col un-items-start un-p-0 un-m-0 un-w-auto un-list-none">
           <% for(const key in tideCtx.navigation){ %>
@@ -39,7 +40,8 @@
           <li class="un-inline-block un-mb-8">
             <i class="<%= element.icon %> un-me-4" aria-hidden="true"></i><a class="un-sc-link-plain un-text-t-sb!" href="<%= url_for(element.link) %>"><%= key %></a>
           </li>
-          <% }} %>
+          <% } %>
+          <% } %>
         </ul>
       </nav>
       <footer class="un-flex-none un-p-8">
@@ -63,15 +65,6 @@
         </div>
         <div class="un-w-3/4 un-min-w-32 un-h-12">
           <!-- 开启 relative，使用 right 让元素具有符合直觉的 tab index -->
-          <!-- <button id="tide-btn-scroll-to-top" class="un-sc-btn-default un-relative un-float-end un-end-32 un-size-12 un-me-4" title="<%= __('navigation.btn_scroll_to_top.title') %>">
-            <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
-          </button> -->
-          <!-- <button id="tide-btn-search" class="un-sc-btn-default un-relative un-float-end un-size-12 un-me-4" title="<%= __('navigation.btn_search.title') %>">
-            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-          </button>
-          <button id="tide-btn-settings" class="un-sc-btn-default un-relative un-float-end -un-end-32 un-size-12 un-me-4" title="<%= __('navigation.btn_settings.title') %>">
-            <i class="fa-solid fa-gear" aria-hidden="true"></i>
-          </button> -->
           <button id="tide-btn-search" class="un-sc-btn-default un-relative un-float-end un-end-16 un-size-12 un-me-4" title="<%= __('navigation.btn_search.title') %>">
             <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
           </button>
@@ -83,15 +76,7 @@
       <main id="tide-main-content" class="un-bg-b-prim un-flex-1 un-overflow-auto">
         <%- body %>
         <%- partial('./partials/floating-utils.ejs',{tideCtx}) %>
-        <!-- 页面 -->
-        <!-- <article></article> -->
-        <!-- 评论 -->
-        <!-- <article></article> -->
-        <!-- TOC，从 lg 开始显示 -->
-        <!-- <aside></aside> -->
       </main>
-      <!-- <aside id="tide-side-tools" un-bg="red" un-fixed un-right="4" un-bottom="4" un-w="32" un-h="64" un-flex="~ col">
-                    </aside> -->
     </div>
   </div>
   <%- partial('./partials/res-body-end.ejs',{tideCtx}) %>

@@ -18,6 +18,8 @@ function domContentLoadedHandler(eDomContentLoaded) {
     const btnSettings = document.getElementById('tide-btn-settings');
     const btnOpenToc = document.getElementById('tide-btn-open-toc');
     const dialogToc = document.getElementById('tide-dialog-toc');
+    const btnSwitchLang = document.getElementById('tide-btn-switch-lang');
+    const dialogLangPicker = document.getElementById('tide-dialog-lang-picker');
     // const btnTocPanelClose = document.getElementById('tide-dialog-toc');
 
     function toggleSideBar(status, buttonTriggered = false) {
@@ -75,6 +77,11 @@ function domContentLoadedHandler(eDomContentLoaded) {
         if (document.getElementsByClassName('tide-toc').length === 0) {
             btnOpenToc.style.display = 'none';
         }
+    }
+    if (btnSwitchLang) {
+        btnSwitchLang.addEventListener('click', () => {
+            dialogLangPicker.showModal();
+        });
     }
 }
 
