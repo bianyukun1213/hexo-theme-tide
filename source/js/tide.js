@@ -1,6 +1,13 @@
 'use strict';
 
-console.log('tide.js loaded')
+let clientCtx = {};
+const clientCtxElement = document.querySelector('meta[name="tide-client-ctx"]');
+if (clientCtxElement)
+    clientCtx = JSON.parse(decodeURIComponent(clientCtxElement.getAttribute('content')));
+
+function getPageLang() {
+    return document.documentElement.getAttribute('lang');
+}
 
 function isPageRtl() {
     if (document.documentElement.getAttribute('dir') === 'rtl')

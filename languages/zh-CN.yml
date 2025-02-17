@@ -87,3 +87,20 @@ dialog_lang_picker:
   btn_close:
     title: "关闭语言选择器"
 
+interactions:
+  twikoo:
+    name: "Twikoo"
+  webmentionjs:
+    name: "webmention.js"
+    i18n:
+      replied: "回复了"
+      liked: "喜欢了"
+      reposted: "转发了"
+      reacted: "反应了"
+      bookmarked: "加入了书签"
+      mentioned: "提及了"
+      RSVPed: "响应了事件"
+      followed: "关注了"
+      Responses: "回应"
+      mention: "提及"
+      Reactions: "反应"

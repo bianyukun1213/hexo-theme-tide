@@ -3,7 +3,7 @@ import { defineConfig, presetUno, presetTypography, presetIcons, transformerDire
 
 export default defineConfig({
     content: {
-        filesystem: ['./layout/*.ejs', './layout/partials/*.ejs']
+        filesystem: ['./layout/*.ejs', './layout/*/*.ejs', './layout/*/*/*.ejs']
     },
     preflights: [], // 在 _tide.src.css 中设置。
     presets: [

@@ -1,43 +1,9 @@
 <% const tideCtx=get_ctx(site,config,theme,page) %>
 <article id="tide-post" <%- tideCtx.microformats2?' class="h-entry"':'' %>>
-  <h1 id="tide-post-title" class="<%= tideCtx.microformats2?'p-name ':''%> un-mt-0 un-mb-2 un-text-4xl un-font-bold"><%= tideCtx.page_title?tideCtx.page_title:__('no_title') %></h1>
+  <h1 id="tide-post-title" class="<%= tideCtx.microformats2?'p-name ':''%> un-m-0 un-mb-2 un-text-4xl un-font-bold"><%= tideCtx.page_title?tideCtx.page_title:__('no_title') %></h1>
   <%- partial('./partials/post-meta.ejs',{postCtx:tideCtx,detailed:true}) %>
   <% if(tideCtx.microformats2){ %>
-  <div class="tide-hidden-microformats2-group un-hidden">
-    <a class="u-url un-hidden" href="<%= full_url_for(tideCtx.path) %>"><%= full_url_for(tideCtx.path) %></a>
-    <% for(const card of tideCtx.page_h_cards){ %>
-    <%- partial('./partials/h-card.ejs',{h_card:card,authorCard:true}) %>
-    <% } %>
-    <time class="dt-published un-hidden" datetime="<%= date_xml(tideCtx.date) %>"><%= date_xml(tideCtx.date) %></time>
-    <time class="dt-updated un-hidden" datetime="<%= date_xml(tideCtx.updated) %>"><%= date_xml(tideCtx.updated) %></time>
-    <% tideCtx.page_categories.forEach((cate,i)=>{ %>
-    <a class="p-category un-hidden" href="<%= full_url_for(cate.path) %>"><%= cate.name %></a>
-    <% }) %>
-    <% tideCtx.syndications.forEach((syn,i)=>{ %>
-    <a class="u-syndication un-hidden" href="<%= syn %>"><%= syn %></a>
-    <% }) %>
-    <% for(const interKey of Object.keys(tideCtx.indieweb_interactions)){ %>
-    <% let interClass=''%>
-    <!-- 如果把 switch 的每一行都包裹，会报错。通常来讲 EJS 不需要每一行都包裹；但是如果不这么做，语法高亮会变混乱。 -->
-    <% switch(interKey){
-      case 'reply':
-      interClass='u-in-reply-to'
-      break
-      case 'like':
-      interClass='u-like-of'
-      break
-      case 'repost':
-      interClass='u-repost-of'
-      break
-      case 'bookmark':
-      interClass='u-bookmark-of'
-      break
-      } %>
-    <% if(interClass){ %>
-    <% for(const interUrl of tideCtx.indieweb_interactions[interKey]){ %>
-    <a class="<%= interClass %> un-hidden" href="<%= interUrl %>"><%= interUrl %></a>
-    <% }}} %>
-  </div>
+    <%- partial('./partials/hidden-microformats2-group.ejs',{tideCtx}); %>
   <% } %>
   <div class="un-prose un-max-w-none">
     <%-page.content%>
@@ -52,4 +18,6 @@
   <% } %>
 </nav>
 <!-- 评论 -->
-<aside id="tide-page-interaction"></aside>
+<% if(tideCtx.interactions){ %>
+<%- partial('./partials/interactions/interactions.ejs',{tideCtx}) %>
+<% } %>

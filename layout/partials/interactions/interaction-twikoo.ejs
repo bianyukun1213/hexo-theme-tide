@@ -1,0 +1,28 @@
+<div id="tide-interaction-twikoo-wrapper" style="display:none;" dir="ltr">
+  <div id="tide-interaction-twikoo"></div>
+  <%- js({src:tideCtx.cdn.twikoo_js.src,integrity:tideCtx.cdn.twikoo_js.integrity,crossorigin:'anonymous',referrerpolicy:'no-referrer',defer:true}) %>
+  <script>
+    'use strict';
+    if (!window.tideInteractions)
+      window.tideInteractions = {};
+    window.tideInteractions.twikoo = {
+      load: function() {
+        if (typeof this.load.twikooInited === 'undefined')
+          this.load.twikooInited = false;
+        document.getElementById('tide-interaction-twikoo-wrapper').style.display = 'block';
+        if (this.load.twikooInited)
+          return;
+        twikoo.init({
+          envId: clientCtx.interactions.twikoo.env_id,
+          el: '#tide-interaction-twikoo',
+          region: clientCtx.interactions.twikoo.region
+        }).then(() => {
+          this.load.twikooInited = true;
+        });
+      },
+      unload: function() {
+        document.getElementById('tide-interaction-twikoo-wrapper').style.display = 'none';
+      }
+    };
+  </script>
+</div>

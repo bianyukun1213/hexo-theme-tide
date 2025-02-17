@@ -1,0 +1,104 @@
+#tide-interaction-webmentionjs {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+#tide-interaction-webmentionjs h2 {
+    margin: 0;
+    margin-bottom: calc(var(--tide-unocss-spacing) * 4);
+    /* xl */
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 700;
+}
+
+#tide-interaction-webmentionjs ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+
+#tide-interaction-webmentionjs .reaction {
+    display: block;
+    float: inline-start;
+    text-decoration: none;
+}
+
+#tide-interaction-webmentionjs .reaction img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-inline-end: -14px;
+    border-radius: 5px;
+}
+
+#tide-interaction-webmentionjs .source {
+    display: block;
+    float: inline-start;
+    font-weight: 700;
+    color: var(--tide-color-text-primary);
+    text-decoration-color: transparent;
+}
+
+#tide-interaction-webmentionjs .source:hover {
+    text-decoration-color: currentColor;
+}
+
+#tide-interaction-webmentionjs .comments li {
+    margin-bottom: calc(var(--tide-unocss-spacing) * 16);
+}
+
+#tide-interaction-webmentionjs .comments li::after {
+    content: '';
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    display: block;
+    visibility: hidden;
+}
+
+#tide-interaction-webmentionjs .comments li .reaction {
+    margin-inline-end: calc(var(--tide-unocss-spacing) * 2);
+    margin-bottom: calc(var(--tide-unocss-spacing) * 4);
+}
+
+#tide-interaction-webmentionjs .comments li .text {
+    display: block;
+    width: 100%;
+    clear: both;
+}
+
+/* #tide-interaction-webmentionjs .comments li .text::before {
+    content: '“';
+    color: var(--tide-color-text-secondary);
+} */
+
+/* #tide-interaction-webmentionjs .comments li .text::after {
+    content: '”';
+    color: var(--tide-color-text-secondary);
+} */
+
+#tide-interaction-webmentionjs .comments li .name {
+    display: block;
+    width: 100%;
+    clear: both;
+    /* font-style: italic; */
+    font-weight: 700;
+    color: var(--tide-color-text-secondary);
+}
+
+#tide-interaction-webmentionjs .reacts::after {
+    content: '';
+    height: 0;
+    clear: both;
+    overflow: hidden;
+    display: block;
+    visibility: hidden;
+}
+
+#tide-interaction-webmentionjs .reacts .reaction {
+    margin-inline-end: calc(var(--tide-unocss-spacing) * 2);
+    margin-bottom: calc(var(--tide-unocss-spacing) * 2);
+}

@@ -1,0 +1,56 @@
+<aside id="tide-page-interactions">
+  <div class="un-mb-4">
+    <h2 class="un-inline-block un-align-middle un-m-0 un-me-4 un-text-2xl un-font-bold">互动</h2>
+    <select id="tide-select-active-interaction" name="tide-active-interaction" class="un-align-middle<%= Object.keys(tideCtx.interactions).length<=1?' un-hidden':''%>">
+      <% for(const interKey in tideCtx.interactions){ %>
+      <% if(Object.prototype.hasOwnProperty.call(tideCtx.interactions,interKey)){ %>
+      <option value="<%= interKey %>"><%= __(`interactions.${interKey}.name`) %></option>
+      <% } %>
+      <% } %>
+    </select>
+  </div>
+  <div id="tide-active-interaction">
+    <% for(const interKey in tideCtx.interactions){ %>
+    <% if(Object.prototype.hasOwnProperty.call(tideCtx.interactions,interKey)){ %>
+    <% if(interKey==='twikoo'){ %>
+    <%- partial('./interaction-twikoo.ejs',{tideCtx}) %>
+    <% }else if(interKey==='webmentionjs'){ %>
+    <%- partial('./interaction-webmentionjs.ejs',{tideCtx}) %>
+    <% } %>
+    <% } %>
+    <% } %>
+  </div>
+  <script>
+    'use strict';
+    (function() {
+      if (document.readyState !== 'loading')
+        domContentLoadedHandler();
+      else
+        document.addEventListener('DOMContentLoaded', domContentLoadedHandler);
+
+      let activeInteraction;
+
+      function domContentLoadedHandler(eDomContentLoaded) {
+        const selectActiveInteraction = document.getElementById('tide-select-active-interaction');
+        selectActiveInteraction.addEventListener('change', function(e) {
+          activeInteraction = selectActiveInteraction.value;
+          activateInteraction();
+        });
+        activeInteraction = selectActiveInteraction.value;
+        activateInteraction();
+
+        function activateInteraction() {
+          for (const interKey in window.tideInteractions) {
+            if (Object.prototype.hasOwnProperty.call(window.tideInteractions, interKey)) {
+              const inter = window.tideInteractions[interKey];
+              if (interKey === activeInteraction)
+                inter.load();
+              else
+                inter.unload();
+            }
+          }
+        }
+      }
+    })();
+  </script>
+</aside>

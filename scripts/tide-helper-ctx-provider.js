@@ -211,31 +211,49 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
         }
     }
     out.syndications = isArray(page.syndications) ? page.syndications : [];
-    // page: ["webmentionio", "twikoo"] or false
-    // theme: enable: ["webmentionio", "twikoo"] webmentionio: xxx twikoo: xxx
-    // out: {webmentionio: xxx, twikoo: xxx} or false
-    out.comments = {};
-    if (isArray(page.comments)) {
-        if (page.comments.includes('webmentionio'))
-            out.comments.webmentionio = theme?.comments?.webmentionio ?? {};
-        if (page.comments.includes('twikoo'))
-            out.comments.twikoo = theme?.comments?.twikoo ?? {};
-    } else if (page.comments === true) {
-        if (theme?.comments?.enable?.includes('webmentionio'))
-            out.comments.webmentionio = theme.comments?.webmentionio ?? {};
-        if (theme?.comments?.enable?.includes('twikoo'))
-            out.comments.twikoo = theme.comments?.twikoo ?? {};
-    } else if (page.comments === false) {
-        out.comments = false;
+    out.interactions = {};
+    if (isArray(page.interactions)) {
+        
+        if (page.interactions.includes('twikoo'))
+            out.interactions.twikoo = theme?.interactions?.twikoo ?? {};
+        if (page.interactions.includes('webmentionjs'))
+            out.interactions.webmentionjs = theme?.interactions?.webmentionjs ?? {};
     }
-    else if (isArray(theme?.comments?.enable)) {
-        if (theme.comments.enable.includes('webmentionio'))
-            out.comments.webmentionio = theme.comments?.webmentionio ?? {};
-        if (theme.comments.enable.includes('twikoo'))
-            out.comments.twikoo = theme.comments?.twikoo ?? {};
+    else if (page.interactions === true) {
+        if (theme?.interactions?.enable?.includes('twikoo'))
+            out.interactions.twikoo = theme.interactions?.twikoo ?? {};
+        if (theme?.interactions?.enable?.includes('webmentionjs'))
+            out.interactions.webmentionjs = theme.interactions?.webmentionjs ?? {};
+    }
+    else if (page.interactions === false) {
+        out.interactions = false;
+    }
+    else if (isArray(theme?.interactions?.enable)) {
+        if (theme.interactions.enable.includes('twikoo'))
+            out.interactions.twikoo = theme.interactions?.twikoo ?? {};
+        if (theme.interactions.enable.includes('webmentionjs'))
+            out.interactions.webmentionjs = theme.interactions?.webmentionjs ?? {};
     }
     else {
-        out.comments = false;
+        out.interactions = false;
+    }
+    if (out.interactions.twikoo) {
+        if (!isString(out.interactions.twikoo.env_id))
+            out.interactions.twikoo.env_id = '';
+        if (!isString(out.interactions.twikoo.region))
+            out.interactions.twikoo.region = '';
+    }
+    if (out.interactions.webmentionjs) {
+        if (!isInteger(out.interactions.webmentionjs.wordcount) || out.interactions.webmentionjs.wordcount < 0)
+            out.interactions.webmentionjs.wordcount = -1;
+        if (!isInteger(out.interactions.webmentionjs.max_webmentions) || out.interactions.webmentionjs.max_webmentions < 0)
+            out.interactions.webmentionjs.max_webmentions = 30;
+        out.interactions.webmentionjs.prevent_spoofing = !!out.interactions.webmentionjs.prevent_spoofing;
+        if (!isString(out.interactions.webmentionjs.sort_by))
+            out.interactions.webmentionjs.sort_by = 'published';
+        if (!isString(out.interactions.webmentionjs.sort_dir))
+            out.interactions.webmentionjs.sort_dir = 'up';
+        out.interactions.webmentionjs.comments_are_reactions = !!out.interactions.webmentionjs.comments_are_reactions;
     }
     out.extra = page?.extra ?? '';
     // // out.prev = page?.prev ?? {};
@@ -243,12 +261,12 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     // console.log(page?.prev);
     // console.log(page?.next);
     out.prev = {};
-    if(page.prev){
+    if (page.prev) {
         out.prev.title = page.prev.title;
         out.prev.path = page.prev.path;
     }
     out.next = {};
-    if(page.next){
+    if (page.next) {
         out.next.title = page.next.title;
         out.next.path = page.next.path;
     }

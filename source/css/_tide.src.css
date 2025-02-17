@@ -154,7 +154,7 @@ button {
     margin: 1em 0;
 }
 
-#tide-root {
+body {
     font-family: var(--tide-font-global);
 }
 
@@ -365,6 +365,7 @@ textarea:focus {
     @apply un-hidden;
     @apply un-opacity-0;
     @apply un-sc-trans-default un-transition-discrete;
+    @apply un-text-t-prim;
 }
 
 .tide-dialog[open] {

@@ -3,13 +3,13 @@
 <html lang="<%= tideCtx.language %>" dir="<%= tideCtx.dir %>">
 
 <head>
-  <%- partial('./partials/res-head-begin.ejs',{tideCtx}) %>
+  <%- partial('./partials/res/res-head-begin.ejs',{tideCtx}) %>
   <%- partial('./partials/meta.ejs',{tideCtx}) %>
-  <%- partial('./partials/res-head-end.ejs',{tideCtx}) %>
+  <%- partial('./partials/res/res-head-end.ejs',{tideCtx}) %>
 </head>
 
-<body>
-  <%- partial('./partials/res-body-begin.ejs',{tideCtx}) %>
+<body class="un-text-t-prim">
+  <%- partial('./partials/res/res-body-begin.ejs',{tideCtx}) %>
   <textarea id="ctx" style="display:none;" class="un-fixed un-size-96 un-right-0 un-bottom-0 un-z-100"><%= JSON.stringify(tideCtx,null,2) %></textarea>
   <div id="tide-root" class="un-bg-b-scnd un-absolute un-size-full un-text-base un-break-words" <% if(is_post()) { %> tide-is-post="true" <% } %>>
     <div id="tide-side-bar" class="un-sc-trans-default un-bg-prim un-fixed un-flex un-flex-col un-justify-between un-z-30 un-text-center un-text-t-sb un-h-full">
@@ -79,7 +79,7 @@
       </main>
     </div>
   </div>
-  <%- partial('./partials/res-body-end.ejs',{tideCtx}) %>
+  <%- partial('./partials/res/res-body-end.ejs',{tideCtx}) %>
 </body>
 
 </html>

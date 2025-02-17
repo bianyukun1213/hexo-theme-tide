@@ -103,6 +103,9 @@ cdn:
   prism_line_highlight_css:
     href: "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-highlight/prism-line-highlight.min.css"
     integrity: "sha512-nXlJLUeqPMp1Q3+Bd8Qds8tXeRVQscMscwysJm821C++9w6WtsFbJjPenZ8cQVMXyqSAismveQJc0C1splFDCA=="
+  webmentionjs_css:
+    href: "/css/third-party/webmention.css"
+    integrity: ""
   prism_js:
     src: "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
     integrity: "sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
@@ -118,14 +121,22 @@ cdn:
   pinchzoom_js:
     src: "/js/third-party/pinch-zoom.umd.min.js" # patched
     integrity: ""
+  twikoo_js:
+    src: "https://cdnjs.cloudflare.com/ajax/libs/twikoo/1.6.41/twikoo.all.min.js"
+    integrity: "sha512-cdLlE9nnzcJXQoy9eFuzGcpQXx70rXxmUNpvrvYTAwQv2txLSdvEUs+eILIyKVFBvAoUm9iUR73ewSD3IiGZ/w=="
+  webmentionjs_js:
+    src: "/js/third-party/webmention.js"
+    integrity: ""
 
 fonts:
   web_fonts:
     enable: true
     preconnect: "https://fonts.bunny.net"
     # css_href: "https://fonts.bunny.net/css?family=jetbrains-mono:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i|ma-shan-zheng:400|noto-sans-sc:100,200,300,400,500,600,700,800,900|noto-serif-sc:200,300,400,500,600,700,800,900"
-    css_href: "https://fonts.bunny.net/css?family=ma-shan-zheng:400|noto-sans-sc:100,200,300,400,500,600,700,800,900|noto-serif-sc:200,300,400,500,600,700,800,900"
-  global: "'Noto Sans SC', sans-serif"
+    # css_href: "https://fonts.bunny.net/css?family=ma-shan-zheng:400|noto-sans-sc:100,200,300,400,500,600,700,800,900|noto-serif-sc:200,300,400,500,600,700,800,900"
+    css_href: "https://fonts.bunny.net/css?family=ma-shan-zheng:400|noto-sans-sc:100,200,300,400,500,600,700,800,900|noto-serif-sc:200,300,400,500,600,700,800,900|zcool-kuaile:400"
+  # global: "'Noto Sans SC', sans-serif"
+  global: "'ZCOOL KuaiLe', sans-serif"
   site_title: "'Noto Sans SC', sans-serif"
   # site_title: "'Ma Shan Zheng', handwriting"
   site_subtitle: "'Ma Shan Zheng', handwriting"
@@ -161,10 +172,19 @@ copyright:
   default: "CC-BY-SA 4.0" # 文字，并非属性名可留空。
   cc_by_sa_4: "CC-BY-SA 4.0"
 
-comments:
-  enable: ["webmentionio", "twikoo"]
-  webmentions: 111
-  twikoo: 123
+interactions:
+  enable: ["twikoo", "webmentionjs"]
+  twikoo:
+    env_id: "https://twikoo.his2nd.life"
+    region: ""
+  webmentionjs:
+    wordcount: -1
+    max_webmentions: 30
+    prevent_spoofing: false
+    sort_by: "published"
+    sort_dir: "up"
+    comments_are_reactions: false
+
 
 image_handler:
   priority: 5
