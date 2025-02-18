@@ -250,11 +250,13 @@ textarea:focus {
 #tide-search-results a {
     @apply un-sc-link-default;
     @apply un-text-txt-scnd!;
+    @apply un-inline-block;
 }
 
 #tide-search-results .search-result-title {
     @apply un-sc-link-plain;
     @apply un-text-txt-prim!;
+    @apply un-mb-1;
     @apply un-text-xl;
     @apply un-font-bold;
     @apply un-break-words un-overflow-hidden un-text-ellipsis;
@@ -265,7 +267,7 @@ textarea:focus {
 }
 
 #tide-search-results .search-result {
-    @apply un-m-0 un-my-4;
+    @apply un-m-0 un-mb-4;
     @apply un-break-words un-overflow-hidden un-text-ellipsis;
 }
 

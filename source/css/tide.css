@@ -235,7 +235,7 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 #tide-search-results .search-keyword {background-color:transparent;font-weight:700;
 }
 
-#tide-search-results a {color:var(--tide-color-link-hover);text-decoration-line:underline;color:var(--tide-color-text-secondary) !important;
+#tide-search-results a {color:var(--tide-color-link-hover);text-decoration-line:underline;color:var(--tide-color-text-secondary) !important;display:inline-block;
 }
 
 #tide-search-results a:link{color:var(--tide-color-link);}
@@ -244,7 +244,7 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 
 #tide-search-results a:hover{text-underline-offset:4px;}
 
-#tide-search-results .search-result-title {color:var(--tide-color-text-primary);-webkit-text-decoration-color:transparent;text-decoration-color:transparent;color:var(--tide-color-text-primary) !important;font-size:1.25rem;line-height:1.75rem;font-weight:700;overflow:hidden;text-overflow:ellipsis;overflow-wrap:break-word;
+#tide-search-results .search-result-title {color:var(--tide-color-text-primary);-webkit-text-decoration-color:transparent;text-decoration-color:transparent;color:var(--tide-color-text-primary) !important;margin-bottom:0.25rem;font-size:1.25rem;line-height:1.75rem;font-weight:700;overflow:hidden;text-overflow:ellipsis;overflow-wrap:break-word;
 }
 
 #tide-search-results .search-result-title:hover{-webkit-text-decoration-color:currentColor;text-decoration-color:currentColor;}
@@ -252,7 +252,7 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 #tide-search-results .search-result-title .search-keyword {color:var(--tide-color-text-primary);
 }
 
-#tide-search-results .search-result {margin:0;margin-top:1rem;margin-bottom:1rem;overflow:hidden;text-overflow:ellipsis;overflow-wrap:break-word;
+#tide-search-results .search-result {margin:0;margin-bottom:1rem;overflow:hidden;text-overflow:ellipsis;overflow-wrap:break-word;
 }
 
 #tide-search-results .search-result .search-keyword {color:var(--tide-color-text-secondary);
@@ -544,7 +544,7 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 
 .un-w-1\/4{width:25%;}
 
-.un-w-160{width:40rem;}
+.un-w-200{width:50rem;}
 
 .un-w-3\/4{width:75%;}
 
