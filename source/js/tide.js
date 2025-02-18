@@ -96,3 +96,14 @@ if (document.readyState !== 'loading')
     domContentLoadedHandler();
 else
     document.addEventListener('DOMContentLoaded', domContentLoadedHandler);
+
+window.addEventListener('hexo-blog-decrypt', () => {
+    // window.location.reload();
+    if (!window.location.hash.includes('tide-on-decryption-reload')) {
+        window.location.hash = 'tide-on-decryption-reload';
+        window.location.reload();
+    }
+    else {
+        window.location.hash = window.location.hash.replace('tide-on-decryption-reload', '');
+    }
+});

@@ -28,7 +28,7 @@
     <i class="fa-solid fa-tag un-me-1" aria-hidden="true"></i><% postCtx.page_tags.forEach((tag,i)=>{ %><a class="un-sc-link-plain un-text-txt-scnd!" href="<%= url_for(tag.path) %>"><%= tag.name %></a><% if(i<postCtx.page_tags.length-1){ %><%=postCtx.list_separator %><% }}) %>
   </span>
   <% } %>
-  <% if(detailed&&postCtx.word_counter){ %>
+  <% if(detailed&&postCtx.word_counter&&!postCtx.page_encrypted){ %>
   <span class="tide-post-meta-word-count un-inline-block un-me-8" title="<%= __('post_meta.word_count.title') %>">
     <i class="fa-solid fa-keyboard un-me-1" aria-hidden="true"></i><%= symbolsCount(page) %>
   </span>
@@ -36,12 +36,12 @@
     <i class="fa-solid fa-clock un-me-1" aria-hidden="true"></i><%= symbolsTime(page) %>
   </span>
   <% } %>
-  <% if(detailed&&postCtx.extra){ %>
+  <% if(detailed&&postCtx.extra&&!postCtx.page_encrypted){ %>
   <span class="tide-post-meta-extra un-inline-block un-me-8" title="<%= __('post_meta.extra.title') %>">
     <i class="fa-solid fa-quote-left un-me-1" aria-hidden="true"></i><%= postCtx.extra %>
   </span>
   <% } %>
-  <% if(detailed&&postCtx.syndications.length>0){ %>
+  <% if(detailed&&postCtx.syndications.length>0&&!postCtx.page_encrypted){ %>
   <span class="tide-post-meta-extra un-inline-block un-me-8" title="<%= __('post_meta.syndications.title') %>">
     <i class="fa-solid fa-copy un-me-1" aria-hidden="true"></i><% postCtx.syndications.forEach((syn,i)=>{ %><a class="un-sc-link-plain un-text-txt-scnd!" href="<%= syn %>"><%= tide_utils().extractHostFromUrl(syn) %></a><% if(i<postCtx.syndications.length-1){ %><%=postCtx.list_separator %><% }}) %>
   </span>
@@ -51,7 +51,7 @@
     <i class="fa-solid fa-copyright un-me-1" aria-hidden="true"></i><%= postCtx.copyright %>
   </span>
   <% } %>
-  <% if(detailed&&postCtx.page_specific_description){ %>
+  <% if(detailed&&postCtx.page_specific_description&&!postCtx.page_encrypted){ %>
   <span class="tide-post-meta-extra un-inline-block un-me-8" title="<%= __('post_meta.page_specific_description.title') %>">
     <i class="fa-solid fa-comment-dots un-me-1" aria-hidden="true"></i><%= postCtx.page_specific_description %>
   </span>
