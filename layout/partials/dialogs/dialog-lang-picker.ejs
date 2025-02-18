@@ -35,7 +35,7 @@
       document.addEventListener('DOMContentLoaded', domContentLoadedHandler);
 
     function domContentLoadedHandler(eDomContentLoaded) {
-      const pickerDialog = document.getElementById('tide-dialog-lang-picker');
+      const dialogPicker = document.getElementById('tide-dialog-lang-picker');
       const pickerMask = document.querySelector('#tide-dialog-lang-picker .tide-dialog-mask');
       const pickerPanel = document.getElementById('tide-lang-picker-panel');
       const btnClose = document.getElementById('tide-lang-picker-btn-close');
@@ -50,7 +50,7 @@
       });
 
       function KILL_ME_PLEASE() {
-        pickerDialog.close();
+        dialogPicker.close();
       }
     }
   })();

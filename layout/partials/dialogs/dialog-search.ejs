@@ -1,3 +1,85 @@
-<dialog id="tide-dialog-search">
-
+<dialog id="tide-dialog-search" class="tide-dialog un-sc-dlg-fullscreen">
+  <div class="tide-dialog-mask un-sc-dlg-mask">
+    <div id="tide-search-panel" class=" un-absolute un-start-1/2 un-top-1/10 <%= tideCtx.direction==='rtl'?'un-translate-x-1/2':'-un-translate-x-1/2' %> un-w-160 un-max-w-full un-max-h-4/5 un-flex un-flex-col un-justfy-between un-gap-1 un-overflow-hidden">
+      <div class="un-w-full un-flex un-justify-between un-gap-1 un-flex-none">
+        <input id="tide-search-box" class="un-sc-input-plain un-w-0 un-h-12 un-flex-1" type="search" autocomplete="off">
+        <button id="tide-search-btn-close" class="un-sc-btn-plain un-size-12 un-flex-none" title="<%= __('dialog_search.btn_close.title') %>">
+          <i class="fa-solid fa-close" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="un-bg-bg-prim un-border-2 un-border-txt-prim un-border-solid un-w-full un-max-h-full un-flex-1 un-overflow-auto">
+        <p id="tide-search-result-placeholder" class="un-m-0 un-my-4 un-text-center"><%= __('dialog_search.search_result_placeholder') %></p>
+        <div id="tide-search-results" class="un-size-full un-p-4" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
 </dialog>
+<%- js({src:tideCtx.cdn.search_js.src,integrity:tideCtx.cdn.search_js.integrity,crossorigin:'anonymous',referrerpolicy:'no-referrer',defer:true}) %>
+<script>
+  'use strict';
+  (function() {
+    if (document.readyState !== 'loading')
+      domContentLoadedHandler();
+    else
+      document.addEventListener('DOMContentLoaded', domContentLoadedHandler);
+
+    function domContentLoadedHandler(eDomContentLoaded) {
+      const ls = new LocalSearch({
+        path: clientCtx.search_db_path
+      });
+      ls.fetchData();
+      const dialogSearch = document.getElementById('tide-dialog-search');
+      const searchMask = document.querySelector('#tide-dialog-search .tide-dialog-mask');
+      const searchPanel = document.getElementById('tide-search-panel');
+      const searchBox = document.getElementById('tide-search-box');
+      const btnClose = document.getElementById('tide-search-btn-close');
+      const searchResultPlaceholder = document.getElementById('tide-search-result-placeholder');
+      const searchResults = document.getElementById('tide-search-results');
+      searchMask.addEventListener('click', () => {
+        KILL_ME_PLEASE();
+      });
+      searchPanel.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+      searchBox.addEventListener('input', () => {
+        search();
+      });
+      btnClose.addEventListener('click', () => {
+        KILL_ME_PLEASE();
+      });
+
+      function search() {
+        if (!ls.isfetched) return;
+        const searchText = searchBox.value.trim().toLowerCase();
+        const keywords = searchText.split(/[-\s]+/);
+        let resultItems = [];
+        if (searchText.length > 0) {
+          resultItems = ls.getResultItems(keywords);
+        }
+        if (keywords.length === 1 && keywords[0] === '') {
+          searchResultPlaceholder.style.display = 'block';
+          searchResults.style.display = 'none';
+        } else if (resultItems.length === 0) {
+          searchResultPlaceholder.style.display = 'block';
+          searchResults.style.display = 'none';
+        } else {
+          searchResultPlaceholder.style.display = 'none';
+          searchResults.style.display = 'block';
+          resultItems.sort((left, right) => {
+            if (left.includedCount !== right.includedCount) {
+              return right.includedCount - left.includedCount;
+            } else if (left.hitCount !== right.hitCount) {
+              return right.hitCount - left.hitCount;
+            }
+            return right.id - left.id;
+          });
+          searchResults.innerHTML = `<ul id="tide-search-result-list">${resultItems.map(result => result.item).join('')}</ul>`;
+        }
+      }
+
+      function KILL_ME_PLEASE() {
+        dialogSearch.close();
+      }
+    }
+  })();
+</script>

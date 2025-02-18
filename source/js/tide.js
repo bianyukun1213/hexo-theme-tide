@@ -20,14 +20,14 @@ function domContentLoadedHandler(eDomContentLoaded) {
     const tideSideBarInputs = [...document.querySelectorAll('#tide-side-bar a')];
     const tideMainContent = document.getElementById('tide-main-content');
     const btnNav = document.getElementById('tide-btn-nav');
-    const btnScrollToTop = document.getElementById('tide-btn-scroll-to-top');
     const btnSearch = document.getElementById('tide-btn-search');
+    const dialogSearch = document.getElementById('tide-dialog-search');
     const btnSettings = document.getElementById('tide-btn-settings');
+    const btnScrollToTop = document.getElementById('tide-btn-scroll-to-top');
     const btnOpenToc = document.getElementById('tide-btn-open-toc');
     const dialogToc = document.getElementById('tide-dialog-toc');
     const btnSwitchLang = document.getElementById('tide-btn-switch-lang');
     const dialogLangPicker = document.getElementById('tide-dialog-lang-picker');
-    // const btnTocPanelClose = document.getElementById('tide-dialog-toc');
 
     function toggleSideBar(status, buttonTriggered = false) {
         if (status) {
@@ -48,18 +48,18 @@ function domContentLoadedHandler(eDomContentLoaded) {
         else
             toggleSideBar(false);
     }
-
-    btnScrollToTop.addEventListener('click', () => {
-        tideMainContent.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    btnSearch.addEventListener('click', function (e) {
-        const el = document.getElementById('ctx');
-        if (el.ownerDocument.defaultView.getComputedStyle(el, null).display === 'none')
-            el.style.display = 'block';
-        else
-            el.style.display = 'none';
-
-    });
+    if (btnSearch) {
+        // btnSearch.addEventListener('click', function (e) {
+        //     const el = document.getElementById('ctx');
+        //     if (el.ownerDocument.defaultView.getComputedStyle(el, null).display === 'none')
+        //         el.style.display = 'block';
+        //     else
+        //         el.style.display = 'none';
+        // });
+        btnSearch.addEventListener('click', () => {
+            dialogSearch.showModal();
+        });
+    }
     btnSettings.addEventListener('click', function (e) {
         const html = document.getElementsByTagName('html')[0];
         if (isPageRtl())
@@ -76,6 +76,9 @@ function domContentLoadedHandler(eDomContentLoaded) {
             toggleSideBar(false, true);
         else
             toggleSideBar(true, true);
+    });
+    btnScrollToTop.addEventListener('click', () => {
+        tideMainContent.scrollTo({ top: 0, behavior: 'smooth' });
     });
     if (btnOpenToc) {
         btnOpenToc.addEventListener('click', () => {
@@ -98,7 +101,6 @@ else
     document.addEventListener('DOMContentLoaded', domContentLoadedHandler);
 
 window.addEventListener('hexo-blog-decrypt', () => {
-    // window.location.reload();
     if (!window.location.hash.includes('tide-on-decryption-reload')) {
         window.location.hash = 'tide-on-decryption-reload';
         window.location.reload();

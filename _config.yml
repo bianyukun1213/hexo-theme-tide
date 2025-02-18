@@ -129,6 +129,9 @@ cdn:
   webmentionjs_js:
     src: "/js/third-party/webmention.js"
     integrity: ""
+  search_js:
+    src: "/js/third-party/search.js"
+    integrity: ""
 
 fonts:
   web_fonts:

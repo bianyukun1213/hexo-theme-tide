@@ -10,7 +10,7 @@ navigation:
   btn_settings:
     title: "打开设置窗口"
   footer:
-    generated_by_hexo: '使用<span class="un-i-logos-hexo un-mx-1"></span><a class="un-sc-link-plain un-text-t-sb!" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 与 <a class="un-sc-link-plain un-text-t-sb!" href="https://github.com/bianyukun1213/hexo-theme-tide" target="_blank" rel="noopener">hexo-theme-tide</a> 生成'
+    generated_by_hexo: '使用<span class="un-i-logos-hexo un-mx-1"></span><a class="un-sc-link-plain un-text-txt-sb!" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 与 <a class="un-sc-link-plain un-text-txt-sb!" href="https://github.com/bianyukun1213/hexo-theme-tide" target="_blank" rel="noopener">hexo-theme-tide</a> 生成'
 
 no_title: "无标题"
 
@@ -57,7 +57,7 @@ page_nav:
   next:
     title: "下一篇"
 
-image_viewer:
+dialog_image_viewer:
   btn_prev:
     title: "上一张"
   btn_next:
@@ -77,15 +77,20 @@ floating_utils:
   btn_switch_lang:
     title: "切换语言"
 
+dialog_search:
+  btn_close:
+    title: "关闭"
+  search_result_placeholder: "无数据"
+
 dialog_toc:
   title: "目录"
   btn_close:
-    title: "关闭目录"
+    title: "关闭"
 
 dialog_lang_picker:
   title: "切换语言"
   btn_close:
-    title: "关闭语言选择器"
+    title: "关闭"
 
 interactions:
   twikoo:

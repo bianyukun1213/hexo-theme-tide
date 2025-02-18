@@ -2,23 +2,23 @@
   <div class="tide-dialog-mask un-sc-dlg-mask">
     <img id="tide-viewing-image" tabindex="0">
   </div>
-  <div id="tide-image-viewer-toolbar" class="tide-dialog-container un-bg-black/75 un-fixed un-bottom-1/5 un-left-1/2 -un-translate-x-1/2 un-px-4 un-py-2 un-w-84 un-max-w-full un-max-h-2/5 un-rounded-2xl un-text-base un-text-white un-overflow-auto un-break-words">
+  <div id="tide-image-viewer-toolbar" class="tide-dialog-container un-bg-black/75 un-fixed un-bottom-1/5 un-left-1/2 -un-translate-x-1/2 un-px-4 un-py-2 un-w-84 un-max-w-full un-max-h-2/5 un-rounded-2xl un-text-base un-text-white un-overflow-auto">
     <div id="tide-viewing-image-title" class="un-mb-4 un-text-center un-text-xl"></div>
     <div id="tide-image-viewer-counter" class="un-mb-4 un-text-center"></div>
     <div id="tide-image-viewer-controls" class="un-flex un-flex-wrap un-justify-between un-gap-4 un-mx-auto">
-      <button id="tide-image-viewer-btn-prev" class="un-sc-btn-default un-bg-transparent un-text-white un-border-white un-rounded-full un-size-12 un-shrink-0" title="<%= __('image_viewer.btn_prev.title') %>">
+      <button id="tide-image-viewer-btn-prev" class="un-sc-btn-default un-bg-transparent un-text-white un-border-white un-rounded-full un-size-12 un-shrink-0" title="<%= __('dialog_image_viewer.btn_prev.title') %>">
         <i class="fa-solid <%= tideCtx.dir==='rtl'?'fa-angle-right':'fa-angle-left' %>" aria-hidden="true"></i>
       </button>
-      <button id="tide-image-viewer-btn-next" class="un-sc-btn-default un-bg-transparent un-text-white un-border-white un-rounded-full un-size-12 un-shrink-0" title="<%= __('image_viewer.btn_next.title') %>">
+      <button id="tide-image-viewer-btn-next" class="un-sc-btn-default un-bg-transparent un-text-white un-border-white un-rounded-full un-size-12 un-shrink-0" title="<%= __('dialog_image_viewer.btn_next.title') %>">
         <i class="fa-solid <%= tideCtx.dir==='rtl'?'fa-angle-left':'fa-angle-right' %>" aria-hidden="true"></i>
       </button>
-      <button id="tide-image-viewer-btn-zoom-in" class="un-sc-btn-default un-bg-transparent un-text-white un-border-white un-rounded-full un-size-12 un-shrink-0" title="<%= __('image_viewer.btn_zoom_in.title') %>">
+      <button id="tide-image-viewer-btn-zoom-in" class="un-sc-btn-default un-bg-transparent un-text-white un-border-white un-rounded-full un-size-12 un-shrink-0" title="<%= __('dialog_image_viewer.btn_zoom_in.title') %>">
         <i class="fa-solid fa-magnifying-glass-plus" aria-hidden="true"></i>
       </button>
-      <button id="tide-image-viewer-btn-zoom-out" class="un-sc-btn-default un-bg-transparent un-text-white un-border-white un-rounded-full un-size-12 un-shrink-0" title="<%= __('image_viewer.btn_zoom_out.title') %>">
+      <button id="tide-image-viewer-btn-zoom-out" class="un-sc-btn-default un-bg-transparent un-text-white un-border-white un-rounded-full un-size-12 un-shrink-0" title="<%= __('dialog_image_viewer.btn_zoom_out.title') %>">
         <i class="fa-solid fa-magnifying-glass-minus" aria-hidden="true"></i>
       </button>
-      <button id="tide-image-viewer-btn-close" class="un-sc-btn-default un-bg-transparent un-text-white un-border-white un-rounded-full un-size-12 un-shrink-0" title="<%= __('image_viewer.btn_close.title') %>">
+      <button id="tide-image-viewer-btn-close" class="un-sc-btn-default un-bg-transparent un-text-white un-border-white un-rounded-full un-size-12 un-shrink-0" title="<%= __('dialog_image_viewer.btn_close.title') %>">
         <i class="fa-solid fa-xmark" aria-hidden="true"></i>
       </button>
     </div>
@@ -34,7 +34,7 @@
       document.addEventListener('DOMContentLoaded', domContentLoadedHandler);
 
     function domContentLoadedHandler(eDomContentLoaded) {
-      const imgViewerDialog = document.getElementById('tide-dialog-image-viewer');
+      const dialogImgViewer = document.getElementById('tide-dialog-image-viewer');
       const dialogMask = document.querySelector('.tide-dialog-mask:has(#tide-viewing-image)');
       const viewingImg = document.getElementById('tide-viewing-image');
       const viewingImgTitle = document.getElementById('tide-viewing-image-title');
@@ -185,7 +185,7 @@
 
       function openImageViewer() {
         openImage(currentImgIndex);
-        imgViewerDialog.showModal();
+        dialogImgViewer.showModal();
         btnNext.focus();
       };
 
@@ -202,7 +202,7 @@
         zoomOut(0.2);
       });
       btnClose.addEventListener('click', () => {
-        imgViewerDialog.close();
+        dialogImgViewer.close();
       });
       viewingImg.addEventListener('keydown', function(e) {
         const xStep = dialogMask.offsetWidth / 20;
@@ -230,7 +230,7 @@
             break;
         }
       });
-      imgViewerDialog.addEventListener('keydown', function(e) {
+      dialogImgViewer.addEventListener('keydown', function(e) {
         switch (e.key) {
           case 'ArrowUp':
             zoomIn(0.1);

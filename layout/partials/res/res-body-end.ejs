@@ -7,3 +7,6 @@
 <% if(!tide_utils().isEmptyObject(tideCtx.languages)){ %>
 <%- partial('../dialogs/dialog-lang-picker.ejs',{tideCtx}) %>
 <% } %>
+<% if(tideCtx.search){ %>
+<%- partial('../dialogs/dialog-search.ejs',{tideCtx}) %>
+<% } %>

@@ -8,11 +8,11 @@
   <%- partial('./partials/res/res-head-end.ejs',{tideCtx}) %>
 </head>
 
-<body class="un-text-txt-prim">
+<body class="un-text-base un-text-txt-prim un-break-words">
   <%- partial('./partials/res/res-body-begin.ejs',{tideCtx}) %>
   <textarea id="ctx" style="display:none;" class="un-fixed un-size-96 un-right-0 un-bottom-0 un-z-100"><%= JSON.stringify(tideCtx,null,2) %></textarea>
-  <div id="tide-root" class="un-bg-b-scnd un-absolute un-size-full un-text-base un-break-words" <% if(is_post()) { %> tide-is-post="true" <% } %>>
-    <div id="tide-side-bar" class="un-sc-trans-default un-bg-prim un-fixed un-flex un-flex-col un-justify-between un-z-30 un-text-center un-text-txt-sb un-h-full">
+  <div id="tide-root" class="un-bg-b-scnd un-absolute un-size-full un-text-base" <% if(is_post()) { %> tide-is-post="true" <% } %>>
+    <div id="tide-side-bar" class="un-sc-trans-default un-bg-prim un-fixed un-h-full un-flex un-flex-col un-justify-between un-z-30 un-text-center un-text-txt-sb">
       <header class="un-flex-none un-p-8">
         <% if(is_home()) { %>
         <h1 id="tide-site-title" class="un-my-4 un-font-bold">
@@ -32,8 +32,8 @@
       <%- partial('./partials/h-card.ejs',{h_card:card,authorCard:false}) %>
       <% } %>
       <% } %>
-      <nav id="tide-navigation" class="un-flex-initial un-self-center un-w-full">
-        <ul class="un-inline-flex un-flex-col un-items-start un-p-0 un-m-0 un-w-auto un-list-none">
+      <nav id="tide-navigation" class="un-w-full un-flex-initial un-self-center">
+        <ul class="un-w-auto un-inline-flex un-flex-col un-items-start un-p-0 un-m-0 un-list-none">
           <% for(const key in tideCtx.navigation){ %>
           <% if(Object.prototype.hasOwnProperty.call(tideCtx.navigation,key)){ %>
           <% const element=tideCtx.navigation[key] %>
@@ -55,9 +55,9 @@
         <% } %>
       </footer>
     </div>
-    <div id="tide-content" class="un-sc-trans-default un-fixed un-flex un-flex-col un-size-full">
+    <div id="tide-content" class="un-sc-trans-default un-fixed un-size-full un-flex un-flex-col">
       <!-- 顶部工具栏 -->
-      <header id="tide-top-bar" class="un-bg-bg-prim un-flex un-justify-stretch un-items-center un-h-16 un-overflow-auto">
+      <header id="tide-top-bar" class="un-bg-bg-prim un-h-16 un-flex un-justify-stretch un-items-center un-overflow-auto">
         <div class="un-w-1/4 un-min-w-20 un-h-12">
           <button id="tide-btn-nav" class="un-sc-btn-default un-relative un-float-start un-size-12 un-ms-4" title="<%= __('navigation.btn_nav.title') %>">
             <i id="tide-btn-nav-icon-bars" class="fa-solid fa-bars" aria-hidden="true"></i><i id="tide-btn-nav-icon-close" class="fa-solid fa-close" aria-hidden="true"></i>
@@ -65,9 +65,11 @@
         </div>
         <div class="un-w-3/4 un-min-w-32 un-h-12">
           <!-- 开启 relative，使用 right 让元素具有符合直觉的 tab index -->
+          <% if(tideCtx.search){ %>
           <button id="tide-btn-search" class="un-sc-btn-default un-relative un-float-end un-end-16 un-size-12 un-me-4" title="<%= __('navigation.btn_search.title') %>">
             <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
           </button>
+          <% } %>
           <button id="tide-btn-settings" class="un-sc-btn-default un-relative un-float-end -un-end-16 un-size-12 un-me-4" title="<%= __('navigation.btn_settings.title') %>">
             <i class="fa-solid fa-gear" aria-hidden="true"></i>
           </button>

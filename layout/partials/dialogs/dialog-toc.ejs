@@ -9,7 +9,6 @@
       </div>
       <div id="tide-toc-content" class="tide-side-panel-content un-w-full un-p-4 un-h-full un-grow-1 un-shrink-1 un-overflow-auto">
         <%- toc(page.content,{list_number:tideCtx.toc.list_number,class:'tide-toc'}) %>
-        <!-- <div style="height:100%;background-color: red;"></div> -->
       </div>
     </div>
   </div>
@@ -23,7 +22,7 @@
       document.addEventListener('DOMContentLoaded', domContentLoadedHandler);
 
     function domContentLoadedHandler(eDomContentLoaded) {
-      const tocDialog = document.getElementById('tide-dialog-toc');
+      const dialogToc = document.getElementById('tide-dialog-toc');
       const tocMask = document.querySelector('#tide-dialog-toc .tide-dialog-mask');
       const tocPanel = document.getElementById('tide-toc-panel');
       const tocLinks = document.getElementsByClassName('tide-toc-link');
@@ -44,7 +43,7 @@
       });
 
       function KILL_ME_PLEASE() {
-        tocDialog.close();
+        dialogToc.close();
       }
     }
   })();

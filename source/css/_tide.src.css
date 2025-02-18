@@ -184,7 +184,7 @@ button:focus,
 input:focus,
 select:focus:focus,
 textarea:focus {
-    @apply un-outline-4 un-outline-offset-4 un-outline-fcs-ol! un-outline-solid;
+    @apply un-outline-2 un-outline-offset-2 un-outline-fcs-ol ! un-outline-solid;
 }
 
 .tide-paginator span {
@@ -221,15 +221,56 @@ textarea:focus {
 .tide-toc-link {
     /* un-sc-link-default 实际上多余。 */
     @apply un-sc-link-default;
-    /* @apply un-sc-link-plain; */
     @apply un-text-txt-scnd!;
     @apply un-inline-block;
     @apply un-mb-4!;
 }
 
 .tide-toc-link:hover {
-    /* @apply un-text-lk-hvr!; */
     @apply un-font-bold;
+}
+
+#tide-search-box::-webkit-search-cancel-button {
+    display: none;
+}
+
+#tide-search-result-list {
+    @apply un-p-0 un-m-0;
+}
+
+#tide-search-results li {
+    @apply un-list-none;
+}
+
+#tide-search-results .search-keyword {
+    @apply un-bg-transparent;
+    @apply un-font-bold;
+}
+
+#tide-search-results a {
+    @apply un-sc-link-default;
+    @apply un-text-txt-scnd!;
+}
+
+#tide-search-results .search-result-title {
+    @apply un-sc-link-plain;
+    @apply un-text-txt-prim!;
+    @apply un-text-xl;
+    @apply un-font-bold;
+    @apply un-break-words un-overflow-hidden un-text-ellipsis;
+}
+
+#tide-search-results .search-result-title .search-keyword {
+    @apply un-text-txt-prim;
+}
+
+#tide-search-results .search-result {
+    @apply un-m-0 un-my-4;
+    @apply un-break-words un-overflow-hidden un-text-ellipsis;
+}
+
+#tide-search-results .search-result .search-keyword {
+    @apply un-text-txt-scnd;
 }
 
 /* 插件样式修复 */
@@ -299,7 +340,6 @@ textarea:focus {
     @apply un-mx-auto;
 }
 
-/* md 往后调整侧边栏宽度为 120 */
 @media (min-width: 768px) {
     #tide-site-title {
         @apply un-text-4xl;
