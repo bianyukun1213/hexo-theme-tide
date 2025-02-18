@@ -415,10 +415,7 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 
 .un-sc-input-plain:disabled{cursor:not-allowed;opacity:0.5;}
 
-.un-sc-select-plain:disabled{cursor:not-allowed;opacity:0.5;}
-
-.un-sc-input-plain,
-.un-sc-select-plain{border-width:2px;border-color:var(--tide-color-text-primary);border-style:solid;background-color:var(--tide-color-background-primary);color:var(--tide-color-text-primary);}
+.un-sc-input-plain{border-width:2px;border-color:var(--tide-color-text-primary);border-style:solid;background-color:var(--tide-color-background-primary);color:var(--tide-color-text-primary);}
 
 .un-sc-link-default{color:var(--tide-color-link-hover);text-decoration-line:underline;}
 
