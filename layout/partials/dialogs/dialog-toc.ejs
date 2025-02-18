@@ -35,7 +35,7 @@
       });
       for (const link of tocLinks) {
         link.addEventListener('click', function(e) {
-          const targetId = e.target.parentElement.href.split('#')[1];
+          const targetId = decodeURIComponent(e.target.parentElement.href.split('#')[1]);
           const target = document.getElementById(targetId);
           if (target) {
             document.getElementById('tide-main-content').scrollTo({
