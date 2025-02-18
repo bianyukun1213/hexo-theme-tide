@@ -27,14 +27,23 @@
       const tocPanel = document.getElementById('tide-toc-panel');
       const tocLinks = document.getElementsByClassName('tide-toc-link');
       const btnClose = document.getElementById('tide-toc-btn-close');
-      tocMask.addEventListener('click',()=>{
+      tocMask.addEventListener('click', () => {
         KILL_ME_PLEASE();
       });
-      tocPanel.addEventListener('click',function (e){
+      tocPanel.addEventListener('click', function(e) {
         e.stopPropagation();
       });
       for (const link of tocLinks) {
-        link.addEventListener('click', () => {
+        link.addEventListener('click', function(e) {
+          const targetId = e.target.parentElement.href.split('#')[1];
+          const target = document.getElementById(targetId);
+          if (target) {
+            document.getElementById('tide-main-content').scrollTo({
+              top: target.offsetTop - document.getElementById('tide-top-bar').clientHeight,
+              behavior: 'smooth'
+            });
+            e.preventDefault();
+          }
           KILL_ME_PLEASE();
         });
       }
