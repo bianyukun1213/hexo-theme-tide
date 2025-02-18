@@ -642,6 +642,8 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 
 .un-text-center{text-align:center;}
 
+.un-align-bottom{vertical-align:bottom;}
+
 .un-align-middle{vertical-align:middle;}
 
 .un-text-2xl{font-size:1.5rem;line-height:2rem;}
