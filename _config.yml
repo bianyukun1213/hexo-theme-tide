@@ -25,6 +25,7 @@ colors:
   light:
     primary: "#3F72AF"
     secondary: "#00ADB5"
+    # background_primary: "red"
     background_primary: "#FFFFFF"
     background_secondary: "#F1F1F1"
     text_primary: "#323739"
@@ -42,6 +43,7 @@ colors:
   dark:
     primary: "#3F72AF"
     secondary: "#00ADB5"
+    # background_primary: "red"
     background_primary: "#FFFFFF"
     background_secondary: "#F1F1F1"
     text_primary: "#323739"
@@ -133,10 +135,10 @@ fonts:
     enable: true
     preconnect: "https://fonts.bunny.net"
     # css_href: "https://fonts.bunny.net/css?family=jetbrains-mono:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i|ma-shan-zheng:400|noto-sans-sc:100,200,300,400,500,600,700,800,900|noto-serif-sc:200,300,400,500,600,700,800,900"
-    # css_href: "https://fonts.bunny.net/css?family=ma-shan-zheng:400|noto-sans-sc:100,200,300,400,500,600,700,800,900|noto-serif-sc:200,300,400,500,600,700,800,900"
-    css_href: "https://fonts.bunny.net/css?family=ma-shan-zheng:400|noto-sans-sc:100,200,300,400,500,600,700,800,900|noto-serif-sc:200,300,400,500,600,700,800,900|zcool-kuaile:400"
-  # global: "'Noto Sans SC', sans-serif"
-  global: "'ZCOOL KuaiLe', sans-serif"
+    css_href: "https://fonts.bunny.net/css?family=ma-shan-zheng:400|noto-sans-sc:100,200,300,400,500,600,700,800,900|noto-serif-sc:200,300,400,500,600,700,800,900"
+    # css_href: "https://fonts.bunny.net/css?family=ma-shan-zheng:400|noto-sans-sc:100,200,300,400,500,600,700,800,900|noto-serif-sc:200,300,400,500,600,700,800,900|zcool-kuaile:400"
+  global: "'Noto Sans SC', sans-serif"
+  # global: "'ZCOOL KuaiLe', sans-serif"
   site_title: "'Noto Sans SC', sans-serif"
   # site_title: "'Ma Shan Zheng', handwriting"
   site_subtitle: "'Ma Shan Zheng', handwriting"

@@ -1,4 +1,4 @@
-<div class="tide-post-meta un-mb-4 un-text-t-scnd">
+<div class="tide-post-meta un-mb-4 un-text-txt-scnd">
   <!-- 为 span 添加 un-inline-block 以在 rtl 下适应方向 -->
   <% if(detailed){ %>
   <% let authorCount %>
@@ -20,12 +20,12 @@
   <% } %>
   <% if(postCtx.page_categories.length>0){ %>
   <span class="tide-post-meta-categories un-inline-block un-me-8" title="<%= __('post_meta.categories.title') %>">
-    <i class="fa-solid fa-folder-open un-me-1" aria-hidden="true"></i><% postCtx.page_categories.forEach((cate,i)=>{ %><a class="un-sc-link-plain un-text-t-scnd!" href="<%= url_for(cate.path) %>"><%= cate.name %></a><% if(i<postCtx.page_categories.length-1){ %><%=postCtx.list_separator %><% }}) %>
+    <i class="fa-solid fa-folder-open un-me-1" aria-hidden="true"></i><% postCtx.page_categories.forEach((cate,i)=>{ %><a class="un-sc-link-plain un-text-txt-scnd!" href="<%= url_for(cate.path) %>"><%= cate.name %></a><% if(i<postCtx.page_categories.length-1){ %><%=postCtx.list_separator %><% }}) %>
   </span>
   <% } %>
   <% if(postCtx.page_tags.length>0){ %>
   <span class="tide-post-meta-tags un-inline-block un-me-8" title="<%= __('post_meta.tags.title') %>">
-    <i class="fa-solid fa-tag un-me-1" aria-hidden="true"></i><% postCtx.page_tags.forEach((tag,i)=>{ %><a class="un-sc-link-plain un-text-t-scnd!" href="<%= url_for(tag.path) %>"><%= tag.name %></a><% if(i<postCtx.page_tags.length-1){ %><%=postCtx.list_separator %><% }}) %>
+    <i class="fa-solid fa-tag un-me-1" aria-hidden="true"></i><% postCtx.page_tags.forEach((tag,i)=>{ %><a class="un-sc-link-plain un-text-txt-scnd!" href="<%= url_for(tag.path) %>"><%= tag.name %></a><% if(i<postCtx.page_tags.length-1){ %><%=postCtx.list_separator %><% }}) %>
   </span>
   <% } %>
   <% if(detailed&&postCtx.word_counter){ %>
@@ -43,7 +43,7 @@
   <% } %>
   <% if(detailed&&postCtx.syndications.length>0){ %>
   <span class="tide-post-meta-extra un-inline-block un-me-8" title="<%= __('post_meta.syndications.title') %>">
-    <i class="fa-solid fa-copy un-me-1" aria-hidden="true"></i><% postCtx.syndications.forEach((syn,i)=>{ %><a class="un-sc-link-plain un-text-t-scnd!" href="<%= syn %>"><%= tide_utils().extractHostFromUrl(syn) %></a><% if(i<postCtx.syndications.length-1){ %><%=postCtx.list_separator %><% }}) %>
+    <i class="fa-solid fa-copy un-me-1" aria-hidden="true"></i><% postCtx.syndications.forEach((syn,i)=>{ %><a class="un-sc-link-plain un-text-txt-scnd!" href="<%= syn %>"><%= tide_utils().extractHostFromUrl(syn) %></a><% if(i<postCtx.syndications.length-1){ %><%=postCtx.list_separator %><% }}) %>
   </span>
   <% } %>
   <% if(detailed&&postCtx.copyright){ %>

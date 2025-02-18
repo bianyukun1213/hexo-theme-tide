@@ -184,26 +184,26 @@ button:focus,
 input:focus,
 select:focus:focus,
 textarea:focus {
-    @apply un-outline-4 un-outline-offset-4 un-outline-fcs-ol ! un-outline-solid;
+    @apply un-outline-4 un-outline-offset-4 un-outline-fcs-ol! un-outline-solid;
 }
 
 .tide-paginator span {
     @apply un-inline-block;
     @apply un-mx-1;
-    @apply un-text-t-scnd;
+    @apply un-text-txt-scnd;
 }
 
 .tide-paginator span.current {
     @apply un-underline;
     @apply un-underline-offset-4;
-    @apply un-text-t-prim;
+    @apply un-text-txt-prim;
 }
 
 .tide-paginator a {
     @apply un-inline-block;
     @apply un-mx-1;
     @apply un-sc-link-plain;
-    @apply un-text-t-scnd !;
+    @apply un-text-txt-scnd!;
 }
 
 .tide-toc,
@@ -222,9 +222,9 @@ textarea:focus {
     /* un-sc-link-default 实际上多余。 */
     @apply un-sc-link-default;
     /* @apply un-sc-link-plain; */
-    @apply un-text-t-scnd!;
+    @apply un-text-txt-scnd!;
     @apply un-inline-block;
-    @apply un-mb-4 !;
+    @apply un-mb-4!;
 }
 
 .tide-toc-link:hover {
@@ -365,7 +365,7 @@ textarea:focus {
     @apply un-hidden;
     @apply un-opacity-0;
     @apply un-sc-trans-default un-transition-discrete;
-    @apply un-text-t-prim;
+    @apply un-text-txt-prim;
 }
 
 .tide-dialog[open] {

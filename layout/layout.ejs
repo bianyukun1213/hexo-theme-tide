@@ -8,11 +8,11 @@
   <%- partial('./partials/res/res-head-end.ejs',{tideCtx}) %>
 </head>
 
-<body class="un-text-t-prim">
+<body class="un-text-txt-prim">
   <%- partial('./partials/res/res-body-begin.ejs',{tideCtx}) %>
   <textarea id="ctx" style="display:none;" class="un-fixed un-size-96 un-right-0 un-bottom-0 un-z-100"><%= JSON.stringify(tideCtx,null,2) %></textarea>
   <div id="tide-root" class="un-bg-b-scnd un-absolute un-size-full un-text-base un-break-words" <% if(is_post()) { %> tide-is-post="true" <% } %>>
-    <div id="tide-side-bar" class="un-sc-trans-default un-bg-prim un-fixed un-flex un-flex-col un-justify-between un-z-30 un-text-center un-text-t-sb un-h-full">
+    <div id="tide-side-bar" class="un-sc-trans-default un-bg-prim un-fixed un-flex un-flex-col un-justify-between un-z-30 un-text-center un-text-txt-sb un-h-full">
       <header class="un-flex-none un-p-8">
         <% if(is_home()) { %>
         <h1 id="tide-site-title" class="un-my-4 un-font-bold">
@@ -38,7 +38,7 @@
           <% if(Object.prototype.hasOwnProperty.call(tideCtx.navigation,key)){ %>
           <% const element=tideCtx.navigation[key] %>
           <li class="un-inline-block un-mb-8">
-            <i class="<%= element.icon %> un-me-4" aria-hidden="true"></i><a class="un-sc-link-plain un-text-t-sb!" href="<%= url_for(element.link) %>"><%= key %></a>
+            <i class="<%= element.icon %> un-me-4" aria-hidden="true"></i><a class="un-sc-link-plain un-text-txt-sb!" href="<%= url_for(element.link) %>"><%= key %></a>
           </li>
           <% } %>
           <% } %>
@@ -48,7 +48,7 @@
         <!-- 留一个隐藏的 div，方便用户通过修改注入 -->
         <div id="tide-footer-injection-point" class="un-hidden"></div>
         <% if(!tide_utils().isEmptyObject(tideCtx.icp_record)) { %>
-        <p id="tide-icp-record"><a class="un-sc-link-plain un-text-t-sb!" href="<%= tideCtx.icp_record.link %>"><%= tideCtx.icp_record.text %></a></p>
+        <p id="tide-icp-record"><a class="un-sc-link-plain un-text-txt-sb!" href="<%= tideCtx.icp_record.link %>"><%= tideCtx.icp_record.text %></a></p>
         <% } %>
         <% if(tideCtx.generated_by_hexo){ %>
         <p id="tide-generated-by-hexo"><%- __('navigation.footer.generated_by_hexo') %></p>
@@ -57,7 +57,7 @@
     </div>
     <div id="tide-content" class="un-sc-trans-default un-fixed un-flex un-flex-col un-size-full">
       <!-- 顶部工具栏 -->
-      <header id="tide-top-bar" class="un-bg-b-prim un-flex un-justify-stretch un-items-center un-h-16 un-overflow-auto">
+      <header id="tide-top-bar" class="un-bg-bg-prim un-flex un-justify-stretch un-items-center un-h-16 un-overflow-auto">
         <div class="un-w-1/4 un-min-w-20 un-h-12">
           <button id="tide-btn-nav" class="un-sc-btn-default un-relative un-float-start un-size-12 un-ms-4" title="<%= __('navigation.btn_nav.title') %>">
             <i id="tide-btn-nav-icon-bars" class="fa-solid fa-bars" aria-hidden="true"></i><i id="tide-btn-nav-icon-close" class="fa-solid fa-close" aria-hidden="true"></i>
@@ -73,7 +73,7 @@
           </button>
         </div>
       </header>
-      <main id="tide-main-content" class="un-bg-b-prim un-flex-1 un-overflow-auto">
+      <main id="tide-main-content" class="un-bg-bg-prim un-flex-1 un-overflow-auto">
         <%- body %>
         <%- partial('./partials/floating-utils.ejs',{tideCtx}) %>
       </main>

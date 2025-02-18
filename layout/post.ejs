@@ -11,10 +11,10 @@
 </article>
 <nav id="tide-page-nav" class="un-sc-clearfix un-py-4">
   <% if(!tide_utils().isEmptyObject(tideCtx.prev)){ %>
-  <a class="un-sc-link-plain un-float-start un-text-t-scnd!" title="<%= __('page_nav.prev.title') %>" href="<%= url_for(tideCtx.prev.path) %>"><i class="fa-solid <%= tideCtx.dir==='rtl'?'fa-angle-right':'fa-angle-left' %> un-me-1" aria-hidden="true"></i><span><%= tideCtx.prev.title?tideCtx.prev.title:__('no_title') %></span></a>
+  <a class="un-sc-link-plain un-float-start un-text-txt-scnd!" title="<%= __('page_nav.prev.title') %>" href="<%= url_for(tideCtx.prev.path) %>"><i class="fa-solid <%= tideCtx.dir==='rtl'?'fa-angle-right':'fa-angle-left' %> un-me-1" aria-hidden="true"></i><span><%= tideCtx.prev.title?tideCtx.prev.title:__('no_title') %></span></a>
   <% } %>
   <% if(!tide_utils().isEmptyObject(tideCtx.next)){ %>
-  <a class="un-sc-link-plain un-float-end un-text-t-scnd!" title="<%= __('page_nav.next.title') %>" href="<%= url_for(tideCtx.next.path) %>"><span><%= tideCtx.next.title?tideCtx.next.title:__('no_title') %></span><i class="fa-solid <%= tideCtx.dir==='rtl'?'fa-angle-left':'fa-angle-right' %> un-ms-1" aria-hidden="true"></i></a>
+  <a class="un-sc-link-plain un-float-end un-text-txt-scnd!" title="<%= __('page_nav.next.title') %>" href="<%= url_for(tideCtx.next.path) %>"><span><%= tideCtx.next.title?tideCtx.next.title:__('no_title') %></span><i class="fa-solid <%= tideCtx.dir==='rtl'?'fa-angle-left':'fa-angle-right' %> un-ms-1" aria-hidden="true"></i></a>
   <% } %>
 </nav>
 <!-- 评论 -->

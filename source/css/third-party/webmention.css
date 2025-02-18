@@ -6,7 +6,7 @@
 
 #tide-interaction-webmentionjs h2 {
     margin: 0;
-    margin-bottom: calc(var(--tide-unocss-spacing) * 4);
+    margin-bottom: 1rem;
     /* xl */
     font-size: 1.25rem;
     line-height: 1.75rem;
@@ -27,11 +27,11 @@
 }
 
 #tide-interaction-webmentionjs .reaction img {
-    width: 40px;
-    height: 40px;
+    width: 2.5rem;
+    height: 2.5rem;
     object-fit: contain;
-    margin-inline-end: -14px;
-    border-radius: 5px;
+    margin-inline-end: -1rem;
+    border-radius: 0.375rem;
 }
 
 #tide-interaction-webmentionjs .source {
@@ -47,7 +47,7 @@
 }
 
 #tide-interaction-webmentionjs .comments li {
-    margin-bottom: calc(var(--tide-unocss-spacing) * 16);
+    margin-bottom: 4rem;
 }
 
 #tide-interaction-webmentionjs .comments li::after {
@@ -60,8 +60,8 @@
 }
 
 #tide-interaction-webmentionjs .comments li .reaction {
-    margin-inline-end: calc(var(--tide-unocss-spacing) * 2);
-    margin-bottom: calc(var(--tide-unocss-spacing) * 4);
+    margin-inline-end: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 #tide-interaction-webmentionjs .comments li .text {
@@ -99,6 +99,6 @@
 }
 
 #tide-interaction-webmentionjs .reacts .reaction {
-    margin-inline-end: calc(var(--tide-unocss-spacing) * 2);
-    margin-bottom: calc(var(--tide-unocss-spacing) * 2);
+    margin-inline-end: 0.5rem;
+    margin-bottom: 0.5rem;
 }
