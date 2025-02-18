@@ -202,7 +202,7 @@ page_modifier:
 
 toc:
   enable: true
-  list_number: true
+  list_number: false
 search: true
 word_counter: true
 list_separator: ", "
