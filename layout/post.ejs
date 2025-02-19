@@ -1,6 +1,6 @@
 <% const tideCtx=get_ctx(site,config,theme,page) %>
 <article id="tide-post" <%- tideCtx.microformats2&&!tideCtx.page_encrypted?' class="h-entry"':'' %>>
-  <h1 id="tide-post-title" class="<%= tideCtx.microformats2&&!tideCtx.page_encrypted?'p-name':''%> un-m-0 un-mb-2 un-text-4xl un-font-bold"><%= tideCtx.page_title?tideCtx.page_title:__('page_title.none') %></h1>
+  <h1 id="tide-post-title" class="<%= tideCtx.microformats2&&!tideCtx.page_encrypted?'p-name':''%> un-m-0 un-mb-2 un-text-4xl un-text-txt-prim un-font-bold"><%= tideCtx.page_title?tideCtx.page_title:__('page_title.none') %></h1>
   <%- partial('./partials/post-meta.ejs',{postCtx:tideCtx,detailed:true}) %>
   <% if(tideCtx.microformats2&&!tideCtx.page_encrypted){ %>
   <%- partial('./partials/hidden-microformats2-group.ejs',{tideCtx}); %>

@@ -1,6 +1,6 @@
 <% const tideCtx=get_ctx(site,config,theme,page) %>
 <div id="tide-category">
-  <h1 class="un-m-0 un-mb-4 un-text-4xl un-font-bold"><%= __('page_title.category',tideCtx.category) %></h1>
+  <h1 class="un-m-0 un-mb-4 un-text-4xl un-text-txt-prim un-font-bold"><%= __('page_title.category',tideCtx.category) %></h1>
   <%- partial('./partials/post-ul.ejs',{tideCtx,postSrc:page}) %>
 </div>
 <div id="tide-category-paginator">
