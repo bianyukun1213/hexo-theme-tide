@@ -26,7 +26,6 @@ const {
 
 hexo.on('generateBefore', function () {
     const data = hexo.locals.get('data');
-    const { language } = hexo.config;
     const { i18n } = hexo.theme;
     if (isPlainObject(data.languages)) {
         for (const langKey in data.languages) {
@@ -59,14 +58,15 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.keywords = page?.keywords ?? config?.keywords ?? [];
     out.site_author = config?.author ?? '';
     out.language = page?.language ?? page?.lang ?? config?.language;
-    out.index_per_page = page?.per_page ?? config?.per_page ?? 10;
-    out.index_total = page?.total ?? 0;
-    out.index_current = page?.current ?? 0;
-    out.index_current_url = page?.current_url ?? '';
-    out.archive_year = page?.year ?? '';
-    out.archive_month = page?.month ?? '';
-    out.category_category = page?.category ?? '';
-    out.tag_tag = page?.tag ?? '';
+    // https://hexo.io/zh-cn/docs/variables#%E9%A1%B5%E9%9D%A2%E5%8F%98%E9%87%8F
+    out.per_page = page?.per_page ?? config?.per_page ?? 10;
+    out.total = page?.total ?? 0;
+    out.current = page?.current ?? 0;
+    out.current_url = page?.current_url ?? '';
+    out.year = page?.year ?? '';
+    out.month = page?.month ?? '';
+    out.category = page?.category ?? '';
+    out.tag = page?.tag ?? '';
     out.meta_generator = config?.meta_generator ?? true;
     out.date_format = config?.date_format ?? '';
     out.time_format = config?.time_format ?? '';
@@ -219,7 +219,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.syndications = isArray(page.syndications) ? page.syndications : [];
     out.interactions = {};
     if (isArray(page.interactions)) {
-        
+
         if (page.interactions.includes('twikoo'))
             out.interactions.twikoo = theme?.interactions?.twikoo ?? {};
         if (page.interactions.includes('webmentionjs'))

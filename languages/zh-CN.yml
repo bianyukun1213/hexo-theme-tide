@@ -111,8 +111,8 @@ interactions:
 page_title:
   none: "无标题"
   archive: "归档"
-  archive_year: "归档：%s 至 %s"
-  archive_month: "归档：%s 至 %s"
+  archive_year: "归档：%1$s 至 %2$s"
+  archive_month: "归档：%1$s 至 %2$s"
   # category: "分类"
   category: "分类：%s"
   # tag: "标签"

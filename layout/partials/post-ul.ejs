@@ -3,8 +3,8 @@
 <% filter=()=>true %>
 <% } %>
 <ul class="tide-post-ul un-p-0 un-m-0 un-w-full un-list-none">
-  <% const indexStart=(tideCtx.index_current-1)*tideCtx.index_per_page %>
-  <% postSrc.posts.filter(filter).sort('date',-1).slice(indexStart,indexStart+tideCtx.index_per_page).forEach((post)=>{ %>
+  <% const indexStart=(tideCtx.current-1)*tideCtx.per_page %>
+  <% postSrc.posts.filter(filter).forEach((post)=>{ %>
   <% const postCtx=get_ctx(site,config,theme,post) %>
   <li class="tide-post-li un-block un-mb-16">
     <div class="tide-post-li-title un-mb-2">
