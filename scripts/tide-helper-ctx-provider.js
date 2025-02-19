@@ -63,6 +63,10 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.index_total = page?.total ?? 0;
     out.index_current = page?.current ?? 0;
     out.index_current_url = page?.current_url ?? '';
+    out.archive_year = page?.year ?? '';
+    out.archive_month = page?.month ?? '';
+    out.category_category = page?.category ?? '';
+    out.tag_tag = page?.tag ?? '';
     out.meta_generator = config?.meta_generator ?? true;
     out.date_format = config?.date_format ?? '';
     out.time_format = config?.time_format ?? '';

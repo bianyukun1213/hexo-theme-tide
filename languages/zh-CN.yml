@@ -12,8 +12,6 @@ navigation:
   footer:
     generated_by_hexo_and_theme_tide: '使用<span class="un-i-logos-hexo un-mx-1"></span><a class="un-sc-link-plain un-text-txt-sb!" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 与 <a class="un-sc-link-plain un-text-txt-sb!" href="https://github.com/bianyukun1213/hexo-theme-tide" target="_blank" rel="noopener">hexo-theme-tide</a> 生成'
 
-no_title: "无标题"
-
 post_meta:
   author:
     title:
@@ -109,3 +107,13 @@ interactions:
       Responses: "回应"
       mention: "提及"
       Reactions: "反应"
+
+page_title:
+  none: "无标题"
+  archive: "归档"
+  archive_year: "归档：%s 至 %s"
+  archive_month: "归档：%s 至 %s"
+  # category: "分类"
+  category: "分类：%s"
+  # tag: "标签"
+  tag: "标签：%s"

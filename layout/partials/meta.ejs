@@ -3,7 +3,27 @@
 <!-- favicon 可以使用 helper 插入，但为了与 apple-touch-icon 一致选择手写 -->
 <link rel="icon" href="<%= url_for(tideCtx.meta_icons?.favicon) %>">
 <link rel="apple-touch-icon" href="<%= url_for(tideCtx.meta_icons?.apple_touch_icon) %>">
-<title><%= tideCtx.page_title?tideCtx.page_title:tideCtx.site_title %></title>
+<% if(is_post()||is_page()){ %>
+<title><%= tideCtx.page_title?tideCtx.page_title:__('page_title.none') %></title>
+<% }else if(is_archive()){ %>
+<% if(is_month()){ %>
+<% const dateBegin=moment().year(tideCtx.archive_year).month(parseInt(tideCtx.archive_month)-1).date(1) %>
+<% const dateEnd=moment(dateBegin).add(1,'month').add(-1,'days') %>
+<title><%= __('page_title.archive_month',date(dateBegin),date(dateEnd)) %></title>
+<% }else if(is_year()){ %>
+<% const dateBegin=moment().year(tideCtx.archive_year).month(0).date(1) %>
+<% const dateEnd=moment(dateBegin).add(12,'month').add(-1,'days') %>
+<title><%= __('page_title.archive_year',date(dateBegin),date(dateEnd)) %></title>
+<% }else{ %>
+<title><%= __('page_title.archive') %></title>
+<% } %>
+<% }else if(is_category()){ %>
+<title><%= __('page_title.category',tideCtx.category_category) %></title>
+<% }else if(is_tag()){ %>
+<title><%= __('page_title.tag',tideCtx.tag_tag) %></title>
+<% }else{ %>
+<title><%= tideCtx.site_title?tideCtx.site_title:__('page_title.none') %></title>
+<% } %>
 <meta name="keywords" content="<%= tideCtx.keywords %>">
 <%- open_graph({title:tideCtx.page_titl?tideCtx.page_title:tideCtx.site_title,author:tideCtx.author,language:tideCtx.language,description:tideCtx.description}) %>
 <!-- og 包含 description，不用单独写 -->

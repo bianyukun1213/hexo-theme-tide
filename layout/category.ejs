@@ -1,18 +1,8 @@
-
-<div id="category">
-  <h1><%=page.category%></h1>
-  <% page.posts.each(article => { %>
-    <div class="category-item">
-      <a href="<%=url_for(article.path)%>">
-        <%=article.title%>
-      </a>
-      <time datetime="<%=date_xml(article.date)%>">
-        <%=date(article.date)%>
-      </time>
-    </div>
-  <% }) %>
+<% const tideCtx=get_ctx(site,config,theme,page) %>
+<div id="tide-category">
+  <h1 class="un-m-0 un-mb-4 un-text-4xl un-font-bold"><%= __('page_title.category',tideCtx.category_category) %></h1>
+  <%- partial('./partials/post-ul.ejs',{tideCtx,postSrc:page}) %>
 </div>
-
-<div id="paginator">
-  <%-paginator()%>
+<div id="tide-category-paginator">
+  <%- partial('./partials/paginator.ejs') %>
 </div>

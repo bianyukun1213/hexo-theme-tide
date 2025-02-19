@@ -1,23 +1,21 @@
-<% if(site.posts.length>0){ %>
+<% if(postSrc.posts.length>0){ %>
+<% if(typeof filter!=='function'){ %>
+<% filter=()=>true %>
+<% } %>
 <ul class="tide-post-ul un-p-0 un-m-0 un-w-full un-list-none">
   <% const indexStart=(tideCtx.index_current-1)*tideCtx.index_per_page %>
-  <% site.posts.sort('date',-1).slice(indexStart,indexStart+tideCtx.index_per_page).forEach((post)=>{ %>
+  <% postSrc.posts.filter(filter).sort('date',-1).slice(indexStart,indexStart+tideCtx.index_per_page).forEach((post)=>{ %>
   <% const postCtx=get_ctx(site,config,theme,post) %>
   <li class="tide-post-li un-block un-mb-16">
     <div class="tide-post-li-title un-mb-2">
       <a class="un-sc-link-plain un-text-txt-prim!" href="<%= url_for(postCtx.path) %>">
-        <h2 class="un-inline un-text-2xl un-font-bold"><%= postCtx.page_title?postCtx.page_title:__('no_title') %></h2>
+        <h2 class="un-inline un-text-2xl un-font-bold"><%= postCtx.page_title?postCtx.page_title:__('page_title.none') %></h2>
       </a>
     </div>
-    <!-- 之后分离 post-meta 为 partial -->
     <%- partial('./post-meta.ejs',{postCtx,detailed:false}) %>
     <div class="tide-post-excerpt un-prose un-max-w-none">
-      <!-- 摘要 -->
-      <!-- 记得给上样式，必要的话加入 unocss 安全列表 -->
       <% if(postCtx.excerpt){ %>
       <%- postCtx.excerpt %>
-      <% }else{ %>
-      <!-- <p>…</p> -->
       <% } %>
     </div>
   </li>
