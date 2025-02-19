@@ -10,7 +10,7 @@
       <div id="tide-lang-picker-content" class="tide-side-panel-content un-w-full un-p-4 un-h-full un-grow-1 un-shrink-1 un-overflow-auto">
         <% const langLink=tideCtx.languages[tideCtx.language] %>
         <% const langMeta=tideCtx.language_meta[tideCtx.language] %>
-        <h3 class="un-m-0 un-mb-4 un-text-xl un-font-bold un-overflow-hidden un-text-ellipsis" dir="<%= langMeta?langMeta.direction:'' %>">[<%= langMeta?langMeta.display:langKey %>]</h3>
+        <h3 class="un-m-0 un-mb-4 un-text-xl un-font-bold un-overflow-hidden un-text-ellipsis" dir="<%= langMeta?langMeta.direction:'' %>"><%= tideCtx.item_marker_begin+(langMeta?langMeta.display:langKey)+tideCtx.item_marker_end %></h3>
         <!-- 链接强制 ltr -->
         <span class="un-inline-block un-mb-4 un-text-txt-scnd un-font-bold" dir="ltr" href="<%= langLink %>" target="_self"><%= langLink %></span>
         <% for(const langKey in tideCtx.languages){ %>

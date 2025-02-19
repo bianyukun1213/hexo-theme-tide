@@ -1,11 +1,11 @@
 <% const tideCtx=get_ctx(site,config,theme,page) %>
-<article id="tide-post" <%- tideCtx.microformats2?' class="h-entry"':'' %>>
-  <h1 id="tide-post-title" class="<%= tideCtx.microformats2?'p-name ':''%> un-m-0 un-mb-2 un-text-4xl un-font-bold"><%= tideCtx.page_title?tideCtx.page_title:__('no_title') %></h1>
+<article id="tide-post" <%- tideCtx.microformats2&&!tideCtx.page_encrypted?' class="h-entry"':'' %>>
+  <h1 id="tide-post-title" class="<%= tideCtx.microformats2&&!tideCtx.page_encrypted?'p-name':''%> un-m-0 un-mb-2 un-text-4xl un-font-bold"><%= tideCtx.page_title?tideCtx.page_title:__('no_title') %></h1>
   <%- partial('./partials/post-meta.ejs',{postCtx:tideCtx,detailed:true}) %>
-  <% if(tideCtx.microformats2){ %>
+  <% if(tideCtx.microformats2&&!tideCtx.page_encrypted){ %>
   <%- partial('./partials/hidden-microformats2-group.ejs',{tideCtx}); %>
   <% } %>
-  <div class="un-prose un-max-w-none">
+  <div class="<%= tideCtx.microformats2&&!tideCtx.page_encrypted?'e-content':''%> un-prose un-max-w-none">
     <%- page.content %>
   </div>
 </article>

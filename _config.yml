@@ -164,13 +164,16 @@ navigation:
   外部:
     icon: "fa-solid fa-pen"
     link: "https://www.bing.com/"
+  测试:
+    icon: "fa-solid fa-house"
+    link: /test-page/
 
 # 页脚备案……
 icp_record:
   text: 萌ICP备20230041号
   link: "https://icp.gov.moe/?keyword=20230041"
 
-generated_by_hexo: true
+generated_by_hexo_and_theme_tide: true
 
 copyright:
   # default: "cc_by_sa_4"
@@ -206,6 +209,8 @@ toc:
 search: true
 word_counter: true
 list_separator: ", "
+item_marker_begin: "["
+item_marker_end: "]"
 
 # config_handler:
 #   priority: 5

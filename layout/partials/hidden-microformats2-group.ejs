@@ -1,6 +1,10 @@
-<!-- todo: 根据如果是普通页面，包含 syndications 等信息，或在页面配置 -->
 <div class="tide-hidden-microformats2-group un-hidden">
   <a class="u-url un-hidden" href="<%= full_url_for(tideCtx.path) %>"><%= full_url_for(tideCtx.path) %></a>
+  <% if(tideCtx.excerpt){ %>
+  <p class="p-summary un-hidden"><%= strip_html(tideCtx.excerpt) %></p>
+  <% }else if(tideCtx.page_specific_description){ %>
+  <p class="p-summary un-hidden"><%= tideCtx.page_specific_description %></p>
+  <% } %>
   <% for(const card of tideCtx.page_h_cards){ %>
   <%- partial('./h-card.ejs',{h_card:card,authorCard:true}) %>
   <% } %>

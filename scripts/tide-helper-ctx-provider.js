@@ -128,7 +128,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     }
     out.navigation = theme?.navigation ?? {};
     out.icp_record = theme?.icp_record ?? {};
-    out.generated_by_hexo = theme?.generated_by_hexo ?? true;
+    out.generated_by_hexo_and_theme_tide = theme?.generated_by_hexo_and_theme_tide ?? true;
 
     // 小功能
     out.toc = {};
@@ -137,6 +137,8 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.search = theme?.search ?? true;
     out.word_counter = theme?.word_counter ?? true;
     out.list_separator = theme?.list_separator ?? ', ';
+    out.item_marker_begin = theme?.item_marker_begin ?? '[';
+    out.item_marker_end = theme?.item_marker_end ?? ']';
 
     // 上为主题配置，下为页面配置。
     out.page_title = page?.title ?? ''; // 有些内置页面此项为空，需单独处理。

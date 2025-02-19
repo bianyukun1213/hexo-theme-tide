@@ -15,15 +15,15 @@
     <div id="tide-side-bar" class="un-sc-trans-default un-bg-prim un-fixed un-h-full un-flex un-flex-col un-justify-between un-z-30 un-text-center un-text-txt-sb">
       <header class="un-flex-none un-p-8">
         <% if(is_home()) { %>
-        <h1 id="tide-site-title" class="un-my-4 un-font-bold">
+        <h1 id="tide-site-title" class="un-m-0 un-my-4 un-font-bold">
           <%= tideCtx.site_title %>
         </h1>
         <% } else { %>
-        <p id="tide-site-title" class="un-my-4 un-font-bold">
+        <p id="tide-site-title" class="un-m-0 un-my-4 un-font-bold">
           <%= tideCtx.site_title %>
         </p>
         <% } %>
-        <p id="tide-site-subtitle" class="un-my-2 un-font-italic">
+        <p id="tide-site-subtitle" class="un-m-0 un-my-2 un-font-italic">
           <%= tideCtx.site_subtitle %>
         </p>
       </header>
@@ -48,10 +48,10 @@
         <!-- 留一个隐藏的 div，方便用户通过修改注入 -->
         <div id="tide-footer-injection-point" class="un-hidden"></div>
         <% if(!tide_utils().isEmptyObject(tideCtx.icp_record)) { %>
-        <p id="tide-icp-record"><a class="un-sc-link-plain un-text-txt-sb!" href="<%= tideCtx.icp_record.link %>"><%= tideCtx.icp_record.text %></a></p>
+        <p id="tide-icp-record" class="un-m-0 un-my-4"><a class="un-sc-link-plain un-text-txt-sb!" href="<%= tideCtx.icp_record.link %>"><%= tideCtx.icp_record.text %></a></p>
         <% } %>
-        <% if(tideCtx.generated_by_hexo){ %>
-        <p id="tide-generated-by-hexo"><%- __('navigation.footer.generated_by_hexo') %></p>
+        <% if(tideCtx.generated_by_hexo_and_theme_tide){ %>
+        <p id="tide-generated-by-hexo-and-theme-tide" class="un-m-0 un-my-4"><%- __('navigation.footer.generated_by_hexo_and_theme_tide') %></p>
         <% } %>
       </footer>
     </div>
