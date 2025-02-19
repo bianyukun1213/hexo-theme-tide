@@ -3,7 +3,11 @@
 <!-- favicon 可以使用 helper 插入，但为了与 apple-touch-icon 一致选择手写 -->
 <link rel="icon" href="<%= url_for(tideCtx.meta_icons?.favicon) %>">
 <link rel="apple-touch-icon" href="<%= url_for(tideCtx.meta_icons?.apple_touch_icon) %>">
-<% if(is_post()||is_page()){ %>
+<% if(tideCtx.layout==='categories'){ %>
+<title><%= __('page_title.categories') %></title>
+<% }else if(tideCtx.layout==='tags'){ %>
+<title><%= __('page_title.tags') %></title>
+<% }else if(is_post()||is_page()){ %>
 <title><%= tideCtx.page_title?tideCtx.page_title:__('page_title.none') %></title>
 <% }else if(is_archive()){ %>
 <% if(is_month()){ %>

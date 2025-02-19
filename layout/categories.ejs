@@ -1,0 +1,42 @@
+<% const tideCtx=get_ctx(site,config,theme,page) %>
+<div id="tide-categories">
+  <h1 class="un-m-0 un-mb-4 un-text-4xl un-text-txt-prim un-font-bold"><%= __('page_title.categories') %></h1>
+  <!-- <div class="un-w-full un-flex">
+    <div>
+        <a href="#">链接</a>
+
+    </div>
+  </div> -->
+
+  <%# postCtx.page_categories.forEach((cate,i)=>{ %>
+  <!-- <a class="un-sc-link-plain un-text-txt-scnd!" href="<%#= url_for(cate.path) %>"><%#= cate.name %></a> -->
+  <%# if(i<postCtx.page_categories.length-1){ %>
+  <%#=postCtx.list_separator %>
+  <%# }}) %>
+
+  <div class="un-w-full un-flex un-flex-wrap un-gap-4">
+    <%- list_categories(site.categories,{class:'tide-category',style:false,separator:''}) %>
+  </div>
+  <style>
+    /* apply plain */
+    .tide-category-link {
+      padding: 0.5rem 1rem;
+      border: 2px var(--tide-color-link) solid;
+      border-radius: 6px;
+      overflow: hidden;
+      word-wrap: break-word;
+    }
+
+    .tide-category-link:hover {
+      border-color: var(--tide-color-link-hover);
+    }
+
+    .tide-category-link:visited {
+      border-color: var(--tide-color-link-visited);
+    }
+
+    .tide-category-count {
+        margin-inline-start: 0.25rem;
+    }
+  </style>
+</div>

@@ -70,6 +70,31 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.meta_generator = config?.meta_generator ?? true;
     out.date_format = config?.date_format ?? '';
     out.time_format = config?.time_format ?? '';
+    out.site_categories = [];
+    if (site?.categories?.length) {
+        site.categories.forEach((cate) => {
+            out.site_categories.push({
+                name: cate.name,
+                id: cate._id,
+                parent: cate.parent ?? '',
+                slug: cate.slug,
+                path: cate.path,
+                permalink: cate.permalink
+            });
+        });
+    }
+    out.site_tags = [];
+    if (site?.tags?.length) {
+        site.tags.forEach((tag) => {
+            out.site_tags.push({
+                name: tag.name,
+                id: tag._id,
+                slug: tag.slug,
+                path: tag.path,
+                permalink: tag.permalink
+            });
+        });
+    }
     // 上为站点配置，下为主题配置。
     out.language_meta = languageMeta;
     if (languageMeta[out.language]) {
@@ -145,6 +170,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.item_marker_end = theme?.item_marker_end ?? ']';
 
     // 上为主题配置，下为页面配置。
+    out.layout = page?.layout ?? '';
     out.page_title = page?.title ?? ''; // 有些内置页面此项为空，需单独处理。
     out.page_author = config?.author ?? '';
     if (isArray(page.author)) {
@@ -169,7 +195,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
         out.languages = page.languages;
     else if (site?.data?.language_map)
         out.languages = site.data.language_map[page.path] ?? {};
-    out.page_categories = []; // site 范围可能也有 categories，所以加上 page 前缀。
+    out.page_categories = [];
     if (page?.categories?.length) {
         page.categories.forEach((cate) => {
             out.page_categories.push({
@@ -182,7 +208,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
             });
         });
     }
-    out.page_tags = []; // site 范围可能也有 tags，所以加上 page 前缀。
+    out.page_tags = [];
     if (page?.tags?.length) {
         page.tags.forEach((tag) => {
             out.page_tags.push({
