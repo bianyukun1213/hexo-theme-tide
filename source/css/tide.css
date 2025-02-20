@@ -99,7 +99,7 @@ html[tide-light] {
     --tide-color-link: <TIDE_COLOR_LINK_LIGHT>;
     --tide-color-link-hover: <TIDE_COLOR_LINK_HOVER_LIGHT>;
     --tide-color-link-visited: <TIDE_COLOR_LINK_VISITED_LIGHT>;
-    --tide-color-code-inline: <TIDE_COLOR_CODE_INLINE_DARK>;
+    --tide-color-code-inline: <TIDE_COLOR_CODE_INLINE_LIGHT>;
     --tide-color-table-border: <TIDE_COLOR_TABLE_BORDER_LIGHT>;
     --tide-color-table-background-head: <TIDE_COLOR_TABLE_BACKGROUND_HEAD_LIGHT>;
     --tide-color-table-background-even: <TIDE_COLOR_TABLE_BACKGROUND_EVEN_LIGHT>;
@@ -196,7 +196,7 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 .tide-paginator span.current {text-decoration-line:underline;text-underline-offset:4px;color:var(--tide-color-text-primary);
 }
 
-.tide-paginator a {display:inline-block;margin-left:0.25rem;margin-right:0.25rem;color:var(--tide-color-text-primary);-webkit-text-decoration-color:transparent;text-decoration-color:transparent;color:var(--tide-color-text-secondary) !important;
+.tide-paginator a {display:inline-block;margin-left:0.25rem;margin-right:0.25rem;color:var(--tide-color-text-primary);-webkit-text-decoration-color:transparent;text-decoration-color:transparent;color:var(--tide-color-text-secondary);
 }
 
 .tide-paginator a:hover{-webkit-text-decoration-color:currentColor;text-decoration-color:currentColor;}
@@ -210,7 +210,7 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 }
 
 .tide-toc-link {
-    /* un-sc-link-default 实际上多余。 */text-decoration-line:underline;color:var(--tide-color-text-secondary) !important;display:inline-block;margin-bottom:1rem !important;
+    /* un-sc-link-default 实际上多余。 */text-decoration-line:underline;color:var(--tide-color-text-secondary);display:inline-block;margin-bottom:1rem;
 }
 
 .tide-toc-link:link{color:var(--tide-color-link);}
@@ -235,7 +235,7 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 #tide-search-results .search-keyword {background-color:transparent;font-weight:700;
 }
 
-#tide-search-results a {text-decoration-line:underline;color:var(--tide-color-text-secondary) !important;display:inline-block;
+#tide-search-results a {text-decoration-line:underline;color:var(--tide-color-text-secondary);display:inline-block;
 }
 
 #tide-search-results a:link{color:var(--tide-color-link);}
@@ -244,7 +244,7 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 
 #tide-search-results a:visited{color:var(--tide-color-link-visited);}
 
-#tide-search-results .search-result-title {color:var(--tide-color-text-primary);-webkit-text-decoration-color:transparent;text-decoration-color:transparent;color:var(--tide-color-text-primary) !important;margin-bottom:0.25rem;font-size:1.25rem;line-height:1.75rem;font-weight:700;overflow:hidden;text-overflow:ellipsis;overflow-wrap:break-word;
+#tide-search-results .search-result-title {color:var(--tide-color-text-primary);-webkit-text-decoration-color:transparent;text-decoration-color:transparent;color:var(--tide-color-text-primary);margin-bottom:0.25rem;font-size:1.25rem;line-height:1.75rem;font-weight:700;overflow:hidden;text-overflow:ellipsis;overflow-wrap:break-word;
 }
 
 #tide-search-results .search-result-title:hover{-webkit-text-decoration-color:currentColor;text-decoration-color:currentColor;}
@@ -272,8 +272,8 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 .tide-tag-link:visited {color:var(--tide-color-link);
 }
 
-.tide-category-count,
-.tide-tag-count {margin-inline-start:0.25rem;
+.tide-category-count::before,
+.tide-tag-count::before {content:'·';
 }
 
 /* 插件样式修复 */

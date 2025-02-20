@@ -99,7 +99,7 @@ html[tide-light] {
     --tide-color-link: <TIDE_COLOR_LINK_LIGHT>;
     --tide-color-link-hover: <TIDE_COLOR_LINK_HOVER_LIGHT>;
     --tide-color-link-visited: <TIDE_COLOR_LINK_VISITED_LIGHT>;
-    --tide-color-code-inline: <TIDE_COLOR_CODE_INLINE_DARK>;
+    --tide-color-code-inline: <TIDE_COLOR_CODE_INLINE_LIGHT>;
     --tide-color-table-border: <TIDE_COLOR_TABLE_BORDER_LIGHT>;
     --tide-color-table-background-head: <TIDE_COLOR_TABLE_BACKGROUND_HEAD_LIGHT>;
     --tide-color-table-background-even: <TIDE_COLOR_TABLE_BACKGROUND_EVEN_LIGHT>;
@@ -203,7 +203,7 @@ textarea:focus {
     @apply un-inline-block;
     @apply un-mx-1;
     @apply un-sc-link-plain;
-    @apply un-text-txt-scnd!;
+    @apply un-text-txt-scnd !;
 }
 
 .tide-toc,
@@ -221,9 +221,9 @@ textarea:focus {
 .tide-toc-link {
     /* un-sc-link-default 实际上多余。 */
     @apply un-sc-link-default;
-    @apply un-text-txt-scnd!;
+    @apply un-text-txt-scnd !;
     @apply un-inline-block;
-    @apply un-mb-4!;
+    @apply un-mb-4 !;
 }
 
 .tide-toc-link:hover {
@@ -249,13 +249,13 @@ textarea:focus {
 
 #tide-search-results a {
     @apply un-sc-link-default;
-    @apply un-text-txt-scnd!;
+    @apply un-text-txt-scnd !;
     @apply un-inline-block;
 }
 
 #tide-search-results .search-result-title {
     @apply un-sc-link-plain;
-    @apply un-text-txt-prim!;
+    @apply un-text-txt-prim !;
     @apply un-mb-1;
     @apply un-text-xl;
     @apply un-font-bold;
@@ -287,17 +287,17 @@ textarea:focus {
 
 .tide-category-link:hover,
 .tide-tag-link:hover {
-    @apply un-color-lk;
+    @apply un-text-lk;
 }
 
 .tide-category-link:visited,
 .tide-tag-link:visited {
-    @apply un-color-lk;
+    @apply un-text-lk;
 }
 
-.tide-category-count,
-.tide-tag-count {
-    @apply un-ms-1;
+.tide-category-count::before,
+.tide-tag-count::before {
+    @apply un-content-['·'];
 }
 
 /* 插件样式修复 */
