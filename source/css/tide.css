@@ -1,53 +1,23 @@
 /* preflights */
 
-/* html {
-    --tide-color-primary: #3F72AF;
-    --tide-color-secondary: #00ADB5;
-    --tide-color-background-primary: #FFFFFF;
-    --tide-color-background-secondary: #FAFAFA;
-    --tide-color-text-primary: #323739;
-    --tide-color-text-secondary: #5c6669;
-    --tide-color-text-diminished: #EAECED;
-    --tide-color-text-side-bar: #FFFFFF;
-    --tide-color-focused-outline: #E36209;
-    --tide-color-link: #3F72AF;
-    --tide-color-link-hover: #3F72AF;
-    --tide-color-link-visited: #00ADB5;
-    --tide-color-code: #3F72AF;
-    --tide-color-table-border: #E5E7EB;
-    --tide-color-table-background-head: #F3F3F3;
-    --tide-color-table-background-even: #FAFAFA;
-} */
-
-@media (prefers-color-scheme: no-preference) {
-    html {
-        --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT>;
-        --tide-color-primary: <TIDE_COLOR_PRIMARY_LIGHT>;
-        --tide-color-secondary: <TIDE_COLOR_SECONDARY_LIGHT>;
-        --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_LIGHT>;
-        --tide-color-background-secondary: <TIDE_COLOR_BACKGROUND_SECONDARY_LIGHT>;
-        --tide-color-text-primary: <TIDE_COLOR_TEXT_PRIMARY_LIGHT>;
-        --tide-color-text-secondary: <TIDE_COLOR_TEXT_SECONDARY_LIGHT>;
-        --tide-color-text-diminished: <TIDE_COLOR_TEXT_DIMINISHED_LIGHT>;
-        --tide-color-text-side-bar: <TIDE_COLOR_TEXT_SIDE_BAR_LIGHT>;
-        --tide-color-focused-outline: <TIDE_COLOR_FOCUSED_OUTLINE_LIGHT>;
-        --tide-color-link: <TIDE_COLOR_LINK_LIGHT>;
-        --tide-color-link-hover: <TIDE_COLOR_LINK_HOVER_LIGHT>;
-        --tide-color-link-visited: <TIDE_COLOR_LINK_VISITED_LIGHT>;
-        --tide-color-code-inline: <TIDE_COLOR_CODE_INLINE_LIGHT>;
-        --tide-color-table-border: <TIDE_COLOR_TABLE_BORDER_LIGHT>;
-        --tide-color-table-background-head: <TIDE_COLOR_TABLE_BACKGROUND_HEAD_LIGHT>;
-        --tide-color-table-background-even: <TIDE_COLOR_TABLE_BACKGROUND_EVEN_LIGHT>;
+@media (prefers-color-scheme: no-preference) or (prefers-color-scheme: light) {
+    html[dir="ltr"] {
+        --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT_LTR>;
     }
-}
 
-@media (prefers-color-scheme: light) {
+    html[dir="rtl"] {
+        --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT_RTL>;
+    }
+
     html {
-        --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT>;
+        --tide-background-size-side-bar: <TIDE_BACKGROUND_SIZE_SIDE_BAR_LIGHT>;
+        --tide-background-position-side-bar: <TIDE_BACKGROUND_POSITION_SIDE_BAR_LIGHT>;
+        --tide-background-repeat-side-bar: <TIDE_BACKGROUND_REPEAT_SIDE_BAR_LIGHT>;
         --tide-color-primary: <TIDE_COLOR_PRIMARY_LIGHT>;
         --tide-color-secondary: <TIDE_COLOR_SECONDARY_LIGHT>;
         --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_LIGHT>;
         --tide-color-background-secondary: <TIDE_COLOR_BACKGROUND_SECONDARY_LIGHT>;
+        --tide-color-background-side-bar: <TIDE_COLOR_BACKGROUND_SIDE_BAR_LIGHT>;
         --tide-color-text-primary: <TIDE_COLOR_TEXT_PRIMARY_LIGHT>;
         --tide-color-text-secondary: <TIDE_COLOR_TEXT_SECONDARY_LIGHT>;
         --tide-color-text-diminished: <TIDE_COLOR_TEXT_DIMINISHED_LIGHT>;
@@ -64,12 +34,24 @@
 }
 
 @media (prefers-color-scheme: dark) {
+    html[dir="ltr"] {
+        --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK_LTR>;
+    }
+
+    html[dir="rtl"] {
+        --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK_RTL>;
+    }
+
     html {
-        --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK>;
+        color-scheme: dark;
+        --tide-background-size-side-bar: <TIDE_BACKGROUND_SIZE_SIDE_BAR_DARK>;
+        --tide-background-position-side-bar: <TIDE_BACKGROUND_POSITION_SIDE_BAR_DARK>;
+        --tide-background-repeat-side-bar: <TIDE_BACKGROUND_REPEAT_SIDE_BAR_DARK>;
         --tide-color-primary: <TIDE_COLOR_PRIMARY_DARK>;
         --tide-color-secondary: <TIDE_COLOR_SECONDARY_DARK>;
         --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_DARK>;
         --tide-color-background-secondary: <TIDE_COLOR_BACKGROUND_SECONDARY_DARK>;
+        --tide-color-background-side-bar: <TIDE_COLOR_BACKGROUND_SIDE_BAR_DARK>;
         --tide-color-text-primary: <TIDE_COLOR_TEXT_PRIMARY_DARK>;
         --tide-color-text-secondary: <TIDE_COLOR_TEXT_SECONDARY_DARK>;
         --tide-color-text-diminished: <TIDE_COLOR_TEXT_DIMINISHED_DARK>;
@@ -85,12 +67,23 @@
     }
 }
 
+html[tide-light][dir="ltr"] {
+    --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT_LTR>;
+}
+
+html[tide-light][dir="rtl"] {
+    --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT_RTL>;
+}
+
 html[tide-light] {
-    --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT>;
+    --tide-background-size-side-bar: <TIDE_BACKGROUND_SIZE_SIDE_BAR_LIGHT>;
+    --tide-background-position-side-bar: <TIDE_BACKGROUND_POSITION_SIDE_BAR_LIGHT>;
+    --tide-background-repeat-side-bar: <TIDE_BACKGROUND_REPEAT_SIDE_BAR_LIGHT>;
     --tide-color-primary: <TIDE_COLOR_PRIMARY_LIGHT>;
     --tide-color-secondary: <TIDE_COLOR_SECONDARY_LIGHT>;
     --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_LIGHT>;
     --tide-color-background-secondary: <TIDE_COLOR_BACKGROUND_SECONDARY_LIGHT>;
+    --tide-color-background-side-bar: <TIDE_COLOR_BACKGROUND_SIDE_BAR_LIGHT>;
     --tide-color-text-primary: <TIDE_COLOR_TEXT_PRIMARY_LIGHT>;
     --tide-color-text-secondary: <TIDE_COLOR_TEXT_SECONDARY_LIGHT>;
     --tide-color-text-diminished: <TIDE_COLOR_TEXT_DIMINISHED_LIGHT>;
@@ -105,12 +98,24 @@ html[tide-light] {
     --tide-color-table-background-even: <TIDE_COLOR_TABLE_BACKGROUND_EVEN_LIGHT>;
 }
 
+html[tide-dark][dir="ltr"] {
+    --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK_LTR>;
+}
+
+html[tide-dark][dir="rtl"] {
+    --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK_RTL>;
+}
+
 html[tide-dark] {
-    --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK>;
+    color-scheme: dark;
+    --tide-background-size-side-bar: <TIDE_BACKGROUND_SIZE_SIDE_BAR_DARK>;
+    --tide-background-position-side-bar: <TIDE_BACKGROUND_POSITION_SIDE_BAR_DARK>;
+    --tide-background-repeat-side-bar: <TIDE_BACKGROUND_REPEAT_SIDE_BAR_DARK>;
     --tide-color-primary: <TIDE_COLOR_PRIMARY_DARK>;
     --tide-color-secondary: <TIDE_COLOR_SECONDARY_DARK>;
     --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_DARK>;
     --tide-color-background-secondary: <TIDE_COLOR_BACKGROUND_SECONDARY_DARK>;
+    --tide-color-background-side-bar: <TIDE_COLOR_BACKGROUND_SIDE_BAR_DARK>;
     --tide-color-text-primary: <TIDE_COLOR_TEXT_PRIMARY_DARK>;
     --tide-color-text-secondary: <TIDE_COLOR_TEXT_SECONDARY_DARK>;
     --tide-color-text-diminished: <TIDE_COLOR_TEXT_DIMINISHED_DARK>;
@@ -180,6 +185,8 @@ body {
 
 #tide-side-bar {
     background-image: var(--tide-background-image-side-bar);
+    background-position: var(--tide-background-position-side-bar);
+    background-repeat: var(--tide-background-repeat-side-bar);
 }
 
 [tabindex]:not([tabindex="-1"]):focus,
@@ -196,7 +203,7 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 .tide-paginator span.current {text-decoration-line:underline;text-underline-offset:4px;color:var(--tide-color-text-primary);
 }
 
-.tide-paginator a {display:inline-block;margin-left:0.25rem;margin-right:0.25rem;color:var(--tide-color-text-primary);-webkit-text-decoration-color:transparent;text-decoration-color:transparent;color:var(--tide-color-text-secondary);
+.tide-paginator a {display:inline-block;margin-left:0.25rem;margin-right:0.25rem;color:var(--tide-color-text-primary);-webkit-text-decoration-color:transparent;text-decoration-color:transparent;color:var(--tide-color-text-secondary) !important;
 }
 
 .tide-paginator a:hover{-webkit-text-decoration-color:currentColor;text-decoration-color:currentColor;}
@@ -210,7 +217,7 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 }
 
 .tide-toc-link {
-    /* un-sc-link-default 实际上多余。 */text-decoration-line:underline;color:var(--tide-color-text-secondary);display:inline-block;margin-bottom:1rem;
+    /* un-sc-link-default 实际上多余。 */text-decoration-line:underline;color:var(--tide-color-text-secondary) !important;display:inline-block;margin-bottom:1rem !important;
 }
 
 .tide-toc-link:link{color:var(--tide-color-link);}
@@ -235,7 +242,7 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 #tide-search-results .search-keyword {background-color:transparent;font-weight:700;
 }
 
-#tide-search-results a {text-decoration-line:underline;color:var(--tide-color-text-secondary);display:inline-block;
+#tide-search-results a {text-decoration-line:underline;color:var(--tide-color-text-secondary) !important;display:inline-block;max-width:100%;
 }
 
 #tide-search-results a:link{color:var(--tide-color-link);}
@@ -244,7 +251,7 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 
 #tide-search-results a:visited{color:var(--tide-color-link-visited);}
 
-#tide-search-results .search-result-title {color:var(--tide-color-text-primary);-webkit-text-decoration-color:transparent;text-decoration-color:transparent;color:var(--tide-color-text-primary);margin-bottom:0.25rem;font-size:1.25rem;line-height:1.75rem;font-weight:700;overflow:hidden;text-overflow:ellipsis;overflow-wrap:break-word;
+#tide-search-results .search-result-title {color:var(--tide-color-text-primary);-webkit-text-decoration-color:transparent;text-decoration-color:transparent;color:var(--tide-color-text-primary) !important;margin-bottom:0.25rem;font-size:1.25rem;line-height:1.75rem;font-weight:700;
 }
 
 #tide-search-results .search-result-title:hover{-webkit-text-decoration-color:currentColor;text-decoration-color:currentColor;}
@@ -252,25 +259,17 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 #tide-search-results .search-result-title .search-keyword {color:var(--tide-color-text-primary);
 }
 
-#tide-search-results .search-result {margin:0;margin-bottom:1rem;overflow:hidden;text-overflow:ellipsis;overflow-wrap:break-word;
+#tide-search-results .search-result {margin:0;margin-bottom:1rem;
 }
 
 #tide-search-results .search-result .search-keyword {color:var(--tide-color-text-secondary);
 }
 
 .tide-category-link,
-.tide-tag-link {color:var(--tide-color-text-primary);-webkit-text-decoration-color:transparent;text-decoration-color:transparent;padding-left:1rem;padding-right:1rem;padding-top:0.5rem;padding-bottom:0.5rem;border-width:2px;border-color:var(--tide-color-link);border-style:solid;border-radius:0.375rem;overflow:hidden;overflow-wrap:break-word;
+.tide-tag-link {color:var(--tide-color-text-primary);-webkit-text-decoration-color:transparent;text-decoration-color:transparent;color:var(--tide-color-primary) !important;padding-left:1rem;padding-right:1rem;padding-top:0.5rem;padding-bottom:0.5rem;border-width:2px;border-color:var(--tide-color-primary);border-style:solid;border-radius:0.375rem;overflow:hidden;overflow-wrap:break-word;
 }
 
 .tide-category-link:hover,.tide-tag-link:hover{-webkit-text-decoration-color:currentColor;text-decoration-color:currentColor;}
-
-.tide-category-link:hover,
-.tide-tag-link:hover {color:var(--tide-color-link);
-}
-
-.tide-category-link:visited,
-.tide-tag-link:visited {color:var(--tide-color-link);
-}
 
 .tide-category-count::before,
 .tide-tag-count::before {content:'·';
@@ -640,9 +639,9 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 
 .un-bg-bg-prim{background-color:var(--tide-color-background-primary);}
 
-.un-bg-black\/75{background-color:rgb(0 0 0 / 0.75);}
+.un-bg-bg-sb{background-color:var(--tide-color-background-side-bar);}
 
-.un-bg-prim{background-color:var(--tide-color-primary);}
+.un-bg-black\/75{background-color:rgb(0 0 0 / 0.75);}
 
 .un-bg-transparent{background-color:transparent;}
 

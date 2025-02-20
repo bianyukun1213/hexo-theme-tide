@@ -141,6 +141,7 @@ export default defineConfig({
             'scnd': 'var(--tide-color-secondary)',
             'bgPrim': 'var(--tide-color-background-primary)',
             'bgScnd': 'var(--tide-color-background-secondary)',
+            'bgSb': 'var(--tide-color-background-side-bar)',
             'txtPrim': 'var(--tide-color-text-primary)',
             'txtScnd': 'var(--tide-color-text-secondary)',
             'txtDmsh': 'var(--tide-color-text-diminished)',

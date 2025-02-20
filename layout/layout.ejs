@@ -12,7 +12,7 @@
   <%- partial('./partials/res/res-body-begin.ejs',{tideCtx}) %>
   <textarea id="ctx" style="display:none;" class="un-fixed un-size-96 un-right-0 un-bottom-0 un-z-100"><%= JSON.stringify(tideCtx,null,2) %></textarea>
   <div id="tide-root" class="un-bg-b-scnd un-absolute un-size-full un-text-base" <% if(is_post()) { %> tide-is-post="true" <% } %>>
-    <div id="tide-side-bar" class="un-sc-trans-default un-bg-prim un-fixed un-h-full un-flex un-flex-col un-justify-between un-z-30 un-text-center un-text-txt-sb">
+    <div id="tide-side-bar" class="un-sc-trans-default un-bg-bg-sb un-fixed un-h-full un-flex un-flex-col un-justify-between un-z-30 un-text-center un-text-txt-sb">
       <header class="un-flex-none un-p-8">
         <% if(is_home()) { %>
         <h1 id="tide-site-title" class="un-m-0 un-my-4 un-font-bold">

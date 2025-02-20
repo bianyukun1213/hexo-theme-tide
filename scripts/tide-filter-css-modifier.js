@@ -23,10 +23,28 @@ hexo.extend.filter.register('after_render:css', function (cssSrc, local) {
                 }
             }
         }
-        const bgiLight = hexo.theme.config?.side_bar_background_image?.light ?? '';
-        const bgiDark = hexo.theme.config?.side_bar_background_image?.dark ?? '';
-        cssSrc = cssSrc.replace(new RegExp('<TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT>', 'g'), bgiLight);
-        cssSrc = cssSrc.replace(new RegExp('<TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK>', 'g'), bgiDark);
+        const bgiLightLtr = hexo.theme.config?.side_bar_background_image?.light?.ltr ?? '';
+        const bgiLightRtl = hexo.theme.config?.side_bar_background_image?.light?.rtl ?? '';
+        const bgSizeLight = hexo.theme.config?.side_bar_background_image?.light?.size ?? '';
+        const bgPosLight = hexo.theme.config?.side_bar_background_image?.light?.position ?? '';
+        const bgRepLight = hexo.theme.config?.side_bar_background_image?.light?.repeat ?? '';
+        cssSrc = cssSrc
+            .replace(new RegExp('<TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT_LTR>', 'g'), bgiLightLtr)
+            .replace(new RegExp('<TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT_RTL>', 'g'), bgiLightRtl)
+            .replace(new RegExp('<TIDE_BACKGROUND_SIZE_SIDE_BAR_LIGHT>', 'g'), bgSizeLight)
+            .replace(new RegExp('<TIDE_BACKGROUND_POSITION_SIDE_BAR_LIGHT>', 'g'), bgPosLight)
+            .replace(new RegExp('<TIDE_BACKGROUND_REPEAT_SIDE_BAR_LIGHT>', 'g'), bgRepLight);
+        const bgiDarkLtr = hexo.theme.config?.side_bar_background_image?.dark?.ltr ?? '';
+        const bgiDarkRtl = hexo.theme.config?.side_bar_background_image?.dark?.rtl ?? '';
+        const bgSizeDark = hexo.theme.config?.side_bar_background_image?.dark?.size ?? '';
+        const bgPosDark = hexo.theme.config?.side_bar_background_image?.dark?.position ?? '';
+        const bgRepDark = hexo.theme.config?.side_bar_background_image?.dark?.repeat ?? '';
+        cssSrc = cssSrc
+            .replace(new RegExp('<TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK_LTR>', 'g'), bgiDarkLtr)
+            .replace(new RegExp('<TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK_RTL>', 'g'), bgiDarkRtl)
+            .replace(new RegExp('<TIDE_BACKGROUND_SIZE_SIDE_BAR_DARK>', 'g'), bgSizeDark)
+            .replace(new RegExp('<TIDE_BACKGROUND_POSITION_SIDE_BAR_DARK>', 'g'), bgPosDark)
+            .replace(new RegExp('<TIDE_BACKGROUND_REPEAT_SIDE_BAR_DARK>', 'g'), bgRepDark);
         const fonts = hexo.theme.config?.fonts ?? {
             global: "",
             site_title: "",
