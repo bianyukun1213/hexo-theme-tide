@@ -230,37 +230,6 @@ textarea:focus {
     @apply un-font-bold;
 }
 
-
-.tide-category-list, .tide-category-child {
-    display: flex;
-}
-
-/* .tide-category-list,
-.tide-category-list-child,
-.tide-category-list-item {
-    @apply un-p-0;
-    @apply un-m-0;
-    @apply un-list-none;
-}
-
-.tide-category-list-child {
-    @apply un-ps-4;
-}
-
-.tide-category-list-link {
-    @apply un-sc-link-default;
-    @apply un-text-txt-scnd!;
-    @apply un-inline-block;
-    @apply un-mb-4!;
-}
-
-.tide-category-list-link:hover {
-    @apply un-font-bold;
-} */
-
-
-
-
 #tide-search-box::-webkit-search-cancel-button {
     display: none;
 }
@@ -304,6 +273,31 @@ textarea:focus {
 
 #tide-search-results .search-result .search-keyword {
     @apply un-text-txt-scnd;
+}
+
+.tide-category-link,
+.tide-tag-link {
+    @apply un-sc-link-plain;
+    @apply un-px-4 un-py-2;
+    @apply un-border-(2 lk solid);
+    @apply un-rounded-md;
+    @apply un-overflow-hidden;
+    @apply un-break-words;
+}
+
+.tide-category-link:hover,
+.tide-tag-link:hover {
+    @apply un-color-lk;
+}
+
+.tide-category-link:visited,
+.tide-tag-link:visited {
+    @apply un-color-lk;
+}
+
+.tide-category-count,
+.tide-tag-count {
+    @apply un-ms-1;
 }
 
 /* 插件样式修复 */
