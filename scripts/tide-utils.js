@@ -16,7 +16,7 @@ function isString(str) {
     return typeof str === 'string';
 }
 
-function isBool(bool) {
+function isBoolean(bool) {
     return Boolean(bool);
 }
 
@@ -142,7 +142,7 @@ module.exports = {
     isNumber,
     isInteger,
     isString,
-    isBool,
+    isBoolean,
     isArray,
     isPlainObject,
     isEmptyObject,

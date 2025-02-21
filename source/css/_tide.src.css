@@ -13,6 +13,7 @@
         --tide-background-size-side-bar: <TIDE_BACKGROUND_SIZE_SIDE_BAR_LIGHT>;
         --tide-background-position-side-bar: <TIDE_BACKGROUND_POSITION_SIDE_BAR_LIGHT>;
         --tide-background-repeat-side-bar: <TIDE_BACKGROUND_REPEAT_SIDE_BAR_LIGHT>;
+        --tide-background-attachment-side-bar: <TIDE_BACKGROUND_ATTACHMENT_SIDE_BAR_LIGHT>;
         --tide-color-primary: <TIDE_COLOR_PRIMARY_LIGHT>;
         --tide-color-secondary: <TIDE_COLOR_SECONDARY_LIGHT>;
         --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_LIGHT>;
@@ -47,6 +48,7 @@
         --tide-background-size-side-bar: <TIDE_BACKGROUND_SIZE_SIDE_BAR_DARK>;
         --tide-background-position-side-bar: <TIDE_BACKGROUND_POSITION_SIDE_BAR_DARK>;
         --tide-background-repeat-side-bar: <TIDE_BACKGROUND_REPEAT_SIDE_BAR_DARK>;
+        --tide-background-attachment-side-bar: <TIDE_BACKGROUND_ATTACHMENT_SIDE_BAR_DARK>;
         --tide-color-primary: <TIDE_COLOR_PRIMARY_DARK>;
         --tide-color-secondary: <TIDE_COLOR_SECONDARY_DARK>;
         --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_DARK>;
@@ -67,18 +69,19 @@
     }
 }
 
-html[tide-light][dir="ltr"] {
+html[tide-color-scheme="light"][dir="ltr"] {
     --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT_LTR>;
 }
 
-html[tide-light][dir="rtl"] {
+html[tide-color-scheme="light"][dir="rtl"] {
     --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT_RTL>;
 }
 
-html[tide-light] {
+html[tide-color-scheme="light"] {
     --tide-background-size-side-bar: <TIDE_BACKGROUND_SIZE_SIDE_BAR_LIGHT>;
     --tide-background-position-side-bar: <TIDE_BACKGROUND_POSITION_SIDE_BAR_LIGHT>;
     --tide-background-repeat-side-bar: <TIDE_BACKGROUND_REPEAT_SIDE_BAR_LIGHT>;
+    --tide-background-attachment-side-bar: <TIDE_BACKGROUND_ATTACHMENT_SIDE_BAR_LIGHT>;
     --tide-color-primary: <TIDE_COLOR_PRIMARY_LIGHT>;
     --tide-color-secondary: <TIDE_COLOR_SECONDARY_LIGHT>;
     --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_LIGHT>;
@@ -98,19 +101,20 @@ html[tide-light] {
     --tide-color-table-background-even: <TIDE_COLOR_TABLE_BACKGROUND_EVEN_LIGHT>;
 }
 
-html[tide-dark][dir="ltr"] {
+html[tide-color-scheme="dark"][dir="ltr"] {
     --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK_LTR>;
 }
 
-html[tide-dark][dir="rtl"] {
+html[tide-color-scheme="dark"][dir="rtl"] {
     --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK_RTL>;
 }
 
-html[tide-dark] {
+html[tide-color-scheme="dark"] {
     color-scheme: dark;
     --tide-background-size-side-bar: <TIDE_BACKGROUND_SIZE_SIDE_BAR_DARK>;
     --tide-background-position-side-bar: <TIDE_BACKGROUND_POSITION_SIDE_BAR_DARK>;
     --tide-background-repeat-side-bar: <TIDE_BACKGROUND_REPEAT_SIDE_BAR_DARK>;
+    --tide-background-attachment-side-bar: <TIDE_BACKGROUND_ATTACHMENT_SIDE_BAR_DARK>;
     --tide-color-primary: <TIDE_COLOR_PRIMARY_DARK>;
     --tide-color-secondary: <TIDE_COLOR_SECONDARY_DARK>;
     --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_DARK>;
@@ -183,6 +187,7 @@ body {
     background-image: var(--tide-background-image-side-bar);
     background-position: var(--tide-background-position-side-bar);
     background-repeat: var(--tide-background-repeat-side-bar);
+    background-attachment: var(--tide-background-attachment-side-bar);
 }
 
 [tabindex]:not([tabindex="-1"]):focus,

@@ -7,6 +7,8 @@ navigation:
     title: "打开或关闭导航菜单"
   btn_search:
     title: "打开搜索窗口"
+  btn_switch_color_scheme:
+    title: "切换到浅色或深色显示"
   btn_settings:
     title: "打开设置窗口"
   footer:
