@@ -104,7 +104,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     else {
         out.dir = 'ltr';
     }
-    if (isString(theme.dir)) {
+    if (isString(theme?.dir)) {
         if (theme.dir === 'rtl')
             out.dir = 'rtl';
         else
@@ -221,7 +221,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     }
     out.copyright = theme?.copyright?.default ?? ''; // 主题配置中只是预置键值，具体还要看页面，所以认为是页面配置。
     if (page.copyright) {
-        if (theme.copyright && page.copyright in theme.copyright)
+        if (theme?.copyright && page.copyright in theme.copyright)
             out.copyright = theme.copyright[page.copyright];
         else
             out.copyright = page.copyright;

@@ -213,6 +213,10 @@ textarea:focus {
     @apply un-outline-2 un-outline-offset-2 un-outline-fcs-ol ! un-outline-solid;
 }
 
+.tide-paginator {
+    @apply un-text-lg;
+}
+
 .tide-paginator span {
     @apply un-inline-block;
     @apply un-mx-1;

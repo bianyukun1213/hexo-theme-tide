@@ -212,6 +212,9 @@ select:focus:focus,
 textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline);outline-offset:2px;outline-style:solid;
 }
 
+.tide-paginator {font-size:1.125rem;line-height:1.75rem;
+}
+
 .tide-paginator span {display:inline-block;margin-left:0.25rem;margin-right:0.25rem;color:var(--tide-color-text-secondary);
 }
 
