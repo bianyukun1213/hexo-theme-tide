@@ -1,7 +1,7 @@
 'use strict';
 
 function getTideVersion() {
-    return '0.1.0';
+    return '1.0.0';
 }
 
 function isNumber(num) {
@@ -41,13 +41,13 @@ function isFunction(fun) {
 }
 
 function isPhoneNumber(num) {
-    if(!isString(num))
+    if (!isString(num))
         return false;
     return /^1[3456789]\d{9}$/.test(num);
 }
 
 function isUrl(text) {
-    if(!isString(text))
+    if (!isString(text))
         return false;
     return /^(?:(?:https?|ftp):\/\/[^\s/$.?#].[^\s]*)|(?:\/|\.{1,2}\/)[^\s]*$/i.test(text);
 }
@@ -96,7 +96,6 @@ function toUnderScoreCase(name) {
 
 function underScoreCaseObjToCamelCaseObj(uSCObj) {
     if (!isPlainObject(uSCObj))
-        // return {};
         throw `underScoreCaseObjToCamelCaseObj failed, target is not a plain object: ${cCObj} .`;
     let cCObj = {};
     for (const key in uSCObj) {
@@ -114,7 +113,6 @@ function underScoreCaseObjToCamelCaseObj(uSCObj) {
 
 function camelCaseObjToUnderScoreCaseObj(cCObj) {
     if (!isPlainObject(cCObj))
-        // return {};
         throw `camelCaseObjToUnderScoreCaseObj failed, target is not a plain object: ${cCObj} .`;
     let uSCObj = {};
     for (const key in cCObj) {
@@ -131,7 +129,7 @@ function camelCaseObjToUnderScoreCaseObj(cCObj) {
 }
 
 function extractHostFromUrl(url) {
-    if(!isString(url))
+    if (!isString(url))
         return '';
     const match = url.match(/^(?:https?:\/\/)?([^\/:]+(:\d+)?)/);
     return match ? match[1] : '';

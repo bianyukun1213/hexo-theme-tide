@@ -45,7 +45,7 @@
         </ul>
       </nav>
       <footer class="un-flex-none un-p-8">
-        <!-- 留一个隐藏的 div，方便用户通过修改注入 -->
+        <!-- 留一个隐藏的 div，方便用户通过修改注入。 -->
         <div id="tide-footer-injection-point" class="un-hidden"></div>
         <% if(!tide_utils().isEmptyObject(tideCtx.icp_record)) { %>
         <p id="tide-icp-record" class="un-m-0 un-my-4"><a class="un-sc-link-plain un-text-txt-sb!" href="<%= tideCtx.icp_record.link %>"><%= tideCtx.icp_record.text %></a></p>
@@ -56,7 +56,6 @@
       </footer>
     </div>
     <div id="tide-content" class="un-sc-trans-default un-fixed un-size-full un-flex un-flex-col">
-      <!-- 顶部工具栏 -->
       <header id="tide-top-bar" class="un-bg-bg-prim un-h-16 un-flex un-justify-stretch un-items-center un-overflow-auto">
         <div class="un-w-1/4 un-min-w-20 un-h-12">
           <button id="tide-btn-nav" class="un-sc-btn-default un-relative un-float-start un-size-12 un-ms-4" title="<%= __('navigation.btn_nav.title') %>">
@@ -64,14 +63,14 @@
           </button>
         </div>
         <div class="un-w-3/4 un-min-w-32 un-h-12">
-          <!-- 开启 relative，使用 right 让元素具有符合直觉的 tab index -->
+          <!-- 开启 relative，使用 right 让元素具有符合直觉的 tab index。 -->
           <% if(tideCtx.search){ %>
           <button id="tide-btn-search" class="un-sc-btn-default un-relative un-float-end un-end-16 un-size-12 un-me-4" title="<%= __('navigation.btn_search.title') %>">
             <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
           </button>
           <% } %>
           <button id="tide-btn-switch-color-scheme" class="un-sc-btn-default un-relative un-float-end -un-end-16 un-size-12 un-me-4" title="<%= __('navigation.btn_switch_color_scheme.title') %>">
-            <i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>
+            <i id="tide-btn-nav-icon-sun" class="fa-solid fa-sun" aria-hidden="true"></i><i id="tide-btn-nav-icon-moon" class="fa-solid fa-moon" aria-hidden="true"></i>
           </button>
           <button id="tide-btn-settings" class="un-hidden un-sc-btn-default un-relative un-float-end -un-end-16 un-size-12 un-me-4" title="<%= __('navigation.btn_settings.title') %>">
             <i class="fa-solid fa-gear" aria-hidden="true"></i>

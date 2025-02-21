@@ -1,6 +1,10 @@
 /* preflights */
 
 @media (prefers-color-scheme: no-preference) or (prefers-color-scheme: light) {
+    html:not([tide-color-scheme]) #tide-btn-nav-icon-sun {
+        @apply un-hidden;
+    }
+
     html[dir="ltr"] {
         --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT_LTR>;
     }
@@ -35,6 +39,10 @@
 }
 
 @media (prefers-color-scheme: dark) {
+    html:not([tide-color-scheme]) #tide-btn-nav-icon-moon {
+        @apply un-hidden;
+    }
+
     html[dir="ltr"] {
         --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK_LTR>;
     }
@@ -69,6 +77,10 @@
     }
 }
 
+html[tide-color-scheme="light"] #tide-btn-nav-icon-sun {
+    @apply un-hidden;
+}
+
 html[tide-color-scheme="light"][dir="ltr"] {
     --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT_LTR>;
 }
@@ -99,6 +111,10 @@ html[tide-color-scheme="light"] {
     --tide-color-table-border: <TIDE_COLOR_TABLE_BORDER_LIGHT>;
     --tide-color-table-background-head: <TIDE_COLOR_TABLE_BACKGROUND_HEAD_LIGHT>;
     --tide-color-table-background-even: <TIDE_COLOR_TABLE_BACKGROUND_EVEN_LIGHT>;
+}
+
+html[tide-color-scheme="dark"] #tide-btn-nav-icon-moon {
+    @apply un-hidden;
 }
 
 html[tide-color-scheme="dark"][dir="ltr"] {
@@ -135,7 +151,7 @@ html[tide-color-scheme="dark"] {
 }
 
 html {
-    /* 要与 unocss（tailwind 4.0？）主题配置同步 */
+    /* 要与 unocss（tailwind 4.0？）主题配置同步。 */
     --tide-unocss-spacing: 0.25rem;
     --tide-font-global: <TIDE_FONT_GLOBAL>;
     --tide-font-site-title: <TIDE_FONT_SITE_TITLE>;
@@ -144,10 +160,6 @@ html {
     /* --tide-font-code: <TIDE_FONT_CODE>; */
     /* --tide-font-global: 'Noto Serif SC', serif; */
 }
-
-/* * {
-    scrollbar-width: thin;
-} */
 
 a {
     @apply un-sc-link-default;
@@ -304,7 +316,7 @@ textarea:focus {
 
 /* 插件样式修复 */
 
-/* hbe 强制 ltr */
+/* hbe 强制 ltr。 */
 #hexo-blog-encrypt {
     direction: ltr;
 }
@@ -330,7 +342,8 @@ textarea:focus {
 }
 
 /* 默认小屏幕 */
-/* 侧栏默认整体滚动 */
+
+/* 侧栏默认整体滚动。 */
 #tide-side-bar {
     width: min(var(--tide-unocss-spacing) * 120, 75vw);
     @apply un-overflow-auto;
@@ -340,7 +353,7 @@ textarea:focus {
     inset-inline-start: max(var(--tide-unocss-spacing) * -120, -75vw);
 }
 
-/* 使用 [dir="ltr"] 而非 @apply un-ltr:…… ，因为后者在转换后会有空的样式，显示警告 */
+/* 使用 [dir="ltr"] 而非 @apply un-ltr:…… ，因为后者在转换后会有空的样式，显示警告。 */
 [dir="ltr"] [tide-side-bar-expanded="true"] #tide-side-bar,
 [dir="ltr"] [tide-side-bar-expanded="true"] #tide-content {
     transform: translateX(min(var(--tide-unocss-spacing) * 120, 75vw));
@@ -389,13 +402,13 @@ textarea:focus {
     }
 }
 
-/* xl 往后非文章页横向不再允许折叠 */
+/* xl 往后非文章页横向不再允许折叠。 */
 @media (orientation: landscape) {
 
 
     @media (min-width: 1280px) {
 
-        /* 1280*768 后侧栏整体不再允许滚动，导航部分允许滚动 */
+        /* 1280*768 后侧栏整体不再允许滚动，导航部分允许滚动。 */
         @media (min-height: 768px) {
             #tide-side-bar {
                 @apply un-overflow-clip;
@@ -473,7 +486,7 @@ textarea:focus {
     }
 }
 
-/* high contrust optimization */
+/* 高对比度优化 */
 
 #tide-side-bar,
 .tide-dialog-container,

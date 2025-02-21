@@ -1,6 +1,6 @@
 <dialog id="tide-dialog-lang-picker" class="tide-dialog un-sc-dlg-fullscreen">
   <div class="tide-dialog-mask un-sc-dlg-mask">
-    <div id="tide-lang-picker-panel" class="tide-side-panel un-fixed un-end-0 un-h-full un-bg-bg-prim un-flex un-flex-col">
+    <div id="tide-lang-picker-panel" class="tide-side-panel un-fixed un-end-0 un-h-full un-bg-bg-scnd un-flex un-flex-col">
       <div class="un-w-full un-p-4 un-flex-none un-flex un-justify-between un-gap-4">
         <h2 class="un-m-0 un-text-2xl un-font-bold un-leading-12 un-overflow-hidden un-text-ellipsis"><%= __('dialog_lang_picker.title') %></h2>
         <button id="tide-lang-picker-btn-close" class="un-sc-btn-default un-flex-none un-size-12" title="<%= __('dialog_lang_picker.btn_close.title') %>">
@@ -11,14 +11,14 @@
         <% const langLink=tideCtx.languages[tideCtx.language] %>
         <% const langMeta=tideCtx.language_meta[tideCtx.language] %>
         <h3 class="un-m-0 un-mb-4 un-text-xl un-font-bold un-overflow-hidden un-text-ellipsis" dir="<%= langMeta?langMeta.direction:'' %>"><%= tideCtx.item_marker_begin+(langMeta?langMeta.display:langKey)+tideCtx.item_marker_end %></h3>
-        <!-- 链接强制 ltr -->
+        <!-- 链接强制 ltr。 -->
         <span class="un-inline-block un-mb-4 un-text-txt-scnd un-font-bold" dir="ltr" href="<%= langLink %>" target="_self"><%= langLink %></span>
         <% for(const langKey in tideCtx.languages){ %>
         <%  if(Object.prototype.hasOwnProperty.call(tideCtx.languages,langKey)&&langKey!==tideCtx.language){ %>
         <% const langLink=tideCtx.languages[langKey] %>
         <% const langMeta=tideCtx.language_meta[langKey] %>
         <h3 class="un-m-0 un-mb-4 un-text-xl un-font-bold un-overflow-hidden un-text-ellipsis" dir="<%= langMeta?langMeta.direction:'' %>"><%= langMeta?langMeta.display:langKey %></h3>
-        <!-- 链接强制 ltr -->
+        <!-- 链接强制 ltr。 -->
         <a class="un-sc-link-default un-inline-block un-mb-4 un-text-txt-scnd!" dir="ltr" href="<%= langLink %>" target="_self"><%= langLink %></a>
         <% } %>
         <% } %>

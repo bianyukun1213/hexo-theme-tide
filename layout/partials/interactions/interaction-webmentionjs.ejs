@@ -2,7 +2,6 @@
   <div id="tide-interaction-webmentionjs"></div>
   <%- css({href:tideCtx.cdn.webmentionjs_css.href,integrity:tideCtx.cdn.webmentionjs_css.integrity,crossorigin:'anonymous',referrerpolicy:'no-referrer'}) %>
   <% let params={src:tideCtx.cdn.webmentionjs_js.src,integrity:tideCtx.cdn.webmentionjs_js.integrity,crossorigin:'anonymous',referrerpolicy:'no-referrer','data-id':'tide-interaction-webmentionjs',defer:true} %>
-  <%# let params={src:tideCtx.cdn.webmentionjs_js.src,integrity:tideCtx.cdn.webmentionjs_js.integrity,crossorigin:'anonymous',referrerpolicy:'no-referrer','data-id':'tide-interaction-webmentionjs','data-page-url': 'https://his2nd.life/zh-CN/posts/127efb3.html',defer:true} %>
   <% const config=tideCtx.interactions.webmentionjs %>
   <% Object.assign(params,{'data-max-webmentions':config.max_webmentions,'data-sort-by':config.sort_by,'data-sort-dir':config.sort_dir}) %>
   <% if(config.wordcount!==-1){ %>

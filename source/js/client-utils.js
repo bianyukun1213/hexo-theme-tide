@@ -78,7 +78,6 @@ const clientUtils = {
     },
     underScoreCaseObjToCamelCaseObj: function (uSCObj) {
         if (!isPlainObject(uSCObj))
-            // return {};
             throw `underScoreCaseObjToCamelCaseObj failed, target is not a plain object: ${cCObj} .`;
         let cCObj = {};
         for (const key in uSCObj) {
@@ -95,7 +94,6 @@ const clientUtils = {
     },
     camelCaseObjToUnderScoreCaseObj: function (cCObj) {
         if (!isPlainObject(cCObj))
-            // return {};
             throw `camelCaseObjToUnderScoreCaseObj failed, target is not a plain object: ${cCObj} .`;
         let uSCObj = {};
         for (const key in cCObj) {

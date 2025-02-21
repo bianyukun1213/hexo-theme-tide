@@ -1,6 +1,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<!-- favicon 可以使用 helper 插入，但为了与 apple-touch-icon 一致选择手写 -->
+<!-- favicon 可以使用 helper 插入，但为了与 apple-touch-icon 一致选择手写。 -->
 <link rel="icon" href="<%= url_for(tideCtx.meta_icons?.favicon) %>">
 <link rel="apple-touch-icon" href="<%= url_for(tideCtx.meta_icons?.apple_touch_icon) %>">
 <% if(tideCtx.layout==='categories'){ %>
@@ -30,10 +30,11 @@
 <% } %>
 <meta name="keywords" content="<%= tideCtx.keywords %>">
 <%- open_graph({title:tideCtx.page_titl?tideCtx.page_title:tideCtx.site_title,author:tideCtx.author,language:tideCtx.language,description:tideCtx.description}) %>
-<!-- og 包含 description，不用单独写 -->
+<!-- og 包含 description，不用单独写。 -->
 <% if(!tideCtx.page_visibility.no_index){ %>
 <meta name="robots" content="all">
 <% } %>
+<%- feed_tag() %>
 <% if(tideCtx.meta_generator){ %>
 <%- meta_generator() %>
 <%- meta_generator_tide() %>

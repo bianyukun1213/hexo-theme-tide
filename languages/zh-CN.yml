@@ -1,3 +1,13 @@
+page_title:
+  none: "无标题"
+  archive: "归档"
+  archive_year: "归档：%1$s 至 %2$s"
+  archive_month: "归档：%1$s 至 %2$s"
+  category: "分类：%s"
+  tag: "标签：%s"
+  categories: "分类"
+  tags: "标签"
+
 paginator:
   prev: "上一页"
   next: "下一页"
@@ -13,6 +23,14 @@ navigation:
     title: "打开设置窗口"
   footer:
     generated_by_hexo_and_theme_tide: '使用<span class="un-i-logos-hexo un-mx-1"></span><a class="un-sc-link-plain un-text-txt-sb!" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 与 <a class="un-sc-link-plain un-text-txt-sb!" href="https://github.com/bianyukun1213/hexo-theme-tide" target="_blank" rel="noopener">hexo-theme-tide</a> 生成'
+
+floating_utils:
+  btn_scroll_to_top:
+    title: "回到顶部"
+  btn_open_toc:
+    title: "打开目录"
+  btn_switch_lang:
+    title: "切换语言"
 
 post_meta:
   author:
@@ -30,16 +48,8 @@ post_meta:
     title: "标签"
   word_count:
     title: "字数"
-    # text:
-      # zero: "-"
-      # one: "%d 字"
-      # other: "%d 字"
   reading_time:
     title: "预计阅读时间"
-    # text:
-      # zero: "-"
-      # one: "%d 分钟"
-      # other: "%d 分钟"
   extra:
     title: "注释"
   syndications:
@@ -48,8 +58,6 @@ post_meta:
     title: "版权声明"
   page_specific_description:
     title: "描述"
-  # views:
-  #   title: "访问量" # View(s)，因为生成时无法确定具体的访问量。
 
 page_nav:
   prev:
@@ -68,14 +76,6 @@ dialog_image_viewer:
     title: "缩小"
   btn_close:
     title: "关闭"
-
-floating_utils:
-  btn_scroll_to_top:
-    title: "回到顶部"
-  btn_open_toc:
-    title: "打开目录"
-  btn_switch_lang:
-    title: "切换语言"
 
 dialog_search:
   btn_close:
@@ -109,13 +109,3 @@ interactions:
       Responses: "回应"
       mention: "提及"
       Reactions: "反应"
-
-page_title:
-  none: "无标题"
-  archive: "归档"
-  archive_year: "归档：%1$s 至 %2$s"
-  archive_month: "归档：%1$s 至 %2$s"
-  category: "分类：%s"
-  tag: "标签：%s"
-  categories: "分类"
-  tags: "标签"

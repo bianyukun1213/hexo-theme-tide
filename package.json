@@ -1,14 +1,14 @@
 {
   "name": "hexo-theme-tide",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "",
   "private": true,
   "devDependencies": {
     "@iconify-json/logos": "^1.2.4",
-    "@unocss/postcss": "^65.4.3",
-    "postcss": "^8.5.2",
+    "@unocss/postcss": "^66.0.0",
+    "postcss": "^8.5.3",
     "postcss-cli": "^11.0.0",
-    "unocss": "^65.4.3"
+    "unocss": "^66.0.0"
   },
   "dependencies": {
     "cheerio": "^1.0.0",
