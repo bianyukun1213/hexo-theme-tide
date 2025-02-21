@@ -14,6 +14,7 @@
     }
 
     html {
+        color-scheme: light;
         --tide-background-size-side-bar: <TIDE_BACKGROUND_SIZE_SIDE_BAR_LIGHT>;
         --tide-background-position-side-bar: <TIDE_BACKGROUND_POSITION_SIDE_BAR_LIGHT>;
         --tide-background-repeat-side-bar: <TIDE_BACKGROUND_REPEAT_SIDE_BAR_LIGHT>;
@@ -90,6 +91,7 @@ html[tide-color-scheme="light"][dir="rtl"] {
 }
 
 html[tide-color-scheme="light"] {
+    color-scheme: light;
     --tide-background-size-side-bar: <TIDE_BACKGROUND_SIZE_SIDE_BAR_LIGHT>;
     --tide-background-position-side-bar: <TIDE_BACKGROUND_POSITION_SIDE_BAR_LIGHT>;
     --tide-background-repeat-side-bar: <TIDE_BACKGROUND_REPEAT_SIDE_BAR_LIGHT>;
