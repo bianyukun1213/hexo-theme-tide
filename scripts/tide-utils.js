@@ -40,16 +40,22 @@ function isFunction(fun) {
     return typeof fun === 'function';
 }
 
-function isPhoneNumber(num) {
-    if (!isString(num))
-        return false;
-    return /^1[3456789]\d{9}$/.test(num);
-}
+// function isPhoneNumber(num) {
+//     if (!isString(num))
+//         return false;
+//     return /^1[3456789]\d{9}$/.test(num);
+// }
 
 function isUrl(text) {
     if (!isString(text))
         return false;
     return /^(?:(?:https?|ftp):\/\/[^\s/$.?#].[^\s]*)|(?:\/|\.{1,2}\/)[^\s]*$/i.test(text);
+}
+
+function isMobileUserAgent(ua) {
+    return !!ua.match(
+        /(phone|pad|pod|Mobile|iPhone|iPad|iPod|ios|Android|Windows Phone|Symbian|BlackBerry|WebOS|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG)/i
+    );
 }
 
 function deepClone(obj) {
@@ -145,8 +151,9 @@ module.exports = {
     isPlainObject,
     isEmptyObject,
     isFunction,
-    isPhoneNumber,
+    // isPhoneNumber,
     isUrl,
+    isMobileUserAgent,
     deepClone,
     deepMergeObj,
     unixTimestampToDate,

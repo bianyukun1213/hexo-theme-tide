@@ -29,15 +29,20 @@ const clientUtils = {
     isFunction: function (fun) {
         return typeof fun === 'function';
     },
-    isPhoneNumber: function (num) {
-        if (!isString(num))
-            return false;
-        return /^1[3456789]\d{9}$/.test(num);
-    },
+    // isPhoneNumber: function (num) {
+    //     if (!isString(num))
+    //         return false;
+    //     return /^1[3456789]\d{9}$/.test(num);
+    // },
     isUrl: function (text) {
         if (!isString(text))
             return false;
         return /^(?:(?:https?|ftp):\/\/[^\s/$.?#].[^\s]*)|(?:\/|\.{1,2}\/)[^\s]*$/i.test(text);
+    },
+    isMobileUserAgent: function (ua) {
+        return !!ua.match(
+            /(phone|pad|pod|Mobile|iPhone|iPad|iPod|ios|Android|Windows Phone|Symbian|BlackBerry|WebOS|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG)/i
+        );
     },
     deepClone: function (obj) {
         return structuredClone(obj);
