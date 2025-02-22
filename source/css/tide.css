@@ -539,6 +539,8 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 
 .un-ms-4{margin-inline-start:1rem;}
 
+.un-mt-4{margin-top:1rem;}
+
 .un-inline{display:inline;}
 
 .un-block{display:block;}
@@ -674,8 +676,6 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 .un-px-4{padding-left:1rem;padding-right:1rem;}
 
 .un-py-2{padding-top:0.5rem;padding-bottom:0.5rem;}
-
-.un-py-4{padding-top:1rem;padding-bottom:1rem;}
 
 .un-text-center{text-align:center;}
 

@@ -66,3 +66,32 @@ hexo.extend.helper.register('meta_tide_client_ctx', function (tideCtx) {
     ctx.search_db_path = tideCtx.search_db_path;
     return `<meta name="tide-client-ctx" content="${encodeURIComponent(JSON.stringify(ctx))}">`;
 });
+
+hexo.extend.helper.register('parse_cdn_config', function (resName, cdnConfig) {
+    if (resName in cdnConfig) {
+        return {
+            href: cdnConfig[resName].href ?? null,
+            src: cdnConfig[resName].src ?? null,
+            integrity: cdnConfig[resName].integrity ?? null,
+            crossorigin: cdnConfig[resName].crossorigin ?? null,
+            referrerpolicy: cdnConfig[resName].referrerpolicy ?? null
+        };
+    }
+    return {};
+});
+
+hexo.extend.helper.register('generate_meta_links', function (metaLinksConfig) {
+    let res = [];
+    for (const metaLink of metaLinksConfig) {
+        let str = `<link rel="${metaLink.rel}" href="${metaLink.href}"`;
+        if (metaLink.integrity)
+            str += ` integrity="${metaLink.integrity}"`;
+        if (metaLink.crossorigin)
+            str += ` crossorigin="${metaLink.crossorigin}"`;
+        if (metaLink.referrerpolicy)
+            str += ` referrerpolicy="${metaLink.referrerpolicy}"`;
+        str += '>'
+        res.push(str);
+    }
+    return res.join('\n');
+});

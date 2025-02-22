@@ -9,7 +9,7 @@
     <%- page.content %>
   </div>
 </article>
-<nav id="tide-page-nav" class="un-sc-clearfix un-py-4">
+<nav id="tide-page-nav" class="un-sc-clearfix un-my-4">
   <% if(!tide_utils().isEmptyObject(tideCtx.prev)){ %>
   <a class="un-sc-link-plain un-float-start un-text-txt-scnd!" title="<%= __('page_nav.prev.title') %>" href="<%= url_for(tideCtx.prev.path) %>"><i class="fa-solid <%= tideCtx.dir==='rtl'?'fa-angle-right':'fa-angle-left' %> un-me-1" aria-hidden="true"></i><span><%= tideCtx.prev.title?tideCtx.prev.title:__('page_title.none') %></span></a>
   <% } %>

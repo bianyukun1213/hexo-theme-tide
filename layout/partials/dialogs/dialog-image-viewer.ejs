@@ -24,7 +24,7 @@
     </div>
   </div>
 </dialog>
-<%- js({src:tideCtx.cdn.pinchzoom_js.src,integrity:tideCtx.cdn.pinchzoom_js.integrity,crossorigin:'anonymous',referrerpolicy:'no-referrer',defer:true}) %>
+<%- js(Object.assign(parse_cdn_config('pinchzoom_js',tideCtx.cdn),{defer:true})) %>
 <script>
   'use strict';
   (function() {

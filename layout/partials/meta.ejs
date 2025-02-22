@@ -1,8 +1,5 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<!-- favicon 可以使用 helper 插入，但为了与 apple-touch-icon 一致选择手写。 -->
-<link rel="icon" href="<%= url_for(tideCtx.meta_icons?.favicon) %>">
-<link rel="apple-touch-icon" href="<%= url_for(tideCtx.meta_icons?.apple_touch_icon) %>">
 <% if(tideCtx.layout==='categories'){ %>
 <title><%= __('page_title.categories') %></title>
 <% }else if(tideCtx.layout==='tags'){ %>
@@ -35,6 +32,7 @@
 <meta name="robots" content="all">
 <% } %>
 <%- feed_tag() %>
+<%- generate_meta_links(tideCtx.meta_links) %>
 <% if(tideCtx.meta_generator){ %>
 <%- meta_generator() %>
 <%- meta_generator_tide() %>

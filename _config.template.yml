@@ -4,63 +4,98 @@ cdn:
   font_awesome_css:
     href: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
     integrity: "sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin: "anonymous"
+    referrerpolicy: "no-referrer"
   prism_css:
     href: "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css"
     integrity: "sha512-vswe+cgvic/XBoF1OcM/TeJ2FW0OofqAVdCZiEYkd6dwGXthvkSFWOoGGJgS2CW70VK5dQM5Oh+7ne47s74VTg=="
+    crossorigin: "anonymous"
+    referrerpolicy: "no-referrer"
   prism_line_numbers_css:
     href: "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.css"
     integrity: "sha512-cbQXwDFK7lj2Fqfkuxbo5iD1dSbLlJGXGpfTDqbggqjHJeyzx88I3rfwjS38WJag/ihH7lzuGlGHpDBymLirZQ=="
+    crossorigin: "anonymous"
+    referrerpolicy: "no-referrer"
   prism_line_highlight_css:
     href: "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-highlight/prism-line-highlight.min.css"
     integrity: "sha512-nXlJLUeqPMp1Q3+Bd8Qds8tXeRVQscMscwysJm821C++9w6WtsFbJjPenZ8cQVMXyqSAismveQJc0C1splFDCA=="
+    crossorigin: "anonymous"
+    referrerpolicy: "no-referrer"
   webmentionjs_css:
-    href: "/css/third-party/webmention.css"
-    integrity: ""
+    href: "/css/third-party/webmention.css" # Patched, do not change.
   prism_js:
     src: "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"
     integrity: "sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg=="
+    crossorigin: "anonymous"
+    referrerpolicy: "no-referrer"
   prism_line_numbers_js:
     src: "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-numbers/prism-line-numbers.min.js"
     integrity: "sha512-BttltKXFyWnGZQcRWj6osIg7lbizJchuAMotOkdLxHxwt/Hyo+cl47bZU0QADg+Qt5DJwni3SbYGXeGMB5cBcw=="
+    crossorigin: "anonymous"
+    referrerpolicy: "no-referrer"
   prism_line_highlight_js:
     src: "https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/line-highlight/prism-line-highlight.min.js"
     integrity: "sha512-255MpVHZHmxNdOj/PivQ+WSTYFjBxTMfmIszxwsJobUeaoDNUAnAQjYF5TznbiZXrXqpCy8q4QyvJzhykpof3Q=="
+    crossorigin: "anonymous"
+    referrerpolicy: "no-referrer"
   pinchzoom_js:
     src: "/js/third-party/pinch-zoom.umd.min.js" # Patched, do not change.
-    integrity: ""
   twikoo_js:
     src: "https://cdnjs.cloudflare.com/ajax/libs/twikoo/1.6.41/twikoo.all.min.js"
     integrity: "sha512-cdLlE9nnzcJXQoy9eFuzGcpQXx70rXxmUNpvrvYTAwQv2txLSdvEUs+eILIyKVFBvAoUm9iUR73ewSD3IiGZ/w=="
+    crossorigin: "anonymous"
+    referrerpolicy: "no-referrer"
   webmentionjs_js:
     src: "/js/third-party/webmention.js" # Patched, do not change.
-    integrity: ""
   search_js:
     src: "/js/third-party/search.js" # https://github.com/next-theme/hexo-generator-searchdb/blob/main/dist/search.js
-    integrity: ""
 
 fonts:
-  web_fonts:
-    enable: true
-    preconnect: "https://fonts.bunny.net"
-    css_href: "https://fonts.bunny.net/css?family=ma-shan-zheng:400|noto-sans-sc:100,200,300,400,500,600,700,800,900|noto-serif-sc:200,300,400,500,600,700,800,900"
-  global: "'Noto Sans SC', sans-serif"
-  site_title: "'Noto Sans SC', sans-serif"
-  site_subtitle: "'Ma Shan Zheng', handwriting"
-  prose: "'Noto Serif SC', serif"
+  global: ""
+  site_title: ""
+  site_subtitle: ""
+  prose: ""
 
-meta_icons:
-  favicon: "/img/favicon.ico"
-  apple_touch_icon: "/img/favicon.ico"
-
+# Links to some simple resources.
+# You can use the config below to add things like
+# - favicon and 'apple-touch-icon's
+# - Google Fonts 'preconnect's and 'stylesheet'
+# - “RelMeAuth”
+# - IndieAuth.com 'authorization_endpoint'
+# - Webmention.io 'webmention' (I think you’ll need this if you use 'webmentionjs' as (one of) your interaction modules.)
+# …
+# For “dynamic” resources like 'canonical' links, please use plugins or scripts.
 meta_links:
   -
+    rel: icon
+    href: ""
+  -
     rel: me
-    href: "https://github.com/bianyukun1213"
+    href: "mailto:somebody@example.com"
+  -
+    rel: me
+    href: "https://github.com/ghost"
+  -
+    rel: authorization_endpoint
+    href: "https://indieauth.com/auth"
+  -
+    rel: webmention
+    href: "https://webmention.io/your.site/webmention"
+  -
+    rel: preconnect
+    href: "https://fonts.googleapis.com"
+  -
+    rel: preconnect
+    href: "https://fonts.gstatic.com"
+    crossorigin: "anonymous"
+  -
+    rel: stylesheet
+    href: "https://fonts.googleapis.com/css2?picked-fonts-here"
 
 colors:
   light:
     primary: "#1F5297"
-    secondary: "#00ADB5"
+    secondary: "#0A97B0"
     background_primary: "#FFFFFF"
     background_secondary: "#F1F1F1"
     background_side_bar: "#1F5297"
@@ -71,7 +106,7 @@ colors:
     focused_outline: "#E36209"
     link: "#1F5297"
     link_hover: "#1F5297"
-    link_visited: "#00ADB5"
+    link_visited: "#0A97B0"
     code_inline: "#1F5297"
     table_border: "#E5E7EB"
     table_background_head: "#F1F1F1"
@@ -99,17 +134,17 @@ side_bar_background_image:
   light:
     ltr: "url(\"data:image/svg+xml,%3Csvg width='100%25' height='100%25' id='svg' viewBox='0 0 1440 690' xmlns='http://www.w3.org/2000/svg' class='transition duration-300 ease-in-out delay-150'%3E%3Cpath d='M 0,700 L 0,405 C 99.0205128205128,395.90128205128207 198.0410256410256,386.80256410256413 281,383 C 363.9589743589744,379.19743589743587 430.8564102564103,380.6910256410256 509,345 C 587.1435897435897,309.3089743589744 676.5333333333334,236.43333333333334 757,206 C 837.4666666666666,175.56666666666666 909.0102564102565,187.57564102564103 989,178 C 1068.9897435897435,168.42435897435897 1157.425641025641,137.26410256410256 1234,109 C 1310.574358974359,80.73589743589744 1375.2871794871794,55.36794871794872 1440,30 L 1440,700 L 0,700 Z' stroke='none' stroke-width='0' fill='%23ffffff' fill-opacity='0.1' class='transition-all duration-300 ease-in-out delay-150 path-0'%3E%3C/path%3E%3Cpath d='M 0,700 L 0,545 C 88.88717948717951,571.6217948717949 177.77435897435902,598.2435897435897 267,589 C 356.225641025641,579.7564102564103 445.7897435897436,534.647435897436 524,500 C 602.2102564102564,465.35256410256403 669.0666666666666,441.16666666666663 733,416 C 796.9333333333334,390.83333333333337 857.9435897435899,364.68589743589746 932,329 C 1006.0564102564101,293.31410256410254 1093.1589743589743,248.0897435897436 1180,220 C 1266.8410256410257,191.9102564102564 1353.4205128205128,180.9551282051282 1440,170 L 1440,700 L 0,700 Z' stroke='none' stroke-width='0' fill='%23ffffff' fill-opacity='0.2' class='transition-all duration-300 ease-in-out delay-150 path-1'%3E%3C/path%3E%3Cpath d='M 0,700 L 0,685 C 90.27948717948715,668.6371794871795 180.5589743589743,652.274358974359 265,638 C 349.4410256410257,623.725641025641 428.0435897435899,611.5397435897436 508,604 C 587.9564102564101,596.4602564102564 669.2666666666667,593.5666666666667 743,577 C 816.7333333333333,560.4333333333333 882.8897435897436,530.1935897435897 964,487 C 1045.1102564102564,443.8064102564103 1141.174358974359,387.6589743589744 1223,356 C 1304.825641025641,324.3410256410256 1372.4128205128204,317.17051282051284 1440,310 L 1440,700 L 0,700 Z' stroke='none' stroke-width='0' fill='%23ffffff' fill-opacity='0.3' class='transition-all duration-300 ease-in-out delay-150 path-2'%3E%3C/path%3E%3Cpath d='M 0,700 L 0,825 C 98.5025641025641,827.2602564102564 197.0051282051282,829.5205128205127 271,816 C 344.9948717948718,802.4794871794873 394.4820512820513,773.1782051282051 473,730 C 551.5179487179487,686.8217948717949 659.0666666666666,629.7666666666667 733,624 C 806.9333333333334,618.2333333333333 847.2512820512821,663.7551282051281 931,651 C 1014.7487179487179,638.2448717948719 1141.9282051282053,567.2128205128206 1234,524 C 1326.0717948717947,480.78717948717946 1383.0358974358974,465.3935897435897 1440,450 L 1440,700 L 0,700 Z' stroke='none' stroke-width='0' fill='%23ffffff' fill-opacity='1' class='transition-all duration-300 ease-in-out delay-150 path-3'%3E%3C/path%3E%3C/svg%3E\")"
     rtl: "url(\"data:image/svg+xml,%3Csvg width='100%25' height='100%25' id='svg' viewBox='0 0 1440 690' xmlns='http://www.w3.org/2000/svg' class='transition duration-300 ease-in-out delay-150' style='transform: rotateY(180deg)'%3E%3Cpath d='M 0,700 L 0,405 C 99.0205128205128,395.90128205128207 198.0410256410256,386.80256410256413 281,383 C 363.9589743589744,379.19743589743587 430.8564102564103,380.6910256410256 509,345 C 587.1435897435897,309.3089743589744 676.5333333333334,236.43333333333334 757,206 C 837.4666666666666,175.56666666666666 909.0102564102565,187.57564102564103 989,178 C 1068.9897435897435,168.42435897435897 1157.425641025641,137.26410256410256 1234,109 C 1310.574358974359,80.73589743589744 1375.2871794871794,55.36794871794872 1440,30 L 1440,700 L 0,700 Z' stroke='none' stroke-width='0' fill='%23ffffff' fill-opacity='0.1' class='transition-all duration-300 ease-in-out delay-150 path-0'%3E%3C/path%3E%3Cpath d='M 0,700 L 0,545 C 88.88717948717951,571.6217948717949 177.77435897435902,598.2435897435897 267,589 C 356.225641025641,579.7564102564103 445.7897435897436,534.647435897436 524,500 C 602.2102564102564,465.35256410256403 669.0666666666666,441.16666666666663 733,416 C 796.9333333333334,390.83333333333337 857.9435897435899,364.68589743589746 932,329 C 1006.0564102564101,293.31410256410254 1093.1589743589743,248.0897435897436 1180,220 C 1266.8410256410257,191.9102564102564 1353.4205128205128,180.9551282051282 1440,170 L 1440,700 L 0,700 Z' stroke='none' stroke-width='0' fill='%23ffffff' fill-opacity='0.2' class='transition-all duration-300 ease-in-out delay-150 path-1'%3E%3C/path%3E%3Cpath d='M 0,700 L 0,685 C 90.27948717948715,668.6371794871795 180.5589743589743,652.274358974359 265,638 C 349.4410256410257,623.725641025641 428.0435897435899,611.5397435897436 508,604 C 587.9564102564101,596.4602564102564 669.2666666666667,593.5666666666667 743,577 C 816.7333333333333,560.4333333333333 882.8897435897436,530.1935897435897 964,487 C 1045.1102564102564,443.8064102564103 1141.174358974359,387.6589743589744 1223,356 C 1304.825641025641,324.3410256410256 1372.4128205128204,317.17051282051284 1440,310 L 1440,700 L 0,700 Z' stroke='none' stroke-width='0' fill='%23ffffff' fill-opacity='0.3' class='transition-all duration-300 ease-in-out delay-150 path-2'%3E%3C/path%3E%3Cpath d='M 0,700 L 0,825 C 98.5025641025641,827.2602564102564 197.0051282051282,829.5205128205127 271,816 C 344.9948717948718,802.4794871794873 394.4820512820513,773.1782051282051 473,730 C 551.5179487179487,686.8217948717949 659.0666666666666,629.7666666666667 733,624 C 806.9333333333334,618.2333333333333 847.2512820512821,663.7551282051281 931,651 C 1014.7487179487179,638.2448717948719 1141.9282051282053,567.2128205128206 1234,524 C 1326.0717948717947,480.78717948717946 1383.0358974358974,465.3935897435897 1440,450 L 1440,700 L 0,700 Z' stroke='none' stroke-width='0' fill='%23ffffff' fill-opacity='1' class='transition-all duration-300 ease-in-out delay-150 path-3'%3E%3C/path%3E%3C/svg%3E\")"
-    size: cover
-    position: bottom
-    repeat: no-repeat
-    attachment: local
+    size: "cover"
+    position: "bottom"
+    repeat: "no-repeat"
+    attachment: "local"
   dark:
     ltr: "url(\"data:image/svg+xml,%3Csvg width='100%25' height='100%25' id='svg' viewBox='0 0 1440 690' xmlns='http://www.w3.org/2000/svg' class='transition duration-300 ease-in-out delay-150'%3E%3Cpath d='M 0,700 L 0,405 C 99.0205128205128,395.90128205128207 198.0410256410256,386.80256410256413 281,383 C 363.9589743589744,379.19743589743587 430.8564102564103,380.6910256410256 509,345 C 587.1435897435897,309.3089743589744 676.5333333333334,236.43333333333334 757,206 C 837.4666666666666,175.56666666666666 909.0102564102565,187.57564102564103 989,178 C 1068.9897435897435,168.42435897435897 1157.425641025641,137.26410256410256 1234,109 C 1310.574358974359,80.73589743589744 1375.2871794871794,55.36794871794872 1440,30 L 1440,700 L 0,700 Z' stroke='none' stroke-width='0' fill='%23ffffff' fill-opacity='0.1' class='transition-all duration-300 ease-in-out delay-150 path-0'%3E%3C/path%3E%3Cpath d='M 0,700 L 0,545 C 88.88717948717951,571.6217948717949 177.77435897435902,598.2435897435897 267,589 C 356.225641025641,579.7564102564103 445.7897435897436,534.647435897436 524,500 C 602.2102564102564,465.35256410256403 669.0666666666666,441.16666666666663 733,416 C 796.9333333333334,390.83333333333337 857.9435897435899,364.68589743589746 932,329 C 1006.0564102564101,293.31410256410254 1093.1589743589743,248.0897435897436 1180,220 C 1266.8410256410257,191.9102564102564 1353.4205128205128,180.9551282051282 1440,170 L 1440,700 L 0,700 Z' stroke='none' stroke-width='0' fill='%23ffffff' fill-opacity='0.2' class='transition-all duration-300 ease-in-out delay-150 path-1'%3E%3C/path%3E%3Cpath d='M 0,700 L 0,685 C 90.27948717948715,668.6371794871795 180.5589743589743,652.274358974359 265,638 C 349.4410256410257,623.725641025641 428.0435897435899,611.5397435897436 508,604 C 587.9564102564101,596.4602564102564 669.2666666666667,593.5666666666667 743,577 C 816.7333333333333,560.4333333333333 882.8897435897436,530.1935897435897 964,487 C 1045.1102564102564,443.8064102564103 1141.174358974359,387.6589743589744 1223,356 C 1304.825641025641,324.3410256410256 1372.4128205128204,317.17051282051284 1440,310 L 1440,700 L 0,700 Z' stroke='none' stroke-width='0' fill='%23ffffff' fill-opacity='0.3' class='transition-all duration-300 ease-in-out delay-150 path-2'%3E%3C/path%3E%3Cpath d='M 0,700 L 0,825 C 98.5025641025641,827.2602564102564 197.0051282051282,829.5205128205127 271,816 C 344.9948717948718,802.4794871794873 394.4820512820513,773.1782051282051 473,730 C 551.5179487179487,686.8217948717949 659.0666666666666,629.7666666666667 733,624 C 806.9333333333334,618.2333333333333 847.2512820512821,663.7551282051281 931,651 C 1014.7487179487179,638.2448717948719 1141.9282051282053,567.2128205128206 1234,524 C 1326.0717948717947,480.78717948717946 1383.0358974358974,465.3935897435897 1440,450 L 1440,700 L 0,700 Z' stroke='none' stroke-width='0' fill='%23ffffff' fill-opacity='1' class='transition-all duration-300 ease-in-out delay-150 path-3'%3E%3C/path%3E%3C/svg%3E\")"
     rtl: "url(\"data:image/svg+xml,%3Csvg width='100%25' height='100%25' id='svg' viewBox='0 0 1440 690' xmlns='http://www.w3.org/2000/svg' class='transition duration-300 ease-in-out delay-150' style='transform: rotateY(180deg)'%3E%3Cpath d='M 0,700 L 0,405 C 99.0205128205128,395.90128205128207 198.0410256410256,386.80256410256413 281,383 C 363.9589743589744,379.19743589743587 430.8564102564103,380.6910256410256 509,345 C 587.1435897435897,309.3089743589744 676.5333333333334,236.43333333333334 757,206 C 837.4666666666666,175.56666666666666 909.0102564102565,187.57564102564103 989,178 C 1068.9897435897435,168.42435897435897 1157.425641025641,137.26410256410256 1234,109 C 1310.574358974359,80.73589743589744 1375.2871794871794,55.36794871794872 1440,30 L 1440,700 L 0,700 Z' stroke='none' stroke-width='0' fill='%23ffffff' fill-opacity='0.1' class='transition-all duration-300 ease-in-out delay-150 path-0'%3E%3C/path%3E%3Cpath d='M 0,700 L 0,545 C 88.88717948717951,571.6217948717949 177.77435897435902,598.2435897435897 267,589 C 356.225641025641,579.7564102564103 445.7897435897436,534.647435897436 524,500 C 602.2102564102564,465.35256410256403 669.0666666666666,441.16666666666663 733,416 C 796.9333333333334,390.83333333333337 857.9435897435899,364.68589743589746 932,329 C 1006.0564102564101,293.31410256410254 1093.1589743589743,248.0897435897436 1180,220 C 1266.8410256410257,191.9102564102564 1353.4205128205128,180.9551282051282 1440,170 L 1440,700 L 0,700 Z' stroke='none' stroke-width='0' fill='%23ffffff' fill-opacity='0.2' class='transition-all duration-300 ease-in-out delay-150 path-1'%3E%3C/path%3E%3Cpath d='M 0,700 L 0,685 C 90.27948717948715,668.6371794871795 180.5589743589743,652.274358974359 265,638 C 349.4410256410257,623.725641025641 428.0435897435899,611.5397435897436 508,604 C 587.9564102564101,596.4602564102564 669.2666666666667,593.5666666666667 743,577 C 816.7333333333333,560.4333333333333 882.8897435897436,530.1935897435897 964,487 C 1045.1102564102564,443.8064102564103 1141.174358974359,387.6589743589744 1223,356 C 1304.825641025641,324.3410256410256 1372.4128205128204,317.17051282051284 1440,310 L 1440,700 L 0,700 Z' stroke='none' stroke-width='0' fill='%23ffffff' fill-opacity='0.3' class='transition-all duration-300 ease-in-out delay-150 path-2'%3E%3C/path%3E%3Cpath d='M 0,700 L 0,825 C 98.5025641025641,827.2602564102564 197.0051282051282,829.5205128205127 271,816 C 344.9948717948718,802.4794871794873 394.4820512820513,773.1782051282051 473,730 C 551.5179487179487,686.8217948717949 659.0666666666666,629.7666666666667 733,624 C 806.9333333333334,618.2333333333333 847.2512820512821,663.7551282051281 931,651 C 1014.7487179487179,638.2448717948719 1141.9282051282053,567.2128205128206 1234,524 C 1326.0717948717947,480.78717948717946 1383.0358974358974,465.3935897435897 1440,450 L 1440,700 L 0,700 Z' stroke='none' stroke-width='0' fill='%23ffffff' fill-opacity='1' class='transition-all duration-300 ease-in-out delay-150 path-3'%3E%3C/path%3E%3C/svg%3E\")"
-    size: cover
-    position: bottom
-    repeat: no-repeat
-    attachment: local
+    size: "cover"
+    position: "bottom"
+    repeat: "no-repeat"
+    attachment: "local"
 
 microformats2:
   enable: true
@@ -124,7 +159,7 @@ microformats2:
       p_nickname: ""
       u_photo: ""
       u_uid:
-        - 
+        -
           text: ""
           link: ""
       u_email: ""
@@ -143,9 +178,9 @@ navigation:
   About:
     icon: "fa-solid fa-user"
     link: "/about/"
-  GitHub:
-    icon: "fa-brands fa-github"
-    link: "https://github.com/"
+  RSS:
+    icon: "fa-solid fa-rss"
+    link: "/atom.xml"
 
 icp_record:
   text: ""
@@ -156,7 +191,8 @@ generated_by_hexo_and_theme_tide: true
 copyright:
   default: "CC-BY-SA 4.0"
   cc_by_sa_4: "CC-BY-SA 4.0"
-  # custom_key: "You can add new keys here."
+  copyrighted: "Write you own statement here."
+  # Also you can add new keys here.
 
 interactions:
   enable: ["twikoo", "webmentionjs"]
@@ -167,8 +203,8 @@ interactions:
     wordcount: -1
     max_webmentions: 30
     prevent_spoofing: false
-    sort_by: published
-    sort_dir: up
+    sort_by: "published"
+    sort_dir: "up"
     comments_are_reactions: false
 
 word_counter: true

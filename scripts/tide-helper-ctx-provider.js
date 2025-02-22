@@ -118,7 +118,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     }
     out.cdn = theme?.cdn ?? {};
     out.fonts = theme?.fonts ?? {};
-    out.meta_icons = theme?.meta_icons ?? {};
+    // out.meta_icons = theme?.meta_icons ?? {};
     out.meta_links = theme?.meta_links ?? [];
     out.microformats2 = theme?.microformats2?.enable ?? false;
     // 对象的合并：
@@ -149,13 +149,13 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
             if (isPlainObject(pageHCard))
                 out.page_h_cards.push(deepMergeObj(blankHCard, pageHCard));
     }
-    if (!isPlainObject(out.fonts?.web_fonts) || !isBoolean(out.fonts?.web_fonts?.enable) || !isUrl(out.fonts?.web_fonts?.preconnect) || !isUrl(out.fonts?.web_fonts?.css_href)) {
-        out.fonts.web_fonts = {
-            enable: false,
-            preconnect: '',
-            css_href: ''
-        };
-    }
+    // if (!isPlainObject(out.fonts?.web_fonts) || !isBoolean(out.fonts?.web_fonts?.enable) || !isUrl(out.fonts?.web_fonts?.preconnect) || !isUrl(out.fonts?.web_fonts?.css_href)) {
+    //     out.fonts.web_fonts = {
+    //         enable: false,
+    //         preconnect: '',
+    //         css_href: ''
+    //     };
+    // }
     out.navigation = theme?.navigation ?? {};
     out.icp_record = theme?.icp_record ?? {};
     out.generated_by_hexo_and_theme_tide = theme?.generated_by_hexo_and_theme_tide ?? true;

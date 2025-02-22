@@ -1,6 +1,6 @@
 <div id="tide-interaction-twikoo-wrapper" style="display:none;" dir="ltr">
   <div id="tide-interaction-twikoo"></div>
-  <%- js({src:tideCtx.cdn.twikoo_js.src,integrity:tideCtx.cdn.twikoo_js.integrity,crossorigin:'anonymous',referrerpolicy:'no-referrer',defer:true}) %>
+  <%- js(Object.assign(parse_cdn_config('twikoo_js',tideCtx.cdn),{defer:true})) %>
   <script>
     'use strict';
     if (!window.tideInteractions)
@@ -22,7 +22,7 @@
           'ja-jp': 5
         };
         let pageLang = getPageLang().toLowerCase();
-        if (!pageLang in twikooLangs)
+        if (!(pageLang in twikooLangs))
           pageLang = 'en';
         if (typeof this.load.twikooInited === 'undefined')
           this.load.twikooInited = false;

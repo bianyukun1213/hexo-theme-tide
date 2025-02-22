@@ -6,7 +6,7 @@
   <span class="p-family-name"><%= h_card.p_family_name %></span>
   <span class="p-honorific-suffix"><%= h_card.p_honorific_suffix %></span>
   <span class="p-nickname"><%= h_card.p_nickname %></span>
-  <img class="u-photo" src="<%= h_card.u_photo %>" alt="<%= h_card.p_name %>">
+  <img class="u-photo" src="<%= h_card.u_photo %>" alt="<%= h_card.p_name %>" loading="lazy">
   <% for(const item of h_card.u_uid){ %>
   <a class="u-url u-uid" href="<%= item.link %>"><%= item.text %></a>
   <!-- 元数据不涉及样式，可以使用 helper 生成链接，但为了一致性选择手写。 -->

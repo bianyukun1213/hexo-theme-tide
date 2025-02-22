@@ -14,7 +14,7 @@
     </div>
   </div>
 </dialog>
-<%- js({src:tideCtx.cdn.search_js.src,integrity:tideCtx.cdn.search_js.integrity,crossorigin:'anonymous',referrerpolicy:'no-referrer',defer:true}) %>
+<%- js(Object.assign(parse_cdn_config('search_js',tideCtx.cdn),{defer:true})) %>
 <script>
   'use strict';
   (function() {

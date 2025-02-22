@@ -1,7 +1,7 @@
 <div id="tide-interaction-webmentionjs-wrapper" style="display:none;">
   <div id="tide-interaction-webmentionjs"></div>
-  <%- css({href:tideCtx.cdn.webmentionjs_css.href,integrity:tideCtx.cdn.webmentionjs_css.integrity,crossorigin:'anonymous',referrerpolicy:'no-referrer'}) %>
-  <% let params={src:tideCtx.cdn.webmentionjs_js.src,integrity:tideCtx.cdn.webmentionjs_js.integrity,crossorigin:'anonymous',referrerpolicy:'no-referrer','data-id':'tide-interaction-webmentionjs',defer:true} %>
+  <%- css(parse_cdn_config('webmentionjs_css',tideCtx.cdn)) %>
+  <% let params=Object.assign(parse_cdn_config('webmentionjs_js',tideCtx.cdn),{'data-id':'tide-interaction-webmentionjs',defer:true}) %>
   <% const config=tideCtx.interactions.webmentionjs %>
   <% Object.assign(params,{'data-max-webmentions':config.max_webmentions,'data-sort-by':config.sort_by,'data-sort-dir':config.sort_dir}) %>
   <% if(config.wordcount!==-1){ %>
