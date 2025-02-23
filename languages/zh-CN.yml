@@ -43,9 +43,14 @@ post_meta:
   updated:
     title: "更新时间"
   categories:
-    title: "分类"
+    title:
+      zero: "分类"
+      one: "分类"
+      other: "分类"
   tags:
-    title: "标签"
+      zero: "标签"
+      one: "标签"
+      other: "标签"
   word_count:
     title: "字数"
   reading_time:
@@ -53,7 +58,10 @@ post_meta:
   extra:
     title: "注释"
   syndications:
-    title: "副本"
+    title:
+      zero: "跨站副本"
+      one: "跨站副本"
+      other: "跨站副本"
   copyright:
     title: "版权声明"
   page_specific_description:
@@ -93,7 +101,10 @@ dialog_lang_picker:
     title: "关闭"
 
 interactions:
-  title: "互动"
+  title:
+    zero: "互动"
+    one: "互动"
+    other: "互动"
   twikoo:
     name: "Twikoo"
   webmentionjs:

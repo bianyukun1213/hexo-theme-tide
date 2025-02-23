@@ -62,13 +62,13 @@ fonts:
 # - Google Fonts 'preconnect's and 'stylesheet'
 # - “RelMeAuth”
 # - IndieAuth.com 'authorization_endpoint'
-# - Webmention.io 'webmention' (I think you’ll need this if you use 'webmentionjs' as (one of) your interaction modules.)
+# - Webmention.io 'webmention' (I think you’ll need this if you use 'webmentionjs' as (one of) your interaction module(s).)
 # …
 # For “dynamic” resources like 'canonical' links, please use plugins or scripts.
 meta_links:
   -
     rel: icon
-    href: ""
+    href: "https://example.com/icon.webp"
   -
     rel: me
     href: "mailto:somebody@example.com"

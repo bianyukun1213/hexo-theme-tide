@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "cheerio": "^1.0.0",
-    "ejs": "^3.1.10"
+    "ejs": "^3.1.10",
+    "hexo-auto-canonical": "^0.1.1"
   }
 }

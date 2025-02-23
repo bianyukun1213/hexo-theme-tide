@@ -19,12 +19,12 @@
   </span>
   <% } %>
   <% if(postCtx.page_categories.length>0){ %>
-  <span class="tide-post-meta-categories un-inline-block un-me-8" title="<%= __('post_meta.categories.title') %>">
+  <span class="tide-post-meta-categories un-inline-block un-me-8" title="<%= _p('post_meta.categories.title',postCtx.page_categories.length) %>">
     <i class="fa-solid fa-folder-open un-me-1" aria-hidden="true"></i><% postCtx.page_categories.forEach((cate,i)=>{ %><a class="un-sc-link-plain un-text-txt-scnd!" href="<%= url_for(cate.path) %>"><%= cate.name %></a><% if(i<postCtx.page_categories.length-1){ %><%=postCtx.list_separator %><% }}) %>
   </span>
   <% } %>
   <% if(postCtx.page_tags.length>0){ %>
-  <span class="tide-post-meta-tags un-inline-block un-me-8" title="<%= __('post_meta.tags.title') %>">
+  <span class="tide-post-meta-tags un-inline-block un-me-8" title="<%= _p('post_meta.tags.title',postCtx.page_tags.length) %>">
     <i class="fa-solid fa-tag un-me-1" aria-hidden="true"></i><% postCtx.page_tags.forEach((tag,i)=>{ %><a class="un-sc-link-plain un-text-txt-scnd!" href="<%= url_for(tag.path) %>"><%= tag.name %></a><% if(i<postCtx.page_tags.length-1){ %><%=postCtx.list_separator %><% }}) %>
   </span>
   <% } %>
@@ -42,7 +42,7 @@
   </span>
   <% } %>
   <% if(detailed&&postCtx.syndications.length>0&&!postCtx.page_encrypted){ %>
-  <span class="tide-post-meta-extra un-inline-block un-me-8" title="<%= __('post_meta.syndications.title') %>">
+  <span class="tide-post-meta-extra un-inline-block un-me-8" title="<%= _p('post_meta.syndications.title',postCtx.syndications.length) %>">
     <i class="fa-solid fa-copy un-me-1" aria-hidden="true"></i><% postCtx.syndications.forEach((syn,i)=>{ %><a class="un-sc-link-plain un-text-txt-scnd!" href="<%= syn %>"><%= tide_utils().extractHostFromUrl(syn) %></a><% if(i<postCtx.syndications.length-1){ %><%=postCtx.list_separator %><% }}) %>
   </span>
   <% } %>

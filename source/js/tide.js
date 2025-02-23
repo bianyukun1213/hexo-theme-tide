@@ -62,7 +62,7 @@ class TideSettings {
 
 function systemColorSchemeChanged() {
     TideSettings.colorScheme = 'SYSTEM';
-    document.documentElement.removeAttribute('tide-color-scheme');
+    document.documentElement.removeAttribute('data-tide-color-scheme');
 }
 
 const darkModePreference = window.matchMedia('(prefers-color-scheme: dark)');
@@ -70,9 +70,9 @@ darkModePreference.addEventListener('change', e => e.matches && systemColorSchem
 const lightModePreference = window.matchMedia('(prefers-color-scheme: light)');
 lightModePreference.addEventListener('change', e => e.matches && systemColorSchemeChanged());
 if (TideSettings.colorScheme === 'LIGHT')
-    document.documentElement.setAttribute('tide-color-scheme', 'light');
+    document.documentElement.setAttribute('data-tide-color-scheme', 'light');
 else if (TideSettings.colorScheme === 'DARK')
-    document.documentElement.setAttribute('tide-color-scheme', 'dark');
+    document.documentElement.setAttribute('data-tide-color-scheme', 'dark');
 
 function domContentLoadedHandler(eDomContentLoaded) {
     const tideRoot = document.getElementById('tide-root');
@@ -91,12 +91,12 @@ function domContentLoadedHandler(eDomContentLoaded) {
 
     function toggleSideBar(status, buttonTriggered = false) {
         if (status) {
-            tideRoot.setAttribute('tide-side-bar-expanded', 'true');
+            tideRoot.setAttribute('data-tide-side-bar-expanded', 'true');
             for (const input of tideSideBarInputs)
                 input.removeAttribute('tabindex');
         }
         else {
-            tideRoot.setAttribute('tide-side-bar-expanded', 'false');
+            tideRoot.setAttribute('data-tide-side-bar-expanded', 'false');
             for (const input of tideSideBarInputs)
                 input.setAttribute('tabindex', '-1');
         }
@@ -122,9 +122,9 @@ function domContentLoadedHandler(eDomContentLoaded) {
     }
     btnSwitchColorScheme.addEventListener('click', function (e) {
         let currentScheme;
-        if (document.documentElement.getAttribute('tide-color-scheme') === 'light')
+        if (document.documentElement.getAttribute('data-tide-color-scheme') === 'light')
             currentScheme = 'LIGHT';
-        else if (document.documentElement.getAttribute('tide-color-scheme') === 'dark')
+        else if (document.documentElement.getAttribute('data-tide-color-scheme') === 'dark')
             currentScheme = 'DARK';
         if (!currentScheme) {
             if (darkModePreference.matches)
@@ -135,18 +135,18 @@ function domContentLoadedHandler(eDomContentLoaded) {
         if (currentScheme === 'LIGHT') {
             if (darkModePreference.matches) {
                 TideSettings.colorScheme = 'SYSTEM';
-                document.documentElement.removeAttribute('tide-color-scheme');
+                document.documentElement.removeAttribute('data-tide-color-scheme');
             } else {
                 TideSettings.colorScheme = 'DARK';
-                document.documentElement.setAttribute('tide-color-scheme', 'dark');
+                document.documentElement.setAttribute('data-tide-color-scheme', 'dark');
             }
         } else if (currentScheme === 'DARK') {
             if (lightModePreference.matches) {
                 TideSettings.colorScheme = 'SYSTEM';
-                document.documentElement.removeAttribute('tide-color-scheme');
+                document.documentElement.removeAttribute('data-tide-color-scheme');
             } else {
                 TideSettings.colorScheme = 'LIGHT';
-                document.documentElement.setAttribute('tide-color-scheme', 'light');
+                document.documentElement.setAttribute('data-tide-color-scheme', 'light');
             }
         }
     });
@@ -162,7 +162,7 @@ function domContentLoadedHandler(eDomContentLoaded) {
     });
     toggleSideBarOnResize();
     btnNav.addEventListener('click', function (e) {
-        if (tideRoot.getAttribute('tide-side-bar-expanded') === 'true')
+        if (tideRoot.getAttribute('data-tide-side-bar-expanded') === 'true')
             toggleSideBar(false, true);
         else
             toggleSideBar(true, true);

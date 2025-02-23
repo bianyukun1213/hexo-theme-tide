@@ -1,7 +1,7 @@
 /* preflights */
 
 @media (prefers-color-scheme: no-preference) or (prefers-color-scheme: light) {
-    html:not([tide-color-scheme]) #tide-btn-nav-icon-sun {display:none;
+    html:not([data-tide-color-scheme]) #tide-btn-nav-icon-sun {display:none;
     }
 
     html[dir="ltr"] {
@@ -39,7 +39,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    html:not([tide-color-scheme]) #tide-btn-nav-icon-moon {display:none;
+    html:not([data-tide-color-scheme]) #tide-btn-nav-icon-moon {display:none;
     }
 
     html[dir="ltr"] {
@@ -76,18 +76,18 @@
     }
 }
 
-html[tide-color-scheme="light"] #tide-btn-nav-icon-sun {display:none;
+html[data-tide-color-scheme="light"] #tide-btn-nav-icon-sun {display:none;
 }
 
-html[tide-color-scheme="light"][dir="ltr"] {
+html[data-tide-color-scheme="light"][dir="ltr"] {
     --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT_LTR>;
 }
 
-html[tide-color-scheme="light"][dir="rtl"] {
+html[data-tide-color-scheme="light"][dir="rtl"] {
     --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT_RTL>;
 }
 
-html[tide-color-scheme="light"] {
+html[data-tide-color-scheme="light"] {
     color-scheme: light;
     --tide-background-size-side-bar: <TIDE_BACKGROUND_SIZE_SIDE_BAR_LIGHT>;
     --tide-background-position-side-bar: <TIDE_BACKGROUND_POSITION_SIDE_BAR_LIGHT>;
@@ -112,18 +112,18 @@ html[tide-color-scheme="light"] {
     --tide-color-table-background-even: <TIDE_COLOR_TABLE_BACKGROUND_EVEN_LIGHT>;
 }
 
-html[tide-color-scheme="dark"] #tide-btn-nav-icon-moon {display:none;
+html[data-tide-color-scheme="dark"] #tide-btn-nav-icon-moon {display:none;
 }
 
-html[tide-color-scheme="dark"][dir="ltr"] {
+html[data-tide-color-scheme="dark"][dir="ltr"] {
     --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK_LTR>;
 }
 
-html[tide-color-scheme="dark"][dir="rtl"] {
+html[data-tide-color-scheme="dark"][dir="rtl"] {
     --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK_RTL>;
 }
 
-html[tide-color-scheme="dark"] {
+html[data-tide-color-scheme="dark"] {
     color-scheme: dark;
     --tide-background-size-side-bar: <TIDE_BACKGROUND_SIZE_SIDE_BAR_DARK>;
     --tide-background-position-side-bar: <TIDE_BACKGROUND_POSITION_SIDE_BAR_DARK>;
@@ -212,16 +212,17 @@ select:focus:focus,
 textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline);outline-offset:2px;outline-style:solid;
 }
 
-.tide-paginator {font-size:1.125rem;line-height:1.75rem;
-}
+/* .tide-paginator {
+    @apply un-text-lg;
+} */
 
-.tide-paginator span {display:inline-block;margin-left:0.25rem;margin-right:0.25rem;color:var(--tide-color-text-secondary);
+.tide-paginator span {display:inline-block;margin-left:0.5rem;margin-right:0.5rem;color:var(--tide-color-text-secondary);
 }
 
 .tide-paginator span.current {text-decoration-line:underline;text-underline-offset:4px;color:var(--tide-color-text-primary);
 }
 
-.tide-paginator a {display:inline-block;margin-left:0.25rem;margin-right:0.25rem;color:var(--tide-color-text-primary);-webkit-text-decoration-color:transparent;text-decoration-color:transparent;color:var(--tide-color-text-secondary) !important;
+.tide-paginator a {display:inline-block;margin-left:0.5rem;margin-right:0.5rem;color:var(--tide-color-text-primary);-webkit-text-decoration-color:transparent;text-decoration-color:transparent;color:var(--tide-color-text-secondary) !important;
 }
 
 .tide-paginator a:hover{-webkit-text-decoration-color:currentColor;text-decoration-color:currentColor;}
@@ -713,16 +714,16 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 
 /* 自定义样式 */
 
-[tide-side-bar-expanded="true"] #tide-btn-nav-icon-bars {display:none;
+[data-tide-side-bar-expanded="true"] #tide-btn-nav-icon-bars {display:none;
 }
 
-[tide-side-bar-expanded="true"] #tide-btn-nav-icon-close {display:inline;
+[data-tide-side-bar-expanded="true"] #tide-btn-nav-icon-close {display:inline;
 }
 
-[tide-side-bar-expanded="false"] #tide-btn-nav-icon-bars {display:inline;
+[data-tide-side-bar-expanded="false"] #tide-btn-nav-icon-bars {display:inline;
 }
 
-[tide-side-bar-expanded="false"] #tide-btn-nav-icon-close {display:none;
+[data-tide-side-bar-expanded="false"] #tide-btn-nav-icon-close {display:none;
 }
 
 /* 默认小屏幕 */
@@ -737,13 +738,13 @@ textarea:focus {outline-width:2px;outline-color:var(--tide-color-focused-outline
 }
 
 /* 使用 [dir="ltr"] 而非 @apply un-ltr:…… ，因为后者在转换后会有空的样式，显示警告。 */
-[dir="ltr"] [tide-side-bar-expanded="true"] #tide-side-bar,
-[dir="ltr"] [tide-side-bar-expanded="true"] #tide-content {
+[dir="ltr"] [data-tide-side-bar-expanded="true"] #tide-side-bar,
+[dir="ltr"] [data-tide-side-bar-expanded="true"] #tide-content {
     transform: translateX(min(var(--tide-unocss-spacing) * 120, 75vw));
 }
 
-[dir="rtl"] [tide-side-bar-expanded="true"] #tide-side-bar,
-[dir="rtl"] [tide-side-bar-expanded="true"] #tide-content {
+[dir="rtl"] [data-tide-side-bar-expanded="true"] #tide-side-bar,
+[dir="rtl"] [data-tide-side-bar-expanded="true"] #tide-content {
     transform: translateX(max(var(--tide-unocss-spacing) * -120, -75vw));
 }
 
