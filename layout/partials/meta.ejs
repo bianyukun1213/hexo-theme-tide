@@ -10,18 +10,18 @@
 <% if(is_month()){ %>
 <% const dateBegin=moment().year(tideCtx.year).month(parseInt(tideCtx.month)-1).date(1) %>
 <% const dateEnd=moment(dateBegin).add(1,'month').add(-1,'days') %>
-<title><%= __('page_title.archive_month',date(dateBegin),date(dateEnd)) %></title>
+<title><%= __('page_title.archive_month',date(dateBegin),date(dateEnd),tideCtx.item_description_marker,tideCtx.range_marker) %></title>
 <% }else if(is_year()){ %>
 <% const dateBegin=moment().year(tideCtx.year).month(0).date(1) %>
 <% const dateEnd=moment(dateBegin).add(12,'month').add(-1,'days') %>
-<title><%= __('page_title.archive_year',date(dateBegin),date(dateEnd)) %></title>
+<title><%= __('page_title.archive_year',date(dateBegin),date(dateEnd),tideCtx.item_description_marker,tideCtx.range_marker) %></title>
 <% }else{ %>
 <title><%= __('page_title.archive') %></title>
 <% } %>
 <% }else if(is_category()){ %>
-<title><%= __('page_title.category',tideCtx.category) %></title>
+<title><%= __('page_title.category',tideCtx.category,tideCtx.item_description_marker) %></title>
 <% }else if(is_tag()){ %>
-<title><%= __('page_title.tag',tideCtx.tag) %></title>
+<title><%= __('page_title.tag',tideCtx.tag,tideCtx.item_description_marker) %></title>
 <% }else{ %>
 <title><%= tideCtx.site_title?tideCtx.site_title:__('page_title.none') %></title>
 <% } %>

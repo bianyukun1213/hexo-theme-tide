@@ -196,6 +196,7 @@ list_separator: ", "
 item_marker_begin: "["
 item_marker_end: "]"
 item_description_marker: ": "
+range_marker: "–"
 
 image_handler:
   priority: 5

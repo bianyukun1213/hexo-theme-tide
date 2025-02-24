@@ -1,10 +1,10 @@
 page_title:
   none: "Untitled"
   archive: "Archives"
-  archive_year: "Archives: %1$s to %2$s"
-  archive_month: "Archives: %1$s to %2$s"
-  category: "Category: %s"
-  tag: "Tag: %s"
+  archive_year: "Archives%3$s%1$s%4$s%2$s"
+  archive_month: "Archives%3$s%1$s%4$s%2$s"
+  category: "Category%2$s%1$s"
+  tag: "Tag%2$s%1$s"
   categories: "Categories"
   tags: "Tags"
 

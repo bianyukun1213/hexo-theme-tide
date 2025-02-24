@@ -1,10 +1,10 @@
 page_title:
   none: "无标题"
   archive: "归档"
-  archive_year: "归档：%1$s 至 %2$s"
-  archive_month: "归档：%1$s 至 %2$s"
-  category: "分类：%s"
-  tag: "标签：%s"
+  archive_year: "归档%3$s%1$s%4$s%2$s"
+  archive_month: "归档%3$s%1$s%4$s%2$s"
+  category: "分类%2$s%1$s"
+  tag: "标签%2$s%1$s"
   categories: "分类"
   tags: "标签"
 
