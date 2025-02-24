@@ -193,9 +193,9 @@ toc:
   list_number: false
 search: true
 list_separator: ", "
-item_marker_begin: "["
-item_marker_end: "]"
-item_description_marker: ": "
+active_item_marker_begin: "["
+active_item_marker_end: "]"
+description_marker: ": "
 range_marker: "–"
 
 image_handler:

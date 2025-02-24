@@ -155,7 +155,7 @@ html[data-tide-color-scheme="dark"] {
 html {
     /* 要与 unocss（tailwind 4.0？）主题配置同步。 */
     --tide-unocss-spacing: 0.25rem;
-    --tide-item-description-marker: <TIDE_ITEM_DESCRIPTION_MARKER>;
+    --tide-description-marker: <TIDE_DESCRIPTION_MARKER>;
     --tide-font-global: <TIDE_FONT_GLOBAL>;
     --tide-font-site-title: <TIDE_FONT_SITE_TITLE>;
     --tide-font-site-subtitle: <TIDE_FONT_SITE_SUBTITLE>;
@@ -318,7 +318,7 @@ textarea:focus {
 
 .tide-category-count::before,
 .tide-tag-count::before {
-    @apply un-content-[var(--tide-item-description-marker)];
+    @apply un-content-[var(--tide-description-marker)];
 }
 
 /* 插件样式修复 */

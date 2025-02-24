@@ -5,11 +5,11 @@
   <% if(is_month()){ %>
   <% dateBegin=moment().year(tideCtx.year).month(parseInt(tideCtx.month)-1).date(1) %>
   <% dateEnd=moment(dateBegin).add(1,'month').add(-1,'days') %>
-  <h1 class="un-m-0 un-mb-4 un-text-4xl un-font-bold"><%= __('page_title.archive_month',date(dateBegin),date(dateEnd),tideCtx.item_description_marker,tideCtx.range_marker) %></h1>
+  <h1 class="un-m-0 un-mb-4 un-text-4xl un-font-bold"><%= __('page_title.archive_month',date(dateBegin),date(dateEnd),tideCtx.description_marker,tideCtx.range_marker) %></h1>
   <% }else if(is_year()){ %>
   <% dateBegin=moment().year(tideCtx.year).month(0).date(1) %>
   <% dateEnd=moment(dateBegin).add(12,'month').add(-1,'days') %>
-  <h1 class="un-m-0 un-mb-4 un-text-4xl un-font-bold"><%= __('page_title.archive_year',date(dateBegin),date(dateEnd),tideCtx.item_description_marker,tideCtx.range_marker) %></h1>
+  <h1 class="un-m-0 un-mb-4 un-text-4xl un-font-bold"><%= __('page_title.archive_year',date(dateBegin),date(dateEnd),tideCtx.description_marker,tideCtx.range_marker) %></h1>
   <% }else{ %>
   <h1 class="un-m-0 un-mb-4 un-text-4xl un-font-bold"><%= __('page_title.archive') %></h1>
   <% } %>

@@ -11,8 +11,8 @@ function getFontPlaceholder(key) {
 const scriptName = 'tide-filter-css-modifier';
 hexo.extend.filter.register('after_render:css', function (cssSrc, local) {
     if (local.path.includes('tide.css')) {
-        const itemDescriptionMarker = hexo.theme?.config?.item_description_marker ?? ': ';
-        cssSrc = cssSrc.replace('<TIDE_ITEM_DESCRIPTION_MARKER>', `"${itemDescriptionMarker.replace(new RegExp('"', 'g'), '\\"')}"`);
+        const descriptionMarker = hexo.theme?.config?.description_marker ?? ': ';
+        cssSrc = cssSrc.replace('<TIDE_DESCRIPTION_MARKER>', `"${descriptionMarker.replace(new RegExp('"', 'g'), '\\"')}"`);
         const colors = hexo.theme?.config?.colors ?? {};
         for (const schemeKey in colors) {
             if (Object.prototype.hasOwnProperty.call(colors, schemeKey)) {

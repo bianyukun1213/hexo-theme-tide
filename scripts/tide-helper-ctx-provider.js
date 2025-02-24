@@ -166,9 +166,9 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.toc.list_number = theme?.toc?.list_number ?? false;
     out.search = theme?.search ?? true;
     out.list_separator = theme?.list_separator ?? ', ';
-    out.item_marker_begin = theme?.item_marker_begin ?? '[';
-    out.item_marker_end = theme?.item_marker_end ?? ']';
-    out.item_description_marker = theme?.item_description_marker ?? ': ';
+    out.active_item_marker_begin = theme?.active_item_marker_begin ?? '[';
+    out.active_item_marker_end = theme?.active_item_marker_end ?? ']';
+    out.description_marker = theme?.description_marker ?? ': ';
     out.range_marker = theme?.range_marker ?? '–';
     // 上为主题配置，下为页面配置。
     out.layout = page?.layout ?? '';
