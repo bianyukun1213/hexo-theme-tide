@@ -168,6 +168,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.list_separator = theme?.list_separator ?? ', ';
     out.item_marker_begin = theme?.item_marker_begin ?? '[';
     out.item_marker_end = theme?.item_marker_end ?? ']';
+    out.item_description_marker = theme?.item_description_marker ?? ': ';
     // 上为主题配置，下为页面配置。
     out.layout = page?.layout ?? '';
     out.page_title = page?.title ?? ''; // 有些内置页面此项为空，需单独处理。

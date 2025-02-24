@@ -33,4 +33,4 @@ hexo.extend.filter.register('after_post_render', function (data) {
         data.content = data.content.replace(/<img(?![^>]*\btabindex\s*=\s*["']?\d+["']?)([^>]*)>/g, '<img tabindex="0"$1>');
     }
     return data;
-}, hexo.theme.config?.image_handler?.priority ?? 5);
+}, hexo.theme?.config?.image_handler?.priority ?? 5);

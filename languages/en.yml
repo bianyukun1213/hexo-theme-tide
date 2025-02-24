@@ -1,8 +1,8 @@
 page_title:
   none: "Untitled"
   archive: "Archives"
-  archive_year: "Archives: from %1$s to %2$s"
-  archive_month: "Archives: from %1$s to %2$s"
+  archive_year: "Archives: %1$s to %2$s"
+  archive_month: "Archives: %1$s to %2$s"
   category: "Category: %s"
   tag: "Tag: %s"
   categories: "Categories"

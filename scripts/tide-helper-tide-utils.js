@@ -58,7 +58,7 @@ hexo.extend.helper.register('meta_tide_client_ctx', function (tideCtx) {
     ctx.interactions = tideCtx.interactions;
     if (ctx.interactions.webmentionjs) {
         ctx.interactions.webmentionjs.i18n = {};
-        const i18nStrings = hexo.theme.i18n.get(tideCtx.language);
+        const i18nStrings = hexo.theme?.i18n.get(tideCtx.language);
         for (const i18nKey in i18nStrings)
             if (Object.prototype.hasOwnProperty.call(i18nStrings, i18nKey) && i18nKey.startsWith('interactions.webmentionjs.i18n.'))
                 ctx.interactions.webmentionjs.i18n[i18nKey.replace('interactions.webmentionjs.i18n.', '')] = i18nStrings[i18nKey];

@@ -155,6 +155,7 @@ html[data-tide-color-scheme="dark"] {
 html {
     /* 要与 unocss（tailwind 4.0？）主题配置同步。 */
     --tide-unocss-spacing: 0.25rem;
+    --tide-item-description-marker: <TIDE_ITEM_DESCRIPTION_MARKER>;
     --tide-font-global: <TIDE_FONT_GLOBAL>;
     --tide-font-site-title: <TIDE_FONT_SITE_TITLE>;
     --tide-font-site-subtitle: <TIDE_FONT_SITE_SUBTITLE>;
@@ -179,18 +180,22 @@ button {
 
 body {
     font-family: var(--tide-font-global);
+    /* @apply un-font-(family-name:--tide-font-global); */
 }
 
 #tide-site-title {
     font-family: var(--tide-font-site-title);
+    /* @apply un-font-(family-name:--tide-font-site-title); */
 }
 
 #tide-site-subtitle {
     font-family: var(--tide-font-site-subtitle);
+    /* @apply un-font-(family-name:--tide-font-site-subtitle); */
 }
 
 .un-prose {
     font-family: var(--tide-font-prose) !important;
+    /* @apply un-font-(family-name:--tide-font-prose)!; */
 }
 
 /* [un-prose] code:not(.not-prose) {
@@ -212,10 +217,6 @@ select:focus:focus,
 textarea:focus {
     @apply un-outline-2 un-outline-offset-2 un-outline-fcs-ol ! un-outline-solid;
 }
-
-/* .tide-paginator {
-    @apply un-text-lg;
-} */
 
 .tide-paginator span {
     @apply un-inline-block;
@@ -261,7 +262,7 @@ textarea:focus {
 }
 
 #tide-search-box::-webkit-search-cancel-button {
-    display: none;
+    @apply un-hidden;
 }
 
 #tide-search-result-list {
@@ -317,7 +318,7 @@ textarea:focus {
 
 .tide-category-count::before,
 .tide-tag-count::before {
-    @apply un-content-['·'];
+    @apply un-content-[var(--tide-item-description-marker)];
 }
 
 /* 插件样式修复 */
@@ -480,7 +481,7 @@ textarea:focus {
 
 @starting-style {
     .tide-dialog[open] {
-        opacity: 0;
+        @apply un-opacity-0;
     }
 
     [dir="ltr"] .tide-dialog[open] .tide-side-panel {
