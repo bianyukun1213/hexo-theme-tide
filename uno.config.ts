@@ -52,8 +52,11 @@ export default defineConfig({
                     'border-radius': 0
                 },
                 blockquote: {
-                    padding: '0.5rem 1rem', // 切换至 tailwind 4 后，可能需要同步为 spacing 值
+                    padding: '0.5rem 1rem', // 切换至 tailwind 4 后，可能需要同步为 spacing 值。
+                    // margin: '1rem 0',
+                    // 'font-style': 'italic',
                     background: 'var(--tide-color-background-secondary)',
+                    'border-left': 'none', //  取消 prose 样式。
                     'border-inline-start': '4px var(--tide-color-primary) solid'
                 },
                 'blockquote *:first-child': {
@@ -73,10 +76,10 @@ export default defineConfig({
                     border: '1px var(--tide-color-table-border) solid'
                 },
                 'td,th': {
-                    'border-left': '1px var(--tide-color-table-border) solid'
+                    'border-inline-start': '1px var(--tide-color-table-border) solid'
                 },
                 'td:first-child,th:first-child': {
-                    'border-left': 'none'
+                    'border-inline-start': 'none'
                 },
                 th: {
                     background: 'var(--tide-color-table-background-head)',

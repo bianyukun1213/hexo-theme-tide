@@ -236,7 +236,7 @@ summary:focus
     @apply un-inline-block;
     @apply un-mx-2;
     @apply un-sc-link-plain;
-    @apply un-text-txt-scnd !;
+    @apply un-text-txt-scnd!;
 }
 
 .tide-toc,
@@ -254,9 +254,9 @@ summary:focus
 .tide-toc-link {
     /* un-sc-link-default 实际上多余。 */
     @apply un-sc-link-default;
-    @apply un-text-txt-scnd !;
+    @apply un-text-txt-scnd!;
     @apply un-inline-block;
-    @apply un-mb-4 !;
+    @apply un-mb-4!;
 }
 
 .tide-toc-link:hover {
@@ -282,14 +282,14 @@ summary:focus
 
 #tide-search-results a {
     @apply un-sc-link-default;
-    @apply un-text-txt-scnd !;
+    @apply un-text-txt-scnd!;
     @apply un-inline-block;
     @apply un-max-w-full;
 }
 
 #tide-search-results .search-result-title {
     @apply un-sc-link-plain;
-    @apply un-text-txt-prim !;
+    @apply un-text-txt-prim!;
     @apply un-mb-1;
     @apply un-text-xl;
     @apply un-font-bold;
@@ -310,7 +310,7 @@ summary:focus
 .tide-category-link,
 .tide-tag-link {
     @apply un-sc-link-plain;
-    @apply un-text-prim !;
+    @apply un-text-prim!;
     @apply un-px-4 un-py-2;
     @apply un-border-(2 prim solid);
     @apply un-rounded-md;
