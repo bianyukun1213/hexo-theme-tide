@@ -190,7 +190,7 @@ if (document.readyState !== 'loading')
 else
     document.addEventListener('DOMContentLoaded', domContentLoadedHandler);
 
-window.addEventListener('hexo-blog-decrypt', () => {
+window.addEventListener('hexo-blog-decrypt', function () {
     if (!window.location.hash.includes('tide-on-decryption-reload')) {
         window.location.hash = 'tide-on-decryption-reload';
         window.location.reload();

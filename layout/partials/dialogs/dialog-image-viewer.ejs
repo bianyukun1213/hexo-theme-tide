@@ -33,6 +33,10 @@
     else
       document.addEventListener('DOMContentLoaded', domContentLoadedHandler);
 
+    window.addEventListener('hexo-blog-decrypt', () => {
+      domContentLoadedHandler();
+    });
+
     function domContentLoadedHandler(eDomContentLoaded) {
       const dialogImgViewer = document.getElementById('tide-dialog-image-viewer');
       const dialogMask = document.querySelector('.tide-dialog-mask:has(#tide-viewing-image)');
