@@ -197,6 +197,7 @@ active_item_marker_begin: "["
 active_item_marker_end: "]"
 description_marker: ": "
 range_marker: "–"
+progress_marker: "/"
 
 image_handler:
   priority: 5

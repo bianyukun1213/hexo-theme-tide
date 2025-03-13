@@ -112,7 +112,7 @@
           viewingImgTitle.textContent = '';
           viewingImgTitle.style.display = 'none';
         }
-        viewingImgCounter.textContent = currentImgIndex + 1 + '/' + imgCounts;
+        viewingImgCounter.textContent = currentImgIndex + 1 + clientCtx.progress_marker + imgCounts;
         pz.zoomFactor = 1;
         pz.lastScale = 1;
         pz.resetOffset();

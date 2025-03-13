@@ -170,6 +170,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.active_item_marker_end = theme?.active_item_marker_end ?? ']';
     out.description_marker = theme?.description_marker ?? ': ';
     out.range_marker = theme?.range_marker ?? '–';
+    out.progress_marker = theme?.progress_marker ?? '/';
     // 上为主题配置，下为页面配置。
     out.layout = page?.layout ?? '';
     out.page_title = page?.title ?? ''; // 有些内置页面此项为空，需单独处理。

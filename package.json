@@ -7,7 +7,7 @@
     "@iconify-json/logos": "^1.2.4",
     "@unocss/postcss": "^66.0.0",
     "postcss": "^8.5.3",
-    "postcss-cli": "^11.0.0",
+    "postcss-cli": "^11.0.1",
     "unocss": "^66.0.0"
   },
   "dependencies": {

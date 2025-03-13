@@ -55,6 +55,8 @@ hexo.extend.helper.register('meta_generator_tide', function () {
 
 hexo.extend.helper.register('meta_tide_client_ctx', function (tideCtx) {
     let ctx = {};
+    ctx.progress_marker = tideCtx.progress_marker;
+    ctx.search_db_path = tideCtx.search_db_path;
     ctx.interactions = tideCtx.interactions;
     if (ctx.interactions.webmentionjs) {
         ctx.interactions.webmentionjs.i18n = {};
@@ -63,7 +65,6 @@ hexo.extend.helper.register('meta_tide_client_ctx', function (tideCtx) {
             if (Object.prototype.hasOwnProperty.call(i18nStrings, i18nKey) && i18nKey.startsWith('interactions.webmentionjs.i18n.'))
                 ctx.interactions.webmentionjs.i18n[i18nKey.replace('interactions.webmentionjs.i18n.', '')] = i18nStrings[i18nKey];
     }
-    ctx.search_db_path = tideCtx.search_db_path;
     return `<meta name="tide-client-ctx" content="${encodeURIComponent(JSON.stringify(ctx))}">`;
 });
 
