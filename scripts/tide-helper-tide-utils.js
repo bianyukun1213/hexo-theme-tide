@@ -50,7 +50,10 @@ hexo.extend.helper.register('tide_utils', function () {
 });
 
 hexo.extend.helper.register('meta_generator_tide', function () {
-    return `<meta name="generator" content="hexo-theme-tide ${getTideVersion()}">`;
+    if (hexo.config.meta_generator)
+        return `<meta name="generator" content="hexo-theme-tide ${getTideVersion()}">`;
+    else
+        return '';
 });
 
 hexo.extend.helper.register('meta_tide_client_ctx', function (tideCtx) {
