@@ -1,18 +1,18 @@
 /* preflights */
 
 @media (prefers-color-scheme: no-preference) or (prefers-color-scheme: light) {
-    html:not([data-tide-color-scheme]) #tide-btn-nav-icon-sun {display:none;
+    :root:not([data-tide-color-scheme]) #tide-btn-nav-icon-sun {display:none;
     }
 
-    html[dir="ltr"] {
+    :root[dir="ltr"] {
         --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT_LTR>;
     }
 
-    html[dir="rtl"] {
+    :root[dir="rtl"] {
         --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT_RTL>;
     }
 
-    html {
+    :root {
         color-scheme: light;
         --tide-background-size-side-bar: <TIDE_BACKGROUND_SIZE_SIDE_BAR_LIGHT>;
         --tide-background-position-side-bar: <TIDE_BACKGROUND_POSITION_SIDE_BAR_LIGHT>;
@@ -39,18 +39,18 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    html:not([data-tide-color-scheme]) #tide-btn-nav-icon-moon {display:none;
+    :root:not([data-tide-color-scheme]) #tide-btn-nav-icon-moon {display:none;
     }
 
-    html[dir="ltr"] {
+    :root[dir="ltr"] {
         --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK_LTR>;
     }
 
-    html[dir="rtl"] {
+    :root[dir="rtl"] {
         --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK_RTL>;
     }
 
-    html {
+    :root {
         color-scheme: dark;
         --tide-background-size-side-bar: <TIDE_BACKGROUND_SIZE_SIDE_BAR_DARK>;
         --tide-background-position-side-bar: <TIDE_BACKGROUND_POSITION_SIDE_BAR_DARK>;
@@ -76,18 +76,18 @@
     }
 }
 
-html[data-tide-color-scheme="light"] #tide-btn-nav-icon-sun {display:none;
+:root[data-tide-color-scheme="light"] #tide-btn-nav-icon-sun {display:none;
 }
 
-html[data-tide-color-scheme="light"][dir="ltr"] {
+:root[data-tide-color-scheme="light"][dir="ltr"] {
     --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT_LTR>;
 }
 
-html[data-tide-color-scheme="light"][dir="rtl"] {
+:root[data-tide-color-scheme="light"][dir="rtl"] {
     --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT_RTL>;
 }
 
-html[data-tide-color-scheme="light"] {
+:root[data-tide-color-scheme="light"] {
     color-scheme: light;
     --tide-background-size-side-bar: <TIDE_BACKGROUND_SIZE_SIDE_BAR_LIGHT>;
     --tide-background-position-side-bar: <TIDE_BACKGROUND_POSITION_SIDE_BAR_LIGHT>;
@@ -112,18 +112,18 @@ html[data-tide-color-scheme="light"] {
     --tide-color-table-background-even: <TIDE_COLOR_TABLE_BACKGROUND_EVEN_LIGHT>;
 }
 
-html[data-tide-color-scheme="dark"] #tide-btn-nav-icon-moon {display:none;
+:root[data-tide-color-scheme="dark"] #tide-btn-nav-icon-moon {display:none;
 }
 
-html[data-tide-color-scheme="dark"][dir="ltr"] {
+:root[data-tide-color-scheme="dark"][dir="ltr"] {
     --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK_LTR>;
 }
 
-html[data-tide-color-scheme="dark"][dir="rtl"] {
+:root[data-tide-color-scheme="dark"][dir="rtl"] {
     --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK_RTL>;
 }
 
-html[data-tide-color-scheme="dark"] {
+:root[data-tide-color-scheme="dark"] {
     color-scheme: dark;
     --tide-background-size-side-bar: <TIDE_BACKGROUND_SIZE_SIDE_BAR_DARK>;
     --tide-background-position-side-bar: <TIDE_BACKGROUND_POSITION_SIDE_BAR_DARK>;
@@ -148,7 +148,7 @@ html[data-tide-color-scheme="dark"] {
     --tide-color-table-background-even: <TIDE_COLOR_TABLE_BACKGROUND_EVEN_DARK>;
 }
 
-html {
+:root {
     /* 要与 unocss（tailwind 4.0？）主题配置同步。 */
     --tide-unocss-spacing: 0.25rem;
     --tide-description-marker: <TIDE_DESCRIPTION_MARKER>;
