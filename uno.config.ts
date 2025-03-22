@@ -35,12 +35,17 @@ export default defineConfig({
                 // 'ul li ul li': {
                 //     'list-style': 'circle'
                 // },
+                s: {
+                    'text-decoration': 'underline',
+                    'text-underline-offset': '-40%',
+                    'text-decoration-skip-ink': 'none'
+                },
                 'code:not([class])': {
                     'overflow-wrap': 'break-word',
                     'white-space': 'normal',
-                    padding: '0.25rem',
+                    padding: '0.25em',
                     'background': 'var(--tide-color-background-secondary)',
-                    'border-radius': '0.25rem' // 升级至 tailwind 4.0 后可能需要读取 --radius-sm
+                    'border-radius': '0.25em'
                     // color: 'var(--tide-color-code-inline)'
                 },
                 'code:not([class])::before, code:not([class])::after': {
@@ -52,8 +57,8 @@ export default defineConfig({
                     'border-radius': 0
                 },
                 blockquote: {
-                    padding: '0.5rem 1rem', // 切换至 tailwind 4 后，可能需要同步为 spacing 值。
-                    // margin: '1rem 0',
+                    padding: '0.5em 1em',
+                    // margin: '1em 0',
                     // 'font-style': 'italic',
                     background: 'var(--tide-color-background-secondary)',
                     'border-left': 'none', //  取消 prose 样式。
@@ -89,7 +94,8 @@ export default defineConfig({
                     background: 'var(--tide-color-table-background-even)'
                 },
                 figure: {
-                    'text-align': 'center',
+                    'margin': '1em auto',
+                    'text-align': 'center'
                 },
                 figcaption: {
                     'text-align': 'center',
@@ -103,7 +109,7 @@ export default defineConfig({
                 iframe: {
                     display: 'block',
                     'max-width': '100%',
-                    'margin': '1rem auto' // 切换至 tailwind 4 后，可能需要同步为 spacing 值
+                    'margin': '1em auto'
                 }
             }
         }),
