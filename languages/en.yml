@@ -85,6 +85,10 @@ dialog_image_viewer:
     title: "Zoom out"
   btn_close:
     title: "Close"
+  btn_collapse_toolbar:
+    title: "Collapse toolbar"
+  btn_expand_toolbar:
+    title: "Expand toolbar"
 
 dialog_search:
   btn_close:

@@ -76,7 +76,7 @@ else if (TideSettings.colorScheme === 'DARK')
 
 function domContentLoadedHandler(eDomContentLoaded) {
     const tideRoot = document.getElementById('tide-root');
-    const tideSideBarInputs = [...document.querySelectorAll('#tide-side-bar a')];
+    const tideSidebarInputs = [...document.querySelectorAll('#tide-sidebar a')];
     const tideMainContent = document.getElementById('tide-main-content');
     const btnNav = document.getElementById('tide-btn-nav');
     const btnSearch = document.getElementById('tide-btn-search');
@@ -89,24 +89,24 @@ function domContentLoadedHandler(eDomContentLoaded) {
     const btnSwitchLang = document.getElementById('tide-btn-switch-lang');
     const dialogLangPicker = document.getElementById('tide-dialog-lang-picker');
 
-    function toggleSideBar(status, buttonTriggered = false) {
+    function toggleSidebar(status, buttonTriggered = false) {
         if (status) {
-            tideRoot.setAttribute('data-tide-side-bar-expanded', 'true');
-            for (const input of tideSideBarInputs)
+            tideRoot.setAttribute('data-tide-sidebar-expanded', 'true');
+            for (const input of tideSidebarInputs)
                 input.removeAttribute('tabindex');
         }
         else {
-            tideRoot.setAttribute('data-tide-side-bar-expanded', 'false');
-            for (const input of tideSideBarInputs)
+            tideRoot.setAttribute('data-tide-sidebar-expanded', 'false');
+            for (const input of tideSidebarInputs)
                 input.setAttribute('tabindex', '-1');
         }
     }
 
-    function toggleSideBarOnResize() {
+    function toggleSidebarOnResize() {
         if (window.matchMedia('(min-width: 1280px)').matches)
-            toggleSideBar(true);
+            toggleSidebar(true);
         else
-            toggleSideBar(false);
+            toggleSidebar(false);
     }
     if (btnSearch) {
         // btnSearch.addEventListener('click', function (e) {
@@ -158,14 +158,14 @@ function domContentLoadedHandler(eDomContentLoaded) {
             html.setAttribute('dir', 'rtl');
     });
     window.addEventListener('resize', () => {
-        toggleSideBarOnResize();
+        toggleSidebarOnResize();
     });
-    toggleSideBarOnResize();
+    toggleSidebarOnResize();
     btnNav.addEventListener('click', function (e) {
-        if (tideRoot.getAttribute('data-tide-side-bar-expanded') === 'true')
-            toggleSideBar(false, true);
+        if (tideRoot.getAttribute('data-tide-sidebar-expanded') === 'true')
+            toggleSidebar(false, true);
         else
-            toggleSideBar(true, true);
+            toggleSidebar(true, true);
     });
     btnScrollToTop.addEventListener('click', () => {
         tideMainContent.scrollTo({ top: 0, behavior: 'smooth' });

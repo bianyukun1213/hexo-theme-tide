@@ -6,28 +6,28 @@
     }
 
     :root[dir="ltr"] {
-        --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT_LTR>;
+        --tide-background-image-sidebar: <TIDE_BACKGROUND_IMAGE_SIDEBAR_LIGHT_LTR>;
     }
 
     :root[dir="rtl"] {
-        --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT_RTL>;
+        --tide-background-image-sidebar: <TIDE_BACKGROUND_IMAGE_SIDEBAR_LIGHT_RTL>;
     }
 
     :root {
         color-scheme: light;
-        --tide-background-size-side-bar: <TIDE_BACKGROUND_SIZE_SIDE_BAR_LIGHT>;
-        --tide-background-position-side-bar: <TIDE_BACKGROUND_POSITION_SIDE_BAR_LIGHT>;
-        --tide-background-repeat-side-bar: <TIDE_BACKGROUND_REPEAT_SIDE_BAR_LIGHT>;
-        --tide-background-attachment-side-bar: <TIDE_BACKGROUND_ATTACHMENT_SIDE_BAR_LIGHT>;
+        --tide-background-size-sidebar: <TIDE_BACKGROUND_SIZE_SIDEBAR_LIGHT>;
+        --tide-background-position-sidebar: <TIDE_BACKGROUND_POSITION_SIDEBAR_LIGHT>;
+        --tide-background-repeat-sidebar: <TIDE_BACKGROUND_REPEAT_SIDEBAR_LIGHT>;
+        --tide-background-attachment-sidebar: <TIDE_BACKGROUND_ATTACHMENT_SIDEBAR_LIGHT>;
         --tide-color-primary: <TIDE_COLOR_PRIMARY_LIGHT>;
         --tide-color-secondary: <TIDE_COLOR_SECONDARY_LIGHT>;
         --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_LIGHT>;
         --tide-color-background-secondary: <TIDE_COLOR_BACKGROUND_SECONDARY_LIGHT>;
-        --tide-color-background-side-bar: <TIDE_COLOR_BACKGROUND_SIDE_BAR_LIGHT>;
+        --tide-color-background-sidebar: <TIDE_COLOR_BACKGROUND_SIDEBAR_LIGHT>;
         --tide-color-text-primary: <TIDE_COLOR_TEXT_PRIMARY_LIGHT>;
         --tide-color-text-secondary: <TIDE_COLOR_TEXT_SECONDARY_LIGHT>;
         --tide-color-text-diminished: <TIDE_COLOR_TEXT_DIMINISHED_LIGHT>;
-        --tide-color-text-side-bar: <TIDE_COLOR_TEXT_SIDE_BAR_LIGHT>;
+        --tide-color-text-sidebar: <TIDE_COLOR_TEXT_SIDEBAR_LIGHT>;
         --tide-color-focused-outline: <TIDE_COLOR_FOCUSED_OUTLINE_LIGHT>;
         --tide-color-link: <TIDE_COLOR_LINK_LIGHT>;
         --tide-color-link-hover: <TIDE_COLOR_LINK_HOVER_LIGHT>;
@@ -45,28 +45,28 @@
     }
 
     :root[dir="ltr"] {
-        --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK_LTR>;
+        --tide-background-image-sidebar: <TIDE_BACKGROUND_IMAGE_SIDEBAR_DARK_LTR>;
     }
 
     :root[dir="rtl"] {
-        --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK_RTL>;
+        --tide-background-image-sidebar: <TIDE_BACKGROUND_IMAGE_SIDEBAR_DARK_RTL>;
     }
 
     :root {
         color-scheme: dark;
-        --tide-background-size-side-bar: <TIDE_BACKGROUND_SIZE_SIDE_BAR_DARK>;
-        --tide-background-position-side-bar: <TIDE_BACKGROUND_POSITION_SIDE_BAR_DARK>;
-        --tide-background-repeat-side-bar: <TIDE_BACKGROUND_REPEAT_SIDE_BAR_DARK>;
-        --tide-background-attachment-side-bar: <TIDE_BACKGROUND_ATTACHMENT_SIDE_BAR_DARK>;
+        --tide-background-size-sidebar: <TIDE_BACKGROUND_SIZE_SIDEBAR_DARK>;
+        --tide-background-position-sidebar: <TIDE_BACKGROUND_POSITION_SIDEBAR_DARK>;
+        --tide-background-repeat-sidebar: <TIDE_BACKGROUND_REPEAT_SIDEBAR_DARK>;
+        --tide-background-attachment-sidebar: <TIDE_BACKGROUND_ATTACHMENT_SIDEBAR_DARK>;
         --tide-color-primary: <TIDE_COLOR_PRIMARY_DARK>;
         --tide-color-secondary: <TIDE_COLOR_SECONDARY_DARK>;
         --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_DARK>;
         --tide-color-background-secondary: <TIDE_COLOR_BACKGROUND_SECONDARY_DARK>;
-        --tide-color-background-side-bar: <TIDE_COLOR_BACKGROUND_SIDE_BAR_DARK>;
+        --tide-color-background-sidebar: <TIDE_COLOR_BACKGROUND_SIDEBAR_DARK>;
         --tide-color-text-primary: <TIDE_COLOR_TEXT_PRIMARY_DARK>;
         --tide-color-text-secondary: <TIDE_COLOR_TEXT_SECONDARY_DARK>;
         --tide-color-text-diminished: <TIDE_COLOR_TEXT_DIMINISHED_DARK>;
-        --tide-color-text-side-bar: <TIDE_COLOR_TEXT_SIDE_BAR_DARK>;
+        --tide-color-text-sidebar: <TIDE_COLOR_TEXT_SIDEBAR_DARK>;
         --tide-color-focused-outline: <TIDE_COLOR_FOCUSED_OUTLINE_DARK>;
         --tide-color-link: <TIDE_COLOR_LINK_DARK>;
         --tide-color-link-hover: <TIDE_COLOR_LINK_HOVER_DARK>;
@@ -83,28 +83,28 @@
 }
 
 :root[data-tide-color-scheme="light"][dir="ltr"] {
-    --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT_LTR>;
+    --tide-background-image-sidebar: <TIDE_BACKGROUND_IMAGE_SIDEBAR_LIGHT_LTR>;
 }
 
 :root[data-tide-color-scheme="light"][dir="rtl"] {
-    --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_LIGHT_RTL>;
+    --tide-background-image-sidebar: <TIDE_BACKGROUND_IMAGE_SIDEBAR_LIGHT_RTL>;
 }
 
 :root[data-tide-color-scheme="light"] {
     color-scheme: light;
-    --tide-background-size-side-bar: <TIDE_BACKGROUND_SIZE_SIDE_BAR_LIGHT>;
-    --tide-background-position-side-bar: <TIDE_BACKGROUND_POSITION_SIDE_BAR_LIGHT>;
-    --tide-background-repeat-side-bar: <TIDE_BACKGROUND_REPEAT_SIDE_BAR_LIGHT>;
-    --tide-background-attachment-side-bar: <TIDE_BACKGROUND_ATTACHMENT_SIDE_BAR_LIGHT>;
+    --tide-background-size-sidebar: <TIDE_BACKGROUND_SIZE_SIDEBAR_LIGHT>;
+    --tide-background-position-sidebar: <TIDE_BACKGROUND_POSITION_SIDEBAR_LIGHT>;
+    --tide-background-repeat-sidebar: <TIDE_BACKGROUND_REPEAT_SIDEBAR_LIGHT>;
+    --tide-background-attachment-sidebar: <TIDE_BACKGROUND_ATTACHMENT_SIDEBAR_LIGHT>;
     --tide-color-primary: <TIDE_COLOR_PRIMARY_LIGHT>;
     --tide-color-secondary: <TIDE_COLOR_SECONDARY_LIGHT>;
     --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_LIGHT>;
     --tide-color-background-secondary: <TIDE_COLOR_BACKGROUND_SECONDARY_LIGHT>;
-    --tide-color-background-side-bar: <TIDE_COLOR_BACKGROUND_SIDE_BAR_LIGHT>;
+    --tide-color-background-sidebar: <TIDE_COLOR_BACKGROUND_SIDEBAR_LIGHT>;
     --tide-color-text-primary: <TIDE_COLOR_TEXT_PRIMARY_LIGHT>;
     --tide-color-text-secondary: <TIDE_COLOR_TEXT_SECONDARY_LIGHT>;
     --tide-color-text-diminished: <TIDE_COLOR_TEXT_DIMINISHED_LIGHT>;
-    --tide-color-text-side-bar: <TIDE_COLOR_TEXT_SIDE_BAR_LIGHT>;
+    --tide-color-text-sidebar: <TIDE_COLOR_TEXT_SIDEBAR_LIGHT>;
     --tide-color-focused-outline: <TIDE_COLOR_FOCUSED_OUTLINE_LIGHT>;
     --tide-color-link: <TIDE_COLOR_LINK_LIGHT>;
     --tide-color-link-hover: <TIDE_COLOR_LINK_HOVER_LIGHT>;
@@ -120,28 +120,28 @@
 }
 
 :root[data-tide-color-scheme="dark"][dir="ltr"] {
-    --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK_LTR>;
+    --tide-background-image-sidebar: <TIDE_BACKGROUND_IMAGE_SIDEBAR_DARK_LTR>;
 }
 
 :root[data-tide-color-scheme="dark"][dir="rtl"] {
-    --tide-background-image-side-bar: <TIDE_BACKGROUND_IMAGE_SIDE_BAR_DARK_RTL>;
+    --tide-background-image-sidebar: <TIDE_BACKGROUND_IMAGE_SIDEBAR_DARK_RTL>;
 }
 
 :root[data-tide-color-scheme="dark"] {
     color-scheme: dark;
-    --tide-background-size-side-bar: <TIDE_BACKGROUND_SIZE_SIDE_BAR_DARK>;
-    --tide-background-position-side-bar: <TIDE_BACKGROUND_POSITION_SIDE_BAR_DARK>;
-    --tide-background-repeat-side-bar: <TIDE_BACKGROUND_REPEAT_SIDE_BAR_DARK>;
-    --tide-background-attachment-side-bar: <TIDE_BACKGROUND_ATTACHMENT_SIDE_BAR_DARK>;
+    --tide-background-size-sidebar: <TIDE_BACKGROUND_SIZE_SIDEBAR_DARK>;
+    --tide-background-position-sidebar: <TIDE_BACKGROUND_POSITION_SIDEBAR_DARK>;
+    --tide-background-repeat-sidebar: <TIDE_BACKGROUND_REPEAT_SIDEBAR_DARK>;
+    --tide-background-attachment-sidebar: <TIDE_BACKGROUND_ATTACHMENT_SIDEBAR_DARK>;
     --tide-color-primary: <TIDE_COLOR_PRIMARY_DARK>;
     --tide-color-secondary: <TIDE_COLOR_SECONDARY_DARK>;
     --tide-color-background-primary: <TIDE_COLOR_BACKGROUND_PRIMARY_DARK>;
     --tide-color-background-secondary: <TIDE_COLOR_BACKGROUND_SECONDARY_DARK>;
-    --tide-color-background-side-bar: <TIDE_COLOR_BACKGROUND_SIDE_BAR_DARK>;
+    --tide-color-background-sidebar: <TIDE_COLOR_BACKGROUND_SIDEBAR_DARK>;
     --tide-color-text-primary: <TIDE_COLOR_TEXT_PRIMARY_DARK>;
     --tide-color-text-secondary: <TIDE_COLOR_TEXT_SECONDARY_DARK>;
     --tide-color-text-diminished: <TIDE_COLOR_TEXT_DIMINISHED_DARK>;
-    --tide-color-text-side-bar: <TIDE_COLOR_TEXT_SIDE_BAR_DARK>;
+    --tide-color-text-sidebar: <TIDE_COLOR_TEXT_SIDEBAR_DARK>;
     --tide-color-focused-outline: <TIDE_COLOR_FOCUSED_OUTLINE_DARK>;
     --tide-color-link: <TIDE_COLOR_LINK_DARK>;
     --tide-color-link-hover: <TIDE_COLOR_LINK_HOVER_DARK>;
@@ -202,11 +202,11 @@ body {
     font-family: var(--tide-font-code) !important; 由 prism.js 指定，否则可能出现行号对不上的问题。
 } */
 
-#tide-side-bar {
-    background-image: var(--tide-background-image-side-bar);
-    background-position: var(--tide-background-position-side-bar);
-    background-repeat: var(--tide-background-repeat-side-bar);
-    background-attachment: var(--tide-background-attachment-side-bar);
+#tide-sidebar {
+    background-image: var(--tide-background-image-sidebar);
+    background-position: var(--tide-background-position-sidebar);
+    background-repeat: var(--tide-background-repeat-sidebar);
+    background-attachment: var(--tide-background-attachment-sidebar);
 }
 
 [tabindex]:not([tabindex="-1"]):focus,
@@ -332,42 +332,50 @@ summary:focus
 
 /* 自定义样式 */
 
-[data-tide-side-bar-expanded="true"] #tide-btn-nav-icon-bars {
+#tide-btn-nav-icon-bars {
+    @apply un-inline;
+}
+
+#tide-btn-nav-icon-close {
     @apply un-hidden;
 }
 
-[data-tide-side-bar-expanded="true"] #tide-btn-nav-icon-close {
+[data-tide-sidebar-expanded="true"] #tide-btn-nav-icon-bars {
+    @apply un-hidden;
+}
+
+[data-tide-sidebar-expanded="true"] #tide-btn-nav-icon-close {
     @apply un-inline;
 }
 
-[data-tide-side-bar-expanded="false"] #tide-btn-nav-icon-bars {
+[data-tide-sidebar-expanded="false"] #tide-btn-nav-icon-bars {
     @apply un-inline;
 }
 
-[data-tide-side-bar-expanded="false"] #tide-btn-nav-icon-close {
+[data-tide-sidebar-expanded="false"] #tide-btn-nav-icon-close {
     @apply un-hidden;
 }
 
 /* 默认小屏幕 */
 
 /* 侧栏默认整体滚动。 */
-#tide-side-bar {
+#tide-sidebar {
     width: min(var(--tide-unocss-spacing) * 120, 75vw);
     @apply un-overflow-auto;
 }
 
-#tide-side-bar {
+#tide-sidebar {
     inset-inline-start: max(var(--tide-unocss-spacing) * -120, -75vw);
 }
 
 /* 使用 [dir="ltr"] 而非 @apply un-ltr:…… ，因为后者在转换后会有空的样式，显示警告。 */
-[dir="ltr"] [data-tide-side-bar-expanded="true"] #tide-side-bar,
-[dir="ltr"] [data-tide-side-bar-expanded="true"] #tide-content {
+[dir="ltr"] [data-tide-sidebar-expanded="true"] #tide-sidebar,
+[dir="ltr"] [data-tide-sidebar-expanded="true"] #tide-content {
     transform: translateX(min(var(--tide-unocss-spacing) * 120, 75vw));
 }
 
-[dir="rtl"] [data-tide-side-bar-expanded="true"] #tide-side-bar,
-[dir="rtl"] [data-tide-side-bar-expanded="true"] #tide-content {
+[dir="rtl"] [data-tide-sidebar-expanded="true"] #tide-sidebar,
+[dir="rtl"] [data-tide-sidebar-expanded="true"] #tide-content {
     transform: translateX(max(var(--tide-unocss-spacing) * -120, -75vw));
 }
 
@@ -417,7 +425,7 @@ summary:focus
 
         /* 1280*768 后侧栏整体不再允许滚动，导航部分允许滚动。 */
         @media (min-height: 768px) {
-            #tide-side-bar {
+            #tide-sidebar {
                 @apply un-overflow-clip;
             }
 
@@ -426,12 +434,12 @@ summary:focus
             }
         }
 
-        [dir="ltr"] :not([tide-is-post]) #tide-side-bar,
+        [dir="ltr"] :not([tide-is-post]) #tide-sidebar,
         [dir="ltr"] :not([tide-is-post]) #tide-content {
             transform: translateX(min(var(--tide-unocss-spacing) * 120, 75vw));
         }
 
-        [dir="rtl"] :not([tide-is-post]) #tide-side-bar,
+        [dir="rtl"] :not([tide-is-post]) #tide-sidebar,
         [dir="rtl"] :not([tide-is-post]) #tide-content {
             transform: translateX(max(var(--tide-unocss-spacing) * -120, -75vw));
         }
@@ -495,7 +503,7 @@ summary:focus
 
 /* 高对比度优化 */
 
-#tide-side-bar,
+#tide-sidebar,
 .tide-dialog-container,
 iframe,
 pre:has(code),

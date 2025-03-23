@@ -84,6 +84,10 @@ dialog_image_viewer:
     title: "缩小"
   btn_close:
     title: "关闭"
+  btn_collapse_toolbar:
+    title: "折叠工具栏"
+  btn_expand_toolbar:
+    title: "展开工具栏"
 
 dialog_search:
   btn_close:
