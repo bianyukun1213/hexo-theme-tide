@@ -138,8 +138,8 @@ export default defineConfig({
         'un-sc-dlg-mask': 'un-bg-black/75 un-absolute un-w-full un-h-full',
         'un-sc-select-default': 'un-bg-bg-prim un-text-txt-prim un-border-(2 prim solid) disabled:(un-opacity-50 un-cursor-not-allowed)',
         'un-sc-select-plain': 'un-bg-bg-prim un-text-txt-prim un-border-(2 txt-prim solid) disabled:(un-opacity-50 un-cursor-not-allowed)',
-        'un-sc-input-default': 'un-bg-bg-prim un-text-txt-prim un-border-(2 prim solid) disabled:(un-opacity-50 un-cursor-not-allowed)',
-        'un-sc-input-plain': 'un-bg-bg-prim un-text-txt-prim un-border-(2 txt-prim solid) disabled:(un-opacity-50 un-cursor-not-allowed)'
+        'un-sc-input-default': 'un-bg-bg-prim un-text-txt-prim un-border-(2 prim solid) un-px-4 disabled:(un-opacity-50 un-cursor-not-allowed)',
+        'un-sc-input-plain': 'un-bg-bg-prim un-text-txt-prim un-border-(2 txt-prim solid) un-px-4 disabled:(un-opacity-50 un-cursor-not-allowed)'
     },
     transformers: [
         transformerDirectives(),
