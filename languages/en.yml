@@ -91,7 +91,7 @@ dialog_image_viewer:
     title: "Expand toolbar"
 
 dialog_search:
-  input_placeholder: "Type here to search…"
+  search_box_placeholder: "Type here to search…"
   btn_close:
     title: "Close"
   search_result_placeholder: "No result"

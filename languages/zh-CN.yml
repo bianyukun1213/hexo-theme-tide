@@ -90,7 +90,7 @@ dialog_image_viewer:
     title: "展开工具栏"
 
 dialog_search:
-  input_placeholder: "在此键入搜索……"
+  search_box_placeholder: "在此键入搜索……"
   btn_close:
     title: "关闭"
   search_result_placeholder: "无数据"
