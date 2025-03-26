@@ -27,6 +27,7 @@ export default defineConfig({
                     color: 'var(--tide-color-link-visited)'
                 },
                 hr: {
+                    margin: '1em 0',
                     border: '1px var(--tide-color-text-diminished) solid'
                 },
                 // 'ul li': {
