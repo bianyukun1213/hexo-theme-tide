@@ -26,7 +26,7 @@
       </button>
     </div>
   </div>
-  <div id="tide-image-viewer-btn-mini-toolbar" class="un-bg-black/75 un-fixed un-bottom-0 un-end-0 un-m-4 un-p-2 un-rounded-full un-text-base un-text-white">
+  <div id="tide-image-viewer-mini-toolbar" class="un-bg-black/75 un-fixed un-bottom-0 un-end-0 un-m-4 un-p-2 un-rounded-full un-text-base un-text-white">
     <div id="tide-image-viewer-mini-controls" class="un-flex un-flex-wrap un-justify-between un-gap-2 un-mx-auto">
       <button id="tide-image-viewer-btn-close-2" class="un-sc-btn-default un-bg-transparent un-text-white un-border-white un-rounded-full un-size-12 un-shrink-0" title="<%= __('dialog_image_viewer.btn_close.title') %>">
         <i class="fa-solid fa-xmark" aria-hidden="true"></i>
@@ -64,7 +64,7 @@
       const btnClose = document.getElementById('tide-image-viewer-btn-close');
       const btnClose2 = document.getElementById('tide-image-viewer-btn-close-2');
       const btnCollapseToolbar = document.getElementById('tide-image-viewer-btn-collapse-toolbar');
-      const btnExpandToolbarWrapper = document.getElementById('tide-image-viewer-btn-mini-toolbar');
+      const miniToolbar = document.getElementById('tide-image-viewer-mini-toolbar');
       const btnExpandToolbar = document.getElementById('tide-image-viewer-btn-expand-toolbar');
       const rtl = isPageRtl() ? true : false;
       const pz = new PinchZoom.default(viewingImg, {
@@ -213,13 +213,13 @@
 
       function collapseToolbar() {
         toolbar.setAttribute('hidden', '');
-        btnExpandToolbarWrapper.removeAttribute('hidden');
+        miniToolbar.removeAttribute('hidden');
         viewingImg.focus();
       }
 
       function expandToolbar() {
         toolbar.removeAttribute('hidden');
-        btnExpandToolbarWrapper.setAttribute('hidden', '');
+        miniToolbar.setAttribute('hidden', '');
         btnNext.focus();
       }
 
@@ -244,7 +244,7 @@
       btnCollapseToolbar.addEventListener('click', () => {
         collapseToolbar();
       });
-      btnExpandToolbarWrapper.addEventListener('click', () => {
+      btnExpandToolbar.addEventListener('click', () => {
         expandToolbar();
       });
       viewingImg.addEventListener('keydown', function(e) {
