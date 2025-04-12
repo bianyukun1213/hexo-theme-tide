@@ -215,8 +215,7 @@ button:focus,
 input:focus,
 select:focus:focus,
 textarea:focus,
-summary:focus
-{
+summary:focus {
     @apply un-outline-2 un-outline-offset-2 un-outline-fcs-ol! un-outline-solid;
 }
 
@@ -268,7 +267,8 @@ summary:focus
 }
 
 #tide-search-result-list {
-    @apply un-p-0 un-m-0;
+    @apply un-sc-clearfix;
+    @apply un-p-0 un-m-0 un-m-t-4;
 }
 
 #tide-search-results li {
@@ -283,6 +283,7 @@ summary:focus
 #tide-search-results a {
     @apply un-sc-link-default;
     @apply un-text-txt-scnd!;
+    @apply un-float-start un-clear-both;
     @apply un-inline-block;
     @apply un-max-w-full;
 }
@@ -290,7 +291,6 @@ summary:focus
 #tide-search-results .search-result-title {
     @apply un-sc-link-plain;
     @apply un-text-txt-prim!;
-    @apply un-mb-1;
     @apply un-text-xl;
     @apply un-font-bold;
 }
@@ -299,8 +299,12 @@ summary:focus
     @apply un-text-txt-prim;
 }
 
+#tide-search-results a:has(.search-result) {
+    @apply un-mt-1 un-mb-4;
+}
+
 #tide-search-results .search-result {
-    @apply un-m-0 un-mb-4;
+    @apply un-m-0;
 }
 
 #tide-search-results .search-result .search-keyword {
