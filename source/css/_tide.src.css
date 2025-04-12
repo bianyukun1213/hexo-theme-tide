@@ -295,6 +295,10 @@ summary:focus {
     @apply un-font-bold;
 }
 
+#tide-search-results .search-result-title:only-child {
+    @apply un-m-b-4;
+}
+
 #tide-search-results .search-result-title .search-keyword {
     @apply un-text-txt-prim;
 }
