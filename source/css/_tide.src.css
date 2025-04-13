@@ -268,7 +268,7 @@ summary:focus {
 
 #tide-search-result-list {
     @apply un-sc-clearfix;
-    @apply un-p-0 un-m-0 un-m-t-4;
+    @apply un-p-0 un-m-0 un-mt-4;
 }
 
 #tide-search-results li {
@@ -296,7 +296,7 @@ summary:focus {
 }
 
 #tide-search-results .search-result-title:only-child {
-    @apply un-m-b-4;
+    @apply un-mb-4;
 }
 
 #tide-search-results .search-result-title .search-keyword {
