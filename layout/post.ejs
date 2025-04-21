@@ -11,10 +11,10 @@
 </article>
 <nav id="tide-page-nav" class="un-flex un-flex-wrap un-justify-between un-gap-4 un-my-4">
   <% if(!tide_utils().isEmptyObject(tideCtx.prev)){ %>
-  <a class="un-sc-link-plain un-text-txt-scnd!" title="<%= __('page_nav.prev.title') %>" href="<%= url_for(tideCtx.prev.path) %>"><i class="fa-solid <%= tideCtx.dir==='rtl'?'fa-angle-right':'fa-angle-left' %> un-me-1" aria-hidden="true"></i><span><%= tideCtx.prev.title?tideCtx.prev.title:__('page_title.none') %></span></a>
+  <a class="un-sc-link-plain un-text-txt-scnd! un-me-auto" title="<%= __('page_nav.prev.title') %>" href="<%= url_for(tideCtx.prev.path) %>"><i class="fa-solid <%= tideCtx.dir==='rtl'?'fa-angle-right':'fa-angle-left' %> un-me-1" aria-hidden="true"></i><span><%= tideCtx.prev.title?tideCtx.prev.title:__('page_title.none') %></span></a>
   <% } %>
   <% if(!tide_utils().isEmptyObject(tideCtx.next)){ %>
-  <a class="un-sc-link-plain un-text-txt-scnd!" title="<%= __('page_nav.next.title') %>" href="<%= url_for(tideCtx.next.path) %>"><span><%= tideCtx.next.title?tideCtx.next.title:__('page_title.none') %></span><i class="fa-solid <%= tideCtx.dir==='rtl'?'fa-angle-left':'fa-angle-right' %> un-ms-1" aria-hidden="true"></i></a>
+  <a class="un-sc-link-plain un-text-txt-scnd! un-ms-auto" title="<%= __('page_nav.next.title') %>" href="<%= url_for(tideCtx.next.path) %>"><span><%= tideCtx.next.title?tideCtx.next.title:__('page_title.none') %></span><i class="fa-solid <%= tideCtx.dir==='rtl'?'fa-angle-left':'fa-angle-right' %> un-ms-1" aria-hidden="true"></i></a>
   <% } %>
 </nav>
 <% if(tideCtx.interactions&&!tideCtx.page_encrypted){ %>
