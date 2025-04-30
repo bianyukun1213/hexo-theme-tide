@@ -86,9 +86,9 @@ dialog_image_viewer:
   btn_close:
     title: "Close"
   btn_collapse_toolbar:
-    title: "Collapse toolbar"
+    title: "Collapse the toolbar"
   btn_expand_toolbar:
-    title: "Expand toolbar"
+    title: "Expand the toolbar"
 
 dialog_search:
   search_box_placeholder: "Type here to search…"
