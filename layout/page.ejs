@@ -1,7 +1,7 @@
 <% const tideCtx=get_ctx(site,config,theme,page) %>
 <article id="tide-page" <%- tideCtx.microformats2&&!tideCtx.page_encrypted?' class="h-entry"':'' %>>
   <% if(tideCtx.cover&&!tideCtx.page_encrypted){ %>
-  <img id="tide-page-cover" class="un-block un-w-full un-aspect-4/1 un-mb-2 un-object-cover" src="<%= url_for(tideCtx.cover) %>" alt="">
+  <img id="tide-page-cover" class="un-block un-w-full un-aspect-3/1 un-mb-2 un-object-cover" src="<%= url_for(tideCtx.cover) %>" alt="">
   <% } %>
   <h1 id="tide-page-title" class="<%= tideCtx.microformats2&&!tideCtx.page_encrypted?'p-name':''%> un-m-0 un-mb-4 un-text-4xl un-text-txt-prim un-font-bold"><%= tideCtx.page_title?tideCtx.page_title:__('page_title.none') %></h1>
   <% if(tideCtx.microformats2&&!tideCtx.page_encrypted){ %>

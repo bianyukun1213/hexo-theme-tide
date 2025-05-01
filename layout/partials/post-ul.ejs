@@ -8,7 +8,7 @@
   <% const postCtx=get_ctx(site,config,theme,post) %>
   <li class="tide-post-li un-block un-mb-16">
     <% if(postCtx.cover&&!postCtx.page_encrypted){ %>
-    <img class="tide-post-li-cover un-block un-w-full un-aspect-4/1 un-mb-2 un-object-cover" src="<%= url_for(postCtx.cover) %>" alt="">
+    <img class="tide-post-li-cover un-block un-w-full un-aspect-3/1 un-mb-2 un-object-cover" src="<%= url_for(postCtx.cover) %>" alt="">
     <% } %>
     <div class="tide-post-li-title un-mb-2">
       <a class="un-sc-link-plain un-text-txt-prim!" href="<%= url_for(postCtx.path) %>">
