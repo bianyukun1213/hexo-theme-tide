@@ -222,6 +222,8 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
             });
         });
     }
+    out.extra = page?.extra ?? '';
+    out.cover = page?.cover ?? '';
     out.copyright = theme?.copyright?.default ?? ''; // 主题配置中只是预置键值，具体还要看页面，所以认为是页面配置。
     if (page.copyright) {
         if (theme?.copyright && page.copyright in theme.copyright)
@@ -244,10 +246,13 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
             }
         }
     }
-    out.syndications = isArray(page.syndications) ? page.syndications : [];
+    out.syndications = [];
+    if (isArray(page.syndications))
+        for (const url of page.syndications)
+            if (isUrl(url))
+                out.syndications.push(url);
     out.interactions = {};
     if (isArray(page.interactions)) {
-
         if (page.interactions.includes('twikoo'))
             out.interactions.twikoo = theme?.interactions?.twikoo ?? {};
         if (page.interactions.includes('webmentionjs'))
@@ -289,7 +294,6 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
             out.interactions.webmentionjs.sort_dir = 'up';
         out.interactions.webmentionjs.comments_are_reactions = !!out.interactions.webmentionjs.comments_are_reactions;
     }
-    out.extra = page?.extra ?? '';
     out.prev = {};
     if (page.prev) {
         out.prev.title = page.prev.title;
