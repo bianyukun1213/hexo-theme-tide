@@ -48,6 +48,7 @@ post_meta:
       one: "分类"
       other: "分类"
   tags:
+    title:
       zero: "标签"
       one: "标签"
       other: "标签"
