@@ -224,6 +224,8 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     }
     out.extra = page?.extra ?? '';
     out.cover = page?.cover ?? '';
+    out.cover_title = page?.cover_title ?? '';
+    out.cover_alt = page.cover_alt ? page.cover_alt : out.cover_title;
     out.copyright = theme?.copyright?.default ?? ''; // 主题配置中只是预置键值，具体还要看页面，所以认为是页面配置。
     if (page.copyright) {
         if (theme?.copyright && page.copyright in theme.copyright)
