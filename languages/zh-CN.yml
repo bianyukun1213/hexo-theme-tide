@@ -14,23 +14,23 @@ paginator:
 
 navigation:
   btn_nav:
-    title: "打开或关闭导航菜单"
+    title: "导航菜单"
   btn_search:
-    title: "打开搜索窗口"
-  btn_switch_color_scheme:
-    title: "切换到浅色或深色显示"
+    title: "搜索"
+  btn_color_scheme:
+    title: "配色方案"
   btn_settings:
-    title: "打开设置窗口"
+    title: "设置"
   footer:
     generated_by_hexo_and_theme_tide: '使用<span class="un-i-logos-hexo un-mx-1"></span><a class="un-sc-link-plain un-text-txt-sb!" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 与 <a class="un-sc-link-plain un-text-txt-sb!" href="https://github.com/bianyukun1213/hexo-theme-tide" target="_blank" rel="noopener">hexo-theme-tide</a> 生成'
 
 floating_utils:
   btn_scroll_to_top:
     title: "回到顶部"
-  btn_open_toc:
-    title: "打开目录"
-  btn_switch_lang:
-    title: "切换语言"
+  btn_toc:
+    title: "目录"
+  btn_lang:
+    title: "语言"
 
 post_meta:
   author:
