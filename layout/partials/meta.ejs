@@ -25,12 +25,14 @@
 <% }else{ %>
 <title><%= tideCtx.site_title?tideCtx.site_title:__('page_title.none') %></title>
 <% } %>
+<% if(!tideCtx.page_encrypted){ %>
 <meta name="keywords" content="<%= tideCtx.keywords %>">
 <% let ogOptions={title:tideCtx.page_title?tideCtx.page_title:tideCtx.site_title,author:tideCtx.author,language:tideCtx.language,description:tideCtx.description} %>
 <% if(tideCtx.cover!==''){ %>
 <% ogOptions.image=[tideCtx.cover] %>
 <% } %>
 <%- open_graph(ogOptions) %>
+<% } %>
 <%- autoCanonical(config, page) %>
 <!-- og 包含 description，不用单独写。 -->
 <% if(!tideCtx.page_visibility.no_index){ %>
