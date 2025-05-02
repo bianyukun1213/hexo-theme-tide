@@ -1,15 +1,15 @@
 <% const tideCtx=get_ctx(site,config,theme,page) %>
 <article id="tide-post" <%- tideCtx.microformats2&&!tideCtx.page_encrypted?' class="h-entry"':'' %>>
   <% if(tideCtx.cover&&!tideCtx.page_encrypted){ %>
-  <div id="tide-page-cover-wrapper" class="un-relative">
+  <figure id="tide-page-cover-wrapper" class="un-relative un-m-0">
     <img id="tide-page-cover" class="un-block un-w-full un-aspect-3/1 un-mb-2 un-object-cover" src="<%= url_for(tideCtx.cover) %>" alt="<%= tideCtx.cover_alt %>" title="<%= tideCtx.cover_title %>">
     <!-- <button id="tide-btn-cover-title" class="un-absolute un-end-0 un-bottom-0 un-size-8 un-p-0 un-ps-1 un-pt-1 un-flex un-items-center un-justify-center un-bg-bg-prim un-text-base un-text-txt-scnd un-rounded-tl-3xl un-border-none un-cursor-pointer" onclick="alert('<%#= tideCtx.cover_title %>');"> -->
     <% if(tideCtx.cover_title!==''){ %>
-    <div id="tide-btn-cover-title" class="un-absolute un-end-0 un-bottom-0 un-px-1 un-bg-bg-prim un-text-base un-text-txt-scnd un-rounded-tl-md un-pointer-events-none">
+    <figcaption id="tide-btn-cover-title" class="un-absolute un-end-0 un-bottom-0 un-px-1 un-bg-bg-prim un-text-base un-text-txt-scnd un-rounded-ss-md un-pointer-events-none">
       <i class="fa-solid fa-image un-me-1" aria-hidden="true"></i><span><%= tideCtx.cover_title %></span>
-    </div>
+    </figcaption>
     <% } %>
-  </div>
+  </figure>
   <% } %>
   <h1 id="tide-page-title" class="<%= tideCtx.microformats2&&!tideCtx.page_encrypted?'p-name':''%> un-m-0 un-mb-2 un-text-4xl un-text-txt-prim un-font-bold"><%= tideCtx.page_title?tideCtx.page_title:__('page_title.none') %></h1>
   <%- partial('./partials/post-meta.ejs',{postCtx:tideCtx,detailed:true}) %>
