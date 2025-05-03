@@ -5,7 +5,7 @@
   <% }else if(tideCtx.page_specific_description){ %>
   <p class="p-summary"><%= tideCtx.page_specific_description %></p>
   <% } %>
-  <% for(const card of tideCtx.page_h_cards){ %>
+  <% for(const card of tideCtx.p_authors){ %>
   <%- partial('./h-card.ejs',{h_card:card,authorCard:true}) %>
   <% } %>
   <time class="dt-published" datetime="<%= date_xml(tideCtx.date) %>"><%= date_xml(tideCtx.date) %></time>

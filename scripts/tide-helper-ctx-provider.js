@@ -125,7 +125,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     // key 都是固定的话，可以 deepMerge 合并，页面的优先级最高，页面没有的会有配置值和默认值兜底。
     // key 可以自定义的话，就不 deepMerge，而是发现页面有就取页面，否则发现配置有就取配置。如果 deepMerge 的话，配置有但用户想页面没有，也去不掉。
     out.site_h_cards = [];
-    out.page_h_cards = [];
+    out.p_authors = [];
     if (out.microformats2) {
         const blankHCard = {
             p_honorific_prefix: '',
@@ -144,10 +144,10 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
         for (const themeHCard of themeHCards)
             if (isPlainObject(themeHCard))
                 out.site_h_cards.push(deepMergeObj(blankHCard, themeHCard));
-        const pageHCards = isArray(page.h_cards) ? page.h_cards : themeHCards;
+        const pageHCards = isArray(page.p_authors) ? page.p_authors : themeHCards;
         for (const pageHCard of pageHCards)
             if (isPlainObject(pageHCard))
-                out.page_h_cards.push(deepMergeObj(blankHCard, pageHCard));
+                out.p_authors.push(deepMergeObj(blankHCard, pageHCard));
         // https://microformats.org/wiki/h-entry
         // https://microformats.org/wiki/h-card
         // https://microformats.org/wiki/h-adr
