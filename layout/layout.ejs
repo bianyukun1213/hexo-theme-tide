@@ -29,7 +29,7 @@
       </header>
       <% if(tideCtx.microformats2){ %>
       <% for(const card of tideCtx.site_h_cards){ %>
-      <%- partial('./partials/h-card.ejs',{h_card:card,authorCard:false}) %>
+      <%- partial('./partials/h-card.ejs',{h_card:card}) %>
       <% } %>
       <% } %>
       <nav id="tide-navigation" class="un-w-full un-flex-initial un-self-center">

@@ -28,7 +28,7 @@
 <% if(!tideCtx.page_encrypted){ %>
 <meta name="keywords" content="<%= tideCtx.keywords %>">
 <% let ogOptions={title:tideCtx.page_title?tideCtx.page_title:tideCtx.site_title,author:tideCtx.author,language:tideCtx.language,description:tideCtx.description} %>
-<% if(tideCtx.cover!==''){ %>
+<% if(tideCtx.cover){ %>
 <% ogOptions.image=[tideCtx.cover] %>
 <% } %>
 <%- open_graph(ogOptions) %>

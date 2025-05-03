@@ -13,6 +13,13 @@
   <% tideCtx.page_categories.forEach((cate,i)=>{ %>
   <a class="p-category" href="<%= full_url_for(cate.path) %>"><%= cate.name %></a>
   <% }) %>
+  <% if(tideCtx.p_location.p_name!==''){ %>
+  <%- partial('./h-card.ejs',{h_card:tideCtx.p_location,locationCard:true}) %>
+  <% }else if(tideCtx.p_location.p_street_address!==''||tideCtx.p_location.p_locality!==''||tideCtx.p_location.p_region!==''||tideCtx.p_location.p_country_name!==''){%>
+  <%- partial('./h-adr.ejs',{h_adr:tideCtx.p_location}) %>
+  <% }else if(tideCtx.p_location.p_longitude!==''&&tideCtx.p_latitude!==''){ %>
+  <%- partial('./h-geo.ejs',{h_geo:tideCtx.p_location}) %>
+  <% } %>
   <% tideCtx.syndications.forEach((syn,i)=>{ %>
   <a class="u-syndication" href="<%= syn %>"><%= syn %></a>
   <% }) %>
