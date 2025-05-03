@@ -148,6 +148,18 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
         for (const pageHCard of pageHCards)
             if (isPlainObject(pageHCard))
                 out.page_h_cards.push(deepMergeObj(blankHCard, pageHCard));
+        // https://microformats.org/wiki/h-adr
+        const blankHAdr = {
+            p_street_address: '',
+            p_extended_address: '',
+            p_locality: '',
+            p_region: '',
+            p_country_name: '',
+            p_latitude: '',
+            p_longitude: '',
+            p_altitude: ''
+        };
+        out.page_h_adr = deepMergeObj(blankHAdr, page?.h_adr ?? {});
     }
     // if (!isPlainObject(out.fonts?.web_fonts) || !isBoolean(out.fonts?.web_fonts?.enable) || !isUrl(out.fonts?.web_fonts?.preconnect) || !isUrl(out.fonts?.web_fonts?.css_href)) {
     //     out.fonts.web_fonts = {
