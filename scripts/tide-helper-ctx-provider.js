@@ -148,9 +148,12 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
         for (const pageHCard of pageHCards)
             if (isPlainObject(pageHCard))
                 out.page_h_cards.push(deepMergeObj(blankHCard, pageHCard));
+        // https://microformats.org/wiki/h-entry
+        // https://microformats.org/wiki/h-card
         // https://microformats.org/wiki/h-adr
         // https://microformats.org/wiki/h-geo
-        const blankHAdr = {
+        const blankPLocation = {
+            p_name: '',
             p_street_address: '',
             p_extended_address: '',
             p_locality: '',
@@ -160,7 +163,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
             p_longitude: '',
             p_altitude: ''
         };
-        out.page_h_adr = deepMergeObj(blankHAdr, page?.h_adr ?? {});
+        out.p_location = deepMergeObj(blankPLocation, page?.p_location ?? {});
     }
     // if (!isPlainObject(out.fonts?.web_fonts) || !isBoolean(out.fonts?.web_fonts?.enable) || !isUrl(out.fonts?.web_fonts?.preconnect) || !isUrl(out.fonts?.web_fonts?.css_href)) {
     //     out.fonts.web_fonts = {
