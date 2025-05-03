@@ -149,6 +149,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
             if (isPlainObject(pageHCard))
                 out.page_h_cards.push(deepMergeObj(blankHCard, pageHCard));
         // https://microformats.org/wiki/h-adr
+        // https://microformats.org/wiki/h-geo
         const blankHAdr = {
             p_street_address: '',
             p_extended_address: '',

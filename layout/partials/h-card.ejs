@@ -1,21 +1,65 @@
 <div class="h-card <%= authorCard?'p-author':'' %> un-hidden">
+  <% if(h_card.p_honorific_prefix!==''){ %>
   <span class="p-honorific-prefix"><%= h_card.p_honorific_prefix %></span>
+  <% } %>
+  <% if(h_card.p_name!==''){ %>
   <span class="p-name"><%= h_card.p_name %></span>
+  <% } %>
+  <% if(h_card.p_given_name!==''){ %>
   <span class="p-given-name"><%= h_card.p_given_name %></span>
+  <% } %>
+  <% if(h_card.p_additional_name!==''){ %>
   <span class="p-additional-name"><%= h_card.p_additional_name %></span>
+  <% } %>
+  <% if(h_card.p_family_name!==''){ %>
   <span class="p-family-name"><%= h_card.p_family_name %></span>
+  <% } %>
+  <% if(h_card.p_honorific_suffix!==''){ %>
   <span class="p-honorific-suffix"><%= h_card.p_honorific_suffix %></span>
+  <% } %>
+  <% if(h_card.p_nickname!==''){ %>
   <span class="p-nickname"><%= h_card.p_nickname %></span>
+  <% } %>
+  <% if(h_card.u_photo!==''){ %>
   <img class="u-photo" src="<%= h_card.u_photo %>" alt="<%= h_card.p_name %>" loading="lazy">
+  <% } %>
   <% for(const item of h_card.u_uid){ %>
   <a class="u-url u-uid" href="<%= item.link %>"><%= item.text %></a>
   <!-- 元数据不涉及样式，可以使用 helper 生成链接，但为了一致性选择手写。 -->
   <!-- css、js 等则使用 helper。 -->
   <%#- link_to(item.link,item.text,{external:true,class:'u-url u-uid'}) %>
   <% } %>
+  <% if(h_card.u_email!==''){ %>
   <a class="u-email" href="mailto:<%= h_card.u_email %>"><%= h_card.u_email %></a>
   <%#- mail_to(h_card.u_email,h_card.u_email,{class:'u-email'}) %>
+  <% } %>
+  <% if(h_card.p_note!==''){ %>
   <div class="p-note">
     <%= h_card.p_note %>
   </div>
+  <% } %>
+  <% if(h_card.p_street_address!==''){ %>
+  <span class="p-street-address"><%= h_card.p_street_address %></span>
+  <% } %>
+  <% if(h_card.p_extended_address!==''){ %>
+  <span class="p-extended-address"><%= h_card.p_extended_address %></span>
+  <% } %>
+  <% if(h_card.p_locality!==''){ %>
+  <span class="p-locality"><%= h_card.p_locality %></span>
+  <% } %>
+  <% if(h_card.p_region!==''){ %>
+  <span class="p-region"><%= h_card.p_region %></span>
+  <% } %>
+  <% if(h_card.p_country_name!==''){ %>
+  <span class="p-country-name"><%= h_card.p_country_name %></span>
+  <% } %>
+  <% if(h_card.p_longitude!==''){ %>
+  <span class="p-longitude"><%= h_card.p_longitude %></span>
+  <% } %>
+  <% if(h_card.p_latitude!==''){ %>
+  <span class="p-latitude"><%= h_card.p_latitude %></span>
+  <% } %>
+  <% if(h_card.p_altitude!==''){ %>
+  <span class="p-altitude"><%= h_card.p_altitude %></span>
+  <% } %>
 </div>

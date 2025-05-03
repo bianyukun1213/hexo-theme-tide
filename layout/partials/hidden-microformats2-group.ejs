@@ -1,20 +1,20 @@
 <div class="tide-hidden-microformats2-group un-hidden">
-  <a class="u-url un-hidden" href="<%= full_url_for(tideCtx.path) %>"><%= full_url_for(tideCtx.path) %></a>
+  <a class="u-url" href="<%= full_url_for(tideCtx.path) %>"><%= full_url_for(tideCtx.path) %></a>
   <% if(tideCtx.excerpt){ %>
-  <p class="p-summary un-hidden"><%= strip_html(tideCtx.excerpt) %></p>
+  <p class="p-summary"><%= strip_html(tideCtx.excerpt) %></p>
   <% }else if(tideCtx.page_specific_description){ %>
-  <p class="p-summary un-hidden"><%= tideCtx.page_specific_description %></p>
+  <p class="p-summary"><%= tideCtx.page_specific_description %></p>
   <% } %>
   <% for(const card of tideCtx.page_h_cards){ %>
   <%- partial('./h-card.ejs',{h_card:card,authorCard:true}) %>
   <% } %>
-  <time class="dt-published un-hidden" datetime="<%= date_xml(tideCtx.date) %>"><%= date_xml(tideCtx.date) %></time>
-  <time class="dt-updated un-hidden" datetime="<%= date_xml(tideCtx.updated) %>"><%= date_xml(tideCtx.updated) %></time>
+  <time class="dt-published" datetime="<%= date_xml(tideCtx.date) %>"><%= date_xml(tideCtx.date) %></time>
+  <time class="dt-updated" datetime="<%= date_xml(tideCtx.updated) %>"><%= date_xml(tideCtx.updated) %></time>
   <% tideCtx.page_categories.forEach((cate,i)=>{ %>
-  <a class="p-category un-hidden" href="<%= full_url_for(cate.path) %>"><%= cate.name %></a>
+  <a class="p-category" href="<%= full_url_for(cate.path) %>"><%= cate.name %></a>
   <% }) %>
   <% tideCtx.syndications.forEach((syn,i)=>{ %>
-  <a class="u-syndication un-hidden" href="<%= syn %>"><%= syn %></a>
+  <a class="u-syndication" href="<%= syn %>"><%= syn %></a>
   <% }) %>
   <% for(const interKey of Object.keys(tideCtx.indieweb_interactions)){ %>
   <% let interClass=''%>
@@ -35,7 +35,7 @@
       } %>
   <% if(interClass){ %>
   <% for(const interUrl of tideCtx.indieweb_interactions[interKey]){ %>
-  <a class="<%= interClass %> un-hidden" href="<%= interUrl %>"><%= interUrl %></a>
+  <a class="<%= interClass %>" href="<%= interUrl %>"><%= interUrl %></a>
   <% } %>
   <% } %>
   <% } %>
