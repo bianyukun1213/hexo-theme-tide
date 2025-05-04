@@ -1,6 +1,4 @@
-<%- css([
-parse_cdn_config('font_awesome_css',tideCtx.cdn)
-]) %>
+<%- css(parse_cdn_config('font_awesome_css',tideCtx.cdn)) %>
 <% if(is_post()||is_page()){ %>
 <%- css([
 parse_cdn_config('prism_css',tideCtx.cdn),

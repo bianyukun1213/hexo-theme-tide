@@ -39,6 +39,7 @@
 <meta name="robots" content="all">
 <% } %>
 <%- feed_tag() %>
+<%- partial('./res/res-meta-front.ejs',{tideCtx}) %>
 <%- generate_meta_links(tideCtx.meta_links) %>
 <% if(tideCtx.meta_generator){ %>
 <%- meta_generator() %>
