@@ -1,13 +1,17 @@
 // uno.config.ts
-import { defineConfig, presetUno, presetTypography, presetIcons, transformerDirectives, transformerVariantGroup } from 'unocss';
+import { defineConfig, presetWind4, presetTypography, presetIcons, transformerDirectives, transformerVariantGroup } from 'unocss';
 
 export default defineConfig({
     content: {
         filesystem: ['./layout/*.ejs', './layout/**/*.ejs']
     },
-    preflights: [], // 在 _tide.src.css 中设置。
     presets: [
-        presetUno({ prefix: 'un-' }),
+        presetWind4({
+            prefix: 'un-',
+            preflights: {
+                reset: true
+            }
+        }),
         presetTypography({
             selectorName: 'un-prose',
             cssExtend: {
@@ -149,21 +153,21 @@ export default defineConfig({
         colors: {
             'prim': 'var(--tide-color-primary)',
             'scnd': 'var(--tide-color-secondary)',
-            'bgPrim': 'var(--tide-color-background-primary)',
-            'bgScnd': 'var(--tide-color-background-secondary)',
-            'bgSb': 'var(--tide-color-background-sidebar)',
-            'txtPrim': 'var(--tide-color-text-primary)',
-            'txtScnd': 'var(--tide-color-text-secondary)',
-            'txtDmsh': 'var(--tide-color-text-diminished)',
-            'txtSb': 'var(--tide-color-text-sidebar)',
-            'fcsOl': 'var(--tide-color-focused-outline)',
+            'bg-prim': 'var(--tide-color-background-primary)',
+            'bg-scnd': 'var(--tide-color-background-secondary)',
+            'bg-sb': 'var(--tide-color-background-sidebar)',
+            'txt-prim': 'var(--tide-color-text-primary)',
+            'txt-scnd': 'var(--tide-color-text-secondary)',
+            'txt-dmsh': 'var(--tide-color-text-diminished)',
+            'txt-sb': 'var(--tide-color-text-sidebar)',
+            'fcs-ol': 'var(--tide-color-focused-outline)',
             'lk': 'var(--tide-color-link)',
-            'lkHvr': 'var(--tide-color-link-hover)',
-            'lkVst': 'var(--tide-color-link-visited)',
+            'lk-hvr': 'var(--tide-color-link-hover)',
+            'lk-vst': 'var(--tide-color-link-visited)',
             'code': 'var(--tide-color-code)',
-            'tbBd': 'var(--tide-color-table-border)',
-            'tbBgHd': 'var(--tide-color-table-border-head)',
-            'tbBgEvn': 'var(--tide-color-table-border-even)',
+            'tb-bd': 'var(--tide-color-table-border)',
+            'tb-bg-hd': 'var(--tide-color-table-border-head)',
+            'tb-bg-evn': 'var(--tide-color-table-border-even)',
         }
     },
     safelist: [

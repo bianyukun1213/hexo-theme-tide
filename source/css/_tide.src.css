@@ -1,4 +1,4 @@
-/* preflights */
+@unocss;
 
 @media (prefers-color-scheme: no-preference) or (prefers-color-scheme: light) {
     :root:not([data-tide-color-scheme]) #tide-btn-nav-icon-sun {
@@ -153,8 +153,8 @@
 }
 
 :root {
-    /* 要与 unocss（tailwind 4.0？）主题配置同步。 */
-    --tide-unocss-spacing: 0.25rem;
+    /* Wind 4 提供了 --spacing */
+    --tide-unocss-spacing: var(--spacing);
     --tide-description-marker: <TIDE_DESCRIPTION_MARKER>;
     --tide-font-global: <TIDE_FONT_GLOBAL>;
     --tide-font-site-title: <TIDE_FONT_SITE_TITLE>;
@@ -216,7 +216,14 @@ input:focus,
 select:focus:focus,
 textarea:focus,
 summary:focus {
-    @apply un-outline-2 un-outline-offset-2 un-outline-fcs-ol! un-outline-solid;
+    /* @apply un-outline-2 un-outline-offset-2 un-outline-fcs-ol! un-outline-solid; */
+    @apply un-outline-2 un-outline-offset-2 un-outline-solid;
+    /* 升级到支持 Tailwind 4 的 UnoCSS 后，对于颜色的处理发生变化，变为使用 color-mix，
+       然而在 cssvar-property 缺失 @property --un-outline-color-opacity 导致混合无效，
+       因此在这里直接设定颜色。
+       color-mix 还会有偏色的问题，暂时不知道如何解决。
+    */
+    outline-color: var(--tide-color-focused-outline);
 }
 
 .tide-paginator span {
@@ -524,5 +531,3 @@ pre:has(code),
         @apply un-bg-black;
     }
 }
-
-@unocss;
