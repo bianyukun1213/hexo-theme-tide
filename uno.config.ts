@@ -166,8 +166,8 @@ export default defineConfig({
             'lk-vst': 'var(--tide-color-link-visited)',
             'code': 'var(--tide-color-code)',
             'tb-bd': 'var(--tide-color-table-border)',
-            'tb-bg-hd': 'var(--tide-color-table-border-head)',
-            'tb-bg-evn': 'var(--tide-color-table-border-even)',
+            'tb-bg-hd': 'var(--tide-color-table-background-head)',
+            'tb-bg-evn': 'var(--tide-color-table-background-even)',
         }
     },
     safelist: [

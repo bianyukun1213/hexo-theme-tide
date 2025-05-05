@@ -221,7 +221,7 @@ summary:focus {
     /* 升级到支持 Tailwind 4 的 UnoCSS 后，对于颜色的处理发生变化，变为使用 color-mix，
        然而在 cssvar-property 缺失 @property --un-outline-color-opacity 导致混合无效，
        因此在这里直接设定颜色。
-       color-mix 还会有偏色的问题，暂时不知道如何解决。
+       color-mix in oklch 还会有偏色的问题，暂时不知道如何解决。
     */
     outline-color: var(--tide-color-focused-outline);
 }
