@@ -64,6 +64,8 @@ hexo.extend.filter.register('after_render:css', function (cssSrc, local) {
                 cssSrc = cssSrc.replace(new RegExp(getFontPlaceholder(fontKey), 'g'), fontValue);
             }
         }
+        // UnoCSS 的 preset-wind4 使用的 color-mix in oklch 有偏色问题，替换成 in oklab。
+        cssSrc = cssSrc.replace(new RegExp('in oklch', 'g'), 'in oklab');
     }
     return cssSrc;
 }, hexo.theme?.config?.css_modifier?.priority ?? 5);
