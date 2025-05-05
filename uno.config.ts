@@ -9,7 +9,7 @@ export default defineConfig({
         presetWind4({
             prefix: 'un-',
             preflights: {
-                reset: true
+                reset: false // 使用 modern-normalize.min.css。
             }
         }),
         presetTypography({
