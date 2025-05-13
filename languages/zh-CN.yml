@@ -29,7 +29,7 @@ floating_utils:
     title: "回到顶部"
   btn_toc:
     title: "目录"
-  btn_lang:
+  btn_langs:
     title: "语言"
 
 post_meta:

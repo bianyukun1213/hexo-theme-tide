@@ -29,8 +29,8 @@ floating_utils:
     title: "Scroll to top"
   btn_toc:
     title: "Table of Content"
-  btn_lang:
-    title: "Language"
+  btn_langs:
+    title: "Languages"
 
 post_meta:
   author:
