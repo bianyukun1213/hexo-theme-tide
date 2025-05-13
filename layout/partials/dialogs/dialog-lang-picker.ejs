@@ -12,14 +12,14 @@
         <% const langMeta=tideCtx.language_meta[tideCtx.language] %>
         <h3 class="un-m-0 un-mb-4 un-text-xl un-font-bold un-overflow-hidden un-text-ellipsis" dir="<%= langMeta?langMeta.direction:'' %>"><%= tideCtx.active_item_marker_begin+(langMeta?langMeta.display:langKey)+tideCtx.active_item_marker_end %></h3>
         <!-- 链接强制 ltr。 -->
-        <span class="un-inline-block un-mb-4 un-text-txt-scnd un-font-bold" dir="ltr" href="<%= langLink %>" target="_self"><%= langLink %></span>
+        <span class="un-inline-block un-mb-4 un-text-txt-scnd un-font-bold" dir="ltr" title="<%= langMeta?langMeta.display:langKey %>"><%= langLink %></span>
         <% for(const langKey in tideCtx.languages){ %>
         <%  if(Object.prototype.hasOwnProperty.call(tideCtx.languages,langKey)&&langKey!==tideCtx.language){ %>
         <% const langLink=tideCtx.languages[langKey] %>
         <% const langMeta=tideCtx.language_meta[langKey] %>
         <h3 class="un-m-0 un-mb-4 un-text-xl un-font-bold un-overflow-hidden un-text-ellipsis" dir="<%= langMeta?langMeta.direction:'' %>"><%= langMeta?langMeta.display:langKey %></h3>
         <!-- 链接强制 ltr。 -->
-        <a class="un-sc-link-default un-inline-block un-mb-4 un-text-txt-scnd!" dir="ltr" href="<%= langLink %>" target="_self"><%= langLink %></a>
+        <a class="un-sc-link-default un-inline-block un-mb-4 un-text-txt-scnd!" dir="ltr" href="<%= langLink %>" target="_self" title="<%= langMeta?langMeta.display:langKey %>"><%= langLink %></a>
         <% } %>
         <% } %>
       </div>
