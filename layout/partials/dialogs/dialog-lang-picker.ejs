@@ -19,7 +19,7 @@
         <% const langMeta=tideCtx.language_meta[langKey] %>
         <h3 class="un-m-0 un-mb-4 un-text-xl un-font-bold un-overflow-hidden un-text-ellipsis" dir="<%= langMeta?langMeta.direction:'' %>"><%= langMeta?langMeta.display:langKey %></h3>
         <!-- 链接强制 ltr。 -->
-        <a class="un-sc-link-default un-inline-block un-mb-4 un-text-txt-scnd!" dir="ltr" href="<%= langLink %>" target="_self" title="<%= langMeta?langMeta.display:langKey %>"><%= langLink %></a>
+        <a class="un-sc-link-default un-inline-block un-mb-4 un-text-txt-scnd!" dir="ltr" title="<%= langMeta?langMeta.display:langKey %>" href="<%= langLink %>" target="_self"><%= langLink %></a>
         <% } %>
         <% } %>
       </div>
