@@ -104,13 +104,13 @@
       for (const element of pageImgs) {
         element.style.cursor = 'zoom-in';
         element.addEventListener('click', function(e) {
-          currentImgIndex = pageImgs.indexOf(e.target);
+          currentImgIndex = pageImgs.indexOf(e.currentTarget);
           openImageViewer();
         });
         element.addEventListener('keydown', function(e) {
           if (e.key === 'Enter') {
             e.preventDefault();
-            currentImgIndex = pageImgs.indexOf(e.target);
+            currentImgIndex = pageImgs.indexOf(e.currentTarget);
             openImageViewer();
           }
         });
