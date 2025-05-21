@@ -427,6 +427,13 @@ summary:focus {
     @apply un-mx-auto;
 }
 
+.tide-image-mask:has(+img:not([data-mask])),
+.tide-image-mask:has(+img[data-unmasked]),
+.tide-image-mask:has(+.pinch-zoom-container img:not([data-mask])),
+.tide-image-mask:has(+.pinch-zoom-container img[data-unmasked]) {
+    @apply un-invisible;
+}
+
 img[data-mask]:not([data-unmasked]) {
     @apply un-invisible;
 }

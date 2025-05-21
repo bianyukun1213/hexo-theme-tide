@@ -132,14 +132,16 @@
         viewingImg.alt = targetImg.alt;
         const targetImgDataMask = targetImg.getAttribute('data-mask');
         const targetImgDataUnmasked = targetImg.getAttribute('data-unmasked');
-        if (targetImgDataMask !== null && targetImgDataUnmasked === null) {
+        setMaskTitle(targetImgDataMask);
+        if (targetImgDataMask !== null) {
           viewingImg.setAttribute('data-mask', targetImgDataMask);
-          setMask(targetImgDataMask);
-          maskImage();
         } else {
           viewingImg.removeAttribute('data-mask');
-          setMask(targetImgDataMask);
-          unmaskImage();
+        }
+        if (targetImgDataUnmasked !== null) {
+          viewingImg.setAttribute('data-unmasked', targetImgDataUnmasked);
+        } else {
+          viewingImg.removeAttribute('data-unmasked');
         }
         if (targetImg.title) {
           viewingImg.title = targetImg.title;
@@ -156,7 +158,7 @@
         pz.resetOffset();
       }
 
-      function setMask(dataMask) {
+      function setMaskTitle(dataMask) {
         let maskTitle = clientCtx.image_viewer.mask_default_title;
         let btnUnmaskTitle = clientCtx.image_viewer.btn_unmask_default_title;
         if (dataMask) {
@@ -172,15 +174,11 @@
         btnUnmaskImage.innerHTML = btnUnmaskTitle;
       }
 
-      function maskImage() {
-        viewingImg.style.visibility = 'hidden';
-        viewingImgMask.style.visibility = 'visible';
-      }
-
       function unmaskImage() {
-        viewingImg.style.visibility = 'visible';
-        viewingImg.setAttribute('data-unmasked', '');
-        viewingImgMask.style.visibility = 'hidden';
+        if (viewingImg.getAttribute('data-mask')) {
+          viewingImg.setAttribute('data-unmasked', '');
+          pageImgs[currentImgIndex].setAttribute('data-unmasked', '');
+        }
       }
 
       function toPrev() {

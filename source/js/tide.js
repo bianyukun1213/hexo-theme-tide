@@ -119,9 +119,7 @@ function domContentLoadedHandler(eDomContentLoaded) {
         btn.addEventListener('click', function (e) {
             const mask = e.target.parentElement.parentElement;
             const img = mask.nextElementSibling;
-            img.style.visibility = 'visible';
             img.setAttribute('data-unmasked', '');
-            mask.style.visibility = 'hidden';
         });
     }
     window.addEventListener('resize', () => {
