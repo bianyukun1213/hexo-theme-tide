@@ -42,17 +42,17 @@
   </span>
   <% } %>
   <% if(detailed&&postCtx.syndications.length>0&&!postCtx.page_encrypted){ %>
-  <span class="tide-post-meta-extra un-inline-block un-me-8" title="<%= _p('post_meta.syndications.title',postCtx.syndications.length) %>">
+  <span class="tide-post-meta-syndications un-inline-block un-me-8" title="<%= _p('post_meta.syndications.title',postCtx.syndications.length) %>">
     <i class="fa-solid fa-copy un-me-1" aria-hidden="true"></i><% postCtx.syndications.forEach((syn,i)=>{ %><a class="un-sc-link-plain un-text-txt-scnd!" href="<%= syn %>"><%= tide_utils().extractHostFromUrl(syn) %></a><% if(i<postCtx.syndications.length-1){ %><%=postCtx.list_separator %><% }}) %>
   </span>
   <% } %>
   <% if(detailed&&postCtx.copyright){ %>
-  <span class="tide-post-meta-extra un-inline-block un-me-8" title="<%= __('post_meta.copyright.title') %>">
+  <span class="tide-post-meta-copyright un-inline-block un-me-8" title="<%= __('post_meta.copyright.title') %>">
     <i class="fa-solid fa-copyright un-me-1" aria-hidden="true"></i><%= postCtx.copyright %>
   </span>
   <% } %>
   <% if(detailed&&postCtx.page_specific_description&&!postCtx.page_encrypted){ %>
-  <span class="tide-post-meta-extra un-inline-block un-me-8" title="<%= __('post_meta.page_specific_description.title') %>">
+  <span class="tide-post-meta-description un-inline-block un-me-8" title="<%= __('post_meta.page_specific_description.title') %>">
     <i class="fa-solid fa-comment-dots un-me-1" aria-hidden="true"></i><%= postCtx.page_specific_description %>
   </span>
   <% } %>
