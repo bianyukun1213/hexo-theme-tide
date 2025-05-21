@@ -39,7 +39,7 @@ post_meta:
       one: "Author"
       other: "Authors"
   date:
-    title: "Publish time"
+    title: "Publication time"
   updated:
     title: "Update time"
   categories:
