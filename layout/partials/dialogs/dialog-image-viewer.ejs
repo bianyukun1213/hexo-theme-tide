@@ -175,7 +175,7 @@
       }
 
       function unmaskImage() {
-        if (viewingImg.getAttribute('data-mask')) {
+        if (viewingImg.getAttribute('data-mask') !== null) {
           viewingImg.setAttribute('data-unmasked', '');
           pageImgs[currentImgIndex].setAttribute('data-unmasked', '');
         }
