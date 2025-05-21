@@ -75,6 +75,9 @@ page_nav:
     title: "Next"
 
 dialog_image_viewer:
+  # mask_title_default: "This image has been masked"
+  btn_unmask:
+    title: "Unmask"
   btn_prev:
     title: "Previous"
   btn_next:

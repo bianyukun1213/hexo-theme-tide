@@ -182,6 +182,10 @@ button {
     -webkit-tap-highlight-color: transparent;
 }
 
+.tide-broken-img {
+    @apply un-min-w-32 un-min-h-32;
+}
+
 .tide-table-wrapper {
     @apply un-overflow-auto;
     /* unocss prose 的 table 默认有 1em 0px 的 margin，转移到 wrapper 上。 */
@@ -411,8 +415,51 @@ summary:focus {
 }
 
 .tide-image-figure {
+    @apply un-relative;
     @apply un-max-w-4/5;
     @apply un-mx-auto;
+}
+
+.tide-image-inline-figure {
+    @apply un-inline-block;
+    @apply un-relative;
+    @apply un-max-w-4/5;
+    @apply un-mx-auto;
+}
+
+img[data-mask]:not([data-unmasked]) {
+    @apply un-invisible;
+}
+
+.tide-image-mask {
+    @apply un-absolute;
+    @apply un-size-full;
+    @apply un-bg-bg-scnd;
+    @apply un-text-base;
+    @apply un-text-txt-scnd;
+    @apply un-text-center;
+}
+
+.tide-image-mask-controls {
+    @apply un-absolute;
+    @apply un-start-1/2 un-top-1/2;
+    @apply -un-translate-1/2;
+    /* @apply un-start-1/2 un-top-1/3; */
+    /* @apply -un-translate-x-1/2 -un-translate-y-1/3; */
+    @apply un-w-4/5 un-max-h-full;
+    @apply un-p-4;
+    @apply un-overflow-auto;
+}
+
+.tide-image-mask-controls p {
+    @apply un-m-0 un-mb-4;
+}
+
+.tide-image-mask-controls a {
+    @apply un-sc-link-default;
+    @apply un-text-txt-scnd!;
+    @apply un-inline-block;
+    @apply un-mb-4;
 }
 
 @media (min-width: 768px) {

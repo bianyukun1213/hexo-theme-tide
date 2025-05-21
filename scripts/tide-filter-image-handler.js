@@ -3,7 +3,10 @@
 const scriptName = 'tide-filter-image-handler';
 // 为 img 添加标注，标注来源于 title 而非 alt。为图片添加 tabindex。
 hexo.extend.filter.register('after_post_render', function (data) {
+    const maskDefaultTitle = hexo.theme?.config?.image_viewer?.mask_default_title ?? '';
+    const btnUnmaskDefaultTitle = hexo.theme?.config?.image_viewer?.btn_unmask_default_title ?? '';
     const classFigure = 'tide-image-figure';
+    const classInlineFigure = 'tide-image-inline-figure';
     const classCaption = 'tide-image-caption';
     if (data.layout === 'post' || data.layout === 'page') {
         // ![]() 间无空行，连续多张图片被渲染为一个纯图片段落，中间以 br 隔开，认为等同于单段落中的单图片。
@@ -29,8 +32,28 @@ hexo.extend.filter.register('after_post_render', function (data) {
             const modifiedGroup2 = group2.replace('<img', '<img tabindex="0"');
             return `<figure class="${classFigure}">${modifiedGroup2}</figure>`;
         });
-        // 行内图片，不添加 figure 包裹，只添加 tabindex。
-        data.content = data.content.replace(/<img(?![^>]*\btabindex\s*=\s*["']?\d+["']?)([^>]*)>/g, '<img tabindex="0"$1>');
+        // 行内图片，添加 inline-figure 包裹和 tabindex。
+        data.content = data.content.replace(/<img(?![^>]*\btabindex\s*=\s*["']?\d+["']?)([^>]*)>/g, (match) => {
+            return `<figure class="${classInlineFigure}">${match.replace('<img', '<img tabindex="0"')}</figure>`
+        });
+        // 含有遮罩的图片。
+        data.content = data.content.replace(/<img\b[^>]*?\bdata-mask(?:="([^"]*)")?[^>]*?>/g, (match, group1) => {
+            let maskTitle = maskDefaultTitle;
+            let btnUnmaskTitle = btnUnmaskDefaultTitle;
+            if (group1) {
+                const maskInfo = group1.split('|');
+                if (maskInfo.length === 1) {
+                    maskTitle = maskInfo[0];
+                }
+                else if (maskInfo.length === 2) {
+                    maskTitle = maskInfo[0];
+                    btnUnmaskTitle = maskInfo[1];
+                }
+            }
+            // return `<div class="tide-image-mask"><div class="tide-image-mask-controls"><p>${group1}</p><a class="tide-btn-unmask-image" href="javascript:void(0);">显示</a></div></div>${match.replace('tabindex="0"', '')}`;
+            // 不需要移除 tabindex，因为给元素设置隐藏（样式实现）后已经无法获取焦点了。
+            return `<div class="tide-image-mask"><div class="tide-image-mask-controls"><p>${maskTitle}</p><a class="tide-btn-unmask-image" href="javascript:void(0);">${btnUnmaskTitle}</a></div></div>${match}`;
+        });
     }
     return data;
 }, hexo.theme?.config?.image_handler?.priority ?? 5);

@@ -175,6 +175,9 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.navigation = theme?.navigation ?? {};
     out.icp_record = theme?.icp_record ?? {};
     out.generated_by_hexo_and_theme_tide = theme?.generated_by_hexo_and_theme_tide ?? true;
+    out.image_viewer = theme?.image_viewer ?? {};
+    if(!out.mask_default_title) out.mask_default_title = '';
+    if(!out.btn_unmask_default_title) out.btn_unmask_default_title = '';
     // 小功能
     out.word_counter = theme?.word_counter ?? true;
     out.toc = {};
@@ -182,11 +185,11 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.toc.list_number = theme?.toc?.list_number ?? false;
     out.search = theme?.search ?? true;
     out.list_separator = theme?.list_separator ?? ', ';
-    out.active_item_marker_begin = theme?.active_item_marker_begin ?? '[';
-    out.active_item_marker_end = theme?.active_item_marker_end ?? ']';
-    out.description_marker = theme?.description_marker ?? ': ';
-    out.range_marker = theme?.range_marker ?? '–';
-    out.progress_marker = theme?.progress_marker ?? '/';
+    out.active_item_marker_begin = theme?.active_item_marker_begin ?? '';
+    out.active_item_marker_end = theme?.active_item_marker_end ?? '';
+    out.description_marker = theme?.description_marker ?? '';
+    out.range_marker = theme?.range_marker ?? '';
+    out.progress_marker = theme?.progress_marker ?? '';
     // 上为主题配置，下为页面配置。
     out.layout = page?.layout ?? '';
     out.page_title = page?.title ?? ''; // 有些内置页面此项为空，需单独处理。

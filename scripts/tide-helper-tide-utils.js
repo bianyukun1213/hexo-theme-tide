@@ -60,6 +60,7 @@ hexo.extend.helper.register('meta_tide_client_ctx', function (tideCtx) {
     let ctx = {};
     ctx.progress_marker = tideCtx.progress_marker;
     ctx.search_db_path = tideCtx.search_db_path;
+    ctx.image_viewer = tideCtx.image_viewer;
     ctx.interactions = tideCtx.interactions;
     if (ctx.interactions.webmentionjs) {
         ctx.interactions.webmentionjs.i18n = {};

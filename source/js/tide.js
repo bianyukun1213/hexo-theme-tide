@@ -4,6 +4,11 @@ let clientCtx = {};
 const clientCtxElement = document.querySelector('meta[name="tide-client-ctx"]');
 if (clientCtxElement)
     clientCtx = JSON.parse(decodeURIComponent(clientCtxElement.getAttribute('content')));
+// https://www.cnblogs.com/laneyfu/p/5923176.html
+document.addEventListener('error', (e) => {
+    if (e.target.tagName.toLowerCase() === 'img')
+        e.target.className += ' tide-broken-img';
+}, true);
 
 function getPageLang() {
     return document.documentElement.getAttribute('lang');
@@ -78,6 +83,7 @@ function domContentLoadedHandler(eDomContentLoaded) {
     const tideRoot = document.getElementById('tide-root');
     const tideSidebarInputs = [...document.querySelectorAll('#tide-sidebar a')];
     const tideMainContent = document.getElementById('tide-main-content');
+    const btnUnmaskImageArray = [...document.getElementsByClassName('tide-btn-unmask-image')];
     const btnNav = document.getElementById('tide-btn-nav');
     const btnSearch = document.getElementById('tide-btn-search');
     const dialogSearch = document.getElementById('tide-dialog-search');
@@ -89,7 +95,7 @@ function domContentLoadedHandler(eDomContentLoaded) {
     const btnSwitchLang = document.getElementById('tide-btn-switch-lang');
     const dialogLangPicker = document.getElementById('tide-dialog-lang-picker');
 
-    function toggleSidebar(status, buttonTriggered = false) {
+    function toggleSidebar(status) {
         if (status) {
             tideRoot.setAttribute('data-tide-sidebar-expanded', 'true');
             for (const input of tideSidebarInputs)
@@ -108,6 +114,26 @@ function domContentLoadedHandler(eDomContentLoaded) {
         else
             toggleSidebar(false);
     }
+
+    for (const btn of btnUnmaskImageArray) {
+        btn.addEventListener('click', function (e) {
+            const mask = e.target.parentElement.parentElement;
+            const img = mask.nextElementSibling;
+            img.style.visibility = 'visible';
+            img.setAttribute('data-unmasked', '');
+            mask.style.visibility = 'hidden';
+        });
+    }
+    window.addEventListener('resize', () => {
+        toggleSidebarOnResize();
+    });
+    toggleSidebarOnResize();
+    btnNav.addEventListener('click', function (e) {
+        if (tideRoot.getAttribute('data-tide-sidebar-expanded') === 'true')
+            toggleSidebar(false);
+        else
+            toggleSidebar(true);
+    });
     if (btnSearch) {
         // btnSearch.addEventListener('click', function (e) {
         //     const el = document.getElementById('ctx');
@@ -156,16 +182,6 @@ function domContentLoadedHandler(eDomContentLoaded) {
             html.setAttribute('dir', 'ltr');
         else
             html.setAttribute('dir', 'rtl');
-    });
-    window.addEventListener('resize', () => {
-        toggleSidebarOnResize();
-    });
-    toggleSidebarOnResize();
-    btnNav.addEventListener('click', function (e) {
-        if (tideRoot.getAttribute('data-tide-sidebar-expanded') === 'true')
-            toggleSidebar(false, true);
-        else
-            toggleSidebar(true, true);
     });
     btnScrollToTop.addEventListener('click', () => {
         tideMainContent.scrollTo({ top: 0, behavior: 'smooth' });

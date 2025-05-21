@@ -75,6 +75,9 @@ page_nav:
     title: "下一篇"
 
 dialog_image_viewer:
+  # mask_title_default: "这张图片被隐藏"
+  btn_unmask:
+    title: "显示"
   btn_prev:
     title: "上一张"
   btn_next:

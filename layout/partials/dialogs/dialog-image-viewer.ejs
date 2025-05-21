@@ -1,8 +1,14 @@
 <dialog id="tide-dialog-image-viewer" class="tide-dialog un-sc-dlg-fullscreen">
   <div class="tide-dialog-mask un-sc-dlg-mask">
+    <div class="tide-image-mask un-z-110">
+      <div class="tide-image-mask-controls">
+        <p id="tide-image-viewer-mask-title"></p>
+        <a id="tide-image-viewer-btn-unmask-image" href="javascript:void(0);"></a>
+      </div>
+    </div>
     <img id="tide-viewing-image" loading="lazy" tabindex="0">
   </div>
-  <div id="tide-image-viewer-toolbar" class="tide-dialog-container un-bg-black/75 un-fixed un-bottom-0 un-left-1/2 -un-translate-x-1/2 un-p-4 un-mb-4 un-w-100 un-max-w-full un-max-h-2/5 un-rounded-2xl un-text-base un-text-white un-overflow-auto">
+  <div id="tide-image-viewer-toolbar" class="tide-dialog-container un-bg-black/75 un-fixed un-bottom-0 un-left-1/2 -un-translate-x-1/2 un-p-4 un-mb-4 un-w-100 un-max-w-full un-max-h-2/5 un-rounded-2xl un-text-base un-text-white un-overflow-auto un-z-120">
     <div id="tide-viewing-image-title" class="un-mb-2 un-text-center un-text-xl"></div>
     <div id="tide-image-viewer-counter" class="un-mb-4 un-text-center"></div>
     <div id="tide-image-viewer-controls" class="un-flex un-flex-wrap un-justify-between un-gap-4 un-mx-auto">
@@ -26,7 +32,7 @@
       </button>
     </div>
   </div>
-  <div id="tide-image-viewer-mini-toolbar" class="un-bg-black/75 un-fixed un-bottom-0 un-end-0 un-m-4 un-p-2 un-rounded-full un-text-base un-text-white">
+  <div id="tide-image-viewer-mini-toolbar" class="un-bg-black/75 un-fixed un-bottom-0 un-end-0 un-m-4 un-p-2 un-rounded-full un-text-base un-text-white un-z-120">
     <div id="tide-image-viewer-mini-controls" class="un-flex un-flex-wrap un-justify-between un-gap-2 un-mx-auto">
       <button id="tide-image-viewer-btn-close-2" class="un-sc-btn-default un-bg-transparent un-text-white un-border-white un-rounded-full un-size-12 un-shrink-0" title="<%= __('dialog_image_viewer.btn_close.title') %>">
         <i class="fa-solid fa-xmark" aria-hidden="true"></i>
@@ -55,6 +61,9 @@
       const dialogMask = document.querySelector('.tide-dialog-mask:has(#tide-viewing-image)');
       const toolbar = document.getElementById('tide-image-viewer-toolbar');
       const viewingImg = document.getElementById('tide-viewing-image');
+      const viewingImgMask = document.querySelector('#tide-dialog-image-viewer .tide-image-mask');
+      const viewingImgMaskTitle = document.getElementById('tide-image-viewer-mask-title');
+      const btnUnmaskImage = document.getElementById('tide-image-viewer-btn-unmask-image');
       const viewingImgTitle = document.getElementById('tide-viewing-image-title');
       const viewingImgCounter = document.getElementById('tide-image-viewer-counter');
       const btnPrev = document.getElementById('tide-image-viewer-btn-prev');
@@ -104,13 +113,13 @@
       for (const element of pageImgs) {
         element.style.cursor = 'zoom-in';
         element.addEventListener('click', function(e) {
-          currentImgIndex = pageImgs.indexOf(e.currentTarget);
+          currentImgIndex = pageImgs.indexOf(e.target);
           openImageViewer();
         });
         element.addEventListener('keydown', function(e) {
           if (e.key === 'Enter') {
             e.preventDefault();
-            currentImgIndex = pageImgs.indexOf(e.currentTarget);
+            currentImgIndex = pageImgs.indexOf(e.target);
             openImageViewer();
           }
         });
@@ -121,6 +130,17 @@
         const targetImg = pageImgs[index];
         viewingImg.src = targetImg.src;
         viewingImg.alt = targetImg.alt;
+        const targetImgDataMask = targetImg.getAttribute('data-mask');
+        const targetImgDataUnmasked = targetImg.getAttribute('data-unmasked');
+        if (targetImgDataMask !== null && targetImgDataUnmasked === null) {
+          viewingImg.setAttribute('data-mask', targetImgDataMask);
+          setMask(targetImgDataMask);
+          maskImage();
+        } else {
+          viewingImg.removeAttribute('data-mask');
+          setMask(targetImgDataMask);
+          unmaskImage();
+        }
         if (targetImg.title) {
           viewingImg.title = targetImg.title;
           viewingImgTitle.textContent = targetImg.title;
@@ -134,6 +154,33 @@
         pz.zoomFactor = 1;
         pz.lastScale = 1;
         pz.resetOffset();
+      }
+
+      function setMask(dataMask) {
+        let maskTitle = clientCtx.image_viewer.mask_default_title;
+        let btnUnmaskTitle = clientCtx.image_viewer.btn_unmask_default_title;
+        if (dataMask) {
+          const maskInfo = dataMask.split('|');
+          if (maskInfo.length === 1) {
+            maskTitle = maskInfo[0];
+          } else if (maskInfo.length === 2) {
+            maskTitle = maskInfo[0];
+            btnUnmaskTitle = maskInfo[1];
+          }
+        }
+        viewingImgMaskTitle.innerHTML = maskTitle;
+        btnUnmaskImage.innerHTML = btnUnmaskTitle;
+      }
+
+      function maskImage() {
+        viewingImg.style.visibility = 'hidden';
+        viewingImgMask.style.visibility = 'visible';
+      }
+
+      function unmaskImage() {
+        viewingImg.style.visibility = 'visible';
+        viewingImg.setAttribute('data-unmasked', '');
+        viewingImgMask.style.visibility = 'hidden';
       }
 
       function toPrev() {
@@ -212,17 +259,20 @@
       };
 
       function collapseToolbar() {
-        toolbar.setAttribute('hidden', '');
-        miniToolbar.removeAttribute('hidden');
+        toolbar.style.visibility = 'hidden';
+        miniToolbar.style.visibility = 'visible';
         viewingImg.focus();
       }
 
       function expandToolbar() {
-        toolbar.removeAttribute('hidden');
-        miniToolbar.setAttribute('hidden', '');
+        toolbar.style.visibility = 'visible';
+        miniToolbar.style.visibility = 'hidden';
         btnNext.focus();
       }
 
+      btnUnmaskImage.addEventListener('click', () => {
+        unmaskImage();
+      });
       btnPrev.addEventListener('click', () => {
         toPrev();
       });
