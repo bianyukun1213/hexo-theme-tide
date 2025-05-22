@@ -115,6 +115,11 @@ export default defineConfig({
                     display: 'block',
                     'max-width': '100%',
                     'margin': '1em auto'
+                },
+                video: {
+                    display: 'block',
+                    'max-width': '100%',
+                    'margin': '1em auto'
                 }
             }
         }),
