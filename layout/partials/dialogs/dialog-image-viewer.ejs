@@ -108,7 +108,7 @@
       viewingImg.addEventListener('dragstart', () => {
         return;
       });
-      const pageImgs = [...document.querySelectorAll('#tide-page .un-prose :not(a)>img:not([display=none]):not(.tide-hidden-to-image-viewer), #tide-post .un-prose :not(a)>img:not([display=none]):not(.tide-hidden-to-image-viewer)')];
+      const pageImgs = [...document.querySelectorAll('#tide-page .un-prose :not(a)>img:not([display=none]):not([data-no-handling]), #tide-post .un-prose :not(a)>img:not([display=none]):not([data-no-handling])')];
       const imgCounts = pageImgs.length;
       for (const element of pageImgs) {
         element.style.cursor = 'zoom-in';
@@ -130,18 +130,18 @@
         const targetImg = pageImgs[index];
         viewingImg.src = targetImg.src;
         viewingImg.alt = targetImg.alt;
-        const targetImgDataMask = targetImg.getAttribute('data-mask');
-        const targetImgDataUnmasked = targetImg.getAttribute('data-unmasked');
+        const targetImgDataMask = targetImg.dataset.mask;
+        const targetImgDataUnmasked = targetImg.dataset.unmasked;
         setMaskTitle(targetImgDataMask);
-        if (targetImgDataMask !== null) {
-          viewingImg.setAttribute('data-mask', targetImgDataMask);
+        if (typeof targetImgDataMask !== 'undefined') {
+          viewingImg.dataset.mask = targetImgDataMask;
         } else {
-          viewingImg.removeAttribute('data-mask');
+          delete viewingImg.dataset.mask;
         }
-        if (targetImgDataUnmasked !== null) {
-          viewingImg.setAttribute('data-unmasked', targetImgDataUnmasked);
+        if (typeof targetImgDataUnmasked !== 'undefined') {
+          viewingImg.dataset.unmasked = targetImgDataUnmasked;
         } else {
-          viewingImg.removeAttribute('data-unmasked');
+          delete viewingImg.dataset.unmasked;
         }
         if (targetImg.title) {
           viewingImg.title = targetImg.title;
@@ -175,9 +175,9 @@
       }
 
       function unmaskImage() {
-        if (viewingImg.getAttribute('data-mask') !== null) {
-          viewingImg.setAttribute('data-unmasked', '');
-          pageImgs[currentImgIndex].setAttribute('data-unmasked', '');
+        if (typeof viewingImg.dataset.mask !== 'undefined') {
+          viewingImg.dataset.unmasked = '';
+          pageImgs[currentImgIndex].dataset.unmasked = '';
         }
       }
 

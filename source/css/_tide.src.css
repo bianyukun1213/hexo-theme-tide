@@ -362,19 +362,47 @@ summary:focus {
     @apply un-hidden;
 }
 
-[data-tide-sidebar-expanded="true"] #tide-btn-nav-icon-bars {
+#tide-root[data-sidebar-expanded] #tide-btn-nav-icon-bars {
     @apply un-hidden;
 }
 
-[data-tide-sidebar-expanded="true"] #tide-btn-nav-icon-close {
+#tide-root[data-sidebar-expanded] #tide-btn-nav-icon-close {
     @apply un-inline;
 }
 
-[data-tide-sidebar-expanded="false"] #tide-btn-nav-icon-bars {
+#tide-root:not([data-sidebar-expanded]) #tide-btn-nav-icon-bars {
     @apply un-inline;
 }
 
-[data-tide-sidebar-expanded="false"] #tide-btn-nav-icon-close {
+#tide-root:not([data-sidebar-expanded]) #tide-btn-nav-icon-close {
+    @apply un-hidden;
+}
+
+#tide-floating-widgets[data-extra-widgets] #tide-btn-toc,
+#tide-floating-widgets[data-extra-widgets] #tide-btn-langs,
+#tide-floating-widgets[data-extra-widgets] #tide-btn-interactions {
+    @apply un-block;
+}
+
+#tide-floating-widgets[data-extra-widgets] #tide-btn-extra-widgets-icon-plus {
+    @apply un-hidden;
+}
+
+#tide-floating-widgets[data-extra-widgets] #tide-btn-extra-widgets-icon-minus {
+    @apply un-inline;
+}
+
+#tide-floating-widgets:not([data-extra-widgets]) #tide-btn-toc,
+#tide-floating-widgets:not([data-extra-widgets]) #tide-btn-langs,
+#tide-floating-widgets:not([data-extra-widgets]) #tide-btn-interactions {
+    @apply un-hidden;
+}
+
+#tide-floating-widgets:not([data-extra-widgets]) #tide-btn-extra-widgets-icon-plus {
+    @apply un-inline;
+}
+
+#tide-floating-widgets:not([data-extra-widgets]) #tide-btn-extra-widgets-icon-minus {
     @apply un-hidden;
 }
 
@@ -391,13 +419,13 @@ summary:focus {
 }
 
 /* 使用 [dir="ltr"] 而非 @apply un-ltr:…… ，因为后者在转换后会有空的样式，显示警告。 */
-[dir="ltr"] [data-tide-sidebar-expanded="true"] #tide-sidebar,
-[dir="ltr"] [data-tide-sidebar-expanded="true"] #tide-content {
+:root[dir="ltr"] #tide-root[data-sidebar-expanded] #tide-sidebar,
+:root[dir="ltr"] #tide-root[data-sidebar-expanded] #tide-content {
     transform: translateX(min(var(--tide-unocss-spacing) * 120, 80vw));
 }
 
-[dir="rtl"] [data-tide-sidebar-expanded="true"] #tide-sidebar,
-[dir="rtl"] [data-tide-sidebar-expanded="true"] #tide-content {
+:root[dir="rtl"] #tide-root[data-sidebar-expanded] #tide-sidebar,
+:root[dir="rtl"] #tide-root[data-sidebar-expanded] #tide-content {
     transform: translateX(max(var(--tide-unocss-spacing) * -120, -80vw));
 }
 
@@ -483,49 +511,40 @@ img[data-mask]:not([data-unmasked]) {
     }
 }
 
-@media (min-width: 1280px) {
+@media (orientation: landscape) and (min-width: 1280px) {
+
+    :root[dir="ltr"] #tide-sidebar,
+    :root[dir="ltr"] #tide-content {
+        transform: translateX(min(var(--tide-unocss-spacing) * 120, 80vw));
+    }
+
+    :root[dir="rtl"] #tide-sidebar,
+    :root[dir="rtl"] #tide-content {
+        transform: translateX(max(var(--tide-unocss-spacing) * -120, -80vw));
+    }
+
+    #tide-content {
+        width: calc(100% - min(var(--tide-unocss-spacing) * 120, 80vw));
+    }
+
+    #tide-btn-nav {
+        @apply un-hidden;
+    }
+
     .tide-image-figure {
         @apply un-max-w-1/2;
     }
 }
 
-/* xl 往后非文章页横向不再允许折叠。 */
-@media (orientation: landscape) {
-
-
-    @media (min-width: 1280px) {
-
-        /* 1280*768 后侧栏整体不再允许滚动，导航部分允许滚动。 */
-        @media (min-height: 768px) {
-            #tide-sidebar {
-                @apply un-overflow-clip;
-            }
-
-            #tide-navigation {
-                @apply un-overflow-auto;
-            }
+@media (min-width: 1280px) {
+    /* 1280*768 后侧栏整体不再允许滚动，导航部分允许滚动。 */
+    @media (min-height: 768px) {
+        #tide-sidebar {
+            @apply un-overflow-clip;
         }
 
-        [dir="ltr"] :not([tide-is-post]) #tide-sidebar,
-        [dir="ltr"] :not([tide-is-post]) #tide-content {
-            transform: translateX(min(var(--tide-unocss-spacing) * 120, 80vw));
-        }
-
-        [dir="rtl"] :not([tide-is-post]) #tide-sidebar,
-        [dir="rtl"] :not([tide-is-post]) #tide-content {
-            transform: translateX(max(var(--tide-unocss-spacing) * -120, -80vw));
-        }
-
-        :not([tide-is-post]) #tide-content {
-            width: calc(100% - min(var(--tide-unocss-spacing) * 120, 80vw));
-        }
-
-        :not([tide-is-post]) #tide-btn-nav {
-            @apply un-hidden;
-        }
-
-        .tide-image-figure {
-            @apply un-max-w-1/2;
+        #tide-navigation {
+            @apply un-overflow-auto;
         }
     }
 }
@@ -547,15 +566,15 @@ img[data-mask]:not([data-unmasked]) {
     @apply un-sc-trans-default;
 }
 
-[dir="ltr"] .tide-dialog .tide-side-panel {
+:root[dir="ltr"] .tide-dialog .tide-side-panel {
     transform: translateX(max(var(--tide-unocss-spacing) * 90, 100vw));
 }
 
-[dir="rtl"] .tide-dialog .tide-side-panel {
+:root[dir="rtl"] .tide-dialog .tide-side-panel {
     transform: translateX(min(var(--tide-unocss-spacing) * -90, -100vw));
 }
 
-.tide-dialog[open] .tide-side-panel {
+:root .tide-dialog[open] .tide-side-panel {
     transform: translateX(0);
 }
 
@@ -564,11 +583,11 @@ img[data-mask]:not([data-unmasked]) {
         @apply un-opacity-0;
     }
 
-    [dir="ltr"] .tide-dialog[open] .tide-side-panel {
+    :root[dir="ltr"] .tide-dialog[open] .tide-side-panel {
         transform: translateX(max(var(--tide-unocss-spacing) * 90, 100vw));
     }
 
-    [dir="rtl"] .tide-dialog[open] .tide-side-panel {
+    :root[dir="rtl"] .tide-dialog[open] .tide-side-panel {
         transform: translateX(min(var(--tide-unocss-spacing) * -90, -100vw));
     }
 }

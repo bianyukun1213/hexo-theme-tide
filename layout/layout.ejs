@@ -11,7 +11,7 @@
 <body class="un-text-base un-text-txt-prim un-break-words">
   <%- partial('./partials/res/res-body-begin.ejs',{tideCtx}) %>
   <!-- <textarea id="ctx" style="display:none;" class="un-fixed un-size-96 un-right-0 un-bottom-0 un-z-100"><%#= JSON.stringify(tideCtx,null,2) %></textarea> -->
-  <div id="tide-root" class="un-bg-b-scnd un-absolute un-size-full un-text-base" <% if(is_post()){ %> tide-is-post="true" <% } %>>
+  <div id="tide-root" class="un-bg-b-scnd un-absolute un-size-full un-text-base" <% if(is_post()){ %> data-is-post <% } %>>
     <div id="tide-sidebar" class="un-sc-trans-default un-bg-bg-sb un-fixed un-h-full un-flex un-flex-col un-justify-between un-z-30 un-text-center un-text-txt-sb">
       <header class="un-flex-none un-p-8">
         <% if(is_home()) { %>
@@ -69,7 +69,7 @@
             <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
           </button>
           <% } %>
-          <button id="tide-btn-switch-color-scheme" class="un-sc-btn-default un-relative un-float-end -un-end-16 un-size-12 un-me-4" title="<%= __('navigation.btn_color_scheme.title') %>">
+          <button id="tide-btn-color-scheme" class="un-sc-btn-default un-relative un-float-end -un-end-16 un-size-12 un-me-4" title="<%= __('navigation.btn_color_scheme.title') %>">
             <i id="tide-btn-nav-icon-sun" class="fa-solid fa-sun" aria-hidden="true"></i><i id="tide-btn-nav-icon-moon" class="fa-solid fa-moon" aria-hidden="true"></i>
           </button>
           <button id="tide-btn-settings" class="un-hidden un-sc-btn-default un-relative un-float-end -un-end-16 un-size-12 un-me-4" title="<%= __('navigation.btn_settings.title') %>">
@@ -79,7 +79,7 @@
       </header>
       <main id="tide-main-content" class="un-bg-bg-prim un-flex-1 un-overflow-auto">
         <%- body %>
-        <%- partial('./partials/floating-utils.ejs',{tideCtx}) %>
+        <%- partial('./partials/floating-widgets.ejs',{tideCtx}) %>
       </main>
     </div>
   </div>

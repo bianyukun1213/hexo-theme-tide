@@ -1,0 +1,23 @@
+<div id="tide-floating-widgets" class="un-fixed un-bottom-16 un-end-4 un-max-h-1/2 un-flex un-flex-col un-flex-wrap-reverse un-gap-2">
+  <button id="tide-btn-top" class="un-sc-btn-default un-size-12" title="<%= __('floating_widgets.btn_top.title') %>">
+    <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+  </button>
+  <% if(is_post()&&tideCtx.toc.enable){ %>
+  <button id="tide-btn-toc" class="un-sc-btn-default un-size-12" title="<%= __('floating_widgets.btn_toc.title') %>">
+    <i class="fa-solid fa-bars-staggered" aria-hidden="true"></i>
+  </button>
+  <% } %>
+  <% if(!tide_utils().isEmptyObject(tideCtx.languages)){ %>
+  <button id="tide-btn-langs" class="un-sc-btn-default un-size-12" title="<%= __('floating_widgets.btn_langs.title') %>">
+    <i class="fa-solid fa-language" aria-hidden="true"></i>
+  </button>
+  <% } %>
+  <% if(tideCtx.interactions&&!tideCtx.page_encrypted){ %>
+  <button id="tide-btn-interactions" class="un-sc-btn-default un-size-12" title="<%= __('floating_widgets.btn_interactions.title') %>">
+    <i class="fa-solid fa-comments" aria-hidden="true"></i>
+  </button>
+  <% } %>
+  <button id="tide-btn-extra-widgets" class="un-sc-btn-default un-size-12" title="<%= __('floating_widgets.btn_extra_widgets.title') %>">
+    <i id="tide-btn-extra-widgets-icon-plus" class="fa-solid fa-plus" aria-hidden="true"></i><i id="tide-btn-extra-widgets-icon-minus" class="fa-solid fa-minus" aria-hidden="true"></i>
+  </button>
+</div>

@@ -13,6 +13,8 @@ hexo.extend.filter.register('after_post_render', function (data) {
         data.content = data.content.replace(/<p\b[^>]*>([\s\S]*?)<\/p>/g, (match, inner) => {
             if (/^(<img\b[^>]*>(<br\s*\/?>[\s\n]*)*)+$/.test(inner)) {
                 return inner.replace(/<img\b([^>]*)>/g, (imgMatch, imgAttrs) => {
+                    if (imgMatch.includes('data-no-handling'))
+                        return imgMatch;
                     const titleMatch = imgAttrs.match(/\btitle="([^"]*)"/);
                     const modifiedImg = imgMatch.replace('<img', '<img tabindex="0"');
                     if (titleMatch)
@@ -24,17 +26,24 @@ hexo.extend.filter.register('after_post_render', function (data) {
         });
         // 单图单段落，含标题。
         data.content = data.content.replace(/<(p|div)\b[^>]*>\s*(<img\b[^>]*?\btitle="([^"]+)"[^>]*?>)\s*<\/\1>/gs, (match, group1, group2, group3) => {
+            if (group2.includes('data-no-handling'))
+                return match;
             const modifiedGroup2 = group2.replace('<img', '<img tabindex="0"');
             return `<figure class="${classFigure}">${modifiedGroup2}<figcaption class="${classCaption}">${group3}</figcaption></figure>`;
         });
         // 单图单段落，不含标题。
         data.content = data.content.replace(/<(p|div)\b[^>]*>\s*(<img\b(?![^>]*?\btitle="[^"]+")[^>]*?>)\s*<\/\1>/gs, (match, group1, group2) => {
+            if (group2.includes('data-no-handling'))
+                return match;
             const modifiedGroup2 = group2.replace('<img', '<img tabindex="0"');
             return `<figure class="${classFigure}">${modifiedGroup2}</figure>`;
         });
-        // 行内图片，添加 inline-figure 包裹和 tabindex。
+        // 未处理的（不含 tabindex 的）行内图片，添加 inline-figure 包裹和 tabindex，不添加 figcaption。
         data.content = data.content.replace(/<img(?![^>]*\btabindex\s*=\s*["']?\d+["']?)([^>]*)>/g, (match) => {
-            return `<figure class="${classInlineFigure}">${match.replace('<img', '<img tabindex="0"')}</figure>`
+        // data.content = data.content.replace(/<img\s+[^>]*>/g, (match) => {
+            if (match.includes('data-no-handling'))
+                return match;
+            return `<figure class="${classInlineFigure}">${match.replace('<img', '<img tabindex="0"')}</figure>`;
         });
         // 含有遮罩的图片。
         data.content = data.content.replace(/<img\b[^>]*?\bdata-mask(?:="([^"]*)")?[^>]*?>/g, (match, group1) => {

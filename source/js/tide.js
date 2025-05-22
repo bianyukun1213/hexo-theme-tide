@@ -5,7 +5,7 @@ const clientCtxElement = document.querySelector('meta[name="tide-client-ctx"]');
 if (clientCtxElement)
     clientCtx = JSON.parse(decodeURIComponent(clientCtxElement.getAttribute('content')));
 // https://www.cnblogs.com/laneyfu/p/5923176.html
-document.addEventListener('error', (e) => {
+document.addEventListener('error', function (e) {
     if (e.target.tagName.toLowerCase() === 'img')
         e.target.className += ' tide-broken-img';
 }, true);
@@ -67,7 +67,7 @@ class TideSettings {
 
 function systemColorSchemeChanged() {
     TideSettings.colorScheme = 'SYSTEM';
-    document.documentElement.removeAttribute('data-tide-color-scheme');
+    delete document.documentElement.dataset.tideColorScheme;
 }
 
 const darkModePreference = window.matchMedia('(prefers-color-scheme: dark)');
@@ -75,9 +75,9 @@ darkModePreference.addEventListener('change', e => e.matches && systemColorSchem
 const lightModePreference = window.matchMedia('(prefers-color-scheme: light)');
 lightModePreference.addEventListener('change', e => e.matches && systemColorSchemeChanged());
 if (TideSettings.colorScheme === 'LIGHT')
-    document.documentElement.setAttribute('data-tide-color-scheme', 'light');
+    document.documentElement.dataset.tideColorScheme = 'light';
 else if (TideSettings.colorScheme === 'DARK')
-    document.documentElement.setAttribute('data-tide-color-scheme', 'dark');
+    document.documentElement.dataset.tideColorScheme = 'dark';
 
 function domContentLoadedHandler(eDomContentLoaded) {
     const tideRoot = document.getElementById('tide-root');
@@ -87,29 +87,32 @@ function domContentLoadedHandler(eDomContentLoaded) {
     const btnNav = document.getElementById('tide-btn-nav');
     const btnSearch = document.getElementById('tide-btn-search');
     const dialogSearch = document.getElementById('tide-dialog-search');
-    const btnSwitchColorScheme = document.getElementById('tide-btn-switch-color-scheme');
+    const btnColorScheme = document.getElementById('tide-btn-color-scheme');
     const btnSettings = document.getElementById('tide-btn-settings');
-    const btnScrollToTop = document.getElementById('tide-btn-scroll-to-top');
-    const btnOpenToc = document.getElementById('tide-btn-open-toc');
+    const tideFloatingWidgets = document.getElementById('tide-floating-widgets');
+    const btnTop = document.getElementById('tide-btn-top');
+    const btnToc = document.getElementById('tide-btn-toc');
     const dialogToc = document.getElementById('tide-dialog-toc');
-    const btnSwitchLang = document.getElementById('tide-btn-switch-lang');
+    const btnLangs = document.getElementById('tide-btn-langs');
     const dialogLangPicker = document.getElementById('tide-dialog-lang-picker');
+    const btnInteractions = document.getElementById('tide-btn-interactions');
+    const btnExtraWidgets = document.getElementById('tide-btn-extra-widgets');
 
     function toggleSidebar(status) {
         if (status) {
-            tideRoot.setAttribute('data-tide-sidebar-expanded', 'true');
+            tideRoot.dataset.sidebarExpanded = '';
             for (const input of tideSidebarInputs)
                 input.removeAttribute('tabindex');
         }
         else {
-            tideRoot.setAttribute('data-tide-sidebar-expanded', 'false');
+            delete tideRoot.dataset.sidebarExpanded;
             for (const input of tideSidebarInputs)
                 input.setAttribute('tabindex', '-1');
         }
     }
 
     function toggleSidebarOnResize() {
-        if (window.matchMedia('(min-width: 1280px)').matches)
+        if (window.matchMedia('(orientation: landscape) and (min-width: 1280px)').matches)
             toggleSidebar(true);
         else
             toggleSidebar(false);
@@ -119,7 +122,7 @@ function domContentLoadedHandler(eDomContentLoaded) {
         btn.addEventListener('click', function (e) {
             const mask = e.target.parentElement.parentElement;
             const img = mask.nextElementSibling;
-            img.setAttribute('data-unmasked', '');
+            img.dataset.unmasked = '';
         });
     }
     window.addEventListener('resize', () => {
@@ -127,7 +130,7 @@ function domContentLoadedHandler(eDomContentLoaded) {
     });
     toggleSidebarOnResize();
     btnNav.addEventListener('click', function (e) {
-        if (tideRoot.getAttribute('data-tide-sidebar-expanded') === 'true')
+        if (tideRoot.dataset.sidebarExpanded === '')
             toggleSidebar(false);
         else
             toggleSidebar(true);
@@ -144,11 +147,11 @@ function domContentLoadedHandler(eDomContentLoaded) {
             dialogSearch.showModal();
         });
     }
-    btnSwitchColorScheme.addEventListener('click', function (e) {
+    btnColorScheme.addEventListener('click', function (e) {
         let currentScheme;
-        if (document.documentElement.getAttribute('data-tide-color-scheme') === 'light')
+        if (document.documentElement.dataset.tideColorScheme === 'light')
             currentScheme = 'LIGHT';
-        else if (document.documentElement.getAttribute('data-tide-color-scheme') === 'dark')
+        else if (document.documentElement.dataset.tideColorScheme === 'dark')
             currentScheme = 'DARK';
         if (!currentScheme) {
             if (darkModePreference.matches)
@@ -159,18 +162,18 @@ function domContentLoadedHandler(eDomContentLoaded) {
         if (currentScheme === 'LIGHT') {
             if (darkModePreference.matches) {
                 TideSettings.colorScheme = 'SYSTEM';
-                document.documentElement.removeAttribute('data-tide-color-scheme');
+                delete document.documentElement.dataset.tideColorScheme;
             } else {
                 TideSettings.colorScheme = 'DARK';
-                document.documentElement.setAttribute('data-tide-color-scheme', 'dark');
+                document.documentElement.dataset.tideColorScheme = 'dark';
             }
         } else if (currentScheme === 'DARK') {
             if (lightModePreference.matches) {
                 TideSettings.colorScheme = 'SYSTEM';
-                document.documentElement.removeAttribute('data-tide-color-scheme');
+                delete document.documentElement.dataset.tideColorScheme;
             } else {
                 TideSettings.colorScheme = 'LIGHT';
-                document.documentElement.setAttribute('data-tide-color-scheme', 'light');
+                document.documentElement.dataset.tideColorScheme = 'light';
             }
         }
     });
@@ -181,21 +184,46 @@ function domContentLoadedHandler(eDomContentLoaded) {
         else
             html.setAttribute('dir', 'rtl');
     });
-    btnScrollToTop.addEventListener('click', () => {
+    btnTop.addEventListener('click', () => {
         tideMainContent.scrollTo({ top: 0, behavior: 'smooth' });
     });
-    if (btnOpenToc) {
-        btnOpenToc.addEventListener('click', () => {
+    if (btnToc) {
+        btnToc.addEventListener('click', () => {
             dialogToc.showModal();
         });
-        if (document.getElementsByClassName('tide-toc').length === 0) {
-            btnOpenToc.style.display = 'none';
-        }
+        if (document.getElementsByClassName('tide-toc').length === 0)
+            btnToc.style.display = 'none';
     }
-    if (btnSwitchLang) {
-        btnSwitchLang.addEventListener('click', () => {
+    if (btnLangs) {
+        btnLangs.addEventListener('click', () => {
             dialogLangPicker.showModal();
         });
+    }
+    if (btnInteractions) {
+        const target = document.getElementById('tide-page-interactions');
+        btnInteractions.addEventListener('click', function () {
+            if (target) {
+                document.getElementById('tide-main-content').scrollTo({
+                    top: target.offsetTop,
+                    behavior: 'smooth'
+                });
+            } else {
+                window.location.hash = 'tide-page-interactions';
+            }
+        });
+        if (!target)
+            btnInteractions.style.display = 'none';
+    }
+    btnExtraWidgets.addEventListener('click', function () {
+        if (typeof tideFloatingWidgets.dataset.extraWidgets === 'undefined')
+            tideFloatingWidgets.dataset.extraWidgets = '';
+        else
+            delete tideFloatingWidgets.dataset.extraWidgets;
+    });
+    if ((!btnToc || btnToc.style.display === 'none')
+        && (!btnLangs || btnLangs.style.display === 'none')
+        && (!btnInteractions || btnInteractions.style.display === 'none')) {
+        btnExtraWidgets.style.display = 'none';
     }
 }
 
