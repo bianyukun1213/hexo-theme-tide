@@ -11,7 +11,7 @@
 }
 
 @media (prefers-color-scheme: no-preference) or (prefers-color-scheme: light) {
-    :root:not([data-tide-color-scheme]) #tide-btn-nav-icon-sun {
+    :root:not([data-color-scheme]) #tide-btn-nav-icon-sun {
         @apply un-hidden;
     }
 
@@ -50,7 +50,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    :root:not([data-tide-color-scheme]) #tide-btn-nav-icon-moon {
+    :root:not([data-color-scheme]) #tide-btn-nav-icon-moon {
         @apply un-hidden;
     }
 
@@ -88,19 +88,19 @@
     }
 }
 
-:root[data-tide-color-scheme="light"] #tide-btn-nav-icon-sun {
+:root[data-color-scheme="light"] #tide-btn-nav-icon-sun {
     @apply un-hidden;
 }
 
-:root[data-tide-color-scheme="light"][dir="ltr"] {
+:root[data-color-scheme="light"][dir="ltr"] {
     --tide-background-image-sidebar: <TIDE_BACKGROUND_IMAGE_SIDEBAR_LIGHT_LTR>;
 }
 
-:root[data-tide-color-scheme="light"][dir="rtl"] {
+:root[data-color-scheme="light"][dir="rtl"] {
     --tide-background-image-sidebar: <TIDE_BACKGROUND_IMAGE_SIDEBAR_LIGHT_RTL>;
 }
 
-:root[data-tide-color-scheme="light"] {
+:root[data-color-scheme="light"] {
     color-scheme: light;
     --tide-background-size-sidebar: <TIDE_BACKGROUND_SIZE_SIDEBAR_LIGHT>;
     --tide-background-position-sidebar: <TIDE_BACKGROUND_POSITION_SIDEBAR_LIGHT>;
@@ -125,19 +125,19 @@
     --tide-color-table-background-even: <TIDE_COLOR_TABLE_BACKGROUND_EVEN_LIGHT>;
 }
 
-:root[data-tide-color-scheme="dark"] #tide-btn-nav-icon-moon {
+:root[data-color-scheme="dark"] #tide-btn-nav-icon-moon {
     @apply un-hidden;
 }
 
-:root[data-tide-color-scheme="dark"][dir="ltr"] {
+:root[data-color-scheme="dark"][dir="ltr"] {
     --tide-background-image-sidebar: <TIDE_BACKGROUND_IMAGE_SIDEBAR_DARK_LTR>;
 }
 
-:root[data-tide-color-scheme="dark"][dir="rtl"] {
+:root[data-color-scheme="dark"][dir="rtl"] {
     --tide-background-image-sidebar: <TIDE_BACKGROUND_IMAGE_SIDEBAR_DARK_RTL>;
 }
 
-:root[data-tide-color-scheme="dark"] {
+:root[data-color-scheme="dark"] {
     color-scheme: dark;
     --tide-background-size-sidebar: <TIDE_BACKGROUND_SIZE_SIDEBAR_DARK>;
     --tide-background-position-sidebar: <TIDE_BACKGROUND_POSITION_SIDEBAR_DARK>;

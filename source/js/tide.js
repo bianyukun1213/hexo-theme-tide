@@ -67,7 +67,7 @@ class TideSettings {
 
 function systemColorSchemeChanged() {
     TideSettings.colorScheme = 'SYSTEM';
-    delete document.documentElement.dataset.tideColorScheme;
+    delete document.documentElement.dataset.colorScheme;
 }
 
 const darkModePreference = window.matchMedia('(prefers-color-scheme: dark)');
@@ -75,9 +75,9 @@ darkModePreference.addEventListener('change', e => e.matches && systemColorSchem
 const lightModePreference = window.matchMedia('(prefers-color-scheme: light)');
 lightModePreference.addEventListener('change', e => e.matches && systemColorSchemeChanged());
 if (TideSettings.colorScheme === 'LIGHT')
-    document.documentElement.dataset.tideColorScheme = 'light';
+    document.documentElement.dataset.colorScheme = 'light';
 else if (TideSettings.colorScheme === 'DARK')
-    document.documentElement.dataset.tideColorScheme = 'dark';
+    document.documentElement.dataset.colorScheme = 'dark';
 
 function domContentLoadedHandler(eDomContentLoaded) {
     const tideRoot = document.getElementById('tide-root');
@@ -149,9 +149,9 @@ function domContentLoadedHandler(eDomContentLoaded) {
     }
     btnColorScheme.addEventListener('click', function (e) {
         let currentScheme;
-        if (document.documentElement.dataset.tideColorScheme === 'light')
+        if (document.documentElement.dataset.colorScheme === 'light')
             currentScheme = 'LIGHT';
-        else if (document.documentElement.dataset.tideColorScheme === 'dark')
+        else if (document.documentElement.dataset.colorScheme === 'dark')
             currentScheme = 'DARK';
         if (!currentScheme) {
             if (darkModePreference.matches)
@@ -162,18 +162,18 @@ function domContentLoadedHandler(eDomContentLoaded) {
         if (currentScheme === 'LIGHT') {
             if (darkModePreference.matches) {
                 TideSettings.colorScheme = 'SYSTEM';
-                delete document.documentElement.dataset.tideColorScheme;
+                delete document.documentElement.dataset.colorScheme;
             } else {
                 TideSettings.colorScheme = 'DARK';
-                document.documentElement.dataset.tideColorScheme = 'dark';
+                document.documentElement.dataset.colorScheme = 'dark';
             }
         } else if (currentScheme === 'DARK') {
             if (lightModePreference.matches) {
                 TideSettings.colorScheme = 'SYSTEM';
-                delete document.documentElement.dataset.tideColorScheme;
+                delete document.documentElement.dataset.colorScheme;
             } else {
                 TideSettings.colorScheme = 'LIGHT';
-                document.documentElement.dataset.tideColorScheme = 'light';
+                document.documentElement.dataset.colorScheme = 'light';
             }
         }
     });
