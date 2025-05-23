@@ -455,6 +455,10 @@ summary:focus {
     @apply un-mx-auto;
 }
 
+.tide-image-mask {
+    font-family: var(--tide-font-global);
+}
+
 .tide-image-mask:has(+img:not([data-mask])),
 .tide-image-mask:has(+img[data-unmasked]),
 .tide-image-mask:has(+.pinch-zoom-container img:not([data-mask])),
