@@ -124,6 +124,14 @@ function domContentLoadedHandler(eDomContentLoaded) {
             const img = mask.nextElementSibling;
             img.dataset.unmasked = '';
         });
+        btn.addEventListener('keydown', function (e) {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                const mask = e.target.parentElement.parentElement;
+                const img = mask.nextElementSibling;
+                img.dataset.unmasked = '';
+            }
+        });
     }
     window.addEventListener('resize', () => {
         toggleSidebarOnResize();

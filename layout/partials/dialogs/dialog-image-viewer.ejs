@@ -3,7 +3,7 @@
     <div class="tide-image-mask un-z-110">
       <div class="tide-image-mask-controls">
         <p id="tide-image-viewer-mask-title"></p>
-        <a id="tide-image-viewer-btn-unmask-image" href="javascript:void(0);"></a>
+        <a id="tide-image-viewer-btn-unmask-image" href="javascript:void(0);" role="button"></a>
       </div>
     </div>
     <img id="tide-viewing-image" loading="lazy" tabindex="0">
@@ -117,7 +117,7 @@
           openImageViewer();
         });
         element.addEventListener('keydown', function(e) {
-          if (e.key === 'Enter') {
+          if (e.code === 'Enter') {
             e.preventDefault();
             currentImgIndex = pageImgs.indexOf(e.target);
             openImageViewer();
@@ -271,6 +271,12 @@
       btnUnmaskImage.addEventListener('click', () => {
         unmaskImage();
       });
+      btnUnmaskImage.addEventListener('keydown', function(e) {
+        if (e.code === 'Space') {
+          e.preventDefault();
+          unmaskImage();
+        }
+      });
       btnPrev.addEventListener('click', () => {
         toPrev();
       });
@@ -298,7 +304,7 @@
       viewingImg.addEventListener('keydown', function(e) {
         const xStep = dialogMask.offsetWidth / 20;
         const yStep = dialogMask.offsetHeight / 20;
-        switch (e.key) {
+        switch (e.code) {
           case 'ArrowUp':
             moveDown(-xStep);
             e.preventDefault();
@@ -322,7 +328,7 @@
         }
       });
       dialogImgViewer.addEventListener('keydown', function(e) {
-        switch (e.key) {
+        switch (e.code) {
           case 'ArrowUp':
             zoomIn(0.1);
             e.preventDefault();

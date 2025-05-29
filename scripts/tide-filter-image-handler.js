@@ -61,7 +61,7 @@ hexo.extend.filter.register('after_post_render', function (data) {
             }
             // return `<div class="tide-image-mask"><div class="tide-image-mask-controls"><p>${group1}</p><a class="tide-btn-unmask-image" href="javascript:void(0);">显示</a></div></div>${match.replace('tabindex="0"', '')}`;
             // 不需要移除 tabindex，因为给元素设置隐藏（样式实现）后已经无法获取焦点了。
-            return `<div class="tide-image-mask"><div class="tide-image-mask-controls"><p>${maskTitle}</p><a class="tide-btn-unmask-image" href="javascript:void(0);">${btnUnmaskTitle}</a></div></div>${match}`;
+            return `<div class="tide-image-mask"><div class="tide-image-mask-controls"><p>${maskTitle}</p><a class="tide-btn-unmask-image" href="javascript:void(0);" role="button">${btnUnmaskTitle}</a></div></div>${match}`;
         });
     }
     return data;
