@@ -455,10 +455,6 @@ summary:focus {
     @apply un-mx-auto;
 }
 
-.tide-image-mask {
-    font-family: var(--tide-font-global);
-}
-
 .tide-image-mask:has(+img:not([data-mask])),
 .tide-image-mask:has(+img[data-unmasked]),
 .tide-image-mask:has(+.pinch-zoom-container img:not([data-mask])),
@@ -471,15 +467,22 @@ img[data-mask]:not([data-unmasked]) {
 }
 
 .tide-image-mask {
+    @apply un-block;
     @apply un-absolute;
     @apply un-size-full;
     @apply un-bg-bg-scnd;
     @apply un-text-base;
     @apply un-text-txt-scnd;
     @apply un-text-center;
+    font-family: var(--tide-font-global);
+}
+
+.tide-image-mask img {
+    @apply un-align-bottom;
 }
 
 .tide-image-mask-controls {
+    @apply un-block;
     @apply un-absolute;
     @apply un-start-1/2 un-top-1/2;
     @apply -un-translate-1/2;
@@ -490,7 +493,8 @@ img[data-mask]:not([data-unmasked]) {
     @apply un-overflow-auto;
 }
 
-.tide-image-mask-controls p {
+.tide-image-mask-controls span {
+    @apply un-block;
     @apply un-m-0 un-mb-4;
 }
 

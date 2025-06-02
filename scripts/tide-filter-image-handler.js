@@ -9,7 +9,7 @@ hexo.extend.filter.register('after_post_render', function (data) {
     const classInlineFigure = 'tide-image-inline-figure';
     const classCaption = 'tide-image-caption';
     if (data.layout === 'post' || data.layout === 'page') {
-        // ![]() 间无空行，连续多张图片被渲染为一个纯图片段落，中间以 br 隔开，认为等同于单段落中的单图片。
+        // ![]() 间无空行但末尾有空格，连续多张图片被渲染为一个纯图片段落，中间以 br 隔开，认为等同于单段落中的单图片。
         data.content = data.content.replace(/<p\b[^>]*>([\s\S]*?)<\/p>/g, (match, inner) => {
             if (/^(<img\b[^>]*>(<br\s*\/?>[\s\n]*)*)+$/.test(inner)) {
                 return inner.replace(/<img\b([^>]*)>/g, (imgMatch, imgAttrs) => {
@@ -43,7 +43,7 @@ hexo.extend.filter.register('after_post_render', function (data) {
         // data.content = data.content.replace(/<img\s+[^>]*>/g, (match) => {
             if (match.includes('data-no-handling'))
                 return match;
-            return `<figure class="${classInlineFigure}">${match.replace('<img', '<img tabindex="0"')}</figure>`;
+            return `<span class="${classInlineFigure}">${match.replace('<img', '<img tabindex="0"')}</span>`;
         });
         // 含有遮罩的图片。
         data.content = data.content.replace(/<img\b[^>]*?\bdata-mask(?:="([^"]*)")?[^>]*?>/g, (match, group1) => {
@@ -61,7 +61,7 @@ hexo.extend.filter.register('after_post_render', function (data) {
             }
             // return `<div class="tide-image-mask"><div class="tide-image-mask-controls"><p>${group1}</p><a class="tide-btn-unmask-image" href="javascript:void(0);">显示</a></div></div>${match.replace('tabindex="0"', '')}`;
             // 不需要移除 tabindex，因为给元素设置隐藏（样式实现）后已经无法获取焦点了。
-            return `<div class="tide-image-mask"><div class="tide-image-mask-controls"><p>${maskTitle}</p><a class="tide-btn-unmask-image" href="javascript:void(0);" role="button">${btnUnmaskTitle}</a></div></div>${match}`;
+            return `<span class="tide-image-mask"><span class="tide-image-mask-controls"><span>${maskTitle}</span><a class="tide-btn-unmask-image" href="javascript:void(0);" role="button">${btnUnmaskTitle}</a></span></span>${match}`;
         });
     }
     return data;
