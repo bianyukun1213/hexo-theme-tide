@@ -25,6 +25,8 @@ hexo.extend.filter.register('after_render:css', function (cssSrc, local) {
                 }
             }
         }
+        const foLight = hexo.theme?.config?.focus?.light?.outline ?? '';
+        const fooLight = hexo.theme?.config?.focus?.light?.outline_offset ?? '';
         const bgiLightLtr = hexo.theme?.config?.sidebar_background_image?.light?.ltr ?? '';
         const bgiLightRtl = hexo.theme?.config?.sidebar_background_image?.light?.rtl ?? '';
         const bgSizeLight = hexo.theme?.config?.sidebar_background_image?.light?.size ?? '';
@@ -32,12 +34,16 @@ hexo.extend.filter.register('after_render:css', function (cssSrc, local) {
         const bgRepLight = hexo.theme?.config?.sidebar_background_image?.light?.repeat ?? '';
         const bgAttLight = hexo.theme?.config?.sidebar_background_image?.light?.attachment ?? '';
         cssSrc = cssSrc
+            .replace(new RegExp('<TIDE_FOCUS_OUTLINE_LIGHT>', 'g'), foLight)
+            .replace(new RegExp('<TIDE_FOCUS_OUTLINE_OFFSET_LIGHT>', 'g'), fooLight)
             .replace(new RegExp('<TIDE_BACKGROUND_IMAGE_SIDEBAR_LIGHT_LTR>', 'g'), bgiLightLtr)
             .replace(new RegExp('<TIDE_BACKGROUND_IMAGE_SIDEBAR_LIGHT_RTL>', 'g'), bgiLightRtl)
             .replace(new RegExp('<TIDE_BACKGROUND_SIZE_SIDEBAR_LIGHT>', 'g'), bgSizeLight)
             .replace(new RegExp('<TIDE_BACKGROUND_POSITION_SIDEBAR_LIGHT>', 'g'), bgPosLight)
             .replace(new RegExp('<TIDE_BACKGROUND_REPEAT_SIDEBAR_LIGHT>', 'g'), bgRepLight)
             .replace(new RegExp('<TIDE_BACKGROUND_ATTACHMENT_SIDEBAR_LIGHT>', 'g'), bgAttLight);
+        const foDark = hexo.theme?.config?.focus?.dark?.outline ?? '';
+        const fooDark = hexo.theme?.config?.focus?.dark?.outline_offset ?? '';
         const bgiDarkLtr = hexo.theme?.config?.sidebar_background_image?.dark?.ltr ?? '';
         const bgiDarkRtl = hexo.theme?.config?.sidebar_background_image?.dark?.rtl ?? '';
         const bgSizeDark = hexo.theme?.config?.sidebar_background_image?.dark?.size ?? '';
@@ -45,6 +51,9 @@ hexo.extend.filter.register('after_render:css', function (cssSrc, local) {
         const bgRepDark = hexo.theme?.config?.sidebar_background_image?.dark?.repeat ?? '';
         const bgAttDark = hexo.theme?.config?.sidebar_background_image?.dark?.attachment ?? '';
         cssSrc = cssSrc
+            .replace(new RegExp('<TIDE_FOCUS_OUTLINE_DARK>', 'g'), foDark)
+            .replace(new RegExp('<TIDE_FOCUS_OUTLINE_OFFSET_DARK>', 'g'), fooDark)
+            .replace(new RegExp('<TIDE_FOCUS_OUTLINE_DARK>', 'g'), bgiLightLtr)
             .replace(new RegExp('<TIDE_BACKGROUND_IMAGE_SIDEBAR_DARK_LTR>', 'g'), bgiDarkLtr)
             .replace(new RegExp('<TIDE_BACKGROUND_IMAGE_SIDEBAR_DARK_RTL>', 'g'), bgiDarkRtl)
             .replace(new RegExp('<TIDE_BACKGROUND_SIZE_SIDEBAR_DARK>', 'g'), bgSizeDark)

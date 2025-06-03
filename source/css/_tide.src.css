@@ -25,6 +25,8 @@
 
     :root {
         color-scheme: light;
+        --tide-focus-outline: <TIDE_FOCUS_OUTLINE_LIGHT>;
+        --tide-focus-outline-offset: <TIDE_FOCUS_OUTLINE_OFFSET_LIGHT>;
         --tide-background-size-sidebar: <TIDE_BACKGROUND_SIZE_SIDEBAR_LIGHT>;
         --tide-background-position-sidebar: <TIDE_BACKGROUND_POSITION_SIDEBAR_LIGHT>;
         --tide-background-repeat-sidebar: <TIDE_BACKGROUND_REPEAT_SIDEBAR_LIGHT>;
@@ -64,6 +66,8 @@
 
     :root {
         color-scheme: dark;
+        --tide-focus-outline: <TIDE_FOCUS_OUTLINE_DARK>;
+        --tide-focus-outline-offset: <TIDE_FOCUS_OUTLINE_OFFSET_DARK>;
         --tide-background-size-sidebar: <TIDE_BACKGROUND_SIZE_SIDEBAR_DARK>;
         --tide-background-position-sidebar: <TIDE_BACKGROUND_POSITION_SIDEBAR_DARK>;
         --tide-background-repeat-sidebar: <TIDE_BACKGROUND_REPEAT_SIDEBAR_DARK>;
@@ -77,7 +81,6 @@
         --tide-color-text-secondary: <TIDE_COLOR_TEXT_SECONDARY_DARK>;
         --tide-color-text-diminished: <TIDE_COLOR_TEXT_DIMINISHED_DARK>;
         --tide-color-text-sidebar: <TIDE_COLOR_TEXT_SIDEBAR_DARK>;
-        --tide-color-focused-outline: <TIDE_COLOR_FOCUSED_OUTLINE_DARK>;
         --tide-color-link: <TIDE_COLOR_LINK_DARK>;
         --tide-color-link-hover: <TIDE_COLOR_LINK_HOVER_DARK>;
         --tide-color-link-visited: <TIDE_COLOR_LINK_VISITED_DARK>;
@@ -102,6 +105,8 @@
 
 :root[data-color-scheme="light"] {
     color-scheme: light;
+    --tide-focus-outline: <TIDE_FOCUS_OUTLINE_LIGHT>;
+    --tide-focus-outline-offset: <TIDE_FOCUS_OUTLINE_OFFSET_LIGHT>;
     --tide-background-size-sidebar: <TIDE_BACKGROUND_SIZE_SIDEBAR_LIGHT>;
     --tide-background-position-sidebar: <TIDE_BACKGROUND_POSITION_SIDEBAR_LIGHT>;
     --tide-background-repeat-sidebar: <TIDE_BACKGROUND_REPEAT_SIDEBAR_LIGHT>;
@@ -115,7 +120,6 @@
     --tide-color-text-secondary: <TIDE_COLOR_TEXT_SECONDARY_LIGHT>;
     --tide-color-text-diminished: <TIDE_COLOR_TEXT_DIMINISHED_LIGHT>;
     --tide-color-text-sidebar: <TIDE_COLOR_TEXT_SIDEBAR_LIGHT>;
-    --tide-color-focused-outline: <TIDE_COLOR_FOCUSED_OUTLINE_LIGHT>;
     --tide-color-link: <TIDE_COLOR_LINK_LIGHT>;
     --tide-color-link-hover: <TIDE_COLOR_LINK_HOVER_LIGHT>;
     --tide-color-link-visited: <TIDE_COLOR_LINK_VISITED_LIGHT>;
@@ -139,6 +143,8 @@
 
 :root[data-color-scheme="dark"] {
     color-scheme: dark;
+    --tide-focus-outline: <TIDE_FOCUS_OUTLINE_DARK>;
+    --tide-focus-outline-offset: <TIDE_FOCUS_OUTLINE_OFFSET_DARK>;
     --tide-background-size-sidebar: <TIDE_BACKGROUND_SIZE_SIDEBAR_DARK>;
     --tide-background-position-sidebar: <TIDE_BACKGROUND_POSITION_SIDEBAR_DARK>;
     --tide-background-repeat-sidebar: <TIDE_BACKGROUND_REPEAT_SIDEBAR_DARK>;
@@ -152,7 +158,6 @@
     --tide-color-text-secondary: <TIDE_COLOR_TEXT_SECONDARY_DARK>;
     --tide-color-text-diminished: <TIDE_COLOR_TEXT_DIMINISHED_DARK>;
     --tide-color-text-sidebar: <TIDE_COLOR_TEXT_SIDEBAR_DARK>;
-    --tide-color-focused-outline: <TIDE_COLOR_FOCUSED_OUTLINE_DARK>;
     --tide-color-link: <TIDE_COLOR_LINK_DARK>;
     --tide-color-link-hover: <TIDE_COLOR_LINK_HOVER_DARK>;
     --tide-color-link-visited: <TIDE_COLOR_LINK_VISITED_DARK>;
@@ -231,7 +236,8 @@ select:focus,
 pre:focus,
 textarea:focus,
 summary:focus {
-    @apply un-outline-2 un-outline-offset-2 un-outline-fcs-ol! un-outline-solid;
+    outline: var(--tide-focus-outline);
+    outline-offset: var(--tide-focus-outline-offset);
 }
 
 .tide-paginator span {
