@@ -138,7 +138,7 @@ export default defineConfig({
     shortcuts: {
         // 与上方 prose 部分对应。
         'un-sc-clearfix': 'after:un-clear-both after:un-content-empty after:un-block',
-        'un-sc-trans-default': 'motion-safe:(un-transition-all un-ease-in-out un-duration-200)',
+        'un-sc-trans-default': 'motion-safe:(un-transition-transform un-ease-in-out un-duration-200)',
         'un-sc-link-default': 'un-underline link:un-text-lk hover:(un-underline-offset-4 un-text-lk-hvr) visited:un-text-lk-vst',
         'un-sc-link-plain': 'un-decoration-transparent hover:(un-decoration-current) un-text-txt-prim',
         'un-sc-btn-default': 'un-bg-bg-prim un-sc-trans-default un-flex un-items-center un-justify-center un-text-prim un-border-(2 prim solid) hover:un-scale-110 active:un-scale-90 un-cursor-pointer disabled:(un-opacity-50 un-cursor-not-allowed hover:un-transform-none active:un-transform-none)',
