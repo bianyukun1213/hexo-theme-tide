@@ -117,7 +117,7 @@
           openImageViewer();
         });
         element.addEventListener('keydown', function(e) {
-          if (e.code === 'Enter') {
+          if (e.code === 'Enter' || e.code === 'Space') {
             e.preventDefault();
             currentImgIndex = pageImgs.indexOf(e.target);
             openImageViewer();
