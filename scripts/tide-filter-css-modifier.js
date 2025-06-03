@@ -74,7 +74,7 @@ hexo.extend.filter.register('after_render:css', function (cssSrc, local) {
             }
         }
         // UnoCSS 的 preset-wind4 使用的 color-mix in oklch 有偏色问题，替换成 in oklab。
-        // 这是临时解决方案。应该通过 PostCSS 在主题样式文件构建时完成，写在这里可能错误替换用户自己的样式。
+        // 这是临时解决方案。或许可以通过 PostCSS 在主题样式文件构建时完成。
         cssSrc = cssSrc.replace(new RegExp('in oklch', 'g'), 'in oklab');
     }
     return cssSrc;

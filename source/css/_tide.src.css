@@ -1,15 +1,5 @@
 @unocss;
 
-/*  升级到支持 Tailwind 4 的 UnoCSS 后，对于颜色的处理发生变化，变为使用 color-mix，
-    然而在 cssvar-property 缺失 @property --un-outline-color-opacity 导致混合无效，
-    color-mix in oklch 还会有偏色的问题，暂时通过脚本或手动替换为 in oklab。
-*/
-@property --un-outline-color-opacity {
-    syntax: "<percentage>";
-    inherits: false;
-    initial-value: 100%;
-}
-
 @media (prefers-color-scheme: no-preference) or (prefers-color-scheme: light) {
     :root:not([data-color-scheme]) #tide-btn-nav-icon-sun {
         @apply un-hidden;
@@ -228,6 +218,7 @@ body {
     background-attachment: var(--tide-background-attachment-sidebar);
 }
 
+/* pre 和 .tide-table-wrapper 具有滚动条，Chrome 会使这样的元素可获得焦点。 */
 [tabindex]:not([tabindex="-1"]):focus,
 a:focus,
 button:focus,
@@ -235,7 +226,8 @@ input:focus,
 select:focus,
 pre:focus,
 textarea:focus,
-summary:focus {
+summary:focus,
+.tide-table-wrapper:focus {
     outline: var(--tide-focus-outline);
     outline-offset: var(--tide-focus-outline-offset);
 }
