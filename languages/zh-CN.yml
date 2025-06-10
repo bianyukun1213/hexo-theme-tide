@@ -114,10 +114,7 @@ dialog_lang_picker:
     title: "关闭"
 
 interactions:
-  title:
-    zero: "互动"
-    one: "互动"
-    other: "互动"
+  title: "互动"
   twikoo:
     name: "Twikoo"
   webmentionjs:

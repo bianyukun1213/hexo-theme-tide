@@ -1,8 +1,8 @@
 <aside id="tide-page-interactions" class="un-mt-4">
   <div class="un-mb-4">
-    <h2 class="un-inline-block un-align-middle un-m-0 un-me-4 un-text-2xl un-font-bold"><label for="tide-select-active-interaction"><%= _p('interactions.title',Object.keys(tideCtx.interactions).length) %></label></h2>
+    <h2 class="un-inline-block un-align-middle un-m-0 un-me-4 un-text-2xl un-font-bold"><label for="tide-select-active-interactions"><%= __('interactions.title') %></label></h2>
     <!-- 类后面和 ejs 标记间保留空格，让 unocss 能够匹配到。 -->
-    <select id="tide-select-active-interaction" name="tide-active-interaction" class="un-sc-select-plain un-align-bottom <%= Object.keys(tideCtx.interactions).length<=1?'un-hidden':''%>">
+    <select id="tide-select-active-interactions" name="tide-active-interactions" class="un-sc-select-plain un-align-bottom <%= Object.keys(tideCtx.interactions).length<=1?'un-hidden':''%>">
       <% for(const interKey in tideCtx.interactions){ %>
       <% if(Object.prototype.hasOwnProperty.call(tideCtx.interactions,interKey)){ %>
       <option value="<%= interKey %>"><%= __(`interactions.${interKey}.name`) %></option>
@@ -10,13 +10,13 @@
       <% } %>
     </select>
   </div>
-  <div id="tide-active-interaction">
+  <div id="tide-active-interactions">
     <% for(const interKey in tideCtx.interactions){ %>
     <% if(Object.prototype.hasOwnProperty.call(tideCtx.interactions,interKey)){ %>
     <% if(interKey==='twikoo'){ %>
-    <%- partial('./interaction-twikoo.ejs',{tideCtx}) %>
+    <%- partial('./interactions-twikoo.ejs',{tideCtx}) %>
     <% }else if(interKey==='webmentionjs'){ %>
-    <%- partial('./interaction-webmentionjs.ejs',{tideCtx}) %>
+    <%- partial('./interactions-webmentionjs.ejs',{tideCtx}) %>
     <% } %>
     <% } %>
     <% } %>
@@ -32,7 +32,7 @@
       let activeInteraction;
 
       function domContentLoadedHandler(eDomContentLoaded) {
-        const selectActiveInteraction = document.getElementById('tide-select-active-interaction');
+        const selectActiveInteraction = document.getElementById('tide-select-active-interactions');
         selectActiveInteraction.addEventListener('change', function(e) {
           activeInteraction = selectActiveInteraction.value;
           activateInteraction();

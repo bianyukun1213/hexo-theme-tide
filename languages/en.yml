@@ -114,10 +114,7 @@ dialog_lang_picker:
     title: "Close"
 
 interactions:
-  title:
-    zero: "Interactions"
-    one: "Interaction"
-    other: "Interactions"
+  title: "Interactions"
   twikoo:
     name: "Twikoo"
   webmentionjs:

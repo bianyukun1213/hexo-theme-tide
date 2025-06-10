@@ -1,10 +1,10 @@
-#tide-interaction-webmentionjs {
+#tide-interactions-webmentionjs {
     position: relative;
     margin: 0;
     padding: 0;
 }
 
-#tide-interaction-webmentionjs h2 {
+#tide-interactions-webmentionjs h2 {
     margin: 0;
     margin-bottom: 1rem;
     /* xl */
@@ -13,20 +13,20 @@
     font-weight: 700;
 }
 
-#tide-interaction-webmentionjs ul {
+#tide-interactions-webmentionjs ul {
     padding: 0;
     margin: 0;
     list-style-type: none;
 }
 
 
-#tide-interaction-webmentionjs .reaction {
+#tide-interactions-webmentionjs .reaction {
     display: block;
     float: inline-start;
     text-decoration: none;
 }
 
-#tide-interaction-webmentionjs .reaction img {
+#tide-interactions-webmentionjs .reaction img {
     width: 2.5rem;
     height: 2.5rem;
     object-fit: contain;
@@ -34,7 +34,7 @@
     border-radius: 0.375rem;
 }
 
-#tide-interaction-webmentionjs .source {
+#tide-interactions-webmentionjs .source {
     display: block;
     float: inline-start;
     font-weight: 700;
@@ -42,15 +42,15 @@
     text-decoration-color: transparent;
 }
 
-#tide-interaction-webmentionjs .source:hover {
+#tide-interactions-webmentionjs .source:hover {
     text-decoration-color: currentColor;
 }
 
-#tide-interaction-webmentionjs .comments li {
+#tide-interactions-webmentionjs .comments li {
     margin-bottom: 4rem;
 }
 
-#tide-interaction-webmentionjs .comments li::after {
+#tide-interactions-webmentionjs .comments li::after {
     content: '';
     height: 0;
     clear: both;
@@ -59,28 +59,28 @@
     visibility: hidden;
 }
 
-#tide-interaction-webmentionjs .comments li .reaction {
+#tide-interactions-webmentionjs .comments li .reaction {
     margin-inline-end: 0.5rem;
     margin-bottom: 1rem;
 }
 
-#tide-interaction-webmentionjs .comments li .text {
+#tide-interactions-webmentionjs .comments li .text {
     display: block;
     width: 100%;
     clear: both;
 }
 
-/* #tide-interaction-webmentionjs .comments li .text::before {
+/* #tide-interactions-webmentionjs .comments li .text::before {
     content: '“';
     color: var(--tide-color-text-secondary);
 } */
 
-/* #tide-interaction-webmentionjs .comments li .text::after {
+/* #tide-interactions-webmentionjs .comments li .text::after {
     content: '”';
     color: var(--tide-color-text-secondary);
 } */
 
-#tide-interaction-webmentionjs .comments li .name {
+#tide-interactions-webmentionjs .comments li .name {
     display: block;
     width: 100%;
     clear: both;
@@ -89,7 +89,7 @@
     color: var(--tide-color-text-secondary);
 }
 
-#tide-interaction-webmentionjs .reacts::after {
+#tide-interactions-webmentionjs .reacts::after {
     content: '';
     height: 0;
     clear: both;
@@ -98,7 +98,7 @@
     visibility: hidden;
 }
 
-#tide-interaction-webmentionjs .reacts .reaction {
+#tide-interactions-webmentionjs .reacts .reaction {
     margin-inline-end: 0.5rem;
     margin-bottom: 0.5rem;
 }

@@ -1,5 +1,5 @@
-<div id="tide-interaction-twikoo-wrapper" style="display:none;" dir="ltr">
-  <div id="tide-interaction-twikoo"></div>
+<div id="tide-interactions-twikoo-wrapper" style="display:none;" dir="ltr">
+  <div id="tide-interactions-twikoo"></div>
   <%- js(Object.assign(parse_cdn_config('twikoo_js',tideCtx.cdn),{defer:true})) %>
   <script>
     'use strict';
@@ -26,12 +26,12 @@
           pageLang = 'en';
         if (typeof this.load.twikooInited === 'undefined')
           this.load.twikooInited = false;
-        document.getElementById('tide-interaction-twikoo-wrapper').style.display = 'block';
+        document.getElementById('tide-interactions-twikoo-wrapper').style.display = 'block';
         if (this.load.twikooInited)
           return;
         twikoo.init({
           envId: clientCtx.interactions.twikoo.env_id,
-          el: '#tide-interaction-twikoo',
+          el: '#tide-interactions-twikoo',
           region: clientCtx.interactions.twikoo.region,
           path: window.location.pathname,
           lang: pageLang
@@ -40,7 +40,7 @@
         });
       },
       unload: function() {
-        document.getElementById('tide-interaction-twikoo-wrapper').style.display = 'none';
+        document.getElementById('tide-interactions-twikoo-wrapper').style.display = 'none';
       }
     };
   </script>
