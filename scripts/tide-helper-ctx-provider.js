@@ -99,22 +99,16 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     // 上为站点配置，下为主题配置。
     out.language_meta = languageMeta;
     if (languageMeta[out.language]) {
-        out.dir = languageMeta[out.language].direction;
+        out.site_dir = languageMeta[out.language].direction;
     }
     else {
-        out.dir = 'ltr';
+        out.site_dir = 'ltr';
     }
     if (isString(theme?.dir)) {
         if (theme.dir === 'rtl')
-            out.dir = 'rtl';
+            out.site_dir = 'rtl';
         else
-            out.dir = 'ltr';
-    }
-    if (isString(page.dir)) {
-        if (page.dir === 'rtl')
-            out.dir = 'rtl';
-        else
-            out.dir = 'ltr';
+            out.site_dir = 'ltr';
     }
     out.cdn = theme?.cdn ?? {};
     out.fonts = theme?.fonts ?? {};
@@ -176,8 +170,8 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.icp_record = theme?.icp_record ?? {};
     out.generated_by_hexo_and_theme_tide = theme?.generated_by_hexo_and_theme_tide ?? true;
     out.image_viewer = theme?.image_viewer ?? {};
-    if(!out.mask_default_title) out.mask_default_title = '';
-    if(!out.btn_unmask_default_title) out.btn_unmask_default_title = '';
+    if (!out.mask_default_title) out.mask_default_title = '';
+    if (!out.btn_unmask_default_title) out.btn_unmask_default_title = '';
     // 小功能
     out.word_counter = theme?.word_counter ?? true;
     out.toc = {};
@@ -192,6 +186,14 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.progress_marker = theme?.progress_marker ?? '';
     // 上为主题配置，下为页面配置。
     out.layout = page?.layout ?? '';
+    if (isString(page.dir)) {
+        if (page.dir === 'rtl')
+            out.page_dir = 'rtl';
+        else
+            out.page_dir = 'ltr';
+    } else {
+        out.page_dir = out.site_dir;
+    }
     out.page_title = page?.title ?? ''; // 有些内置页面此项为空，需单独处理。
     out.page_author = config?.author ?? '';
     if (isArray(page.author)) {

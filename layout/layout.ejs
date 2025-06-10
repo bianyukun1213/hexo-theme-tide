@@ -1,6 +1,6 @@
 <% const tideCtx=get_ctx(site,config,theme,page) %>
 <!DOCTYPE html>
-<html lang="<%= tideCtx.language %>" dir="<%= tideCtx.dir %>">
+<html lang="<%= tideCtx.language %>" dir="<%= tideCtx.site_dir %>">
 
 <head>
   <%- partial('./partials/res/res-head-begin.ejs',{tideCtx}) %>
@@ -77,10 +77,10 @@
           </button>
         </div>
       </header>
-      <main id="tide-main-content" class="un-bg-bg-prim un-flex-1 un-overflow-auto">
+      <main id="tide-main-content" dir="<%= tideCtx.page_dir %>" class="un-bg-bg-prim un-flex-1 un-overflow-auto">
         <%- body %>
-        <%- partial('./partials/floating-widgets.ejs',{tideCtx}) %>
       </main>
+      <%- partial('./partials/floating-widgets.ejs',{tideCtx}) %>
     </div>
   </div>
   <%- partial('./partials/res/res-body-end.ejs',{tideCtx}) %>
