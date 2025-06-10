@@ -93,7 +93,8 @@ export default defineConfig({
                 },
                 th: {
                     background: 'var(--tide-color-table-background-head)',
-                    'border-bottom': '1px var(--tide-color-table-border) solid'
+                    'border-bottom': '1px var(--tide-color-table-border) solid',
+                    'font-weight': '700' // 对应 --fontWeight-bold
                 },
                 'tr:nth-child(2n)': {
                     background: 'var(--tide-color-table-background-even)'

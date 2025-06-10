@@ -471,7 +471,7 @@ img[data-mask]:not([data-unmasked]) {
     @apply un-size-full;
     @apply un-bg-bg-scnd;
     @apply un-text-base;
-    @apply un-text-txt-scnd;
+    @apply un-text-txt-prim;
     @apply un-text-center;
     font-family: var(--tide-font-global);
 }
@@ -499,7 +499,8 @@ img[data-mask]:not([data-unmasked]) {
 
 .tide-image-mask-controls a {
     @apply un-sc-link-default;
-    @apply un-text-txt-scnd!;
+    /* @apply un-text-txt-scnd!; */
+    @apply un-text-txt-prim!;
     @apply un-inline-block;
     @apply un-mb-4;
 }
