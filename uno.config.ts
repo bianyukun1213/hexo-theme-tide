@@ -177,6 +177,6 @@ export default defineConfig({
         }
     },
     safelist: [
-        'un-i-logos-hexo', 'un-mx-1' // 此二项在页脚显示图标时需要。
+        'un-i-logos-hexo', 'un-h-6', 'un-mx-1', 'un-align-bottom' // 此四项在页脚显示图标时需要。
     ]
 });

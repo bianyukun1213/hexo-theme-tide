@@ -22,7 +22,7 @@ navigation:
   btn_settings:
     title: "设置"
   footer:
-    generated_by_hexo_and_theme_tide: '使用<span class="un-i-logos-hexo un-mx-1"></span><a class="un-sc-link-plain un-text-txt-sb!" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 与 <a class="un-sc-link-plain un-text-txt-sb!" href="https://github.com/bianyukun1213/hexo-theme-tide" target="_blank" rel="noopener">hexo-theme-tide</a> 生成'
+    generated_by_hexo_and_theme_tide: '使用<span class="un-i-logos-hexo un-h-6 un-mx-1 un-align-bottom"></span><a class="un-sc-link-plain un-text-txt-sb!" href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> 与 <a class="un-sc-link-plain un-text-txt-sb!" href="https://github.com/bianyukun1213/hexo-theme-tide" target="_blank" rel="noopener">hexo-theme-tide</a> 生成'
 
 floating_widgets:
   btn_top:
