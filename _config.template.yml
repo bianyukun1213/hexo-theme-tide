@@ -21,8 +21,8 @@ cdn:
   pinchzoom_js:
     src: "/js/third-party/pinch-zoom.umd.min.js" # Patched, do not change.
   twikoo_js:
-    src: "https://cdnjs.cloudflare.com/ajax/libs/twikoo/1.6.41/twikoo.all.min.js"
-    integrity: "sha512-cdLlE9nnzcJXQoy9eFuzGcpQXx70rXxmUNpvrvYTAwQv2txLSdvEUs+eILIyKVFBvAoUm9iUR73ewSD3IiGZ/w=="
+    src: "https://cdnjs.cloudflare.com/ajax/libs/twikoo/1.6.44/twikoo.all.min.js"
+    integrity: "sha512-Byh2epeK6/yQP8Xo6Zj3A9H10uGqwvJhh+8LbN8VGRxDlFwPOma54i5lwG2LUJ4QI84WI23NqGmYDy38ru4aNQ=="
     crossorigin: "anonymous"
     referrerpolicy: "no-referrer"
   webmentionjs_js:
@@ -95,7 +95,7 @@ colors:
     secondary: "#00ADB5"
     background_primary: "#151515"
     background_secondary: "#262626"
-    background_sidebar: "#151515"
+    background_sidebar: "#262626"
     text_primary: "#CCCCCC"
     text_secondary: "#8C8C8C"
     text_diminished: "#262626"
