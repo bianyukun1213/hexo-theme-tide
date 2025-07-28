@@ -58,14 +58,14 @@
     <div id="tide-content" class="un-sc-trans-default un-fixed un-size-full un-flex un-flex-col">
       <header id="tide-top-bar" class="un-bg-bg-prim un-h-16 un-flex un-justify-stretch un-items-center un-overflow-auto">
         <div class="un-w-1/4 un-min-w-18 un-h-12">
-          <button id="tide-btn-nav" class="un-sc-btn-default un-relative un-float-start un-size-12 un-ms-4" title="<%= __('navigation.btn_nav.title') %>">
+          <button id="tide-btn-nav" class="un-sc-btn-default un-relative un-float-start un-size-12 un-ms-4" title="<%= __('navigation.btn_nav.title') %>" aria-haspopup="menu" aria-controls="tide-navigation" aria-expanded="false">
             <i id="tide-btn-nav-icon-bars" class="fa-solid fa-bars" aria-hidden="true"></i><i id="tide-btn-nav-icon-close" class="fa-solid fa-close" aria-hidden="true"></i>
           </button>
         </div>
         <div class="un-w-3/4 un-min-w-30 un-h-12">
           <!-- 开启 relative，使用 right 让元素具有符合直觉的 tab index。 -->
           <% if(tideCtx.search){ %>
-          <button id="tide-btn-search" class="un-sc-btn-default un-relative un-float-end un-end-14 un-size-12 un-me-4" title="<%= __('navigation.btn_search.title') %>">
+          <button id="tide-btn-search" class="un-sc-btn-default un-relative un-float-end un-end-14 un-size-12 un-me-4" title="<%= __('navigation.btn_search.title') %>" aria-haspopup="dialog" aria-controls="tide-dialog-search" aria-expanded="false">
             <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
           </button>
           <% } %>

@@ -16,7 +16,7 @@ hexo.extend.filter.register('after_post_render', function (data) {
                     if (imgMatch.includes('data-no-handling'))
                         return imgMatch;
                     const titleMatch = imgAttrs.match(/\btitle="([^"]*)"/);
-                    const modifiedImg = imgMatch.replace('<img', '<img tabindex="0"');
+                    const modifiedImg = imgMatch.replace('<img', '<img tabindex="0" aria-haspopup="dialog" aria-controls="tide-dialog-image-viewer"');
                     if (titleMatch)
                         return `<figure class="${classFigure}">${modifiedImg}<figcaption class="${classCaption}">${titleMatch[1]}</figcaption></figure>`;
                     return `<figure class="${classFigure}">${modifiedImg}</figure>`;
@@ -28,14 +28,14 @@ hexo.extend.filter.register('after_post_render', function (data) {
         data.content = data.content.replace(/<(p|div)\b[^>]*>\s*(<img\b[^>]*?\btitle="([^"]+)"[^>]*?>)\s*<\/\1>/gs, (match, group1, group2, group3) => {
             if (group2.includes('data-no-handling'))
                 return match;
-            const modifiedGroup2 = group2.replace('<img', '<img tabindex="0"');
+            const modifiedGroup2 = group2.replace('<img', '<img tabindex="0" aria-haspopup="dialog" aria-controls="tide-dialog-image-viewer"');
             return `<figure class="${classFigure}">${modifiedGroup2}<figcaption class="${classCaption}">${group3}</figcaption></figure>`;
         });
         // 单图单段落，不含标题。
         data.content = data.content.replace(/<(p|div)\b[^>]*>\s*(<img\b(?![^>]*?\btitle="[^"]+")[^>]*?>)\s*<\/\1>/gs, (match, group1, group2) => {
             if (group2.includes('data-no-handling'))
                 return match;
-            const modifiedGroup2 = group2.replace('<img', '<img tabindex="0"');
+            const modifiedGroup2 = group2.replace('<img', '<img tabindex="0" aria-haspopup="dialog" aria-controls="tide-dialog-image-viewer"');
             return `<figure class="${classFigure}">${modifiedGroup2}</figure>`;
         });
         // 未处理的（不含 tabindex 的）行内图片，添加 inline-figure 包裹和 tabindex，不添加 figcaption。
@@ -43,7 +43,7 @@ hexo.extend.filter.register('after_post_render', function (data) {
         // data.content = data.content.replace(/<img\s+[^>]*>/g, (match) => {
             if (match.includes('data-no-handling'))
                 return match;
-            return `<span class="${classInlineFigure}">${match.replace('<img', '<img tabindex="0"')}</span>`;
+            return `<span class="${classInlineFigure}">${match.replace('<img', '<img tabindex="0" aria-haspopup="dialog" aria-controls="tide-dialog-image-viewer"')}</span>`;
         });
         // 含有遮罩的图片。
         data.content = data.content.replace(/<img\b[^>]*?\bdata-mask(?:="([^"]*)")?[^>]*?>/g, (match, group1) => {

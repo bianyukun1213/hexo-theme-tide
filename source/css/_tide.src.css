@@ -378,8 +378,8 @@ summary:focus,
 }
 
 #tide-floating-widgets[data-extra-widgets] #tide-btn-toc,
-#tide-floating-widgets[data-extra-widgets] #tide-btn-langs,
-#tide-floating-widgets[data-extra-widgets] #tide-btn-interactions {
+#tide-floating-widgets[data-extra-widgets] #tide-btn-interactions
+#tide-floating-widgets[data-extra-widgets] #tide-btn-langs {
     @apply un-block;
 }
 

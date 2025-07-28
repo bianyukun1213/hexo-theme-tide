@@ -3,7 +3,7 @@
     <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
   </button>
   <% if(is_post()&&tideCtx.toc.enable){ %>
-  <button id="tide-btn-toc" class="un-sc-btn-default un-size-12" title="<%= __('floating_widgets.btn_toc.title') %>">
+  <button id="tide-btn-toc" class="un-sc-btn-default un-size-12" title="<%= __('floating_widgets.btn_toc.title') %>" aria-haspopup="dialog" aria-controls="tide-dialog-toc">
     <i class="fa-solid fa-bars-staggered" aria-hidden="true"></i>
   </button>
   <% } %>
@@ -13,7 +13,7 @@
   </button>
   <% } %>
   <% if(!tide_utils().isEmptyObject(tideCtx.languages)){ %>
-  <button id="tide-btn-langs" class="un-sc-btn-default un-size-12" title="<%= __('floating_widgets.btn_langs.title') %>">
+  <button id="tide-btn-langs" class="un-sc-btn-default un-size-12" title="<%= __('floating_widgets.btn_langs.title') %>" aria-haspopup="dialog" aria-controls="tide-dialog-lang-picker">
     <i class="fa-solid fa-language" aria-hidden="true"></i>
   </button>
   <% } %>

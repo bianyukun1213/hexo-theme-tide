@@ -101,11 +101,13 @@ function domContentLoadedHandler(eDomContentLoaded) {
     function toggleSidebar(status) {
         if (status) {
             tideRoot.dataset.sidebarExpanded = '';
+            btnNav.setAttribute('aria-expanded', 'true');
             for (const input of tideSidebarInputs)
                 input.removeAttribute('tabindex');
         }
         else {
             delete tideRoot.dataset.sidebarExpanded;
+            btnNav.setAttribute('aria-expanded', 'false');
             for (const input of tideSidebarInputs)
                 input.setAttribute('tabindex', '-1');
         }
