@@ -5,9 +5,12 @@
     'use strict';
     if (!window.tideInteractions)
       window.tideInteractions = {};
+    const twikooWrapper = document.getElementById('tide-interactions-twikoo-wrapper');
+    const twikooEle = document.getElementById('tide-interactions-twikoo');
     window.tideInteractions.twikoo = {
-      path: document.getElementById('tide-interactions-twikoo').dataset.path,
-      lang: document.getElementById('tide-interactions-twikoo').dataset.lang,
+      path: twikooEle.dataset.path,
+      lang: twikooEle.dataset.lang,
+      twikooInited: false,
       load: function() {
         // https://github.com/twikoojs/twikoo/blob/main/src/client/utils/i18n/index.js
         const twikooLangs = {
@@ -26,10 +29,8 @@
         let pageLang = getPageLang().toLowerCase();
         if (!(pageLang in twikooLangs))
           pageLang = 'en';
-        if (typeof this.load.twikooInited === 'undefined')
-          this.load.twikooInited = false;
-        document.getElementById('tide-interactions-twikoo-wrapper').style.display = 'block';
-        if (this.load.twikooInited)
+        twikooWrapper.style.display = 'block';
+        if (this.twikooInited)
           return;
         twikoo.init({
           envId: clientCtx.interactions.twikoo.env_id,
@@ -39,11 +40,11 @@
           path: this.path,
           lang: this.lang
         }).then(() => {
-          this.load.twikooInited = true;
+          this.twikooInited = true;
         });
       },
       unload: function() {
-        document.getElementById('tide-interactions-twikoo-wrapper').style.display = 'none';
+        twikooWrapper.style.display = 'none';
       }
     };
   </script>

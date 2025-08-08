@@ -65,19 +65,67 @@ class TideSettings {
     }
 }
 
-function systemColorSchemeChanged() {
-    TideSettings.colorScheme = 'SYSTEM';
-    delete document.documentElement.dataset.colorScheme;
+document.documentElement.addEventListener('colorschemechange', function (e) {
+    if (e.detail.alignedWithSystem) {
+        TideSettings.colorScheme = 'SYSTEM';
+        delete document.documentElement.dataset.colorScheme;
+    } else if (e.detail.newValue === 'dark') {
+        TideSettings.colorScheme = 'DARK';
+        document.documentElement.dataset.colorScheme = 'dark';
+    } else {
+        TideSettings.colorScheme = 'LIGHT';
+        document.documentElement.dataset.colorScheme = 'light';
+    }
+});
+
+function systemColorSchemeChanged(matches) {
+    document.documentElement.dispatchEvent(new CustomEvent('colorschemechange', {
+        detail: {
+            newValue: matches,
+            alignedWithSystem: true
+        }
+    }));
 }
 
 const darkModePreference = window.matchMedia('(prefers-color-scheme: dark)');
-darkModePreference.addEventListener('change', e => e.matches && systemColorSchemeChanged());
+darkModePreference.addEventListener('change', e => e.matches && systemColorSchemeChanged('dark'));
 const lightModePreference = window.matchMedia('(prefers-color-scheme: light)');
-lightModePreference.addEventListener('change', e => e.matches && systemColorSchemeChanged());
-if (TideSettings.colorScheme === 'LIGHT')
-    document.documentElement.dataset.colorScheme = 'light';
-else if (TideSettings.colorScheme === 'DARK')
-    document.documentElement.dataset.colorScheme = 'dark';
+lightModePreference.addEventListener('change', e => e.matches && systemColorSchemeChanged('light'));
+if (TideSettings.colorScheme === 'LIGHT') {
+    document.documentElement.dispatchEvent(new CustomEvent('colorschemechange', {
+        detail: {
+            newValue: 'light',
+            alignedWithSystem: false
+        }
+    }));
+}
+else if (TideSettings.colorScheme === 'DARK') {
+    document.documentElement.dispatchEvent(new CustomEvent('colorschemechange', {
+        detail: {
+            newValue: 'dark',
+            alignedWithSystem: false
+        }
+    }));
+}
+
+document.documentElement.addEventListener('forcedcolorschange', function (e) {
+    // 强制颜色（高对比度）下取消手动设置的颜色方案。
+    if (e.detail.active) {
+        TideSettings.colorScheme = 'SYSTEM';
+        delete document.documentElement.dataset.colorScheme;
+    }
+});
+
+function handleForcedColorsChange(matches) {
+    document.documentElement.dispatchEvent(new CustomEvent('forcedcolorschange', {
+        detail: {
+            active: matches
+        }
+    }));
+}
+
+const forcedColorsQuery = window.matchMedia('(forced-colors: active)');
+forcedColorsQuery.addEventListener('change', e => handleForcedColorsChange(e.matches));
 
 function domContentLoadedHandler(eDomContentLoaded) {
     const tideRoot = document.getElementById('tide-root');
@@ -171,19 +219,35 @@ function domContentLoadedHandler(eDomContentLoaded) {
         }
         if (currentScheme === 'LIGHT') {
             if (darkModePreference.matches) {
-                TideSettings.colorScheme = 'SYSTEM';
-                delete document.documentElement.dataset.colorScheme;
+                document.documentElement.dispatchEvent(new CustomEvent('colorschemechange', {
+                    detail: {
+                        newValue: 'dark',
+                        alignedWithSystem: true
+                    }
+                }));
             } else {
-                TideSettings.colorScheme = 'DARK';
-                document.documentElement.dataset.colorScheme = 'dark';
+                document.documentElement.dispatchEvent(new CustomEvent('colorschemechange', {
+                    detail: {
+                        newValue: 'dark',
+                        alignedWithSystem: false
+                    }
+                }));
             }
         } else if (currentScheme === 'DARK') {
             if (lightModePreference.matches) {
-                TideSettings.colorScheme = 'SYSTEM';
-                delete document.documentElement.dataset.colorScheme;
+                document.documentElement.dispatchEvent(new CustomEvent('colorschemechange', {
+                    detail: {
+                        newValue: 'light',
+                        alignedWithSystem: true
+                    }
+                }));
             } else {
-                TideSettings.colorScheme = 'LIGHT';
-                document.documentElement.dataset.colorScheme = 'light';
+                document.documentElement.dispatchEvent(new CustomEvent('colorschemechange', {
+                    detail: {
+                        newValue: 'light',
+                        alignedWithSystem: false
+                    }
+                }));
             }
         }
     });

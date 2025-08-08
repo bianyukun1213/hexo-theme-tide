@@ -1,6 +1,11 @@
 <div id="tide-interactions-giscus-wrapper" style="display:none;">
-  <div id="tide-interactions-giscus" class="giscus"></div>
-  <% let params=Object.assign(parse_cdn_config('giscus_js',tideCtx.cdn),{'data-theme':'preferred_color_scheme','data-lang':tideCtx.language,defer:true}) %>
+  <% const giscusCdn=parse_cdn_config('giscus_js',tideCtx.cdn) %>
+  <% let iframeTargetOrigin=giscusCdn.src.slice(0,giscusCdn.src.lastIndexOf('/')) %>
+  <% if(!iframeTargetOrigin.startsWith('http://')&&!iframeTargetOrigin.startsWith('https://')){ %>
+  <% iframeTargetOrigin=undefined %>
+  <% } %>
+  <div id="tide-interactions-giscus" class="giscus" data-iframe-target-origin="<%= iframeTargetOrigin %>"></div>
+  <% let params=Object.assign(giscusCdn,{'data-theme':'preferred_color_scheme','data-lang':tideCtx.language,defer:true}) %>
   <% const config=tideCtx.interactions.giscus %>
   <% Object.assign(params,{'data-repo':config.repo,'data-repo-id':config.repo_id,'data-category':config.category,'data-category-id':config.category_id,'data-mapping':config.mapping,'data-term':config.term,'data-input-position':config.input_position}) %>
   <% if(config.strict){ %>
@@ -23,17 +28,58 @@
     'use strict';
     if (!window.tideInteractions)
       window.tideInteractions = {};
+    const giscusWrapper = document.getElementById('tide-interactions-giscus-wrapper');
+    const giscusEle = document.getElementById('tide-interactions-giscus');
+    const iframeTargetOrigin = giscusEle.dataset.iframeTargetOrigin;
+
+    function handleGiscusMessage(event) {
+      const validOrigin = iframeTargetOrigin ?? window.location.origin;
+      if (event.origin !== validOrigin) return;
+      if (!(typeof event.data === 'object' && event.data.giscus)) return;
+      const giscusData = event.data.giscus;
+      // 首次 resize 认为是加载完成。
+      if (giscusData.resizeHeight && !window.tideInteractions.giscus.giscusInited) {
+        const currentColorScheme = document.documentElement.dataset.colorScheme;
+        if (currentColorScheme)
+          window.tideInteractions.giscus.setTheme(currentColorScheme);
+        else
+          window.tideInteractions.giscus.setTheme('preferred_color_scheme');
+        window.tideInteractions.giscus.giscusInited = true;
+      }
+    }
     window.tideInteractions.giscus = {
-      // todo: 适配 color scheme 切换
+      giscusInited: false,
+      setTheme: function(theme) {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({
+          giscus: {
+            setConfig: {
+              theme: theme
+            }
+          }
+        }, iframeTargetOrigin);
+      },
       load: function() {
-        document.getElementById('tide-interactions-giscus-wrapper').style.display = 'block';
+        window.addEventListener('message', handleGiscusMessage);
+        giscusWrapper.style.display = 'block';
       },
       unload: function() {
-        document.getElementById('tide-interactions-giscus-wrapper').style.display = 'none';
+        giscusWrapper.style.display = 'none';
+        window.removeEventListener('message', handleGiscusMessage);
       },
       i18n: function(key) {
         return clientCtx.interactions.giscus.i18n[key] || key;
       }
     };
+    document.documentElement.addEventListener('colorschemechange', function(e) {
+      if (e.detail.alignedWithSystem) {
+        window.tideInteractions.giscus.setTheme('preferred_color_scheme');
+      } else if (e.detail.newValue === 'dark') {
+        window.tideInteractions.giscus.setTheme('dark');
+      } else {
+        window.tideInteractions.giscus.setTheme('light');
+      }
+    });
   </script>
 </div>

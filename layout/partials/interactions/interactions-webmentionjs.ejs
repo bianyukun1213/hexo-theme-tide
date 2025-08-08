@@ -18,12 +18,13 @@
     'use strict';
     if (!window.tideInteractions)
       window.tideInteractions = {};
+    const webmentionjsWrapper = document.getElementById('tide-interactions-webmentionjs-wrapper');
     window.tideInteractions.webmentionjs = {
       load: function() {
-        document.getElementById('tide-interactions-webmentionjs-wrapper').style.display = 'block';
+        webmentionjsWrapper.style.display = 'block';
       },
       unload: function() {
-        document.getElementById('tide-interactions-webmentionjs-wrapper').style.display = 'none';
+        webmentionjsWrapper.style.display = 'none';
       },
       i18n: function(key) {
         return clientCtx.interactions.webmentionjs.i18n[key] || key;

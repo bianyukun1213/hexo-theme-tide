@@ -378,8 +378,7 @@ summary:focus,
 }
 
 #tide-floating-widgets[data-extra-widgets] #tide-btn-toc,
-#tide-floating-widgets[data-extra-widgets] #tide-btn-interactions
-#tide-floating-widgets[data-extra-widgets] #tide-btn-langs {
+#tide-floating-widgets[data-extra-widgets] #tide-btn-interactions #tide-floating-widgets[data-extra-widgets] #tide-btn-langs {
     @apply un-block;
 }
 
@@ -614,4 +613,9 @@ pre:has(code),
     .tide-dialog-mask {
         @apply un-bg-black;
     }
+
+    /* 没用。 */
+    /* iframe.giscus-frame {
+        forced-color-adjust: none;
+    } */
 }
