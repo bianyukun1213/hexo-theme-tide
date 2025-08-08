@@ -115,6 +115,8 @@ dialog_lang_picker:
 
 interactions:
   title: "Interactions"
+  giscus:
+    name: "giscus"
   twikoo:
     name: "Twikoo"
   webmentionjs:

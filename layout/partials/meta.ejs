@@ -46,3 +46,6 @@
 <%- meta_generator_tide() %>
 <% } %>
 <%- meta_tide_client_ctx(tideCtx) %>
+<% if(tideCtx.interactions&&!tideCtx.page_encrypted&&Object.prototype.hasOwnProperty.call(tideCtx.interactions,'giscus')){ %>
+<meta name="giscus:backlink" content="<%= page.permalink %>">
+<% } %>

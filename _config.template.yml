@@ -20,6 +20,9 @@ cdn:
     href: "/css/third-party/webmention.css" # Patched, do not change.
   pinchzoom_js:
     src: "/js/third-party/pinch-zoom.umd.min.js" # Patched, do not change.
+  giscus_js:
+    src: "https://giscus.app/client.js"
+    crossorigin: "anonymous"
   twikoo_js:
     src: "https://cdnjs.cloudflare.com/ajax/libs/twikoo/1.6.44/twikoo.all.min.js"
     integrity: "sha512-Byh2epeK6/yQP8Xo6Zj3A9H10uGqwvJhh+8LbN8VGRxDlFwPOma54i5lwG2LUJ4QI84WI23NqGmYDy38ru4aNQ=="
@@ -185,7 +188,18 @@ image_viewer:
   btn_unmask_default_title: "Click here to reveal"
 
 interactions:
-  enable: ["twikoo", "webmentionjs"]
+  enable: ["giscus", "twikoo", "webmentionjs"]
+  giscus:
+    repo: ""
+    repo_id: ""
+    category: ""
+    category_id: ""
+    mapping: "pathname"
+    term: ""
+    strict: false
+    reactions_enabled: true
+    emit_metadata: false
+    input_position: "bottom"
   twikoo:
     env_id: ""
     region: ""

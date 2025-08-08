@@ -1,0 +1,39 @@
+<div id="tide-interactions-giscus-wrapper" style="display:none;">
+  <div id="tide-interactions-giscus" class="giscus"></div>
+  <% let params=Object.assign(parse_cdn_config('giscus_js',tideCtx.cdn),{'data-theme':'preferred_color_scheme','data-lang':tideCtx.language,defer:true}) %>
+  <% const config=tideCtx.interactions.giscus %>
+  <% Object.assign(params,{'data-repo':config.repo,'data-repo-id':config.repo_id,'data-category':config.category,'data-category-id':config.category_id,'data-mapping':config.mapping,'data-term':config.term,'data-input-position':config.input_position}) %>
+  <% if(config.strict){ %>
+  <% params['data-strict']='1' %>
+  <% }else{ %>
+  <% params['data-strict']='0' %>
+  <% } %>
+  <% if(config.reactions_enabled){ %>
+  <% params['data-reactions-enabled']='1' %>
+  <% }else{ %>
+  <% params['data-reactions-enabled']='0' %>
+  <% } %>
+  <% if(config.emit_metadata){ %>
+  <% params['data-emit-metadata']='1' %>
+  <% }else{ %>
+  <% params['data-emit-metadata']='0' %>
+  <% } %>
+  <%- js(params) %>
+  <script>
+    'use strict';
+    if (!window.tideInteractions)
+      window.tideInteractions = {};
+    window.tideInteractions.giscus = {
+      // todo: 适配 color scheme 切换
+      load: function() {
+        document.getElementById('tide-interactions-giscus-wrapper').style.display = 'block';
+      },
+      unload: function() {
+        document.getElementById('tide-interactions-giscus-wrapper').style.display = 'none';
+      },
+      i18n: function(key) {
+        return clientCtx.interactions.giscus.i18n[key] || key;
+      }
+    };
+  </script>
+</div>

@@ -1,11 +1,13 @@
 <div id="tide-interactions-twikoo-wrapper" dir="ltr" style="display:none;">
-  <div id="tide-interactions-twikoo"></div>
+  <div id="tide-interactions-twikoo" data-path="<%= url_for(page.path) %>" data-lang="<%= tideCtx.language %>"></div>
   <%- js(Object.assign(parse_cdn_config('twikoo_js',tideCtx.cdn),{defer:true})) %>
   <script>
     'use strict';
     if (!window.tideInteractions)
       window.tideInteractions = {};
     window.tideInteractions.twikoo = {
+      path: document.getElementById('tide-interactions-twikoo').dataset.path,
+      lang: document.getElementById('tide-interactions-twikoo').dataset.lang,
       load: function() {
         // https://github.com/twikoojs/twikoo/blob/main/src/client/utils/i18n/index.js
         const twikooLangs = {
@@ -33,8 +35,9 @@
           envId: clientCtx.interactions.twikoo.env_id,
           el: '#tide-interactions-twikoo',
           region: clientCtx.interactions.twikoo.region,
-          path: window.location.pathname,
-          lang: pageLang
+          // path: window.location.pathname,
+          path: this.path,
+          lang: this.lang
         }).then(() => {
           this.load.twikooInited = true;
         });

@@ -276,12 +276,16 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
                 out.syndications.push(url);
     out.interactions = {};
     if (isArray(page.interactions)) {
+        if (page.interactions.includes('giscus'))
+            out.interactions.giscus = theme?.interactions?.giscus ?? {};
         if (page.interactions.includes('twikoo'))
             out.interactions.twikoo = theme?.interactions?.twikoo ?? {};
         if (page.interactions.includes('webmentionjs'))
             out.interactions.webmentionjs = theme?.interactions?.webmentionjs ?? {};
     }
     else if (page.interactions === true) {
+        if (theme?.interactions?.enable?.includes('giscus'))
+            out.interactions.giscus = theme.interactions?.giscus ?? {};
         if (theme?.interactions?.enable?.includes('twikoo'))
             out.interactions.twikoo = theme.interactions?.twikoo ?? {};
         if (theme?.interactions?.enable?.includes('webmentionjs'))
@@ -291,6 +295,8 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
         out.interactions = false;
     }
     else if (isArray(theme?.interactions?.enable)) {
+        if (theme.interactions.enable.includes('giscus'))
+            out.interactions.giscus = theme.interactions?.giscus ?? {};
         if (theme.interactions.enable.includes('twikoo'))
             out.interactions.twikoo = theme.interactions?.twikoo ?? {};
         if (theme.interactions.enable.includes('webmentionjs'))
@@ -298,6 +304,25 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     }
     else {
         out.interactions = false;
+    }
+    if (out.interactions.giscus) {
+        if (!isString(out.interactions.giscus.repo))
+            out.interactions.giscus.repo = '';
+        if (!isString(out.interactions.giscus.repo_id))
+            out.interactions.giscus.repo_id = '';
+        if (!isString(out.interactions.giscus.category))
+            out.interactions.giscus.category = '';
+        if (!isString(out.interactions.giscus.category_id))
+            out.interactions.giscus.category_id = '';
+        if (!isString(out.interactions.giscus.mapping))
+            out.interactions.giscus.mapping = 'pathname';
+        if (!isString(out.interactions.giscus.term))
+            out.interactions.giscus.term = '';
+        out.interactions.giscus.strict = !!out.interactions.giscus.strict;
+        out.interactions.giscus.reactions_enabled = !!out.interactions.giscus.reactions_enabled;
+        out.interactions.giscus.emit_metadata = !!out.interactions.giscus.emit_metadata;
+        if (!isString(out.interactions.giscus.input_position))
+            out.interactions.giscus.input_position = 'bottom';
     }
     if (out.interactions.twikoo) {
         if (!isString(out.interactions.twikoo.env_id))

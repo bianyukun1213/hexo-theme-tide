@@ -13,7 +13,9 @@
   <div id="tide-active-interactions">
     <% for(const interKey in tideCtx.interactions){ %>
     <% if(Object.prototype.hasOwnProperty.call(tideCtx.interactions,interKey)){ %>
-    <% if(interKey==='twikoo'){ %>
+    <% if(interKey==='giscus'){ %>
+    <%- partial('./interactions-giscus.ejs',{tideCtx}) %>
+    <% }else if(interKey==='twikoo'){ %>
     <%- partial('./interactions-twikoo.ejs',{tideCtx}) %>
     <% }else if(interKey==='webmentionjs'){ %>
     <%- partial('./interactions-webmentionjs.ejs',{tideCtx}) %>

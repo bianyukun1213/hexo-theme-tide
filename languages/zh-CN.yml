@@ -115,6 +115,8 @@ dialog_lang_picker:
 
 interactions:
   title: "互动"
+  giscus:
+    name: "giscus"
   twikoo:
     name: "Twikoo"
   webmentionjs:
