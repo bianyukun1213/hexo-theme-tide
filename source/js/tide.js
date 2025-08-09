@@ -113,6 +113,21 @@ document.documentElement.addEventListener('forcedcolorschange', function (e) {
     if (e.detail.active) {
         TideSettings.colorScheme = 'SYSTEM';
         delete document.documentElement.dataset.colorScheme;
+        if (darkModePreference.matches) {
+            document.documentElement.dispatchEvent(new CustomEvent('colorschemechange', {
+                detail: {
+                    newValue: 'dark',
+                    alignedWithSystem: true
+                }
+            }));
+        } else if (lightModePreference.matches) {
+            document.documentElement.dispatchEvent(new CustomEvent('colorschemechange', {
+                detail: {
+                    newValue: 'light',
+                    alignedWithSystem: true
+                }
+            }));
+        }
     }
 });
 
