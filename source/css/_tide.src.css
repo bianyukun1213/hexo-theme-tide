@@ -603,6 +603,7 @@ img[data-mask]:not([data-unmasked]) {
 
 #tide-sidebar,
 .tide-dialog-container,
+.tide-side-panel,
 iframe,
 pre:has(code),
 .gist {
