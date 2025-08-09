@@ -67,7 +67,8 @@ export default defineConfig({
                     // 'font-style': 'italic',
                     background: 'var(--tide-color-background-secondary)',
                     'border-left': 'none', //  取消 prose 样式。
-                    'border-inline-start': '4px var(--tide-color-primary) solid'
+                    'border-inline-start': '4px var(--tide-color-primary) solid',
+                    outline: '1px transparent solid'
                 },
                 'blockquote *:first-child': {
                     'margin-top': '0'
