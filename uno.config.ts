@@ -50,8 +50,8 @@ export default defineConfig({
                     'white-space': 'normal',
                     padding: '0.25em',
                     'background': 'var(--tide-color-background-secondary)',
+                    color: 'var(--tide-color-code-inline)',
                     'border-radius': '0.25em'
-                    // color: 'var(--tide-color-code-inline)'
                 },
                 'code:not([class])::before, code:not([class])::after': {
                     content: '\"\"'

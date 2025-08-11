@@ -78,9 +78,9 @@ meta_links:
 colors:
   light:
     primary: "#1F5297"
-    secondary: "#0A97B0"
+    secondary: "#028090"
     background_primary: "#FFFFFF"
-    background_secondary: "#F1F1F1"
+    background_secondary: "#EAEAEA"
     background_sidebar: "#1F5297"
     text_primary: "#323739"
     text_secondary: "#5C6669"
@@ -88,11 +88,11 @@ colors:
     text_sidebar: "#FFFFFF"
     link: "#1F5297"
     link_hover: "#1F5297"
-    link_visited: "#0A97B0"
-    code_inline: "#1F5297"
+    link_visited: "#028090"
+    code_inline: "#323739"
     table_border: "#E5E7EB"
-    table_background_head: "#F1F1F1"
-    table_background_even: "#F5F5F5"
+    table_background_head: "#EAEAEA"
+    table_background_even: "#F1F1F1"
   dark:
     primary: "#CCCCCC"
     secondary: "#00ADB5"
@@ -103,9 +103,9 @@ colors:
     text_secondary: "#8C8C8C"
     text_diminished: "#262626"
     text_sidebar: "#CCCCCC"
-    link: "#F26B6B"
-    link_hover: "#F26B6B"
-    link_visited: "#A0153E"
+    link: "#70B1FF"
+    link_hover: "#70B1FF"
+    link_visited: "#81C3D7"
     code_inline: "#CCCCCC"
     table_border: "#262626"
     table_background_head: "#202020"
@@ -113,10 +113,10 @@ colors:
 
 focus:
   light:
-    outline: "2px #E36209 solid"
+    outline: "2px #E36209 dashed"
     outline_offset: "4px"
   dark:
-    outline: "2px #E36209 solid"
+    outline: "2px #E36209 dashed"
     outline_offset: "4px"
 
 sidebar_background_image:
