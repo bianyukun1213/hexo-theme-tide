@@ -90,7 +90,7 @@ colors:
     link_hover: "#1F5297"
     link_visited: "#028090"
     code_inline: "#323739"
-    table_border: "#E5E7EB"
+    table_border: "#E3E3E3"
     table_background_head: "#EAEAEA"
     table_background_even: "#F1F1F1"
   dark:
