@@ -30,7 +30,6 @@
         --tide-color-text-secondary: <TIDE_COLOR_TEXT_SECONDARY_LIGHT>;
         --tide-color-text-diminished: <TIDE_COLOR_TEXT_DIMINISHED_LIGHT>;
         --tide-color-text-sidebar: <TIDE_COLOR_TEXT_SIDEBAR_LIGHT>;
-        --tide-color-focused-outline: <TIDE_COLOR_FOCUSED_OUTLINE_LIGHT>;
         --tide-color-link: <TIDE_COLOR_LINK_LIGHT>;
         --tide-color-link-hover: <TIDE_COLOR_LINK_HOVER_LIGHT>;
         --tide-color-link-visited: <TIDE_COLOR_LINK_VISITED_LIGHT>;
@@ -151,7 +150,7 @@
     --tide-color-link: <TIDE_COLOR_LINK_DARK>;
     --tide-color-link-hover: <TIDE_COLOR_LINK_HOVER_DARK>;
     --tide-color-link-visited: <TIDE_COLOR_LINK_VISITED_DARK>;
-    --tide-color-code: <TIDE_COLOR_CODE_DARK>;
+    --tide-color-code: <TIDE_COLOR_CODE_INLINE_DARK>;
     --tide-color-table-border: <TIDE_COLOR_TABLE_BORDER_DARK>;
     --tide-color-table-background-head: <TIDE_COLOR_TABLE_BACKGROUND_HEAD_DARK>;
     --tide-color-table-background-even: <TIDE_COLOR_TABLE_BACKGROUND_EVEN_DARK>;
