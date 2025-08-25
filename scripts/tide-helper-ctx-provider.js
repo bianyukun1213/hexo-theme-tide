@@ -276,31 +276,49 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
                 out.syndications.push(url);
     out.interactions = {};
     if (isArray(page.interactions)) {
-        if (page.interactions.includes('giscus'))
+        if (page.interactions.includes('giscus')) {
             out.interactions.giscus = theme?.interactions?.giscus ?? {};
-        if (page.interactions.includes('twikoo'))
+            out.interactions.giscus.index = page.interactions.indexOf('giscus');
+        }
+        if (page.interactions.includes('twikoo')) {
             out.interactions.twikoo = theme?.interactions?.twikoo ?? {};
-        if (page.interactions.includes('webmentionjs'))
+            out.interactions.twikoo.index = page.interactions.indexOf('twikoo');
+        }
+        if (page.interactions.includes('webmentionjs')) {
             out.interactions.webmentionjs = theme?.interactions?.webmentionjs ?? {};
+            out.interactions.webmentionjs.index = page.interactions.indexOf('webmentionjs');
+        }
     }
     else if (page.interactions === true) {
-        if (theme?.interactions?.enable?.includes('giscus'))
+        if (theme?.interactions?.enable?.includes('giscus')) {
             out.interactions.giscus = theme.interactions?.giscus ?? {};
-        if (theme?.interactions?.enable?.includes('twikoo'))
+            out.interactions.giscus.index = theme.interactions.enable.indexOf('giscus');
+        }
+        if (theme?.interactions?.enable?.includes('twikoo')) {
             out.interactions.twikoo = theme.interactions?.twikoo ?? {};
-        if (theme?.interactions?.enable?.includes('webmentionjs'))
+            out.interactions.twikoo.index = theme.interactions.enable.indexOf('twikoo');
+        }
+        if (theme?.interactions?.enable?.includes('webmentionjs')) {
             out.interactions.webmentionjs = theme.interactions?.webmentionjs ?? {};
+            out.interactions.webmentionjs.index = theme.interactions.enable.indexOf('webmentionjs');
+        }
     }
     else if (page.interactions === false) {
         out.interactions = false;
     }
     else if (isArray(theme?.interactions?.enable)) {
-        if (theme.interactions.enable.includes('giscus'))
+        if (theme.interactions.enable.includes('giscus')) {
             out.interactions.giscus = theme.interactions?.giscus ?? {};
-        if (theme.interactions.enable.includes('twikoo'))
+            out.interactions.giscus.index = theme.interactions.enable.indexOf('giscus');
+        }
+        if (theme.interactions.enable.includes('twikoo')){
             out.interactions.twikoo = theme.interactions?.twikoo ?? {};
-        if (theme.interactions.enable.includes('webmentionjs'))
+            out.interactions.twikoo.index = theme.interactions.enable.indexOf('twikoo');
+        }
+        if (theme.interactions.enable.includes('webmentionjs')){
             out.interactions.webmentionjs = theme.interactions?.webmentionjs ?? {};
+            out.interactions.webmentionjs.index = theme.interactions.enable.indexOf('webmentionjs');
+        }
     }
     else {
         out.interactions = false;

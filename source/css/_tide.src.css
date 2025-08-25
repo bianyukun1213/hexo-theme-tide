@@ -176,6 +176,12 @@ button {
     -webkit-tap-highlight-color: transparent;
 }
 
+/* Safari */
+input,
+select {
+    border-radius: 0;
+}
+
 .tide-broken-img {
     @apply un-min-w-32 un-min-h-32;
 }

@@ -3,7 +3,8 @@
     <h2 class="un-inline-block un-align-middle un-m-0 un-me-4 un-text-2xl un-font-bold"><label for="tide-select-active-interactions"><%= __('interactions.title') %></label></h2>
     <!-- 类后面和 ejs 标记间保留空格，让 unocss 能够匹配到。 -->
     <select id="tide-select-active-interactions" name="tide-active-interactions" class="un-sc-select-plain un-align-bottom <%= Object.keys(tideCtx.interactions).length<=1?'un-hidden':''%>">
-      <% for(const interKey in tideCtx.interactions){ %>
+      <% const interKeys=Object.keys(tideCtx.interactions).sort((k1,k2)=>tideCtx.interactions[k1].index-tideCtx.interactions[k2].index) %>
+      <% for(const interKey of interKeys){ %>
       <% if(Object.prototype.hasOwnProperty.call(tideCtx.interactions,interKey)){ %>
       <option value="<%= interKey %>"><%= __(`interactions.${interKey}.name`) %></option>
       <% } %>
@@ -11,7 +12,7 @@
     </select>
   </div>
   <div id="tide-active-interactions">
-    <% for(const interKey in tideCtx.interactions){ %>
+    <% for(const interKey of interKeys){ %>
     <% if(Object.prototype.hasOwnProperty.call(tideCtx.interactions,interKey)){ %>
     <% if(interKey==='giscus'){ %>
     <%- partial('./interactions-giscus.ejs',{tideCtx}) %>
