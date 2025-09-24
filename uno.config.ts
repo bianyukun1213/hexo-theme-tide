@@ -16,7 +16,7 @@ export default defineConfig({
             selectorName: 'un-prose',
             cssExtend: {
                 a: {
-                    transition: 'transform ease-in-out 0.2s',
+                    'font-weight': 'unset',
                     'text-decoration': 'underline'
                 },
                 'a:link': {
@@ -32,6 +32,7 @@ export default defineConfig({
                 },
                 hr: {
                     margin: '1em 0',
+                    'border-color': 'unset',
                     border: '1px var(--tide-color-text-diminished) solid'
                 },
                 // 'ul li': {
@@ -59,12 +60,16 @@ export default defineConfig({
                 // 代码块锁定 ltr。
                 'pre:has(code)': {
                     direction: 'ltr',
-                    'border-radius': 0
+                    'border-radius': 0,
+                    'font-weight': 'unset',
+                    'padding-inline-start': 0,
+                    'padding-inline-end': 0
                 },
                 blockquote: {
                     padding: '0.5em 1em',
-                    // margin: '1em 0',
-                    // 'font-style': 'italic',
+                    margin: '1em 0',
+                    'font-weight': 'unset',
+                    'font-style': 'italic',
                     background: 'var(--tide-color-background-secondary)',
                     'border-left': 'none', //  取消 prose 样式。
                     'border-inline-start': '4px var(--tide-color-primary) solid',
@@ -78,8 +83,11 @@ export default defineConfig({
                 },
                 table: {
                     display: 'table',
+                    width: 'unset',
                     'min-width': '100%',
                     margin: 0,
+                    'font-size': 'unset',
+                    'line-height': 'unset',
                     'table-layout': 'auto',
                     'white-space': 'nowrap',
                     'border-collapse': 'separate',
@@ -87,12 +95,17 @@ export default defineConfig({
                     border: '1px var(--tide-color-table-border) solid'
                 },
                 'td,th': {
+                    'padding-inline-start': 0,
+                    'padding-inline-end': 0,
+                    padding: '.625em 1em',
                     'border-inline-start': '1px var(--tide-color-table-border) solid'
                 },
                 'td:first-child,th:first-child': {
                     'border-inline-start': 'none'
                 },
                 th: {
+                    'text-align': 'center',
+                    'vertical-align': 'unset',
                     background: 'var(--tide-color-table-background-head)',
                     'border-bottom': '1px var(--tide-color-table-border) solid',
                     'font-weight': '700' // 对应 --fontWeight-bold
@@ -105,6 +118,7 @@ export default defineConfig({
                     'text-align': 'center'
                 },
                 figcaption: {
+                    'margin-top': '0.25em',
                     'text-align': 'center',
                     'overflow-wrap': 'break-word'
                 },
