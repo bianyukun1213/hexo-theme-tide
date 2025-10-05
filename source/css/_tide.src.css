@@ -165,6 +165,8 @@
     /* Wind 4 提供了 --spacing */
     --tide-unocss-spacing: var(--spacing);
     --tide-description-marker: <TIDE_DESCRIPTION_MARKER>;
+    --tide-active-item-marker-begin: <TIDE_ACTIVE_ITEM_MARKER_BEGIN>;
+    --tide-active-item-marker-end: <TIDE_ACTIVE_ITEM_MARKER_END>;
     --tide-font-global: <TIDE_FONT_GLOBAL>;
     --tide-font-site-title: <TIDE_FONT_SITE_TITLE>;
     --tide-font-site-subtitle: <TIDE_FONT_SITE_SUBTITLE>;
@@ -322,6 +324,18 @@ summary:focus,
 
 .tide-toc-link:hover {
     @apply un-font-bold;
+}
+
+.tide-toc-item-active .tide-toc-link {
+    @apply un-font-bold;
+}
+
+.tide-toc-item-active .tide-toc-link::before {
+    content: var(--tide-active-item-marker-begin);
+}
+
+.tide-toc-item-active .tide-toc-link::after {
+    content: var(--tide-active-item-marker-end);
 }
 
 #tide-search-box::-webkit-search-cancel-button {

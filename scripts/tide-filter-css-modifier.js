@@ -13,6 +13,10 @@ hexo.extend.filter.register('after_render:css', function (cssSrc, local) {
     if (local.path.includes('tide.css')) {
         const descriptionMarker = hexo.theme?.config?.description_marker ?? ': ';
         cssSrc = cssSrc.replace('<TIDE_DESCRIPTION_MARKER>', `"${descriptionMarker.replace(new RegExp('"', 'g'), '\\"')}"`);
+        const activeItemMarkerBegin = hexo.theme?.config?.active_item_marker_begin ?? ': ';
+        cssSrc = cssSrc.replace('<TIDE_ACTIVE_ITEM_MARKER_BEGIN>', `"${activeItemMarkerBegin.replace(new RegExp('"', 'g'), '\\"')}"`);
+        const activeItemMarkerEnd = hexo.theme?.config?.active_item_marker_end ?? ': ';
+        cssSrc = cssSrc.replace('<TIDE_ACTIVE_ITEM_MARKER_END>', `"${activeItemMarkerEnd.replace(new RegExp('"', 'g'), '\\"')}"`);
         const colors = hexo.theme?.config?.colors ?? {};
         for (const schemeKey in colors) {
             if (Object.prototype.hasOwnProperty.call(colors, schemeKey)) {

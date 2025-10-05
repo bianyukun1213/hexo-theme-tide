@@ -295,6 +295,7 @@ function domContentLoadedHandler(eDomContentLoaded) {
     btnTop.addEventListener('click', () => {
         tideGlobal.setProgrammaticScroll();
         window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        [...document.getElementsByClassName('tide-toc-item-active')].forEach(e => e.classList.toggle('tide-toc-item-active'));
         tideMainContent.scrollTo({ top: 0 });
     });
     if (btnToc) {
@@ -326,7 +327,7 @@ function domContentLoadedHandler(eDomContentLoaded) {
                 const id = getCurrentSectionId();
                 history.replaceState(null, '', '#' + id);
                 tocLinks.forEach(link =>
-                    link.classList.toggle('active', link.getAttribute('href') === '#' + id)
+                    link.parentElement.classList.toggle('tide-toc-item-active', link.getAttribute('href') === '#' + encodeURI(id))
                 );
             }));
         }
@@ -342,6 +343,7 @@ function domContentLoadedHandler(eDomContentLoaded) {
             tideGlobal.setProgrammaticScroll();
             window.location.hash = '';
             window.location.hash = 'tide-page-interactions';
+            [...document.getElementsByClassName('tide-toc-item-active')].forEach(e => e.classList.toggle('tide-toc-item-active'));
         });
         if (!target)
             btnInteractions.style.display = 'none';
