@@ -193,6 +193,13 @@ function domContentLoadedHandler(eDomContentLoaded) {
             toggleSidebar(false);
     }
 
+    function adjustExtraWidgetsOnResize() {
+        if (window.matchMedia('(min-height: 768px)').matches) {
+            delete tideFloatingWidgets.dataset.extraWidgetsExpanded;
+            delete tideFloatingWidgets.dataset.extraWidgetsCollapsed;
+        }
+    }
+
     for (const btn of btnUnmaskImageArray) {
         btn.addEventListener('click', function (e) {
             const mask = e.target.parentElement.parentElement;
@@ -210,8 +217,10 @@ function domContentLoadedHandler(eDomContentLoaded) {
     }
     window.addEventListener('resize', clientUtils.debounce(() => {
         toggleSidebarOnResize();
+        adjustExtraWidgetsOnResize();
     }));
     toggleSidebarOnResize();
+    adjustExtraWidgetsOnResize();
     btnNav.addEventListener('click', function (e) {
         if (tideRoot.dataset.sidebarExpanded === '')
             toggleSidebar(false);
@@ -338,10 +347,17 @@ function domContentLoadedHandler(eDomContentLoaded) {
             btnInteractions.style.display = 'none';
     }
     btnExtraWidgets.addEventListener('click', function () {
-        if (typeof tideFloatingWidgets.dataset.extraWidgets === 'undefined')
-            tideFloatingWidgets.dataset.extraWidgets = '';
-        else
-            delete tideFloatingWidgets.dataset.extraWidgets;
+        if (typeof tideFloatingWidgets.dataset.extraWidgetsExpanded === 'undefined' && typeof tideFloatingWidgets.dataset.extraWidgetsCollapsed === 'undefined') {
+            tideFloatingWidgets.dataset.extraWidgetsExpanded = '';
+            return;
+        }
+        if (typeof tideFloatingWidgets.dataset.extraWidgetsExpanded === 'undefined') {
+            tideFloatingWidgets.dataset.extraWidgetsExpanded = '';
+            delete tideFloatingWidgets.dataset.extraWidgetsCollapsed;
+        } else {
+            tideFloatingWidgets.dataset.extraWidgetsCollapsed = '';
+            delete tideFloatingWidgets.dataset.extraWidgetsExpanded;
+        }
     });
     if ((!btnToc || btnToc.style.display === 'none')
         && (!btnLangs || btnLangs.style.display === 'none')
