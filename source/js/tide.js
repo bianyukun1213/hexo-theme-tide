@@ -274,7 +274,8 @@ function domContentLoadedHandler(eDomContentLoaded) {
             html.setAttribute('dir', 'rtl');
     });
     btnTop.addEventListener('click', () => {
-        tideMainContent.scrollTo({ top: 0, behavior: 'smooth' });
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
+        tideMainContent.scrollTo({ top: 0 });
     });
     if (btnToc) {
         btnToc.addEventListener('click', () => {
@@ -290,15 +291,9 @@ function domContentLoadedHandler(eDomContentLoaded) {
     }
     if (btnInteractions) {
         const target = document.getElementById('tide-page-interactions');
-        btnInteractions.addEventListener('click', function () {
-            if (target) {
-                document.getElementById('tide-main-content').scrollTo({
-                    top: target.offsetTop,
-                    behavior: 'smooth'
-                });
-            } else {
-                window.location.hash = 'tide-page-interactions';
-            }
+        btnInteractions.addEventListener('click', () => {
+            window.location.hash = '';
+            window.location.hash = 'tide-page-interactions';
         });
         if (!target)
             btnInteractions.style.display = 'none';
@@ -322,11 +317,11 @@ else
     document.addEventListener('DOMContentLoaded', domContentLoadedHandler);
 
 window.addEventListener('hexo-blog-decrypt', function () {
-    if (!window.location.hash.includes('tide-on-decryption-reload')) {
+    if (!window.location.hash === 'tide-on-decryption-reload') {
         window.location.hash = 'tide-on-decryption-reload';
         window.location.reload();
     }
     else {
-        window.location.hash = window.location.hash.replace('tide-on-decryption-reload', '');
+        window.history.replaceState(null, '', window.location.pathname + window.location.search);
     }
 });

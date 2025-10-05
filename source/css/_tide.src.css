@@ -1,5 +1,10 @@
 @unocss;
 
+:root,
+#tide-main-content {
+    @apply un-scroll-smooth;
+}
+
 @media (prefers-color-scheme: no-preference) or (prefers-color-scheme: light) {
     :root:not([data-color-scheme]) #tide-btn-nav-icon-sun {
         @apply un-hidden;
