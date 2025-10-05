@@ -36,6 +36,8 @@
       for (const link of tocLinks) {
         link.addEventListener('click', () => {
           tideGlobal.setProgrammaticScroll();
+          [...document.getElementsByClassName('tide-toc-item-active')].forEach(e => e.classList.toggle('tide-toc-item-active'));
+          link.parentElement.classList.toggle('tide-toc-item-active');
           KILL_ME_PLEASE();
         });
       }
