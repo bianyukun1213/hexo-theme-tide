@@ -1,6 +1,30 @@
 'use strict';
 
 const clientUtils = {
+    throttle: function (fn, wait = 200) {
+        let lastTime = 0;
+        return function (...args) {
+            const now = Date.now();
+            if (now - lastTime >= wait) {
+                lastTime = now;
+                fn.apply(this, args);
+            }
+        }
+    },
+    debounce: function (fn, wait = 200, immediate = false) {
+        let timeout;
+        return function (...args) {
+            const context = this;
+            const later = () => {
+                timeout = null;
+                if (!immediate) fn.apply(context, args);
+            };
+            const callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) fn.apply(context, args);
+        };
+    },
     isNumber: function (num) {
         return typeof num === 'number';
     },

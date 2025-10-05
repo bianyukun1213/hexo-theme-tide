@@ -35,6 +35,7 @@
       });
       for (const link of tocLinks) {
         link.addEventListener('click', () => {
+          tideGlobal.setProgrammaticScroll();
           KILL_ME_PLEASE();
         });
       }

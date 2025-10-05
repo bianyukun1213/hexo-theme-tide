@@ -1,5 +1,15 @@
 'use strict';
 
+const tideGlobal = {
+    programmaticScroll: false,
+    setProgrammaticScroll: function () {
+        this.programmaticScroll = true;
+        const that = this;
+        setTimeout(() => {
+            that.programmaticScroll = false;
+        }, 5000);
+    }
+};
 let clientCtx = {};
 const clientCtxElement = document.querySelector('meta[name="tide-client-ctx"]');
 if (clientCtxElement)
@@ -198,9 +208,9 @@ function domContentLoadedHandler(eDomContentLoaded) {
             }
         });
     }
-    window.addEventListener('resize', () => {
+    window.addEventListener('resize', clientUtils.debounce(() => {
         toggleSidebarOnResize();
-    });
+    }));
     toggleSidebarOnResize();
     btnNav.addEventListener('click', function (e) {
         if (tideRoot.dataset.sidebarExpanded === '')
@@ -274,6 +284,7 @@ function domContentLoadedHandler(eDomContentLoaded) {
             html.setAttribute('dir', 'rtl');
     });
     btnTop.addEventListener('click', () => {
+        tideGlobal.setProgrammaticScroll();
         window.history.replaceState(null, '', window.location.pathname + window.location.search);
         tideMainContent.scrollTo({ top: 0 });
     });
@@ -281,8 +292,35 @@ function domContentLoadedHandler(eDomContentLoaded) {
         btnToc.addEventListener('click', () => {
             dialogToc.showModal();
         });
-        if (document.getElementsByClassName('tide-toc').length === 0)
+        if (document.getElementsByClassName('tide-toc').length === 0) {
             btnToc.style.display = 'none';
+        } else {
+            const tocLinks = [...document.getElementsByClassName('tide-toc-link')];
+            const sections = tocLinks.map(link => {
+                const rawId = link.getAttribute('href').slice(1);
+                const id = decodeURIComponent(rawId);
+                return document.getElementById(id);
+            });
+            const getCurrentSectionId = () => {
+                let index = sections.findIndex((element) => {
+                    return element && element.getBoundingClientRect().top - 100 > 0;
+                });
+                if (index === -1)
+                    index = sections.length - 1;
+                else if (index > 0)
+                    index--;
+                return sections[index].id;
+            }
+            tideMainContent.addEventListener('scroll', clientUtils.throttle(() => {
+                if (tideGlobal.programmaticScroll)
+                    return;
+                const id = getCurrentSectionId();
+                history.replaceState(null, '', '#' + id);
+                tocLinks.forEach(link =>
+                    link.classList.toggle('active', link.getAttribute('href') === '#' + id)
+                );
+            }));
+        }
     }
     if (btnLangs) {
         btnLangs.addEventListener('click', () => {
@@ -292,6 +330,7 @@ function domContentLoadedHandler(eDomContentLoaded) {
     if (btnInteractions) {
         const target = document.getElementById('tide-page-interactions');
         btnInteractions.addEventListener('click', () => {
+            tideGlobal.setProgrammaticScroll();
             window.location.hash = '';
             window.location.hash = 'tide-page-interactions';
         });
