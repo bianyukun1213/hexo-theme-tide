@@ -3,7 +3,7 @@
 const scriptName = 'tide-filter-table-handler';
 // 为 table 添加 wrapper，便于使横向溢出显示滚动条。
 hexo.extend.filter.register('after_post_render', function (data) {
-    if (data.layout === 'post' || data.layout === 'page') {
+    if (data.layout === 'post' || data.layout === 'page' || data.layout === 'draft') {
         const nestedTableDetected = /<table[^>]*>[^]*?<table[^>]*>/.test(data.content);
         // 正则表达式无法处理嵌套情况。
         if (nestedTableDetected) {

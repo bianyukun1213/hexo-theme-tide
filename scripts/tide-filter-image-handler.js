@@ -8,7 +8,7 @@ hexo.extend.filter.register('after_post_render', function (data) {
     const classFigure = 'tide-image-figure';
     const classInlineFigure = 'tide-image-inline-figure';
     const classCaption = 'tide-image-caption';
-    if (data.layout === 'post' || data.layout === 'page') {
+    if (data.layout === 'post' || data.layout === 'page' || data.layout === 'draft') {
         // ![]() 间无空行但末尾有空格，连续多张图片被渲染为一个纯图片段落，中间以 br 隔开，认为等同于单段落中的单图片。
         data.content = data.content.replace(/<p\b[^>]*>([\s\S]*?)<\/p>/g, (match, inner) => {
             if (/^(<img\b[^>]*>(<br\s*\/?>[\s\n]*)*)+$/.test(inner)) {
