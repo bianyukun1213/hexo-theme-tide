@@ -1,17 +1,17 @@
 'use strict';
 
 const clientUtils = {
-    throttle: function (fn, wait = 200) {
+    throttle: function (fn, delay = 200) {
         let lastTime = 0;
         return function (...args) {
             const now = Date.now();
-            if (now - lastTime >= wait) {
+            if (now - lastTime >= delay) {
                 lastTime = now;
                 fn.apply(this, args);
             }
         }
     },
-    debounce: function (fn, wait = 200, immediate = false) {
+    debounce: function (fn, delay = 200, immediate = false) {
         let timeout;
         return function (...args) {
             const context = this;
@@ -21,8 +21,26 @@ const clientUtils = {
             };
             const callNow = immediate && !timeout;
             clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
+            timeout = setTimeout(later, delay);
             if (callNow) fn.apply(context, args);
+        };
+    },
+    throttleDebounce: function (fn, delay = 200, mustRunDelay = 500) {
+        let timeout;
+        let lastExec = 0;
+        return function (...args) {
+            const context = this;
+            const now = Date.now();
+            clearTimeout(timeout);
+            if (now - lastExec >= mustRunDelay) {
+                fn.apply(context, args);
+                lastExec = now;
+            } else {
+                timeout = setTimeout(() => {
+                    fn.apply(context, args);
+                    lastExec = Date.now();
+                }, delay);
+            }
         };
     },
     isNumber: function (num) {

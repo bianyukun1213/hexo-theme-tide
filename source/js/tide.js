@@ -321,7 +321,7 @@ function domContentLoadedHandler(eDomContentLoaded) {
                     index--;
                 return sections[index].id;
             }
-            tideMainContent.addEventListener('scroll', clientUtils.throttle(() => {
+            tideMainContent.addEventListener('scroll', clientUtils.throttleDebounce(() => {
                 if (tideGlobal.programmaticScroll)
                     return;
                 const id = getCurrentSectionId();
