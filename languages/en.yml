@@ -28,7 +28,7 @@ floating_widgets:
   btn_top:
     title: "Scroll to top"
   btn_toc:
-    title: "Table of Content"
+    title: "Table of contents"
   btn_langs:
     title: "Languages"
   btn_interactions:
@@ -104,7 +104,7 @@ dialog_search:
   search_result_placeholder: "No result"
 
 dialog_toc:
-  title: "Table of Content"
+  title: "Table of contents"
   btn_close:
     title: "Close"
 
