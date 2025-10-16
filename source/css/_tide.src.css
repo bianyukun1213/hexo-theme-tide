@@ -228,9 +228,9 @@ select {
     border-radius: 0;
 }
 
-.tide-broken-img {
+/* .tide-broken-img {
     @apply un-min-w-32 un-min-h-32;
-}
+} */
 
 .tide-table-wrapper {
     @apply un-overflow-auto;
