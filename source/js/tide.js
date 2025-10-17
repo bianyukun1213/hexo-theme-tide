@@ -299,13 +299,10 @@ function domContentLoadedHandler(eDomContentLoaded) {
         tideMainContent.scrollTo({ top: 0 });
     });
     if (btnToc) {
-        btnToc.addEventListener('click', () => {
-            dialogToc.showModal();
-        });
-        if (document.getElementsByClassName('tide-toc').length === 0) {
+        const tocLinks = [...document.getElementsByClassName('tide-toc-link')];
+        if (tocLinks.length === 0) {
             btnToc.style.display = 'none';
         } else {
-            const tocLinks = [...document.getElementsByClassName('tide-toc-link')];
             const sections = tocLinks.map(link => {
                 const rawId = link.getAttribute('href').slice(1);
                 const id = decodeURIComponent(rawId);
@@ -330,6 +327,9 @@ function domContentLoadedHandler(eDomContentLoaded) {
                     link.parentElement.classList.toggle('tide-toc-item-active', link.getAttribute('href') === '#' + encodeURI(id))
                 );
             }));
+            btnToc.addEventListener('click', () => {
+                dialogToc.showModal();
+            });
         }
     }
     if (btnLangs) {
