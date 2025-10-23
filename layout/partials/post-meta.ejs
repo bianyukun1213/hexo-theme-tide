@@ -1,6 +1,5 @@
 <div class="tide-post-meta un-mb-4 un-text-txt-scnd">
   <!-- 为 span 添加 un-inline-block 以在 rtl 下适应方向。 -->
-  <% if(detailed){ %>
   <% let authorCount %>
   <% if(tide_utils().isArray(postCtx.page_author)){ %>
   <% authorCount=postCtx.page_author.length %>
@@ -8,8 +7,8 @@
   <% authorCount=1 %>
   <% } %>
   <span class="tide-post-meta-author un-inline-block un-me-8" title="<%= _p('post_meta.author.title',authorCount) %>">
-    <i class="fa-solid fa-user<%= authorCount>1?'-group':'' %> un-me-1" aria-hidden="true"></i><% if(authorCount===1){ %><%= postCtx.page_author %><% }else{ %><% postCtx.page_author.forEach((au,i)=>{ %><%= au %><% if(i<postCtx.page_author.length-1){ %><%=postCtx.list_separator %><% }})} %> </span>
-  <% } %>
+    <i class="fa-solid fa-user<%= authorCount>1?'-group':'' %> un-me-1" aria-hidden="true"></i><% if(authorCount===1){ %><%= postCtx.page_author %><% }else{ %><% postCtx.page_author.forEach((au,i)=>{ %><%= au %><% if(i<postCtx.page_author.length-1){ %><%=postCtx.list_separator %><% }})} %>
+  </span>
   <span class="tide-post-meta-date un-inline-block un-me-8" title="<%= __('post_meta.date.title') %>">
     <i class="fa-solid fa-pen un-me-1" aria-hidden="true"></i><%- time_tag(postCtx.date,detailed?`${postCtx.date_format} ${postCtx.time_format}`:`${postCtx.date_format}`) %>
   </span>
