@@ -41,9 +41,9 @@
       searchPanel.addEventListener('click', function(e) {
         e.stopPropagation();
       });
-      searchBox.addEventListener('input', () => {
+      searchBox.addEventListener('input', clientUtils.debounce(() => {
         search();
-      });
+      }));
       btnClose.addEventListener('click', () => {
         KILL_ME_PLEASE();
       });
