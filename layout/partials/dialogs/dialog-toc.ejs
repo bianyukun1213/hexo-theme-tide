@@ -44,6 +44,22 @@
       btnClose.addEventListener('click', () => {
         KILL_ME_PLEASE();
       });
+      // 从外部控制高亮。
+      window.tideSetActiveTocLink = setActiveLink;
+      window.tideUpdateActiveTocItemById = updateActiveItemById;
+
+      function setActiveLink(link) {
+        [...document.getElementsByClassName('tide-toc-item-active')]
+        .forEach(e => e.classList.remove('tide-toc-item-active'));
+        if (link && link.parentElement)
+          link.parentElement.classList.add('tide-toc-item-active');
+      }
+
+      function updateActiveItemById(id) {
+        const encodedId = encodeURI(id);
+        const target = [...tocLinks].find(link => link.getAttribute('href') === '#' + encodedId);
+        setActiveLink(target);
+      }
 
       function KILL_ME_PLEASE() {
         dialogToc.close();

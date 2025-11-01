@@ -69,7 +69,7 @@
         window.removeEventListener('message', handleGiscusMessage);
       },
       i18n: function(key) {
-        return clientCtx.interactions.giscus.i18n[key] || key;
+        return window.tideClientCtx.interactions.giscus.i18n[key] || key;
       }
     };
     document.documentElement.addEventListener('colorschemechange', function(e) {

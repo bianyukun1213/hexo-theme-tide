@@ -25,7 +25,7 @@
 
     function domContentLoadedHandler(eDomContentLoaded) {
       const ls = new LocalSearch({
-        path: clientCtx.search_db_path
+        path: window.tideClientCtx.search_db_path
       });
       ls.fetchData();
       const dialogSearch = document.getElementById('tide-dialog-search');
@@ -41,7 +41,7 @@
       searchPanel.addEventListener('click', function(e) {
         e.stopPropagation();
       });
-      searchBox.addEventListener('input', clientUtils.debounce(() => {
+      searchBox.addEventListener('input', window.tideClientUtils.debounce(() => {
         search();
       }));
       btnClose.addEventListener('click', () => {

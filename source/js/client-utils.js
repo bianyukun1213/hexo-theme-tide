@@ -1,6 +1,6 @@
 'use strict';
 
-const clientUtils = {
+window.tideClientUtils = {
     throttle: function (fn, delay = 200) {
         let lastTime = 0;
         return function (...args) {

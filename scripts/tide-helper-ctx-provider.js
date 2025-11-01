@@ -100,8 +100,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.language_meta = languageMeta;
     if (languageMeta[out.language]) {
         out.site_dir = languageMeta[out.language].direction;
-    }
-    else {
+    } else {
         out.site_dir = 'ltr';
     }
     if (isString(theme?.dir)) {
@@ -203,8 +202,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
                 out.page_author.push(au);
         if (out.page_author.length === 0)
             out.page_author = '';
-    }
-    else if (isString(page.author) && page.author) {
+    } else if (isString(page.author) && page.author) {
         out.page_author = page.author;
     }
     out.path = page?.path ?? '';
@@ -288,8 +286,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
             out.interactions.webmentionjs = theme?.interactions?.webmentionjs ?? {};
             out.interactions.webmentionjs.index = page.interactions.indexOf('webmentionjs');
         }
-    }
-    else if (page.interactions === true) {
+    } else if (page.interactions === true) {
         if (theme?.interactions?.enable?.includes('giscus')) {
             out.interactions.giscus = theme.interactions?.giscus ?? {};
             out.interactions.giscus.index = theme.interactions.enable.indexOf('giscus');
@@ -302,25 +299,22 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
             out.interactions.webmentionjs = theme.interactions?.webmentionjs ?? {};
             out.interactions.webmentionjs.index = theme.interactions.enable.indexOf('webmentionjs');
         }
-    }
-    else if (page.interactions === false) {
+    } else if (page.interactions === false) {
         out.interactions = false;
-    }
-    else if (isArray(theme?.interactions?.enable)) {
+    } else if (isArray(theme?.interactions?.enable)) {
         if (theme.interactions.enable.includes('giscus')) {
             out.interactions.giscus = theme.interactions?.giscus ?? {};
             out.interactions.giscus.index = theme.interactions.enable.indexOf('giscus');
         }
-        if (theme.interactions.enable.includes('twikoo')){
+        if (theme.interactions.enable.includes('twikoo')) {
             out.interactions.twikoo = theme.interactions?.twikoo ?? {};
             out.interactions.twikoo.index = theme.interactions.enable.indexOf('twikoo');
         }
-        if (theme.interactions.enable.includes('webmentionjs')){
+        if (theme.interactions.enable.includes('webmentionjs')) {
             out.interactions.webmentionjs = theme.interactions?.webmentionjs ?? {};
             out.interactions.webmentionjs.index = theme.interactions.enable.indexOf('webmentionjs');
         }
-    }
-    else {
+    } else {
         out.interactions = false;
     }
     if (out.interactions.giscus) {

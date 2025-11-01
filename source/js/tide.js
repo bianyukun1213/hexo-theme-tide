@@ -1,19 +1,21 @@
 'use strict';
 
-const tideGlobal = {
+window.tideGlobal = {
     programmaticScroll: false,
     setProgrammaticScroll: function () {
         this.programmaticScroll = true;
-        const that = this;
-        setTimeout(() => {
-            that.programmaticScroll = false;
-        }, 5000);
+        if (!this._resetProgrammaticScrollDebounced) {
+            this._resetProgrammaticScrollDebounced = window.tideClientUtils.debounce(() => {
+                this.programmaticScroll = false;
+            }, 5000);
+        }
+        this._resetProgrammaticScrollDebounced();
     }
 };
-let clientCtx = {};
+window.tideClientCtx = {};
 const clientCtxElement = document.querySelector('meta[name="tide-client-ctx"]');
 if (clientCtxElement)
-    clientCtx = JSON.parse(decodeURIComponent(clientCtxElement.getAttribute('content')));
+    window.tideClientCtx = JSON.parse(decodeURIComponent(clientCtxElement.getAttribute('content')));
 // https://www.cnblogs.com/laneyfu/p/5923176.html
 document.addEventListener('error', function (e) {
     if (e.target.tagName.toLowerCase() === 'img')
@@ -50,13 +52,13 @@ class TideSettings {
         } catch (error) {
             settings = {};
         }
-        if (!clientUtils.isPlainObject(settings))
+        if (!window.tideClientUtils.isPlainObject(settings))
             settings = {};
         settings = this.#migrateSettings(settings);
         this.colorScheme = settings.colorScheme;
     }
     static #migrateSettings(oldSettings) {
-        oldSettings = clientUtils.deepClone(oldSettings);
+        oldSettings = window.tideClientUtils.deepClone(oldSettings);
         if (!oldSettings.version || oldSettings.version < 1) {
             oldSettings.colorScheme = 'SYSTEM';
             oldSettings.version = 1;
@@ -215,7 +217,7 @@ function domContentLoadedHandler(eDomContentLoaded) {
             }
         });
     }
-    window.addEventListener('resize', clientUtils.debounce(() => {
+    window.addEventListener('resize', window.tideClientUtils.debounce(() => {
         toggleSidebarOnResize();
         adjustExtraWidgetsOnResize();
     }));
@@ -293,9 +295,9 @@ function domContentLoadedHandler(eDomContentLoaded) {
             html.setAttribute('dir', 'rtl');
     });
     btnTop.addEventListener('click', () => {
-        tideGlobal.setProgrammaticScroll();
+        window.tideGlobal.setProgrammaticScroll();
         window.history.replaceState(null, '', window.location.pathname + window.location.search);
-        [...document.getElementsByClassName('tide-toc-item-active')].forEach(e => e.classList.toggle('tide-toc-item-active'));
+        window.tideSetActiveTocLink(null);
         tideMainContent.scrollTo({ top: 0 });
     });
     if (btnToc) {
@@ -318,14 +320,12 @@ function domContentLoadedHandler(eDomContentLoaded) {
                     index--;
                 return sections[index].id;
             }
-            tideMainContent.addEventListener('scroll', clientUtils.throttleDebounce(() => {
-                if (tideGlobal.programmaticScroll)
+            tideMainContent.addEventListener('scroll', window.tideClientUtils.throttleDebounce(() => {
+                if (window.tideGlobal.programmaticScroll)
                     return;
                 const id = getCurrentSectionId();
                 history.replaceState(null, '', '#' + id);
-                tocLinks.forEach(link =>
-                    link.parentElement.classList.toggle('tide-toc-item-active', link.getAttribute('href') === '#' + encodeURI(id))
-                );
+                window.tideUpdateActiveTocItemById(id);
             }));
             btnToc.addEventListener('click', () => {
                 dialogToc.showModal();
@@ -340,10 +340,10 @@ function domContentLoadedHandler(eDomContentLoaded) {
     if (btnInteractions) {
         const target = document.getElementById('tide-page-interactions');
         btnInteractions.addEventListener('click', () => {
-            tideGlobal.setProgrammaticScroll();
+            window.tideGlobal.setProgrammaticScroll();
             window.location.hash = '';
             window.location.hash = 'tide-page-interactions';
-            [...document.getElementsByClassName('tide-toc-item-active')].forEach(e => e.classList.toggle('tide-toc-item-active'));
+            window.tideSetActiveTocLink(null);
         });
         if (!target)
             btnInteractions.style.display = 'none';
@@ -377,8 +377,7 @@ window.addEventListener('hexo-blog-decrypt', function () {
     if (!window.location.hash === 'tide-on-decryption-reload') {
         window.location.hash = 'tide-on-decryption-reload';
         window.location.reload();
-    }
-    else {
+    } else {
         window.history.replaceState(null, '', window.location.pathname + window.location.search);
     }
 });

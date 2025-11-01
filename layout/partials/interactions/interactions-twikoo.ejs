@@ -33,9 +33,9 @@
         if (this.twikooInited)
           return;
         twikoo.init({
-          envId: clientCtx.interactions.twikoo.env_id,
+          envId: window.tideClientCtx.interactions.twikoo.env_id,
           el: '#tide-interactions-twikoo',
-          region: clientCtx.interactions.twikoo.region,
+          region: window.tideClientCtx.interactions.twikoo.region,
           // path: window.location.pathname,
           path: this.path,
           lang: this.lang

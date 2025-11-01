@@ -57,6 +57,8 @@
     });
 
     function domContentLoadedHandler(eDomContentLoaded) {
+      let pageImgs = [];
+      let currentImgIndex = -1;
       const dialogImgViewer = document.getElementById('tide-dialog-image-viewer');
       const dialogMask = document.querySelector('.tide-dialog-mask:has(#tide-viewing-image)');
       const toolbar = document.getElementById('tide-image-viewer-toolbar');
@@ -108,23 +110,29 @@
       viewingImg.addEventListener('dragstart', () => {
         return;
       });
-      const pageImgs = [...document.querySelectorAll('#tide-page .un-prose :not(a)>img:not([display=none]):not([data-no-handling]), #tide-post .un-prose :not(a)>img:not([display=none]):not([data-no-handling])')];
-      const imgCounts = pageImgs.length;
-      for (const element of pageImgs) {
-        element.style.cursor = 'zoom-in';
-        element.addEventListener('click', function(e) {
-          currentImgIndex = pageImgs.indexOf(e.target);
-          openImageViewer();
-        });
-        element.addEventListener('keydown', function(e) {
-          if (e.code === 'Enter' || e.code === 'Space') {
-            e.preventDefault();
+      // 动态插入图片后可通过此函数更新图片列表。
+      window.tideUpdateImageViewer = updateImageViewer;
+      updateImageViewer();
+
+      function updateImageViewer() {
+        pageImgs = [...document.querySelectorAll('#tide-page .un-prose :not(a)>img:not([display=none]):not([data-no-handling]), #tide-post .un-prose :not(a)>img:not([display=none]):not([data-no-handling])')];
+        for (const img of pageImgs) {
+          if (img.dataset.viewerBound === 'true') continue;
+          img.dataset.viewerBound = 'true';
+          img.style.cursor = 'zoom-in';
+          img.addEventListener('click', e => {
             currentImgIndex = pageImgs.indexOf(e.target);
             openImageViewer();
-          }
-        });
+          });
+          img.addEventListener('keydown', e => {
+            if (e.code === 'Enter' || e.code === 'Space') {
+              e.preventDefault();
+              currentImgIndex = pageImgs.indexOf(e.target);
+              openImageViewer();
+            }
+          });
+        }
       }
-      let currentImgIndex;
 
       function openImage(index) {
         const targetImg = pageImgs[index];
@@ -152,15 +160,15 @@
           viewingImgTitle.textContent = '';
           viewingImgTitle.style.display = 'none';
         }
-        viewingImgCounter.textContent = currentImgIndex + 1 + clientCtx.progress_marker + imgCounts;
+        viewingImgCounter.textContent = currentImgIndex + 1 + window.tideClientCtx.progress_marker + pageImgs.length;
         pz.zoomFactor = 1;
         pz.lastScale = 1;
         pz.resetOffset();
       }
 
       function setMaskTitle(dataMask) {
-        let maskTitle = clientCtx.image_viewer.mask_default_title;
-        let btnUnmaskTitle = clientCtx.image_viewer.btn_unmask_default_title;
+        let maskTitle = window.tideClientCtx.image_viewer.mask_default_title;
+        let btnUnmaskTitle = window.tideClientCtx.image_viewer.btn_unmask_default_title;
         if (dataMask) {
           const maskInfo = dataMask.split('|');
           if (maskInfo.length === 1) {
@@ -183,14 +191,14 @@
 
       function toPrev() {
         if (currentImgIndex <= 0)
-          currentImgIndex = imgCounts - 1;
+          currentImgIndex = pageImgs.length - 1;
         else
           --currentImgIndex;
         openImage(currentImgIndex);
       }
 
       function toNext() {
-        if (currentImgIndex >= imgCounts - 1)
+        if (currentImgIndex >= pageImgs.length - 1)
           currentImgIndex = 0;
         else
           ++currentImgIndex;

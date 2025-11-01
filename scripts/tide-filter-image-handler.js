@@ -40,7 +40,7 @@ hexo.extend.filter.register('after_post_render', function (data) {
         });
         // 未处理的（不含 tabindex 的）行内图片，添加 inline-figure 包裹和 tabindex，不添加 figcaption。
         data.content = data.content.replace(/<img(?![^>]*\btabindex\s*=\s*["']?\d+["']?)([^>]*)>/g, (match) => {
-        // data.content = data.content.replace(/<img\s+[^>]*>/g, (match) => {
+            // data.content = data.content.replace(/<img\s+[^>]*>/g, (match) => {
             if (match.includes('data-no-handling'))
                 return match;
             return `<span class="${classInlineFigure}">${match.replace('<img', '<img tabindex="0" aria-haspopup="dialog" aria-controls="tide-dialog-image-viewer"')}</span>`;
@@ -53,8 +53,7 @@ hexo.extend.filter.register('after_post_render', function (data) {
                 const maskInfo = group1.split('|');
                 if (maskInfo.length === 1) {
                     maskTitle = maskInfo[0];
-                }
-                else if (maskInfo.length === 2) {
+                } else if (maskInfo.length === 2) {
                     maskTitle = maskInfo[0];
                     btnUnmaskTitle = maskInfo[1];
                 }

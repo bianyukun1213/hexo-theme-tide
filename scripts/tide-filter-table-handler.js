@@ -13,8 +13,7 @@ hexo.extend.filter.register('after_post_render', function (data) {
             }, false); // 避免自动加 html 标签。https://cheerio.js.org/docs/advanced/configuring-cheerio#fragment-mode
             $('table').wrap('<div class="tide-table-wrapper"></div>');
             data.content = $.html();
-        }
-        else {
+        } else {
             data.content = data.content.replace(/<table[^>]*>[\s\S]*?<\/table>/g, match => `<div class="tide-table-wrapper">${match}</div>`);
         }
     }
