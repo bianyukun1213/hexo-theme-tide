@@ -297,7 +297,8 @@ function domContentLoadedHandler(eDomContentLoaded) {
     btnTop.addEventListener('click', () => {
         window.tideGlobal.setProgrammaticScroll();
         history.replaceState(null, '', location.pathname + location.search);
-        window.tideSetActiveTocLink(null);
+        if(typeof window.tideSetActiveTocLink === 'function')
+            window.tideSetActiveTocLink(null);
         tideMainContent.scrollTo({ top: 0 });
     });
     if (btnToc) {
@@ -343,7 +344,8 @@ function domContentLoadedHandler(eDomContentLoaded) {
             window.tideGlobal.setProgrammaticScroll();
             location.hash = '';
             location.hash = 'tide-page-interactions';
-            window.tideSetActiveTocLink(null);
+            if(typeof window.tideSetActiveTocLink === 'function')
+                window.tideSetActiveTocLink(null);
         });
         if (!target)
             btnInteractions.style.display = 'none';
