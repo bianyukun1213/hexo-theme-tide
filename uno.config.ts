@@ -54,8 +54,12 @@ export default defineConfig({
                     color: 'var(--tide-color-code-inline)',
                     'border-radius': '0.25em'
                 },
-                'code:not([class])::before, code:not([class])::after': {
-                    content: '\"\"'
+                // 似乎是 UnoCSS 的 bug，此处 ::before 和 ::after 需要分别写。
+                'code:not([class])::before': {
+                    content: 'none'
+                },
+                'code:not([class])::after': {
+                    content: 'none'
                 },
                 // 代码块锁定 ltr。
                 'pre:has(code)': {
@@ -71,9 +75,15 @@ export default defineConfig({
                     'font-weight': 'unset',
                     'font-style': 'italic',
                     background: 'var(--tide-color-background-secondary)',
-                    'border-left': 'none', //  取消 prose 样式。
+                    'border-left': 'none', // 取消 prose 样式。
                     'border-inline-start': '4px var(--tide-color-primary) solid',
                     outline: '1px transparent solid'
+                },
+                'blockquote p:first-of-type::before': {
+                    content: 'none'
+                },
+                'blockquote p:last-of-type::after': {
+                    content: 'none'
                 },
                 'blockquote *:first-child': {
                     'margin-top': '0'
