@@ -33,7 +33,7 @@
     const iframeTargetOrigin = giscusEle.dataset.iframeTargetOrigin;
 
     function handleGiscusMessage(event) {
-      const validOrigin = iframeTargetOrigin ?? window.location.origin;
+      const validOrigin = iframeTargetOrigin ?? location.origin;
       if (event.origin !== validOrigin) return;
       if (!(typeof event.data === 'object' && event.data.giscus)) return;
       const giscusData = event.data.giscus;
