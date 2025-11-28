@@ -1,6 +1,6 @@
 page_title:
   none: "无标题"
-  archive: "归档"
+  archive: "归档%2$s第 %1$s 页"
   archive_year: "归档%3$s%1$s%4$s%2$s"
   archive_month: "归档%3$s%1$s%4$s%2$s"
   category: "分类%2$s%1$s"

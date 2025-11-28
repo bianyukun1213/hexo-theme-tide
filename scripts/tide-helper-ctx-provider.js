@@ -2,6 +2,8 @@
 
 let languageMeta = require('./tide-predefined-language-meta.js');
 
+const moment = require('moment');
+
 const {
     getTideVersion,
     isNumber,
@@ -52,32 +54,56 @@ const scriptName = 'tide-helper-ctx-provider';
 hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     if (isPlainObject(ctxCache[page.path]))
         return ctxCache[page.path];
+    // 自定义 meta 匹配
+    let availablePageMetaConfs = [];
+    let currentPageMetaConf = null;
+    let finalPagePathReg = null;
+    const pageMeta = site.data?.page_meta ?? {};
+    for (const pageKey of Object.keys(pageMeta)) {
+        const pagePathReg = new RegExp(pageKey);
+        if (pagePathReg.test(page.path)) {
+            // currentPageMetaConf = JSON.parse(JSON.stringify(pageMeta[pageKey]));
+            availablePageMetaConfs.push(pageMeta[pageKey]);
+            finalPagePathReg = pagePathReg;
+            // break;
+        }
+    }
+    if (availablePageMetaConfs.length > 0) {
+        currentPageMetaConf = {};
+        for (const pm of availablePageMetaConfs) {
+            currentPageMetaConf = deepMergeObj(currentPageMetaConf, pm);
+        }
+    }
     let out = {};
-    out.site_title = config?.title ?? '';
-    out.site_subtitle = config?.subtitle ?? '';
-    out.description = page?.description ?? config?.description ?? '';
-    out.keywords = page?.keywords ?? config?.keywords ?? [];
-    out.site_author = config?.author ?? '';
-    out.language = page?.language ?? page?.lang ?? config?.language;
+    out.site_title = config.title || '';
+    out.site_subtitle = config.subtitle || '';
+    out.description = page.description || currentPageMetaConf?.description || config.description || '';
+    out.keywords = page.keywords ?? currentPageMetaConf?.keywords ?? config.keywords ?? [];
+    out.site_author = config.author || '';
+    out.language = page.language || page.lang; // 实测 page 会继承 config 的 language，currentPageMetaConf 不会生效。
+    if (!out.language)
+        out.language = currentPageMetaConf?.language;
+    if (!out.language)
+        out.language = config.language || '';
     // https://hexo.io/zh-cn/docs/variables#%E9%A1%B5%E9%9D%A2%E5%8F%98%E9%87%8F
-    out.per_page = page?.per_page ?? config?.per_page ?? 10;
-    out.total = page?.total ?? 0;
-    out.current = page?.current ?? 0;
-    out.current_url = page?.current_url ?? '';
-    out.year = page?.year ?? '';
-    out.month = page?.month ?? '';
-    out.category = page?.category ?? '';
-    out.tag = page?.tag ?? '';
-    out.meta_generator = config?.meta_generator ?? true;
-    out.date_format = config?.date_format ?? '';
-    out.time_format = config?.time_format ?? '';
+    out.per_page = page.per_page ?? config.per_page ?? 10;
+    out.total = page.total ?? 0;
+    out.current = page.current ?? 0;
+    out.current_url = page.current_url || '';
+    out.year = page.year ?? 0;
+    out.month = page.month ?? 0;
+    out.category = page.category || '';
+    out.tag = page.tag || '';
+    out.meta_generator = config.meta_generator ?? true;
+    out.date_format = config.date_format || '';
+    out.time_format = config.time_format || '';
     out.site_categories = [];
-    if (site?.categories?.length) {
+    if (site.categories?.length) {
         site.categories.forEach((cate) => {
             out.site_categories.push({
                 name: cate.name,
                 id: cate._id,
-                parent: cate.parent ?? '',
+                parent: cate.parent || '',
                 slug: cate.slug,
                 path: cate.path,
                 permalink: cate.permalink
@@ -85,7 +111,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
         });
     }
     out.site_tags = [];
-    if (site?.tags?.length) {
+    if (site.tags?.length) {
         site.tags.forEach((tag) => {
             out.site_tags.push({
                 name: tag.name,
@@ -103,17 +129,17 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     } else {
         out.site_dir = 'ltr';
     }
-    if (isString(theme?.dir)) {
+    if (isString(theme.dir)) {
         if (theme.dir === 'rtl')
             out.site_dir = 'rtl';
         else
             out.site_dir = 'ltr';
     }
-    out.cdn = theme?.cdn ?? {};
-    out.fonts = theme?.fonts ?? {};
-    // out.meta_icons = theme?.meta_icons ?? {};
-    out.meta_links = theme?.meta_links ?? [];
-    out.microformats2 = theme?.microformats2?.enable ?? false;
+    out.cdn = theme.cdn ?? {};
+    out.fonts = theme.fonts ?? {};
+    // out.meta_icons = theme.meta_icons ?? {};
+    out.meta_links = theme.meta_links ?? [];
+    out.microformats2 = theme.microformats2?.enable ?? false;
     // 对象的合并：
     // key 都是固定的话，可以 deepMerge 合并，页面的优先级最高，页面没有的会有配置值和默认值兜底。
     // key 可以自定义的话，就不 deepMerge，而是发现页面有就取页面，否则发现配置有就取配置。如果 deepMerge 的话，配置有但用户想页面没有，也去不掉。
@@ -133,7 +159,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
             u_email: '',
             p_note: ''
         };
-        const themeHCards = isArray(theme?.microformats2.h_cards) ? theme?.microformats2.h_cards : [];
+        const themeHCards = isArray(theme.microformats2.h_cards) ? theme.microformats2.h_cards : [];
         for (const themeHCard of themeHCards)
             if (isPlainObject(themeHCard))
                 out.site_h_cards.push(deepMergeObj(blankHCard, themeHCard));
@@ -156,8 +182,10 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
             p_longitude: '',
             p_altitude: ''
         };
-        out.p_location = deepMergeObj(blankPLocation, page?.p_location ?? {});
+        out.p_location = deepMergeObj(blankPLocation, page.p_location ?? {});
     }
+    out.open_graph = theme.open_graph ?? { enable: true };
+    out.json_ld = theme.json_ld ?? { enable: true, organization_authors: [] };
     // if (!isPlainObject(out.fonts?.web_fonts) || !isBoolean(out.fonts?.web_fonts?.enable) || !isUrl(out.fonts?.web_fonts?.preconnect) || !isUrl(out.fonts?.web_fonts?.css_href)) {
     //     out.fonts.web_fonts = {
     //         enable: false,
@@ -165,36 +193,41 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     //         css_href: ''
     //     };
     // }
-    out.navigation = theme?.navigation ?? {};
-    out.icp_record = theme?.icp_record ?? {};
-    out.generated_by_hexo_and_theme_tide = theme?.generated_by_hexo_and_theme_tide ?? true;
-    out.image_viewer = theme?.image_viewer ?? {};
+    out.navigation = theme.navigation ?? {};
+    out.icp_record = theme.icp_record ?? {};
+    out.generated_by_hexo_and_theme_tide = theme.generated_by_hexo_and_theme_tide ?? true;
+    out.image_viewer = theme.image_viewer ?? {};
     if (!out.mask_default_title) out.mask_default_title = '';
     if (!out.btn_unmask_default_title) out.btn_unmask_default_title = '';
     // 小功能
-    out.word_counter = theme?.word_counter ?? true;
+    out.word_counter = theme.word_counter ?? true;
     out.toc = {};
-    out.toc.enable = theme?.toc?.enable ?? true;
-    out.toc.list_number = theme?.toc?.list_number ?? false;
-    out.search = theme?.search ?? true;
-    out.list_separator = theme?.list_separator ?? ', ';
-    out.active_item_marker_begin = theme?.active_item_marker_begin ?? '';
-    out.active_item_marker_end = theme?.active_item_marker_end ?? '';
-    out.description_marker = theme?.description_marker ?? '';
-    out.range_marker = theme?.range_marker ?? '';
-    out.progress_marker = theme?.progress_marker ?? '';
+    out.toc.enable = theme.toc?.enable ?? true;
+    out.toc.list_number = theme.toc?.list_number ?? false;
+    out.search = theme.search ?? true;
+    out.list_separator = theme.list_separator || ', ';
+    out.active_item_marker_begin = theme.active_item_marker_begin || '';
+    out.active_item_marker_end = theme.active_item_marker_end || '';
+    out.description_marker = theme.description_marker || '';
+    out.range_marker = theme.range_marker || '';
+    out.progress_marker = theme.progress_marker || '';
     // 上为主题配置，下为页面配置。
-    out.layout = page?.layout ?? '';
+    out.layout = page.layout || '';
     if (isString(page.dir)) {
         if (page.dir === 'rtl')
             out.page_dir = 'rtl';
         else
             out.page_dir = 'ltr';
+    } else if (isString(currentPageMetaConf?.dir)) {
+        if (currentPageMetaConf.dir === 'rtl')
+            out.page_dir = 'rtl';
+        else
+            out.page_dir = 'ltr';
     } else {
-        out.page_dir = out.site_dir;
+        out.page_dir = out.site_dir; // 这里为方便直接从 out 取值，不重新计算。
     }
-    out.page_title = page?.title ?? ''; // 有些内置页面此项为空，需单独处理。
-    out.page_author = config?.author ?? '';
+    out.page_title = page.title || currentPageMetaConf?.title || config.title || '';
+    out.page_author = config.author || '';
     if (isArray(page.author)) {
         out.page_author = [];
         for (const au of page.author)
@@ -204,25 +237,60 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
             out.page_author = '';
     } else if (isString(page.author) && page.author) {
         out.page_author = page.author;
+    } else if (isArray(currentPageMetaConf?.author)) {
+        out.page_author = [];
+        for (const au of currentPageMetaConf.author)
+            if (isString(au) && au)
+                out.page_author.push(au);
+        if (out.page_author.length === 0)
+            out.page_author = '';
+    } else if (isString(currentPageMetaConf?.author) && currentPageMetaConf.author) {
+        out.page_author = currentPageMetaConf.author;
     }
-    out.path = page?.path ?? '';
-    out.permalink = page?.permalink ?? '';
-    out.date = page?.date ?? '';
-    out.updated = page?.updated ?? '';
-    out.excerpt = page?.excerpt ?? '';
-    out.page_specific_description = page?.description ?? '';
-    out.languages = {};
-    if (page.languages)
-        out.languages = page.languages;
-    else if (site?.data?.language_map)
-        out.languages = site.data.language_map[page.path] ?? {};
+    // 对于 path 和 permalink，允许 page_meta 覆盖 page 属性。
+    out.path = page.path;
+    if (currentPageMetaConf?.path)
+        out.path = page.path.replace(finalPagePathReg, currentPageMetaConf.path);
+    if (!out.path)
+        out.path = '';
+    out.permalink = page.permalink;
+    if (currentPageMetaConf?.permalink)
+        out.permalink = currentPageMetaConf.permalink; // 整体替换。
+    if (!out.permalink)
+        out.permalink = '';
+    out.date = page.date;
+    if (!out.date)
+        if (currentPageMetaConf?.date)
+            out.date = moment(currentPageMetaConf.date);
+        else
+            out.date = moment();
+    out.updated = page.updated;
+    if (!out.updated)
+        if (currentPageMetaConf?.updated)
+            out.updated = moment(currentPageMetaConf.updated);
+        else
+            out.updated = moment();
+    out.excerpt = page.excerpt || '';
+    out.page_specific_description = page.description || currentPageMetaConf?.description || '';
+    out.languages = page.languages;
+    if (!out.languages) {
+        out.languages = currentPageMetaConf?.languages; // 应用正则。
+        for (const langKey in out.languages) {
+            if (!Object.hasOwn(out.languages, langKey)) continue;
+            let langPath = out.languages[langKey];
+            langPath = page.path.replace(finalPagePathReg, langPath);
+            out.languages[langKey] = langPath;
+        }
+    }
+    if (!out.languages)
+        out.languages = {};
     out.page_categories = [];
-    if (page?.categories?.length) {
+    if (page.categories?.length) {
         page.categories.forEach((cate) => {
             out.page_categories.push({
                 name: cate.name,
                 id: cate._id,
-                parent: cate.parent ?? '',
+                parent: cate.parent || '',
                 slug: cate.slug,
                 path: cate.path,
                 permalink: cate.permalink
@@ -230,7 +298,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
         });
     }
     out.page_tags = [];
-    if (page?.tags?.length) {
+    if (page.tags?.length) {
         page.tags.forEach((tag) => {
             out.page_tags.push({
                 name: tag.name,
@@ -241,13 +309,13 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
             });
         });
     }
-    out.extra = page?.extra ?? '';
-    out.cover = page?.cover ?? '';
-    out.cover_title = page?.cover_title ?? '';
+    out.extra = page.extra || '';
+    out.cover = page.cover || '';
+    out.cover_title = page.cover_title || '';
     out.cover_alt = page.cover_alt ? page.cover_alt : out.cover_title;
-    out.copyright = theme?.copyright?.default ?? ''; // 主题配置中只是预置键值，具体还要看页面，所以认为是页面配置。
+    out.copyright = theme.copyright?.default || ''; // 主题配置中只是预置键值，具体还要看页面，所以认为是页面配置。
     if (page.copyright) {
-        if (theme?.copyright && page.copyright in theme.copyright)
+        if (theme.copyright && page.copyright in theme.copyright)
             out.copyright = theme.copyright[page.copyright];
         else
             out.copyright = page.copyright;
@@ -275,33 +343,33 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     out.interactions = {};
     if (isArray(page.interactions)) {
         if (page.interactions.includes('giscus')) {
-            out.interactions.giscus = theme?.interactions?.giscus ?? {};
+            out.interactions.giscus = theme.interactions?.giscus ?? {};
             out.interactions.giscus.index = page.interactions.indexOf('giscus');
         }
         if (page.interactions.includes('twikoo')) {
-            out.interactions.twikoo = theme?.interactions?.twikoo ?? {};
+            out.interactions.twikoo = theme.interactions?.twikoo ?? {};
             out.interactions.twikoo.index = page.interactions.indexOf('twikoo');
         }
         if (page.interactions.includes('webmentionjs')) {
-            out.interactions.webmentionjs = theme?.interactions?.webmentionjs ?? {};
+            out.interactions.webmentionjs = theme.interactions?.webmentionjs ?? {};
             out.interactions.webmentionjs.index = page.interactions.indexOf('webmentionjs');
         }
     } else if (page.interactions === true) {
-        if (theme?.interactions?.enable?.includes('giscus')) {
+        if (theme.interactions?.enable?.includes('giscus')) {
             out.interactions.giscus = theme.interactions?.giscus ?? {};
             out.interactions.giscus.index = theme.interactions.enable.indexOf('giscus');
         }
-        if (theme?.interactions?.enable?.includes('twikoo')) {
+        if (theme.interactions?.enable?.includes('twikoo')) {
             out.interactions.twikoo = theme.interactions?.twikoo ?? {};
             out.interactions.twikoo.index = theme.interactions.enable.indexOf('twikoo');
         }
-        if (theme?.interactions?.enable?.includes('webmentionjs')) {
+        if (theme.interactions?.enable?.includes('webmentionjs')) {
             out.interactions.webmentionjs = theme.interactions?.webmentionjs ?? {};
             out.interactions.webmentionjs.index = theme.interactions.enable.indexOf('webmentionjs');
         }
     } else if (page.interactions === false) {
         out.interactions = false;
-    } else if (isArray(theme?.interactions?.enable)) {
+    } else if (isArray(theme.interactions?.enable)) {
         if (theme.interactions.enable.includes('giscus')) {
             out.interactions.giscus = theme.interactions?.giscus ?? {};
             out.interactions.giscus.index = theme.interactions.enable.indexOf('giscus');
@@ -365,17 +433,17 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
         out.next.path = page.next.path;
     }
     // 插件适配
-    out.search_db_path = config?.search?.path;
+    out.search_db_path = config.search?.path;
     out.page_visibility = {
         hidden: false,
         no_index: false
     };
-    if (config?.hide_posts?.enable ?? false) {
-        const hidePostsFilter = config?.hide_posts?.filter;
+    if (config.hide_posts?.enable ?? false) {
+        const hidePostsFilter = config.hide_posts?.filter;
         if (hidePostsFilter in page)
             out.page_visibility.hidden = true;
     }
-    if (config?.hide_posts?.no_index ?? false) {
+    if (config.hide_posts?.no_index ?? false) {
         out.page_visibility.no_index = true;
     }
     out.page_encrypted = false;

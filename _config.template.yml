@@ -154,6 +154,13 @@ microformats2:
       u_email: ""
       p_note: ""
 
+open_graph:
+  enable: true
+
+json_ld:
+  enable: true
+  organization_authors: []
+
 navigation:
   Home:
     icon: "fa-solid fa-house"

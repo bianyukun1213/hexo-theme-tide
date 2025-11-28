@@ -1,6 +1,6 @@
 page_title:
   none: "Untitled"
-  archive: "Archives"
+  archive: "Archives%2$spage %1$s"
   archive_year: "Archives%3$s%1$s%4$s%2$s"
   archive_month: "Archives%3$s%1$s%4$s%2$s"
   category: "Category%2$s%1$s"

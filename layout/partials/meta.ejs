@@ -1,40 +1,49 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<% let currentPageTitle=tideCtx.page_title||__('page_title.none') %>
 <% if(tideCtx.layout==='categories'){ %>
-<title><%= __('page_title.categories') %></title>
+<% currentPageTitle=__('page_title.categories') %>
 <% }else if(tideCtx.layout==='tags'){ %>
-<title><%= __('page_title.tags') %></title>
-<% }else if(is_post()||is_page()){ %>
-<title><%= tideCtx.page_title?tideCtx.page_title:__('page_title.none') %></title>
+<% currentPageTitle=__('page_title.tags') %>
 <% }else if(is_archive()){ %>
 <% if(is_month()){ %>
 <% const dateBegin=moment().year(tideCtx.year).month(parseInt(tideCtx.month)-1).date(1) %>
 <% const dateEnd=moment(dateBegin).add(1,'month').add(-1,'days') %>
-<title><%= __('page_title.archive_month',date(dateBegin),date(dateEnd),tideCtx.description_marker,tideCtx.range_marker) %></title>
+<% currentPageTitle=__('page_title.archive_month',date(dateBegin),date(dateEnd),tideCtx.description_marker,tideCtx.range_marker) %>
 <% }else if(is_year()){ %>
 <% const dateBegin=moment().year(tideCtx.year).month(0).date(1) %>
 <% const dateEnd=moment(dateBegin).add(12,'month').add(-1,'days') %>
-<title><%= __('page_title.archive_year',date(dateBegin),date(dateEnd),tideCtx.description_marker,tideCtx.range_marker) %></title>
+<% currentPageTitle=__('page_title.archive_year',date(dateBegin),date(dateEnd),tideCtx.description_marker,tideCtx.range_marker) %>
 <% }else{ %>
-<title><%= __('page_title.archive') %></title>
+<% currentPageTitle=__('page_title.archive',tideCtx.current,tideCtx.description_marker) %>
 <% } %>
 <% }else if(is_category()){ %>
-<title><%= __('page_title.category',tideCtx.category,tideCtx.description_marker) %></title>
+<% currentPageTitle=__('page_title.category',tideCtx.category,tideCtx.description_marker) %>
 <% }else if(is_tag()){ %>
-<title><%= __('page_title.tag',tideCtx.tag,tideCtx.description_marker) %></title>
-<% }else{ %>
-<title><%= tideCtx.site_title?tideCtx.site_title:__('page_title.none') %></title>
+<% currentPageTitle=__('page_title.tag',tideCtx.tag,tideCtx.description_marker) %>
 <% } %>
+<title><%= currentPageTitle %></title>
 <% if(!tideCtx.page_encrypted){ %>
 <meta name="keywords" content="<%= tideCtx.keywords %>">
-<% let ogOptions={title:tideCtx.page_title?tideCtx.page_title:tideCtx.site_title,author:tideCtx.author,language:tideCtx.language,description:tideCtx.description} %>
+<% let authorInline=tideCtx.page_author %>
+<% if(tide_utils().isArray(authorInline)){ %>
+<% authorInline=authorInline.join(tideCtx.list_separator)%>
+<% } %>
+<% if(tideCtx.open_graph.enable){ %>
+<% let ogOptions={language:tideCtx.language,title:currentPageTitle,description:tideCtx.description,author:authorInline,date:tideCtx.date,updated:tideCtx.updated,url:tideCtx.permalink} %>
 <% if(tideCtx.cover){ %>
 <% ogOptions.image=[tideCtx.cover] %>
 <% } %>
 <%- open_graph(ogOptions) %>
 <% } %>
-<%- autoCanonical(config, page) %>
-<!-- og 包含 description，不用单独写。 -->
+<% } else { %>
+<!-- og 包含 description，不用单独写。如果未开启，则单独写。 -->
+<meta name="description" content="<%= tideCtx.description %>">
+<% } %>
+<% if(tideCtx.json_ld.enable){ %>
+<%- json_ld(tideCtx.json_ld,tideCtx.language,currentPageTitle,tideCtx.description,tideCtx.page_author,tideCtx.date,tideCtx.updated,tideCtx.permalink,tideCtx.cover) %>
+<% } %>
+<%- autoCanonical(config,page) %>
 <% if(!tideCtx.page_visibility.no_index){ %>
 <meta name="robots" content="all">
 <% } %>
