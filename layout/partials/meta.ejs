@@ -41,7 +41,7 @@
 <meta name="description" content="<%= tideCtx.description %>">
 <% } %>
 <% if(tideCtx.json_ld.enable){ %>
-<%- json_ld(tideCtx.json_ld,tideCtx.language,currentPageTitle,tideCtx.description,tideCtx.page_author,tideCtx.date,tideCtx.updated,tideCtx.permalink,tideCtx.cover) %>
+<%- json_ld(tideCtx.json_ld,tideCtx.layout,tideCtx.language,currentPageTitle,tideCtx.description,tideCtx.page_author,tideCtx.date,tideCtx.updated,tideCtx.permalink,tideCtx.cover) %>
 <% } %>
 <%- autoCanonical(config,page) %>
 <% if(!tideCtx.page_visibility.no_index){ %>

@@ -57,14 +57,13 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     // 自定义 meta 匹配
     let availablePageMetaConfs = [];
     let currentPageMetaConf = null;
-    let finalPagePathReg = null;
     const pageMeta = site.data?.page_meta ?? {};
     for (const pageKey of Object.keys(pageMeta)) {
         const pagePathReg = new RegExp(pageKey);
         if (pagePathReg.test(page.path)) {
-            // currentPageMetaConf = JSON.parse(JSON.stringify(pageMeta[pageKey]));
-            availablePageMetaConfs.push(pageMeta[pageKey]);
-            finalPagePathReg = pagePathReg;
+            let pageMetaConfClone = JSON.parse(JSON.stringify(pageMeta[pageKey]));
+            pageMetaConfClone.pathPattern = pagePathReg;
+            availablePageMetaConfs.push(pageMetaConfClone);
             // break;
         }
     }
@@ -250,12 +249,13 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     // 对于 path 和 permalink，允许 page_meta 覆盖 page 属性。
     out.path = page.path;
     if (currentPageMetaConf?.path)
-        out.path = page.path.replace(finalPagePathReg, currentPageMetaConf.path);
+        out.path = page.path.replace(currentPageMetaConf.pathPattern, currentPageMetaConf.path);
     if (!out.path)
         out.path = '';
     out.permalink = page.permalink;
     if (currentPageMetaConf?.permalink)
-        out.permalink = currentPageMetaConf.permalink; // 整体替换。
+        // out.permalink = currentPageMetaConf.permalink; // 整体替换。
+        out.permalink = page.path.replace(currentPageMetaConf.pathPattern, currentPageMetaConf.permalink); // 同样使用替换 path 部分，但对于 path 外的部分则无法处理。
     if (!out.permalink)
         out.permalink = '';
     out.date = page.date;
@@ -278,7 +278,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
         for (const langKey in out.languages) {
             if (!Object.hasOwn(out.languages, langKey)) continue;
             let langPath = out.languages[langKey];
-            langPath = page.path.replace(finalPagePathReg, langPath);
+            langPath = page.path.replace(currentPageMetaConf.pathPattern, langPath);
             out.languages[langKey] = langPath;
         }
     }
