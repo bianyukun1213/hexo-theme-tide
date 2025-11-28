@@ -157,7 +157,7 @@ forcedColorsQuery.addEventListener('change', e => handleForcedColorsChange(e.mat
 function domContentLoadedHandler(eDomContentLoaded) {
     const tideRoot = document.getElementById('tide-root');
     const tideSidebarInputs = [...document.querySelectorAll('#tide-sidebar a')];
-    const tideMainContent = document.getElementById('tide-main-content');
+    const tideMainContentFrame = document.getElementById('tide-main-content-frame');
     const btnUnmaskImageArray = [...document.getElementsByClassName('tide-btn-unmask-image')];
     const btnNav = document.getElementById('tide-btn-nav');
     const btnSearch = document.getElementById('tide-btn-search');
@@ -299,7 +299,7 @@ function domContentLoadedHandler(eDomContentLoaded) {
         history.replaceState(null, '', location.pathname + location.search);
         if(typeof window.tideSetActiveTocLink === 'function')
             window.tideSetActiveTocLink(null);
-        tideMainContent.scrollTo({ top: 0 });
+        tideMainContentFrame.scrollTo({ top: 0 });
     });
     if (btnToc) {
         const tocLinks = [...document.getElementsByClassName('tide-toc-link')];
@@ -321,7 +321,7 @@ function domContentLoadedHandler(eDomContentLoaded) {
                     index--;
                 return sections[index].id;
             }
-            tideMainContent.addEventListener('scroll', window.tideClientUtils.throttleDebounce(() => {
+            tideMainContentFrame.addEventListener('scroll', window.tideClientUtils.throttleDebounce(() => {
                 if (window.tideGlobal.programmaticScroll)
                     return;
                 const id = getCurrentSectionId();

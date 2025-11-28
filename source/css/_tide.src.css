@@ -1,7 +1,7 @@
 @unocss;
 
 :root,
-#tide-main-content {
+#tide-main-content-frame {
     @apply un-scroll-smooth;
 }
 
