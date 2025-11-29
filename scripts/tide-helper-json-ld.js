@@ -3,13 +3,14 @@
 const { isString, isArray } = require('./tide-utils.js');
 
 const scriptName = 'tide-helper-json-ld';
-hexo.extend.helper.register('json_ld', function (jsonldConfig, layout, language, headline, description, author, datePublished, dateModified, mainEntityOfPage, image) {
+hexo.extend.helper.register('json_ld', function (jsonldConfig, layout, language, headline, description, keywords, author, datePublished, dateModified, mainEntityOfPage, image) {
     let jsonldTemplate = {
         "@context": 'https://schema.org',
         "@type": (layout === 'post' || layout === 'page') ? 'BlogPosting' : 'Article',
         "@language": language,
         "headline": headline,
         "description": description,
+        "keywords": isArray(keywords) ? keywords.join('') : keywords,
         "datePublished": datePublished.format(),
         "dateModified": dateModified.format(),
         "mainEntityOfPage": mainEntityOfPage

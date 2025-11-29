@@ -30,6 +30,7 @@
 <% authorInline=authorInline.join(tideCtx.list_separator)%>
 <% } %>
 <% if(tideCtx.open_graph.enable){ %>
+<!-- 无法指定 keywords。 -->
 <% let ogOptions={language:tideCtx.language,title:currentPageTitle,description:tideCtx.description,author:authorInline,date:tideCtx.date,updated:tideCtx.updated,url:tideCtx.permalink} %>
 <% if(tideCtx.cover){ %>
 <% ogOptions.image=[tideCtx.cover] %>
@@ -41,7 +42,7 @@
 <meta name="description" content="<%= tideCtx.description %>">
 <% } %>
 <% if(tideCtx.json_ld.enable){ %>
-<%- json_ld(tideCtx.json_ld,tideCtx.layout,tideCtx.language,currentPageTitle,tideCtx.description,tideCtx.page_author,tideCtx.date,tideCtx.updated,tideCtx.permalink,tideCtx.cover) %>
+<%- json_ld(tideCtx.json_ld,tideCtx.layout,tideCtx.language,currentPageTitle,tideCtx.description,tideCtx.keywords,tideCtx.page_author,tideCtx.date,tideCtx.updated,tideCtx.permalink,tideCtx.cover) %>
 <% } %>
 <%- autoCanonical(config,page) %>
 <% if(!tideCtx.page_visibility.no_index){ %>
