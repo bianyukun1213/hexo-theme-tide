@@ -5,10 +5,10 @@
   "private": true,
   "devDependencies": {
     "@iconify-json/logos": "^1.2.10",
-    "@unocss/postcss": "^66.5.9",
+    "@unocss/postcss": "^66.5.10",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
-    "unocss": "^66.5.9"
+    "unocss": "^66.5.10"
   },
   "dependencies": {
     "cheerio": "^1.1.2",
