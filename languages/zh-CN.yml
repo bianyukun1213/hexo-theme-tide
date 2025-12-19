@@ -101,7 +101,7 @@ dialog_search:
   search_box_placeholder: "在此键入以搜索……"
   btn_close:
     title: "关闭"
-  search_result_placeholder: "无数据"
+  search_results_placeholder: "搜索无结果"
 
 dialog_toc:
   title: "目录"

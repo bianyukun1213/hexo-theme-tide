@@ -101,7 +101,7 @@ dialog_search:
   search_box_placeholder: "Type here to search…"
   btn_close:
     title: "Close"
-  search_result_placeholder: "No results"
+  search_results_placeholder: "No results"
 
 dialog_toc:
   title: "Table of contents"
