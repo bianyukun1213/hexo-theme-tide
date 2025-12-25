@@ -259,17 +259,19 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     if (!out.permalink)
         out.permalink = '';
     out.date = page.date;
-    if (!out.date)
+    if (!out.date) {
         if (currentPageMetaConf?.date)
             out.date = moment(currentPageMetaConf.date);
         else
             out.date = moment();
+    }
     out.updated = page.updated;
-    if (!out.updated)
+    if (!out.updated) {
         if (currentPageMetaConf?.updated)
             out.updated = moment(currentPageMetaConf.updated);
         else
             out.updated = moment();
+    }
     out.excerpt = page.excerpt || '';
     out.page_specific_description = page.description || currentPageMetaConf?.description || '';
     out.languages = page.languages;
