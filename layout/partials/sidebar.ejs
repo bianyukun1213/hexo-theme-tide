@@ -1,0 +1,23 @@
+<div id="tide-sidebar" class="un-sc-trans-default un-bg-bg-sb un-fixed un-h-full un-flex un-flex-col un-justify-between un-z-30 un-text-center un-text-txt-sb">
+  <header class="un-flex-none un-p-8">
+    <% if(is_home()) { %>
+    <h1 id="tide-site-title" class="un-m-0 un-my-4 un-font-bold">
+      <%= tideCtx.site_title %>
+    </h1>
+    <% } else { %>
+    <p id="tide-site-title" class="un-m-0 un-my-4 un-font-bold">
+      <%= tideCtx.site_title %>
+    </p>
+    <% } %>
+    <p id="tide-site-subtitle" class="un-m-0 un-my-2 un-font-italic">
+      <%= tideCtx.site_subtitle %>
+    </p>
+  </header>
+  <% if(tideCtx.microformats2){ %>
+  <% for(const card of tideCtx.site_h_cards){ %>
+  <%- partial('./h-card.ejs',{h_card:card}) %>
+  <% } %>
+  <% } %>
+  <%- partial('./navigation.ejs',{tideCtx},{cache:tideCtx.fragment_cache}) %>
+  <%- partial('./footer.ejs',{tideCtx},{cache:tideCtx.fragment_cache}) %>
+</div>

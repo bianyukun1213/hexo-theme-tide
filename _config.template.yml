@@ -218,6 +218,7 @@ interactions:
     sort_dir: "up"
     comments_are_reactions: false
 
+fragment_cache: true
 word_counter: true
 toc:
   enable: true

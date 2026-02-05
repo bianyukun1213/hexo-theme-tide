@@ -199,6 +199,7 @@ hexo.extend.helper.register('get_ctx', function (site, config, theme, page) {
     if (!out.mask_default_title) out.mask_default_title = '';
     if (!out.btn_unmask_default_title) out.btn_unmask_default_title = '';
     // 小功能
+    out.fragment_cache = theme.fragment_cache ?? true;
     out.word_counter = theme.word_counter ?? true;
     out.toc = {};
     out.toc.enable = theme.toc?.enable ?? true;

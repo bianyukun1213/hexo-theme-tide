@@ -1,0 +1,10 @@
+<footer id="tide-footer" class="un-flex-none un-p-8">
+  <!-- 留一个隐藏的 div，方便用户通过修改注入。 -->
+  <div id="tide-footer-injection-point" class="un-hidden"></div>
+  <% if(!tide_utils().isEmptyObject(tideCtx.icp_record)) { %>
+  <p id="tide-icp-record" class="un-m-0 un-my-4"><a class="un-sc-link-plain un-text-txt-sb!" href="<%= tideCtx.icp_record.link %>"><%= tideCtx.icp_record.text %></a></p>
+  <% } %>
+  <% if(tideCtx.generated_by_hexo_and_theme_tide){ %>
+  <p id="tide-generated-by-hexo-and-theme-tide" class="un-m-0 un-my-4"><%- __('navigation.footer.generated_by_hexo_and_theme_tide') %></p>
+  <% } %>
+</footer>

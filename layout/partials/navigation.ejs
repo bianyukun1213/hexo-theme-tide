@@ -1,0 +1,12 @@
+<nav id="tide-navigation" class="un-w-full un-flex-initial un-self-center">
+  <ul class="un-w-auto un-inline-flex un-flex-col un-items-start un-p-0 un-m-0 un-list-none">
+    <% for(const key in tideCtx.navigation){ %>
+    <% if(Object.prototype.hasOwnProperty.call(tideCtx.navigation,key)){ %>
+    <% const element=tideCtx.navigation[key] %>
+    <li class="un-inline-block un-mb-8">
+      <i class="<%= element.icon %> un-me-4" aria-hidden="true"></i><a class="un-sc-link-plain un-text-txt-sb!" href="<%= url_for(element.link) %>"><%= key %></a>
+    </li>
+    <% } %>
+    <% } %>
+  </ul>
+</nav>

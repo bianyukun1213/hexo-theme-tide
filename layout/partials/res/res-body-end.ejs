@@ -1,5 +1,5 @@
 <% if(is_post()||is_page()){ %>
-<%- partial('../dialogs/dialog-image-viewer.ejs',{tideCtx}) %>
+<%- partial('../dialogs/dialog-image-viewer.ejs',{tideCtx},{cache:tideCtx.fragment_cache}) %>
 <% if(tideCtx.toc.enable){ %>
 <%- partial('../dialogs/dialog-toc.ejs',{tideCtx}) %>
 <% } %>
@@ -8,5 +8,5 @@
 <%- partial('../dialogs/dialog-lang-picker.ejs',{tideCtx}) %>
 <% } %>
 <% if(tideCtx.search){ %>
-<%- partial('../dialogs/dialog-search.ejs',{tideCtx}) %>
+<%- partial('../dialogs/dialog-search.ejs',{tideCtx},{cache:tideCtx.fragment_cache}) %>
 <% } %>

@@ -3,81 +3,19 @@
 <html lang="<%= tideCtx.language %>" dir="<%= tideCtx.site_dir %>">
 
 <head>
-  <%- partial('./partials/res/res-head-begin.ejs',{tideCtx}) %>
+  <%- partial('./partials/res/res-head-begin.ejs',{tideCtx},{cache:tideCtx.fragment_cache}) %>
   <%- partial('./partials/meta.ejs',{tideCtx}) %>
-  <%- partial('./partials/res/res-head-end.ejs',{tideCtx}) %>
+  <%- partial('./partials/res/res-head-end.ejs',{tideCtx},{cache:tideCtx.fragment_cache}) %>
 </head>
 
 <body class="un-text-base un-text-txt-prim un-break-words">
-  <%- partial('./partials/res/res-body-begin.ejs',{tideCtx}) %>
+  <%- partial('./partials/res/res-body-begin.ejs',{tideCtx},{cache:tideCtx.fragment_cache}) %>
   <!-- <textarea id="ctx" style="display:none;" class="un-fixed un-size-96 un-right-0 un-bottom-0 un-z-100"><%#= JSON.stringify(tideCtx,null,2) %></textarea> -->
   <!-- <textarea id="ctx" class="un-fixed un-size-96 un-right-0 un-bottom-0 un-z-100"><%#= JSON.stringify(tideCtx) %></textarea> -->
   <div id="tide-root" class="un-bg-b-scnd un-absolute un-size-full un-text-base">
-    <div id="tide-sidebar" class="un-sc-trans-default un-bg-bg-sb un-fixed un-h-full un-flex un-flex-col un-justify-between un-z-30 un-text-center un-text-txt-sb">
-      <header class="un-flex-none un-p-8">
-        <% if(is_home()) { %>
-        <h1 id="tide-site-title" class="un-m-0 un-my-4 un-font-bold">
-          <%= tideCtx.site_title %>
-        </h1>
-        <% } else { %>
-        <p id="tide-site-title" class="un-m-0 un-my-4 un-font-bold">
-          <%= tideCtx.site_title %>
-        </p>
-        <% } %>
-        <p id="tide-site-subtitle" class="un-m-0 un-my-2 un-font-italic">
-          <%= tideCtx.site_subtitle %>
-        </p>
-      </header>
-      <% if(tideCtx.microformats2){ %>
-      <% for(const card of tideCtx.site_h_cards){ %>
-      <%- partial('./partials/h-card.ejs',{h_card:card}) %>
-      <% } %>
-      <% } %>
-      <nav id="tide-navigation" class="un-w-full un-flex-initial un-self-center">
-        <ul class="un-w-auto un-inline-flex un-flex-col un-items-start un-p-0 un-m-0 un-list-none">
-          <% for(const key in tideCtx.navigation){ %>
-          <% if(Object.prototype.hasOwnProperty.call(tideCtx.navigation,key)){ %>
-          <% const element=tideCtx.navigation[key] %>
-          <li class="un-inline-block un-mb-8">
-            <i class="<%= element.icon %> un-me-4" aria-hidden="true"></i><a class="un-sc-link-plain un-text-txt-sb!" href="<%= url_for(element.link) %>"><%= key %></a>
-          </li>
-          <% } %>
-          <% } %>
-        </ul>
-      </nav>
-      <footer class="un-flex-none un-p-8">
-        <!-- 留一个隐藏的 div，方便用户通过修改注入。 -->
-        <div id="tide-footer-injection-point" class="un-hidden"></div>
-        <% if(!tide_utils().isEmptyObject(tideCtx.icp_record)) { %>
-        <p id="tide-icp-record" class="un-m-0 un-my-4"><a class="un-sc-link-plain un-text-txt-sb!" href="<%= tideCtx.icp_record.link %>"><%= tideCtx.icp_record.text %></a></p>
-        <% } %>
-        <% if(tideCtx.generated_by_hexo_and_theme_tide){ %>
-        <p id="tide-generated-by-hexo-and-theme-tide" class="un-m-0 un-my-4"><%- __('navigation.footer.generated_by_hexo_and_theme_tide') %></p>
-        <% } %>
-      </footer>
-    </div>
+    <%- partial('./partials/sidebar.ejs',{tideCtx}) %>
     <div id="tide-content" class="un-sc-trans-default un-fixed un-size-full un-flex un-flex-col">
-      <header id="tide-top-bar" class="un-bg-bg-prim un-h-16 un-flex un-justify-stretch un-items-center un-overflow-auto">
-        <div class="un-w-1/4 un-min-w-18 un-h-12">
-          <button id="tide-btn-nav" class="un-sc-btn-default un-relative un-float-start un-size-12 un-ms-4" title="<%= __('navigation.btn_nav.title') %>" aria-haspopup="menu" aria-controls="tide-navigation" aria-expanded="false">
-            <i id="tide-btn-nav-icon-bars" class="fa-solid fa-bars" aria-hidden="true"></i><i id="tide-btn-nav-icon-close" class="fa-solid fa-close" aria-hidden="true"></i>
-          </button>
-        </div>
-        <div class="un-w-3/4 un-min-w-30 un-h-12">
-          <!-- 开启 relative，使用 right 让元素具有符合直觉的 tab index。 -->
-          <% if(tideCtx.search){ %>
-          <button id="tide-btn-search" class="un-sc-btn-default un-relative un-float-end un-end-14 un-size-12 un-me-4" title="<%= __('navigation.btn_search.title') %>" aria-haspopup="dialog" aria-controls="tide-dialog-search" aria-expanded="false">
-            <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
-          </button>
-          <% } %>
-          <button id="tide-btn-color-scheme" class="un-sc-btn-default un-relative un-float-end -un-end-16 un-size-12 un-me-4" title="<%= __('navigation.btn_color_scheme.title') %>">
-            <i id="tide-btn-nav-icon-sun" class="fa-solid fa-sun" aria-hidden="true"></i><i id="tide-btn-nav-icon-moon" class="fa-solid fa-moon" aria-hidden="true"></i>
-          </button>
-          <button id="tide-btn-settings" class="un-hidden un-sc-btn-default un-relative un-float-end -un-end-16 un-size-12 un-me-4" title="<%= __('navigation.btn_settings.title') %>">
-            <i class="fa-solid fa-gear" aria-hidden="true"></i>
-          </button>
-        </div>
-      </header>
+      <%- partial('./partials/top-bar.ejs',{tideCtx}) %>
       <div id="tide-main-content-frame" class="un-bg-bg-prim un-flex-1 un-overflow-auto">
         <main id="tide-main-content" dir="<%= tideCtx.page_dir %>" class="un-max-w-[80ch] un-mx-auto">
           <%- body %>
